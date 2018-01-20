@@ -1,6 +1,7 @@
 package com.teaml.iq.volunteer.di.module
 
 import android.support.v7.app.AppCompatActivity
+import com.teaml.iq.volunteer.di.annotation.ActivityContext
 import dagger.Module
 import dagger.Provides
 
@@ -15,6 +16,7 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideActivity() = activity
 
     @Provides
+    @ActivityContext
     fun provideContext() = activity
 
 }

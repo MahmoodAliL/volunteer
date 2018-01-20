@@ -1,6 +1,7 @@
 package com.teaml.iq.volunteer.di.module
 
 import android.app.Application
+import com.teaml.iq.volunteer.di.annotation.ApplicationContext
 import dagger.Module
 import dagger.Provides
 
@@ -15,6 +16,7 @@ class ApplicationModule(val application: Application) {
     fun provideApplication() = application
 
     @Provides
+    @ApplicationContext
     fun provideContext() = application
 
 
