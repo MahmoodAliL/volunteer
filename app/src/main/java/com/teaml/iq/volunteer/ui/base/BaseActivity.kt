@@ -10,6 +10,7 @@ import com.teaml.iq.volunteer.di.module.ActivityModule
 
 /**
  * Created by Mahmood Ali on 30/01/2018.
+ *
  */
 class BaseActivity : AppCompatActivity(), MvpView {
 
