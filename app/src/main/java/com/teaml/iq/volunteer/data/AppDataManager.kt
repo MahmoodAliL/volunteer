@@ -1,0 +1,13 @@
+package com.teaml.iq.volunteer.data
+
+import android.content.Context
+import com.teaml.iq.volunteer.di.annotation.ApplicationContext
+import javax.inject.Inject
+
+/**
+ * Created by Mahmood Ali on 24/01/2018.
+ */
+class AppDataManager @Inject constructor(@ApplicationContext context: Context) : DataManager {
+
+
+}

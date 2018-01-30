@@ -8,7 +8,7 @@ package com.teaml.iq.volunteer.ui.base
  */
 interface MvpPresenter<V: MvpView> {
 
-    fun onAttach()
+    fun onAttach(mvpView: V)
 
     fun onDetach()
 
