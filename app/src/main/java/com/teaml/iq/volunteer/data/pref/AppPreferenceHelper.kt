@@ -1,0 +1,18 @@
+package com.teaml.iq.volunteer.data.pref
+
+import android.content.Context
+import android.content.SharedPreferences
+import com.teaml.iq.volunteer.di.annotation.ApplicationContext
+import com.teaml.iq.volunteer.di.annotation.PreferenceName
+import javax.inject.Inject
+
+/**
+ * Created by Mahmood Ali on 31/01/2018.
+ */
+class AppPreferenceHelper @Inject constructor(@ApplicationContext context: Context,
+                    @PreferenceName prefFileName: String) : PreferenceHelper {
+
+    private val prefs: SharedPreferences =
+            context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE)
+
+}

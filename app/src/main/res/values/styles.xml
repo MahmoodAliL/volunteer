@@ -1,5 +1,12 @@
 <resources>
 
+
+    <!-- Splash Screen Theme -->
+    <style name="SplashTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -8,10 +15,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
     <!-- Custom SpotsDialog Attribute -->
     <style name="SpotsDialogCustom" parent="android:Theme.DeviceDefault.Dialog">
         <item name="DialogTitleAppearance">@style/TextAppearance.AppCompat.Medium</item>
-        <item name="DialogTextTitle">Loading...</item>
+        <item name="DialogTitleText">Loading...</item>
         <item name="DialogSpotColor">@color/colorAccent</item>
         <item name="DialogSpotCount">4</item>
     </style>

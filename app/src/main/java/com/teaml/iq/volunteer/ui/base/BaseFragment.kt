@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.View
+import com.teaml.iq.volunteer.di.component.ActivityComponent
 import dmax.dialog.SpotsDialog
 
 /**
  * Created by Mahmood Ali on 31/01/2018.
  */
-class BaseFragment : Fragment(), MvpView {
+abstract class BaseFragment : Fragment(), MvpView {
 
-    private var baseActivity: BaseActivity? = null
+    var baseActivity: BaseActivity? = null
+        private set
+
     // TODO :: check if we can use activity dialog
     private var progressDialog: SpotsDialog? = null
 
@@ -72,7 +75,10 @@ class BaseFragment : Fragment(), MvpView {
         super.onDetach()
     }
 
-    protected fun setup(view: View) {}
+    fun getActivityComponent(): ActivityComponent? = baseActivity?.activityComponent
+
+    protected abstract fun setup(view: View)
+
 
     interface callback {
 

@@ -5,5 +5,5 @@ package com.teaml.iq.volunteer.ui.base
  */
 interface DialogMvpView : MvpView {
 
-    fun dismissDialog()
+    fun dismissDialog(tag: String)
 }

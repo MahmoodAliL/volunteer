@@ -4,7 +4,11 @@ import android.app.Application
 import android.content.Context
 import com.teaml.iq.volunteer.data.AppDataManager
 import com.teaml.iq.volunteer.data.DataManager
+import com.teaml.iq.volunteer.data.pref.AppPreferenceHelper
+import com.teaml.iq.volunteer.data.pref.PreferenceHelper
 import com.teaml.iq.volunteer.di.annotation.ApplicationContext
+import com.teaml.iq.volunteer.di.annotation.PreferenceName
+import com.teaml.iq.volunteer.utils.AppConstants
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -25,6 +29,16 @@ class ApplicationModule(val application: Application) {
 
     @Provides
     @Singleton
-    fun dataManager(appDataManager: AppDataManager): DataManager = appDataManager
+    fun provideDataManager(appDataManager: AppDataManager): DataManager = appDataManager
+
+    @Provides
+    @PreferenceName
+    fun providePrefName(): String = AppConstants.PREF_NAME
+
+    @Provides
+    @Singleton
+    fun providePreferenceHelper(appPreferenceHelper: AppPreferenceHelper): PreferenceHelper = appPreferenceHelper
+
+
 
 }

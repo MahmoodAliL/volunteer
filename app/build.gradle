@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -42,6 +46,9 @@ dependencies {
     // anko
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version" // For SnackBars
+
+    // material intro
+    implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
 
     // dagger2
     implementation "com.google.dagger:dagger:$dagger2_version"

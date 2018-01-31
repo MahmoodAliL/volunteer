@@ -24,17 +24,18 @@ import org.jetbrains.anko.toast
  * Created by Mahmood Ali on 30/01/2018.
  *
  */
-class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callback {
+abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callback {
 
 
     private var progressDialog: SpotsDialog? = null
 
-    private var mAppCompatActivity: ActivityComponent? = null
+    var activityComponent: ActivityComponent? = null
+        private set
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
 
-        mAppCompatActivity = DaggerActivityComponent.builder()
+        activityComponent = DaggerActivityComponent.builder()
                 .activityModule(ActivityModule(this))
                 .applicationComponent((application as MvpApp).applicationComponent)
                 .build()
