@@ -11,7 +11,7 @@ import android.support.annotation.StringRes
  */
 interface MvpView {
 
-    fun showLoading()
+    fun showLoading(msg: String  = "Loading...")
 
     fun hideLoading()
 

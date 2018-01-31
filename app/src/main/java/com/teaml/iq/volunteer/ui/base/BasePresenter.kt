@@ -35,11 +35,15 @@ class BasePresenter<V: MvpView> public constructor(dataManager: DataManager ): M
 
     fun isAttached() {
         if (!isViewAttached())
-            throw MvpViewNotAttachedException
+            throw MvpViewNotAttachedException()
     }
 
-    object MvpViewNotAttachedException : RuntimeException ("Please call presenter.onAttach(MvpView)" +
-            "before requesting data to presenter")
+    // make it static class
+    companion object {
+        class  MvpViewNotAttachedException : RuntimeException ("Please call presenter.onAttach(MvpView)" +
+                "before requesting data to presenter")
+    }
+
 
 
 }

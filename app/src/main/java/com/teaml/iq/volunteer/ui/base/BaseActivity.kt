@@ -1,19 +1,33 @@
 package com.teaml.iq.volunteer.ui.base
 
+import android.annotation.TargetApi
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.annotation.StringRes
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.teaml.iq.volunteer.MvpApp
+import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.di.component.ActivityComponent
 import com.teaml.iq.volunteer.di.component.DaggerActivityComponent
 import com.teaml.iq.volunteer.di.module.ActivityModule
+import com.teaml.iq.volunteer.utils.KeyboardUtils
+import com.teaml.iq.volunteer.utils.NetworkUtils
+import dmax.dialog.SpotsDialog
+import org.jetbrains.anko.toast
 
 /**
  * Created by Mahmood Ali on 30/01/2018.
  *
  */
-class BaseActivity : AppCompatActivity(), MvpView {
+class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callback {
 
+
+    private var progressDialog: SpotsDialog? = null
 
     private var mAppCompatActivity: ActivityComponent? = null
 
@@ -24,43 +38,87 @@ class BaseActivity : AppCompatActivity(), MvpView {
                 .activityModule(ActivityModule(this))
                 .applicationComponent((application as MvpApp).applicationComponent)
                 .build()
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    fun requestPermissionsSafely(permission: Array<out String>, requestCode: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            requestPermissions(permission, requestCode)
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    fun hasPermission(permission: String): Boolean {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+                checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onFragmentAttached() {
+
+    }
+
+    override fun onFragmentDetach(tag: String) {
 
     }
 
 
-    override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showLoading(msg: String ) {
+        if (progressDialog == null) {
+            progressDialog = SpotsDialog(this, msg, R.style.SpotsDialogCustom)
+        }
+
+        progressDialog?.show()
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // if dialog is not showing then hide it
+        // TODO : check  if  progressDialog?.isShowing == false  is work fine with out check null
+        if ( progressDialog != null && progressDialog?.isShowing == false ) {
+            progressDialog?.dismiss()
+        }
     }
 
-    override fun onError(msg: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun showSnakbar(msg: String) {
+        val snakbar = Snackbar.make(findViewById(android.R.id.content), msg,
+                Snackbar.LENGTH_LONG)
+        val txtView = snakbar.view.findViewById<TextView>(R.id.snackbar_text)
+        txtView.setTextColor(Color.WHITE)
+        snakbar.show()
     }
+
+    override fun onError(@StringRes msg: Int) {
+        val message = getString(msg)
+
+        if (message != null)
+            showSnakbar(message)
+        else
+            showSnakbar(getString(R.string.some_error))
+    }
+
 
     override fun onError(msg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showSnakbar(msg)
     }
 
-    override fun showMessage(msg: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showMessage(@StringRes msg: Int) {
+        if (getString(msg) != null)
+            toast(msg).show()
+        else
+            toast(R.string.some_error).show()
     }
 
     override fun showMessage(msg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        toast(msg).show()
     }
 
-    override fun isNetworkConnection(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun isNetworkConnection(): Boolean = NetworkUtils.isNetworkConnected(applicationContext)
 
     override fun hideKeyboard() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        KeyboardUtils.hideSoftInput(this)
     }
 
     override fun openSignInActivity() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        finish()
     }
 }
