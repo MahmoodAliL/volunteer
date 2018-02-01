@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -15,6 +16,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    dataBinding {
+        enabled = true
     }
     buildTypes {
         release {
@@ -57,6 +62,11 @@ dependencies {
     // firebase
     implementation "com.google.firebase:firebase-auth:$firebase_version"
     implementation "com.google.firebase:firebase-core:$firebase_version"
+
+    // material-intro
+    implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
+    kapt 'com.android.databinding:compiler:2.3.3'
+
 
 
     testImplementation 'junit:junit:4.12'
