@@ -28,5 +28,6 @@ interface MvpView {
     fun hideKeyboard()
 
     // openActivityOnTakenExpire()
+
     fun openSignInActivity()
 }
