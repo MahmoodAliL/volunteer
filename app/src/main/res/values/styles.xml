@@ -1,22 +1,5 @@
 <resources>
 
-
-    <!-- Splash Screen Theme -->
-    <style name="SplashTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-
-
     <!-- Custom SpotsDialog Attribute -->
     <style name="SpotsDialogCustom" parent="android:Theme.DeviceDefault.Dialog">
         <item name="DialogTitleAppearance">@style/TextAppearance.AppCompat.Medium</item>

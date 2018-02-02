@@ -4,6 +4,11 @@
     <!--App Message -->
     <string name="some_error">Some error occurred!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Intro -->
+    <string name="intro_evaluation">تطور المجتمع</string>
+    <string name="intro_evaluation_description">تعتبر الانشطة التطوعية من اهم النشاطات العامة التي تساهم في المحافظة على تطور المجتمع</string>
+
+    <string name="intro_jobs">الوظائف</string>
+    <string name="intro_jobs_description">الوظائف</string>
+
 </resources>

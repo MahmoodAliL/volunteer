@@ -1,10 +1,10 @@
 package com.teaml.iq.volunteer.ui.intro
 
 import android.os.Bundle
-import android.widget.Toast
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide
 import com.teaml.iq.volunteer.R
+import org.jetbrains.anko.toast
 
 
 /**
@@ -13,65 +13,57 @@ import com.teaml.iq.volunteer.R
 
 class MainIntroActivity : IntroActivity() {
 
-    override protected fun onCreate(savedInstanceState: Bundle?) {
-        isFullscreen = true
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         isButtonBackVisible = false
         isButtonNextVisible = false
 
-        pageScrollDuration = 500
 
-        buttonCtaTintMode = BUTTON_CTA_TINT_MODE_BACKGROUND
         buttonCtaTintMode = BUTTON_CTA_TINT_MODE_TEXT
 
+        autoplay(3000, INFINITE)
 
-
+        isButtonCtaVisible = true
+        buttonCtaLabel = "SIGN IN"
+        setButtonCtaClickListener {
+            toast("button sign in clicked ").show()
+        }
 
         addSlide(SimpleSlide.Builder()
-                .title("title here")
-                .description("the volunteers application is best for join to Campaigns")
-                .background(R.color.intor1)
-                .image(R.drawable.intro1)
-                .buttonCtaLabel("sign in")
-                .buttonCtaClickListener {
-                    Toast.makeText(this,"sign in ",Toast.LENGTH_LONG).show()
-                }
+                .title(R.string.intro_evaluation)
+                .description(R.string.intro_evaluation_description)
+                .background(R.color.color_intro_evaluation)
+                .backgroundDark(R.color.color_dark_intro_evaluation)
+                .image(R.drawable.evaluation_icon)
                 .build())
 
         addSlide(SimpleSlide.Builder()
-                .title("title here")
-                .description("add")
-                .image(R.drawable.intro2)
-                .background(R.color.intor2)
-                .buttonCtaLabel("sign in")
-                .buttonCtaClickListener {
-                    Toast.makeText(this,"sign in ",Toast.LENGTH_LONG).show()
-                }
+                .title(R.string.intro_evaluation)
+                .description(R.string.intro_evaluation_description)
+                .image(R.drawable.skills_icon)
+                .background(R.color.color_intro_skills)
+                .backgroundDark(R.color.color_dark_intro_skills)
+                .scrollable(false)
                 .build())
 
         addSlide(SimpleSlide.Builder()
-                .title("title here")
-                .description("add")
-                .image(R.drawable.intro3)
-                .background(R.color.intor3)
-                .buttonCtaLabel("sign in")
-                .buttonCtaClickListener {
-                    Toast.makeText(this,"sign in ",Toast.LENGTH_LONG).show()
-                }
+                .title(R.string.intro_evaluation)
+                .description(R.string.intro_evaluation_description)
+                .image(R.drawable.find_jobs)
+                .background(R.color.color_intro_find_jobs)
+                .backgroundDark(R.color.color_dark_intro_find_jobs)
                 .build())
 
         addSlide(SimpleSlide.Builder()
-                .title("title here")
-                .description("add")
-                .image(R.drawable.intro4)
-                .background(R.color.intor4)
-                .buttonCtaLabel("sign in")
-                .buttonCtaClickListener {
-                    Toast.makeText(this,"sign in ",Toast.LENGTH_LONG).show()
-                }
+                .title(R.string.intro_evaluation)
+                .description(R.string.intro_evaluation_description)
+                .image(R.drawable.chart_icon)
+                .background(R.color.color_intro_chart)
+                .backgroundDark(R.color.color_dark_intro_chart)
                 .build())
 
-        //buttonCtaTintMode = BUTTON_NEXT_FUNCTION_NEXT
+
+
     }
 }

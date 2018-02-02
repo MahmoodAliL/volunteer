@@ -11,5 +11,16 @@ import javax.inject.Inject
 class AppDataManager @Inject constructor(@ApplicationContext context: Context,
                                          val  preferenceHelper: PreferenceHelper) : DataManager {
 
+    /**
+     * SharedPreferences
+     */
+    override fun setFirstStart(value: Boolean) = preferenceHelper.setFirstStart(value)
+
+    override fun isFirstStart(): Boolean = preferenceHelper.isFirstStart()
+
+    override fun hasBaseProfileInfo(): Boolean {
+        return false
+    }
+
 
 }
