@@ -2,6 +2,7 @@ package com.teaml.iq.volunteer.di.module
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.teaml.iq.volunteer.di.annotation.ActivityContext
 import com.teaml.iq.volunteer.di.annotation.PerActivity
 import com.teaml.iq.volunteer.ui.account.AccountMvpPersenter
@@ -31,6 +32,8 @@ class ActivityModule(activity: AppCompatActivity) {
     @Provides
     @ActivityContext
     fun provideContext(): Context = mActivity
+
+
 
     @Provides
     @PerActivity

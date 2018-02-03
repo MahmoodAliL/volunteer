@@ -9,4 +9,15 @@ import javax.inject.Inject
  */
 class SigninPresenter<V : SigninMvpView> @Inject constructor(dataManager: DataManager)
     : BasePresenter<V>(dataManager) , SigninMvpPresenter<V>{
+
+    override fun onSignInClick(email: String, password: String) {
+
+    }
+
+    fun checkEmail(email: String){
+        dataManager
+    }
+    fun checkPassword(password: String){
+
+    }
 }

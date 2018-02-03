@@ -7,4 +7,5 @@ import com.teaml.iq.volunteer.ui.base.MvpPresenter
  */
 interface SigninMvpPresenter<V : SigninMvpView> : MvpPresenter<V> {
 
+    fun onSignInClick(email: String, password: String)
 }
