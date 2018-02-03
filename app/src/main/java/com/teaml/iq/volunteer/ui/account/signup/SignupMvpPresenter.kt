@@ -1,4 +1,4 @@
-package com.teaml.iq.volunteer.ui.signup
+package com.teaml.iq.volunteer.ui.account.signup
 
 import com.teaml.iq.volunteer.ui.base.MvpPresenter
 

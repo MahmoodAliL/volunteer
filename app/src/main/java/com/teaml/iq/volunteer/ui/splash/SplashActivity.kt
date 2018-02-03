@@ -22,8 +22,7 @@ class SplashActivity : BaseActivity(), SplashMvpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityComponent?.inject(this)
-
+        activityComponent.inject(this)
         presenter.onAttach(this)
 
     }

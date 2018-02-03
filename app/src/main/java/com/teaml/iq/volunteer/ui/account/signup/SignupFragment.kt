@@ -1,4 +1,4 @@
-package com.teaml.iq.volunteer.ui.signup
+package com.teaml.iq.volunteer.ui.account.signup
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

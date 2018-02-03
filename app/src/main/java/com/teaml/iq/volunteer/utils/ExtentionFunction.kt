@@ -11,24 +11,24 @@ import android.content.SharedPreferences
  * For More: https://medium.com/@krupalshah55/manipulating-shared-prefs-with-kotlin-just-two-lines-of-code-29af62440285
  */
 
-inline fun SharedPreferences.edit( operation: (SharedPreferences.Editor) -> Unit) {
-    val editor = this.edit()
-    operation(editor)
-    edit().apply()
+inline fun SharedPreferences.edit(operation: SharedPreferences.Editor.() -> Unit) {
+    val edit = this.edit()
+    edit.operation()
+    edit.apply()
 }
 
 fun SharedPreferences.setValue(key: String, value: Any?) {
-    when(value) {
+    when (value) {
 
-        is String? ->  edit { it.putString(key, value) }
+        is String? -> edit { putString(key, value) }
 
-        is Boolean -> edit { it.putBoolean(key, value) }
+        is Boolean -> edit { putBoolean(key, value) }
 
-        is Int -> edit { it.putInt(key, value) }
+        is Int -> edit { putInt(key, value) }
 
-        is Float -> edit { it.putFloat(key, value) }
+        is Float -> edit { putFloat(key, value) }
 
-        is Long -> edit { it.putLong(key, value) }
+        is Long -> edit { putLong(key, value) }
 
         else -> throw UnsupportedOperationException("Not yet Implemented")
 
@@ -53,3 +53,8 @@ inline fun<reified T : Any> SharedPreferences.get(key: String, defaultValue: T? 
         else -> throw UnsupportedOperationException("Not yet Implemented")
     }
 }*/
+
+
+/**
+ * Fragment Extension Function
+ */

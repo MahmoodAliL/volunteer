@@ -21,7 +21,7 @@
     <color name="color_dark_intro_skills">#0277BD</color>
     <color name="color_dark_intro_find_jobs">#7b7b7b</color>
     <color name="color_dark_intro_evaluation">#59932a</color>
-
+    <color name="color_forget_password">#757575</color>
 
 
 </resources>

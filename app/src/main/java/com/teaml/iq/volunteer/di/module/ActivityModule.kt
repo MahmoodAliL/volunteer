@@ -4,6 +4,12 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.teaml.iq.volunteer.di.annotation.ActivityContext
 import com.teaml.iq.volunteer.di.annotation.PerActivity
+import com.teaml.iq.volunteer.ui.account.AccountMvpPersenter
+import com.teaml.iq.volunteer.ui.account.AccountMvpView
+import com.teaml.iq.volunteer.ui.account.AccountPersenter
+import com.teaml.iq.volunteer.ui.intro.IntroMvpPresenter
+import com.teaml.iq.volunteer.ui.intro.IntroMvpView
+import com.teaml.iq.volunteer.ui.intro.IntroPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpView
 import com.teaml.iq.volunteer.ui.splash.SplashPresenter
@@ -30,5 +36,19 @@ class ActivityModule(activity: AppCompatActivity) {
     @PerActivity
     fun provideSplashPresenter(presenter: SplashPresenter<SplashMvpView> ): SplashMvpPresenter<SplashMvpView> =
             presenter
+
+    @Provides
+    @PerActivity
+    fun provideIntroPresenter(presenter: IntroPresenter<IntroMvpView>): IntroMvpPresenter<IntroMvpView> =
+            presenter
+
+    @Provides
+    @PerActivity
+    fun proivdeAccountPresenter(presenter: AccountPersenter<AccountMvpView>): AccountMvpPersenter<AccountMvpView> =
+            presenter
+
+
+
+
 
 }

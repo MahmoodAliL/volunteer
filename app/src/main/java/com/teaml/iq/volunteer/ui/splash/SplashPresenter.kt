@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.ui.splash
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.teaml.iq.volunteer.data.DataManager
@@ -29,7 +30,6 @@ class SplashPresenter<V : SplashMvpView> @Inject constructor(dataManager: DataMa
 
         if (dataManager.isFirstStart()) {
             mvpView?.openIntroActivityForResult(INTRO_ACTIVITY_RC)
-            mvpView?.showMessage("true")
         } else {
             mvpView?.showMessage("something")
         }
@@ -38,10 +38,12 @@ class SplashPresenter<V : SplashMvpView> @Inject constructor(dataManager: DataMa
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == INTRO_ACTIVITY_RC ) {
-            if (resultCode == IntroActivity.RESULT_OK) {
+
+            if (resultCode == RESULT_OK) {
+                mvpView?.showMessage("result ok")
                 dataManager.setFirstStart(false)
             } else {
-                // user cancel this activity
+                //User cancelled the intro so we'll finish this activity too.
                 dataManager.setFirstStart(true)
                 mvpView?.finishActivity()
             }

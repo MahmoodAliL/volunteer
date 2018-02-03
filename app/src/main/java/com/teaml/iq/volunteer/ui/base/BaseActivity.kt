@@ -29,12 +29,12 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callbac
 
     private var progressDialog: SpotsDialog? = null
 
-    var activityComponent: ActivityComponent? = null
+    lateinit var activityComponent: ActivityComponent
         private set
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         activityComponent = DaggerActivityComponent.builder()
                 .activityModule(ActivityModule(this))
                 .applicationComponent((application as MvpApp).applicationComponent)
@@ -118,8 +118,8 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callbac
         KeyboardUtils.hideSoftInput(this)
     }
 
+
     override fun openSignInActivity() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        finish()
     }
 }
