@@ -10,7 +10,7 @@
 
 
     <!-- Sign In Button Style -->
-    <style name="ButtonColoredStyle" parent="Widget.AppCompat.Button">
+    <style name="ButtonColoredStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
@@ -19,8 +19,6 @@
     <style name="ButtonBorderlessColoredStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
-
-
 
 
 </resources>
