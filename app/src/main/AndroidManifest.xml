@@ -12,17 +12,24 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.intro.MainIntroActivity"
-            android:theme="@style/Theme.Intro"></activity>
+            android:theme="@style/Theme.Intro" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/SplashTheme">
+
+        </activity>
+        <activity android:name=".ui.account.AccountActivity" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".ui.account.AccountActivity"></activity>
     </application>
 
 </manifest>

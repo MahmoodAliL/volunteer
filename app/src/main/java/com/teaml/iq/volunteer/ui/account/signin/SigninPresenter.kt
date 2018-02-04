@@ -15,7 +15,7 @@ class SigninPresenter<V : SigninMvpView> @Inject constructor(dataManager: DataMa
     }
 
     fun checkEmail(email: String){
-        dataManager
+
     }
     fun checkPassword(password: String){
 

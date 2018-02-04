@@ -28,5 +28,6 @@
     <string name="birth_of_day">Birth Of Day</string>
     <string name="done">Done</string>
     <string name="about_me">About Me</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>

@@ -28,10 +28,10 @@ class MainIntroActivity : IntroActivity() {
         buttonCtaTintMode = BUTTON_CTA_TINT_MODE_TEXT
         setButtonCtaClickListener { toast("button sign in clicked ").show() }*/
 
-        setupSlides()
+        //setupSlides()
     }
 
-
+/*
     private fun setupSlides() {
         autoplay(5000, INFINITE)
         addSlide(SimpleSlide.Builder()
@@ -77,7 +77,7 @@ class MainIntroActivity : IntroActivity() {
                 .buttonCtaClickListener { openSignInActivity() }
                 .build())
     }
-
+*/
 
 
     private fun openSignInActivity() {

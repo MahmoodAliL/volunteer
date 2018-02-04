@@ -11,6 +11,12 @@ import com.teaml.iq.volunteer.ui.account.AccountPersenter
 import com.teaml.iq.volunteer.ui.intro.IntroMvpPresenter
 import com.teaml.iq.volunteer.ui.intro.IntroMvpView
 import com.teaml.iq.volunteer.ui.intro.IntroPresenter
+import com.teaml.iq.volunteer.ui.main.MainMvpPresenter
+import com.teaml.iq.volunteer.ui.main.MainMvpView
+import com.teaml.iq.volunteer.ui.main.MainPresenter
+import com.teaml.iq.volunteer.ui.main.home.HomeMvpPresenter
+import com.teaml.iq.volunteer.ui.main.home.HomeMvpView
+import com.teaml.iq.volunteer.ui.main.home.HomePresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpView
 import com.teaml.iq.volunteer.ui.splash.SplashPresenter
@@ -33,7 +39,14 @@ class ActivityModule(activity: AppCompatActivity) {
     @ActivityContext
     fun provideContext(): Context = mActivity
 
+    @Provides
+    @PerActivity
+    fun provideMainPresenter(presenter: MainPresenter<MainMvpView>): MainMvpPresenter<MainMvpView> =
+            presenter
 
+    @Provides
+    fun provideHomePresenter(presenter: HomePresenter<HomeMvpView>): HomeMvpPresenter<HomeMvpView> =
+            presenter
 
     @Provides
     @PerActivity
