@@ -30,6 +30,7 @@
     <!-- Forget Password -->
     <string name="reset_password">Reset Password</string>
     <string name="back">Back</string>
+    <string name="forget_password_description">Don\'t worry we just need your registered email id to send you paswsord reset instructions.</string>
 
     <!-- Sing Up -->
     <string name="sign_up_welcome">welcome</string>
@@ -53,7 +54,7 @@
 
     <!-- accessibility -->
     <string name="img_logo">img logo</string>
-    <string name="forget_password_description">Don\'t worry we just need your registered email id to send you paswsord reset instructions.</string>
+
 
 
 </resources>
