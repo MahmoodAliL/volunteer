@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 
 /**
@@ -12,10 +13,13 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
  */
 class ForgetPasswordFragment : BaseFragment() {
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+
+        val view = layoutInflater.inflate(R.layout.forget_password_layout, container, false)
+
+        return view
     }
+
 
     override fun setup(view: View) {
 
