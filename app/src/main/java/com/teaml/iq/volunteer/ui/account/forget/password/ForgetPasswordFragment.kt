@@ -8,6 +8,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 
 /**
  * Created by Mahmood Ali on 05/02/2018.
+ *
  */
 class ForgetPasswordFragment : BaseFragment() {
 
