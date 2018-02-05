@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.teaml.iq.volunteer.ui.base.BaseDialog
+import com.teaml.iq.volunteer.ui.base.BaseFragment
 
 /**
  * Created by Mahmood Ali on 05/02/2018.
  */
-class ForgetPasswordDialog: BaseDialog() {
+class ForgetPasswordFragment : BaseFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
