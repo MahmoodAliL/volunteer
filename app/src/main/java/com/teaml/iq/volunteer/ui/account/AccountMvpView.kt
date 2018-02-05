@@ -7,4 +7,8 @@ import com.teaml.iq.volunteer.ui.base.MvpView
  */
 interface AccountMvpView : MvpView {
 
+    fun showBaseProfileInfoFragment()
+
+    fun showSignInFragment()
+
 }

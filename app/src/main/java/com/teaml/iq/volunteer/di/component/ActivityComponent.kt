@@ -4,6 +4,8 @@ import com.teaml.iq.volunteer.di.annotation.PerActivity
 import com.teaml.iq.volunteer.di.module.ActivityModule
 import com.teaml.iq.volunteer.di.module.ApplicationModule
 import com.teaml.iq.volunteer.ui.account.AccountActivity
+import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
+import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.splash.SplashActivity
 import dagger.Component
 
@@ -18,6 +20,10 @@ interface ActivityComponent {
     fun inject(activity: SplashActivity)
 
     fun inject(activity: AccountActivity)
+
+    fun inject(fragment: SignInFragment)
+
+    fun inject(fragment: SignUpFragment)
 
 
 }

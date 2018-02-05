@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.intro.MainIntroActivity"
-            android:theme="@style/Theme.Intro"></activity>
+            android:theme="@style/Theme.Intro" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -22,7 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.account.AccountActivity"></activity>
+        <activity
+            android:name=".ui.account.AccountActivity"
+            android:theme="@style/AppThemeNoActionBar"
+            android:configChanges="keyboardHidden|keyboard"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

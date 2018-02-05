@@ -43,6 +43,8 @@ dependencies {
     implementation "com.android.support:design:$support_version"
     implementation "com.android.support:support-compat:$support_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support:cardview-v7:$support_version"
+
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // spots dialog 
@@ -66,8 +68,6 @@ dependencies {
 
     // circle image
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
-
 
 
     testImplementation 'junit:junit:4.12'

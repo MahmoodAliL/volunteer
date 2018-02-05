@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.ui.base
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.StringRes
@@ -11,9 +12,12 @@ import dmax.dialog.SpotsDialog
 /**
  * Created by Mahmood Ali on 31/01/2018.
  */
-abstract class BaseFragment : Fragment(), MvpView {
+abstract class BaseFragment : Fragment(), FragmentMvpView {
 
     var baseActivity: BaseActivity? = null
+        private set
+
+    var activityComponent: ActivityComponent? = null
         private set
 
     // TODO :: check if we can use activity dialog
@@ -29,12 +33,19 @@ abstract class BaseFragment : Fragment(), MvpView {
         if (context is BaseActivity) {
             baseActivity = context
             baseActivity?.onFragmentAttached()
+            activityComponent = baseActivity?.activityComponent
+
         }
 
     }
 
+    override fun getBaseActivity(): Activity? = activity
 
     override fun showLoading(msg: String) {
+        baseActivity?.showLoading(msg)
+    }
+
+    override fun showLoading(msg: Int) {
         baseActivity?.showLoading(msg)
     }
 
@@ -75,12 +86,11 @@ abstract class BaseFragment : Fragment(), MvpView {
         super.onDetach()
     }
 
-    fun getActivityComponent(): ActivityComponent? = baseActivity?.activityComponent
 
     protected abstract fun setup(view: View)
 
 
-    interface callback {
+    interface Callback {
 
         fun onFragmentAttached()
 

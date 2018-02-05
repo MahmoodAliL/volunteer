@@ -1,6 +1,11 @@
 package com.teaml.iq.volunteer.utils
 
 import android.content.SharedPreferences
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 
 /**
  * Created by Mahmood Ali on 02/02/2018.
@@ -58,3 +63,42 @@ inline fun<reified T : Any> SharedPreferences.get(key: String, defaultValue: T? 
 /**
  * Fragment Extension Function
  */
+
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
+    beginTransaction().func().commit()
+}
+
+// Add or replace fragment only without add to back stack
+fun AppCompatActivity.replaceFragment(frameId: Int, fragment: Fragment, tag: String? = null) {
+    supportFragmentManager.inTransaction { replace(frameId, fragment, tag) }
+}
+
+fun FragmentActivity.replaceFragment(frameId: Int, fragment: Fragment, tag: String? = null) {
+    supportFragmentManager.inTransaction { replace(frameId, fragment, tag);  }
+}
+
+fun AppCompatActivity.addFragment(frameId: Int, fragment: Fragment, tag: String?) {
+    supportFragmentManager.inTransaction { add(frameId, fragment, tag)  }
+}
+
+fun FragmentActivity.addFragment(frameId: Int, fragment: Fragment, tag: String?) {
+    supportFragmentManager.inTransaction { add(frameId, fragment, tag)  }
+}
+
+// Add or replace fragment with add to back stack
+fun AppCompatActivity.addFragmentAndAddToBackStack(frameId: Int, fragment: Fragment, tag: String?) {
+    supportFragmentManager.inTransaction { add(frameId, fragment, tag); addToBackStack(tag) }
+}
+
+fun AppCompatActivity.replaceFragmentAndAddToBackStack(frameId: Int, fragment: Fragment, tag: String? = null) {
+    supportFragmentManager.inTransaction { replace(frameId, fragment, tag); addToBackStack(tag) }
+}
+
+fun FragmentActivity.addFragmentAndAddToBackStack(frameId: Int, fragment: Fragment, tag: String?) {
+    supportFragmentManager.inTransaction { add(frameId, fragment, tag); addToBackStack(tag) }
+}
+
+fun FragmentActivity.replaceFragmentAndAddToBackStack(frameId: Int, fragment: Fragment, tag: String? = null) {
+    supportFragmentManager.inTransaction { replace(frameId, fragment, tag); addToBackStack(tag) }
+}
+

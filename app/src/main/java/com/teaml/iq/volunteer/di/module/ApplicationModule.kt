@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.teaml.iq.volunteer.data.AppDataManager
 import com.teaml.iq.volunteer.data.DataManager
+import com.teaml.iq.volunteer.data.firebase.AppFirebaseHelper
+import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
 import com.teaml.iq.volunteer.data.pref.AppPreferenceHelper
 import com.teaml.iq.volunteer.data.pref.PreferenceHelper
 import com.teaml.iq.volunteer.di.annotation.ApplicationContext
@@ -39,6 +41,8 @@ class ApplicationModule(val application: Application) {
     @Singleton
     fun providePreferenceHelper(appPreferenceHelper: AppPreferenceHelper): PreferenceHelper = appPreferenceHelper
 
-
+    @Provides
+    @Singleton
+    fun provideFirebase(appFirebaseHelper: AppFirebaseHelper): FirebaseHelper = appFirebaseHelper
 
 }

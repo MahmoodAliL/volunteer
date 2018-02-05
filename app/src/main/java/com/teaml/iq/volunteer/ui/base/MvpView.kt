@@ -1,6 +1,8 @@
 package com.teaml.iq.volunteer.ui.base
 
+import android.app.Activity
 import android.support.annotation.StringRes
+import com.teaml.iq.volunteer.R
 
 /**
  * Created by Mahmood Ali on 20/01/2018.
@@ -11,7 +13,9 @@ import android.support.annotation.StringRes
  */
 interface MvpView {
 
-    fun showLoading(msg: String  = "Loading...")
+    fun showLoading(msg: String  = "Please Wait")
+
+    fun showLoading(msg: Int )
 
     fun hideLoading()
 
@@ -28,6 +32,5 @@ interface MvpView {
     fun hideKeyboard()
 
     // openActivityOnTakenExpire()
-
     fun openSignInActivity()
 }

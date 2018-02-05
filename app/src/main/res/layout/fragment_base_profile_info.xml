@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.account.signin.SigninFragment">
+        tools:context=".ui.account.signin.SignInFragment">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgUser"
@@ -98,7 +98,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/btnDone"
+            android:id="@+id/btnSignIn"
             style="@style/ButtonColoredStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

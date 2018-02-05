@@ -88,6 +88,10 @@ abstract class BaseDialog : DialogFragment(), DialogMvpView {
         baseActivity?.showLoading(msg)
     }
 
+    override fun showLoading(@StringRes msg: Int) {
+        baseActivity?.showLoading(msg)
+    }
+
     override fun hideLoading() {
         baseActivity?.hideLoading()
     }

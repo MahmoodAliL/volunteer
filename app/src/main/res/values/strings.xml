@@ -1,11 +1,15 @@
 <resources>
 
 
+
     <string name="app_name">volunteer</string>
     <string name="hello_blank_fragment">volunteer</string>
 
     <!--App Message -->
     <string name="some_error">Some error occurred!</string>
+    <string name="loading">loading</string>
+    <string name="connection_error">Internet connection lost!</string>
+    <string name="please_wait">Please Wait</string>
 
     <!-- Intro -->
     <string name="intro_evaluation">تطور المجتمع</string>
@@ -20,13 +24,36 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forget_password">Forget Password ?</string>
-    <string name="sign_up">Sign up</string>
     <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+
+    <!-- Forget Password -->
+    <string name="reset_password">Reset Password</string>
+    <string name="back">Back</string>
+
+    <!-- Sing Up -->
     <string name="sign_up_welcome">welcome</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="name">Name</string>
-    <string name="birth_of_day">Birth Of Day</string>
+
+
+    <!-- Base Profile Info -->
     <string name="done">Done</string>
     <string name="about_me">About Me</string>
+    <string name="name">Name</string>
+    <string name="birth_of_day">Birth Of Day</string>
+
+    <!-- validation -->
+    <string name="empty_email">Please provide a non empty email.</string>
+    <string name="invalid_email">Please provide a valid email.</string>
+    <string name="empty_password">Please provide a non empty password</string>
+    <string name="password_does_not_match">Password does not match</string>
+    <!--<string name="empty_confirm_password">Please provide a non empty confirm password.</string>-->
+    <string name="invalid_password">Password must be at least 6 characters</string>
+
+
+    <!-- accessibility -->
+    <string name="img_logo">img logo</string>
+    <string name="forget_password_description">Don\'t worry we just need your registered email id to send you paswsord reset instructions.</string>
+
 
 </resources>

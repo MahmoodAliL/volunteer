@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Custom SpotsDialog Attribute -->
-    <style name="SpotsDialogCustom" parent="android:Theme.DeviceDefault.Dialog">
+    <style name="SpotsDialogCustom" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="DialogTitleAppearance">@style/TextAppearance.AppCompat.Medium</item>
         <item name="DialogTitleText">Loading...</item>
         <item name="DialogSpotColor">@color/colorAccent</item>
@@ -10,9 +10,10 @@
 
 
     <!-- Sign In Button Style -->
-    <style name="ButtonColoredStyle" parent="Widget.AppCompat.Button.Colored">
+    <style name="ButtonColoredStyle" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="android:textColor">@android:color/white</item>
+
     </style>
 
     <!-- Sign In Button Style -->

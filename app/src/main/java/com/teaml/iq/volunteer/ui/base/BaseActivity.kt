@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -18,13 +17,14 @@ import com.teaml.iq.volunteer.di.module.ActivityModule
 import com.teaml.iq.volunteer.utils.KeyboardUtils
 import com.teaml.iq.volunteer.utils.NetworkUtils
 import dmax.dialog.SpotsDialog
+import org.jetbrains.anko.progressDialog
 import org.jetbrains.anko.toast
 
 /**
  * Created by Mahmood Ali on 30/01/2018.
  *
  */
-abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callback {
+abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.Callback {
 
 
     private var progressDialog: SpotsDialog? = null
@@ -62,19 +62,25 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.callbac
 
     }
 
-
     override fun showLoading(msg: String ) {
         if (progressDialog == null) {
             progressDialog = SpotsDialog(this, msg, R.style.SpotsDialogCustom)
+            progressDialog?.setCancelable(false)
         }
 
         progressDialog?.show()
     }
 
+    override fun showLoading(@StringRes msg: Int) {
+        val message = getString(msg) ?: getString(R.string.loading)
+        showLoading(message)
+    }
+
+
     override fun hideLoading() {
         // if dialog is not showing then hide it
         // TODO : check  if  progressDialog?.isShowing == false  is work fine with out check null
-        if ( progressDialog != null && progressDialog?.isShowing == false ) {
+        if ( progressDialog != null && progressDialog?.isShowing == true ) {
             progressDialog?.dismiss()
         }
     }

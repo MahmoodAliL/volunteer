@@ -4,9 +4,16 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.teaml.iq.volunteer.di.annotation.ActivityContext
 import com.teaml.iq.volunteer.di.annotation.PerActivity
-import com.teaml.iq.volunteer.ui.account.AccountMvpPersenter
+import com.teaml.iq.volunteer.ui.account.AccountMvpPresenter
 import com.teaml.iq.volunteer.ui.account.AccountMvpView
-import com.teaml.iq.volunteer.ui.account.AccountPersenter
+import com.teaml.iq.volunteer.ui.account.AccountPresenter
+import com.teaml.iq.volunteer.ui.account.signin.SignInMvpPresenter
+import com.teaml.iq.volunteer.ui.account.signin.SignInMvpView
+import com.teaml.iq.volunteer.ui.account.signin.SignInPresenter
+import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
+import com.teaml.iq.volunteer.ui.account.signup.SignUpMvpPresenter
+import com.teaml.iq.volunteer.ui.account.signup.SignUpMvpView
+import com.teaml.iq.volunteer.ui.account.signup.SignUpPresenter
 import com.teaml.iq.volunteer.ui.intro.IntroMvpPresenter
 import com.teaml.iq.volunteer.ui.intro.IntroMvpView
 import com.teaml.iq.volunteer.ui.intro.IntroPresenter
@@ -44,10 +51,16 @@ class ActivityModule(activity: AppCompatActivity) {
 
     @Provides
     @PerActivity
-    fun proivdeAccountPresenter(presenter: AccountPersenter<AccountMvpView>): AccountMvpPersenter<AccountMvpView> =
+    fun proivdeAccountPresenter(presenter: AccountPresenter<AccountMvpView>): AccountMvpPresenter<AccountMvpView> =
             presenter
 
+    @Provides
+    fun provideSignInPresenter(presenter: SignInPresenter<SignInMvpView>): SignInMvpPresenter<SignInMvpView> =
+            presenter
 
+    @Provides
+    fun provideSignUpPresenter(presenter: SignUpPresenter<SignUpMvpView>): SignUpMvpPresenter<SignUpMvpView> =
+            presenter
 
 
 
