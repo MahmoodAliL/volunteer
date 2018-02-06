@@ -59,4 +59,9 @@ class SignUpFragment : BaseFragment(), SignUpMvpView {
     }
 
 
+    override fun onDestroyView() {
+        mPresenter.onDetach()
+        super.onDestroyView()
+    }
+
 }// Required empty public constructor

@@ -24,4 +24,6 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     override fun createUserWithEmailAndPassword(email: String, password: String): Task<AuthResult> =
             mFireBaseAuth.createUserWithEmailAndPassword(email, password)
 
+    override fun sendPasswordResetEmail(email: String) = mFireBaseAuth.sendPasswordResetEmail(email)
+
 }

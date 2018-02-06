@@ -20,9 +20,6 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
     var activityComponent: ActivityComponent? = null
         private set
 
-    // TODO :: check if we can use activity dialog
-    private var progressDialog: SpotsDialog? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(false)

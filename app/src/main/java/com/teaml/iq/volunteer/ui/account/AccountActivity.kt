@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.account.profileInfo.BaseProfileInfoFragment
 import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
-import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.utils.addFragment
 import com.teaml.iq.volunteer.utils.replaceFragment

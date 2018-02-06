@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
+import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordFragment
 import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.utils.replaceFragmentAndAddToBackStack
@@ -48,13 +49,13 @@ class SignInFragment : BaseFragment(), SignInMvpView {
             val email = emailField.text.toString()
             val password = passwordField.text.toString()
 
-            mPresenter.onBtnSignInClicked(email, password)
+            mPresenter.onSignInClick(email, password)
         }
 
 
-        btnSignUp.setOnClickListener {
-            mPresenter.onBtnSignUpClicked()
-        }
+        btnSignUp.setOnClickListener { mPresenter.onSignUpClick() }
+
+        btnForgetPassword.setOnClickListener { mPresenter.onForgetPasswordClick() }
     }
 
     override fun setup(view: View) {
@@ -67,6 +68,20 @@ class SignInFragment : BaseFragment(), SignInMvpView {
                 SignUpFragment.newInstance(),
                 SignUpFragment.TAG
         )
+    }
+
+    override fun showForgetPasswordFragment() {
+        //Extension function
+        activity?.replaceFragmentAndAddToBackStack(
+                R.id.rootView,
+                ForgetPasswordFragment.newInstance(),
+                ForgetPasswordFragment.TAG
+        )
+    }
+
+    override fun onDestroyView() {
+        mPresenter.onDetach()
+        super.onDestroyView()
     }
 
 

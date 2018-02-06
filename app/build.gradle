@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-kapt'
 
 
 android {
@@ -22,6 +22,7 @@ android {
     dataBinding {
         enabled = true
     }
+    kapt { generateStubs = true }
     buildTypes {
         release {
             minifyEnabled false
@@ -29,9 +30,6 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
@@ -56,11 +54,12 @@ dependencies {
 
     // dagger2
     implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation 'com.android.support:support-v4:27.0.2'
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
 
     // firebase
-    implementation "com.google.firebase:firebase-auth:$firebase_version"
     implementation "com.google.firebase:firebase-core:$firebase_version"
+    implementation "com.google.firebase:firebase-auth:$firebase_version"
 
     // material intro
     implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
@@ -77,6 +76,5 @@ dependencies {
 
 
 }
-
 
 apply plugin: 'com.google.gms.google-services'

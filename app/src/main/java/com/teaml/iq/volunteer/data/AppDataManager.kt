@@ -12,7 +12,6 @@ import javax.inject.Inject
  * Created by Mahmood Ali on 24/01/2018.
  */
 class AppDataManager @Inject constructor(
-        @ApplicationContext context: Context,
         val  preferenceHelper: PreferenceHelper ,
         val firebaseHelper: FirebaseHelper
 ) : DataManager {
@@ -40,5 +39,10 @@ class AppDataManager @Inject constructor(
 
     override fun createUserWithEmailAndPassword(email: String, password: String): Task<AuthResult> =
             firebaseHelper.createUserWithEmailAndPassword(email, password)
+
+    override fun sendPasswordResetEmail(email: String): Task<Void> =
+            firebaseHelper.sendPasswordResetEmail(email)
+
+
 
 }

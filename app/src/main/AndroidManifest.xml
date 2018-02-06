@@ -27,6 +27,7 @@
             android:theme="@style/AppThemeNoActionBar"
             android:configChanges="keyboardHidden|keyboard"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ui.main.MainActivity" />
     </application>
 
 </manifest>

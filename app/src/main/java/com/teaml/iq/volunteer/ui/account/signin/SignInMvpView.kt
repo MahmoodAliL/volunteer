@@ -9,4 +9,7 @@ import com.teaml.iq.volunteer.ui.base.MvpView
 interface SignInMvpView : FragmentMvpView {
 
     fun showSignUpFragment()
+
+    fun showForgetPasswordFragment()
+
 }

@@ -13,7 +13,7 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
     : BasePresenter<V>(dataManager), SignInMvpPresenter<V> {
 
 
-    override fun onBtnSignInClicked(email: String, password: String) {
+    override fun onSignInClick(email: String, password: String) {
         // validate email and password
 
         mvpView?.let { view ->
@@ -65,8 +65,11 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
 
     }
 
+    override fun onForgetPasswordClick() {
+        mvpView?.showForgetPasswordFragment()
+    }
 
-    override fun onBtnSignUpClicked() {
+    override fun onSignUpClick() {
         mvpView?.showSignUpFragment()
     }
 }

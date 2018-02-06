@@ -14,6 +14,6 @@ interface FbAuth {
 
     fun createUserWithEmailAndPassword(email: String, password: String): Task<AuthResult>
 
-
+    fun sendPasswordResetEmail(email: String): Task<Void>
 
 }
