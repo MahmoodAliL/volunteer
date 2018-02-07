@@ -36,6 +36,10 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup(view)
+    }
     override fun getBaseActivity(): Activity? = activity
 
     override fun showLoading(msg: String) {

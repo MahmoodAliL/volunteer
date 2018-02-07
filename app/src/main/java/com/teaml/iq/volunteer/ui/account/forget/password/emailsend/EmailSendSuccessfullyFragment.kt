@@ -21,7 +21,7 @@ class EmailSendSuccessfullyFragment : BaseFragment(), EmailSendSuccessfullyMvpVi
     }
 
     @Inject
-    lateinit var mPresenter: EmailSendMvpPresenter<EmailSendSuccessfullyMvpView>
+    lateinit var mPresenter: EmailSendSuccessfullyMvpPresenter<EmailSendSuccessfullyMvpView>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = layoutInflater.inflate(R.layout.email_send_successfully_layout, container, false)

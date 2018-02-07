@@ -3,6 +3,9 @@ package com.teaml.iq.volunteer.data.firebase
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.teaml.iq.volunteer.data.DataManager
 import javax.inject.Inject
 
 /**
@@ -10,7 +13,11 @@ import javax.inject.Inject
  */
 class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
+    companion object {
+        const val USERS_COL = "users"
+    }
     private val mFireBaseAuth = FirebaseAuth.getInstance()
+    private val mFirestore = FirebaseFirestore.getInstance()
 
     /**
      * Firebase auth
@@ -25,5 +32,10 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             mFireBaseAuth.createUserWithEmailAndPassword(email, password)
 
     override fun sendPasswordResetEmail(email: String) = mFireBaseAuth.sendPasswordResetEmail(email)
+
+    override fun saveBasicUserInfo(basicUserInfo: HashMap<String, Any>): Task<Void> {
+        return mFirestore.collection(USERS_COL).document(mFireBaseAuth.currentUser!!.uid).set(basicUserInfo)
+    }
+
 
 }

@@ -40,8 +40,8 @@ open class BasePresenter<V : MvpView> constructor(dataManager: DataManager) : Mv
 
     // make it static class
     companion object {
-        class MvpViewNotAttachedException : RuntimeException("Please call presenter.onAttach(MvpView)" +
-                "before requesting data to presenter")
+        class MvpViewNotAttachedException : RuntimeException("Please call mPresenter.onAttach(MvpView)" +
+                "before requesting data to mPresenter")
     }
 
 

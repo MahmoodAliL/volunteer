@@ -31,6 +31,8 @@
     <string name="reset_password">Reset Password</string>
     <string name="back">Back</string>
     <string name="forget_password_description">Don\'t worry we just need your registered email id to send you paswsord reset instructions.</string>
+    <string name="email_is_sent_successfully">Email is sent successfully</string>
+    <string name="check_email">Check your email for further instructions</string>
 
     <!-- Sing Up -->
     <string name="sign_up_welcome">welcome</string>
@@ -54,9 +56,13 @@
 
     <!-- accessibility -->
     <string name="img_logo">img logo</string>
-    <string name="email_is_sent_successfully">Email is sent successfully</string>
-    <string name="check_email">Check your email for further instructions</string>
     <string name="img_bottom_description">bottom_image_description</string>
+
+    <!-- basic user info -->
+    <string name="gender">Gender</string>
+    <string name="about_your">About your</string>
+    <string name="empty_name">Please provide a non empty name.</string>
+
 
 
 </resources>

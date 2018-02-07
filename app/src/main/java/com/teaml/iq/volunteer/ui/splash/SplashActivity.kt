@@ -2,12 +2,10 @@ package com.teaml.iq.volunteer.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.heinrichreimersoftware.materialintro.app.IntroActivity
+import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.intro.MainIntroActivity
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -17,13 +15,13 @@ class SplashActivity : BaseActivity(), SplashMvpView {
 
 
 
-    @Inject lateinit var presenter: SplashMvpPresenter<SplashMvpView>
+    @Inject lateinit var mPresenter: SplashMvpPresenter<SplashMvpView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         activityComponent.inject(this)
-        presenter.onAttach(this)
+        mPresenter.onAttach(this)
 
     }
 
@@ -33,11 +31,12 @@ class SplashActivity : BaseActivity(), SplashMvpView {
     }
 
     override fun openMainActivity() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun openBaseInfoActivity() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val data = AccountActivity.EXTRA_CURRENT_FRAGMENT to AccountActivity.CurrentFragment.BASE_INFO_FRAGMENT.type
+       startActivity<AccountActivity>(data)
     }
 
     override fun finishActivity() = finish()
@@ -45,8 +44,13 @@ class SplashActivity : BaseActivity(), SplashMvpView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        presenter.onActivityResult(requestCode, resultCode, data)
+        mPresenter.onActivityResult(requestCode, resultCode, data)
     }
 
+
+    override fun onDestroy() {
+        mPresenter.onDetach()
+        super.onDestroy()
+    }
 
 }

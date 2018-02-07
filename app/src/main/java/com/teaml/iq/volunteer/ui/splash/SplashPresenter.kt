@@ -28,10 +28,10 @@ class SplashPresenter<V : SplashMvpView> @Inject constructor(dataManager: DataMa
 
     private fun decideNextActivity() {
 
-        if (dataManager.isFirstStart()) {
-            mvpView?.openIntroActivityForResult(INTRO_ACTIVITY_RC)
-        } else {
-            mvpView?.showMessage("something")
+        when {
+            dataManager.isFirstStart() -> mvpView?.openIntroActivityForResult(INTRO_ACTIVITY_RC)
+            !dataManager.hasBaseProfileInfo() -> mvpView?.openBaseInfoActivity()
+            else -> mvpView?.openMainActivity()
         }
     }
 

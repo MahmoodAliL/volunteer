@@ -15,6 +15,11 @@ interface DataManager : PreferenceHelper, FirebaseHelper {
 
     }
 
+    enum class UserGender(val type: Int) {
+        MALE(0),
+        FEMALE(1)
+    }
+
 
 
 

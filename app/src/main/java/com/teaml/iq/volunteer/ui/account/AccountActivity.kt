@@ -2,7 +2,7 @@ package com.teaml.iq.volunteer.ui.account
 
 import android.os.Bundle
 import com.teaml.iq.volunteer.R
-import com.teaml.iq.volunteer.ui.account.profileInfo.BaseProfileInfoFragment
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoFragment
 import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.utils.addFragment
@@ -30,7 +30,7 @@ class AccountActivity : BaseActivity(), AccountMvpView {
         setContentView(R.layout.activity_account)
 
         val currentFragmentId = intent.extras?.getInt(EXTRA_CURRENT_FRAGMENT)
-                ?: CurrentFragment.SING_IN_FRAGMENT.type
+                ?: CurrentFragment.BASE_INFO_FRAGMENT.type
 
         activityComponent.inject(this)
         mPresenter.onAttach(this)
@@ -45,7 +45,7 @@ class AccountActivity : BaseActivity(), AccountMvpView {
     }
 
     override fun showBaseProfileInfoFragment() {
-        replaceFragment(R.id.rootView, BaseProfileInfoFragment.newInstance(), BaseProfileInfoFragment.TAG)
+        replaceFragment(R.id.rootView, BasicInfoFragment.newInstance(), BasicInfoFragment.TAG)
     }
 
 }

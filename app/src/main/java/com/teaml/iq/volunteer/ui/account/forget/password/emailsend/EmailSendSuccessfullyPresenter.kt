@@ -8,7 +8,7 @@ import javax.inject.Inject
  * Created by Mahmood Ali on 06/02/2018.
  */
 class EmailSendSuccessfullyPresenter<V : EmailSendSuccessfullyMvpView> @Inject constructor(dataManager: DataManager)
-    : BasePresenter<V>(dataManager) , EmailSendMvpPresenter<V> {
+    : BasePresenter<V>(dataManager) , EmailSendSuccessfullyMvpPresenter<V> {
 
     override fun onBackClick() {
         mvpView?.showLoginFragment()

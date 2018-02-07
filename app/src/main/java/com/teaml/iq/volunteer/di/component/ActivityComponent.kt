@@ -3,6 +3,8 @@ package com.teaml.iq.volunteer.di.component
 import com.teaml.iq.volunteer.di.annotation.PerActivity
 import com.teaml.iq.volunteer.di.module.ActivityModule
 import com.teaml.iq.volunteer.ui.account.AccountActivity
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoFragment
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoMvpView
 import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordFragment
 import com.teaml.iq.volunteer.ui.account.forget.password.emailsend.EmailSendSuccessfullyFragment
 import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
@@ -33,6 +35,8 @@ interface ActivityComponent {
     fun inject(fragment: EmailSendSuccessfullyFragment)
 
     fun inject(fragment: ForgetPasswordFragment)
+
+    fun inject(fragment: BasicInfoFragment)
 
     fun inject(fragment: HomeFragment)
 

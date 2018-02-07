@@ -3,6 +3,7 @@ package com.teaml.iq.volunteer.data
 import android.content.Context
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.firestore.DocumentReference
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
 import com.teaml.iq.volunteer.data.pref.PreferenceHelper
 import com.teaml.iq.volunteer.di.annotation.ApplicationContext
@@ -43,6 +44,10 @@ class AppDataManager @Inject constructor(
     override fun sendPasswordResetEmail(email: String): Task<Void> =
             firebaseHelper.sendPasswordResetEmail(email)
 
+    /**
+     * Firestore
+     */
 
-
+    override fun saveBasicUserInfo(basicUserInfo: HashMap<String, Any>): Task<Void> =
+            firebaseHelper.saveBasicUserInfo(basicUserInfo)
 }
