@@ -25,7 +25,7 @@
     <string name="password">Password</string>
     <string name="forget_password">Forget Password ?</string>
     <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="or_sign_up">Or sign up</string>
 
     <!-- Forget Password -->
     <string name="reset_password">Reset Password</string>
@@ -37,6 +37,8 @@
     <!-- Sing Up -->
     <string name="sign_up_welcome">welcome</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or_sign_in">Or sign in</string>
 
 
     <!-- Base Profile Info -->
@@ -62,6 +64,7 @@
     <string name="gender">Gender</string>
     <string name="about_your">About your</string>
     <string name="empty_name">Please provide a non empty name.</string>
+    <string name="empty_birth_of_date">Please select your birth of date .</string>
 
 
 

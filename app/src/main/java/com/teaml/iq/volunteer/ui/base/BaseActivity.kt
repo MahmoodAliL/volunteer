@@ -14,10 +14,13 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.di.component.ActivityComponent
 import com.teaml.iq.volunteer.di.component.DaggerActivityComponent
 import com.teaml.iq.volunteer.di.module.ActivityModule
+import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.utils.KeyboardUtils
 import com.teaml.iq.volunteer.utils.NetworkUtils
 import dmax.dialog.SpotsDialog
-import org.jetbrains.anko.progressDialog
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import org.jetbrains.anko.toast
 
 /**
@@ -124,8 +127,7 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.Callbac
         KeyboardUtils.hideSoftInput(this)
     }
 
-
     override fun openSignInActivity() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity(intentFor<AccountActivity>().clearTask().newTask())
     }
 }

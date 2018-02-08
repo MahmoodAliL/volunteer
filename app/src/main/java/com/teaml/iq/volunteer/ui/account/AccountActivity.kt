@@ -30,7 +30,7 @@ class AccountActivity : BaseActivity(), AccountMvpView {
         setContentView(R.layout.activity_account)
 
         val currentFragmentId = intent.extras?.getInt(EXTRA_CURRENT_FRAGMENT)
-                ?: CurrentFragment.BASE_INFO_FRAGMENT.type
+                ?: CurrentFragment.SING_IN_FRAGMENT.type
 
         activityComponent.inject(this)
         mPresenter.onAttach(this)

@@ -2,7 +2,6 @@ package com.teaml.iq.volunteer.ui.splash
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.ui.base.BasePresenter
 import javax.inject.Inject
@@ -29,10 +28,15 @@ class SplashPresenter<V : SplashMvpView> @Inject constructor(dataManager: DataMa
     private fun decideNextActivity() {
 
         when {
+
             dataManager.isFirstStart() -> mvpView?.openIntroActivityForResult(INTRO_ACTIVITY_RC)
-            !dataManager.hasBaseProfileInfo() -> mvpView?.openBaseInfoActivity()
+
+            dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_IN_WITH_EMAIL.type
+                    && !dataManager.hasBasicProfileInfo() -> mvpView?.openBaseInfoActivity()
+
             else -> mvpView?.openMainActivity()
         }
+
     }
 
 
@@ -40,7 +44,6 @@ class SplashPresenter<V : SplashMvpView> @Inject constructor(dataManager: DataMa
         if (requestCode == INTRO_ACTIVITY_RC ) {
 
             if (resultCode == RESULT_OK) {
-                mvpView?.showMessage("result ok")
                 dataManager.setFirstStart(false)
             } else {
                 //User cancelled the intro so we'll finish this activity too.

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoFragment
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.utils.replaceFragment
 import kotlinx.android.synthetic.main.sign_up_layout.*
 import javax.inject.Inject
 
@@ -52,6 +54,22 @@ class SignUpFragment : BaseFragment(), SignUpMvpView {
 
     override fun showSignInFragment() {
         activity?.supportFragmentManager?.popBackStack()
+    }
+
+
+    override fun showBasicInfoFragment() {
+        activity?.apply {
+            // remove sign up from stack then sign in will show
+            // so if user click back button will exist from app
+            supportFragmentManager.popBackStack()
+            // replace sign in with basic user info
+            replaceFragment(
+                    R.id.rootView,
+                    BasicInfoFragment.newInstance(),
+                    BasicInfoFragment.TAG
+            )
+        }
+
     }
 
     override fun setup(view: View) {

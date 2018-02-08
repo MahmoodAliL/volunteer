@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.ui.account.signin
 
+import android.app.Activity
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.ui.base.BasePresenter
@@ -14,10 +15,11 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
 
 
     override fun onSignInClick(email: String, password: String) {
-        // validate email and password
+
 
         mvpView?.let { view ->
 
+            // validate email and password
             if (!view.isNetworkConnection()) {
                 view.onError(R.string.connection_error)
                 return
@@ -39,10 +41,12 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
                 return
             }
 
-            view.hideKeyboard()
-            view.showLoading(R.string.please_wait)
 
             view.getBaseActivity()?.let { activity ->
+
+                view.hideKeyboard()
+                view.showLoading(R.string.please_wait)
+
 
                 dataManager.signWithEmailAndPassword(email, password)
                         .addOnCompleteListener(activity) { task ->
@@ -51,17 +55,36 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
                             if (mvpView == null)
                                 return@addOnCompleteListener
 
-                            view.hideLoading()
                             if (task.isSuccessful) {
-                                view.showMessage("Sign In Successfully")
+                                dataManager.setCurrentUserLoggedInMode(DataManager.LoggedInMode.LOGGED_IN_WITH_EMAIL)
+                                checkBasicUserInfo(activity)
                             } else {
                                 view.onError("${task.exception?.message}")
+                                view.hideLoading()
                             }
                         }
 
             }
-            }
+        }
 
+
+    }
+
+
+    private fun checkBasicUserInfo(activity: Activity) {
+
+        // check if user has basic profile info if data of document is exist
+        // that mean user save has data to firestore
+        dataManager.loadProfileInfo()
+                .addOnSuccessListener(activity) { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        dataManager.setHasBasicProfileInfo(true)
+                        mvpView?.openMainActivity()
+                    } else {
+                        mvpView?.showBasicInfoFragment()
+                    }
+                }.addOnFailureListener { mvpView?.onError("${it.message}") }
+                .addOnCompleteListener { mvpView?.hideLoading() }
 
     }
 

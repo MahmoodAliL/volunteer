@@ -3,12 +3,10 @@ package com.teaml.iq.volunteer.ui.intro
 import android.os.Bundle
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide
+import com.teaml.iq.volunteer.MvpApp
 import com.teaml.iq.volunteer.R
-import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
-import javax.inject.Inject
 
 
 /**
@@ -17,8 +15,7 @@ import javax.inject.Inject
 
 class MainIntroActivity : IntroActivity() {
 
-    @Inject
-    lateinit var mDataManager: DataManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +83,7 @@ class MainIntroActivity : IntroActivity() {
 
 
     private fun openSignInActivity() {
-        mDataManager.setFirstStart(false)
+        (application as MvpApp).mDataManger.setFirstStart(false)
         startActivity<AccountActivity>()
     }
 

@@ -1,6 +1,5 @@
 package com.teaml.iq.volunteer.di.module
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.teaml.iq.volunteer.di.annotation.ActivityContext
@@ -8,7 +7,9 @@ import com.teaml.iq.volunteer.di.annotation.PerActivity
 import com.teaml.iq.volunteer.ui.account.AccountMvpPresenter
 import com.teaml.iq.volunteer.ui.account.AccountMvpView
 import com.teaml.iq.volunteer.ui.account.AccountPresenter
-import com.teaml.iq.volunteer.ui.account.basicinfo.*
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoMvpPresenter
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoMvpView
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoPresenter
 import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordMvpPresenter
 import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordMvpView
 import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordPresenter
@@ -35,7 +36,6 @@ import com.teaml.iq.volunteer.ui.splash.SplashMvpView
 import com.teaml.iq.volunteer.ui.splash.SplashPresenter
 import dagger.Module
 import dagger.Provides
-import java.util.*
 
 /**
  * Created by ali on 1/19/2018.
@@ -96,23 +96,7 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideBasicInfoPresenter(presenter: BasicInfoPresenter<BasicInfoMvpView>)
             : BasicInfoMvpPresenter<BasicInfoMvpView> = presenter
 
-    @Provides
-    fun provideDatePickerDialog(appclass: AppClass ): DatePickerDialog {
 
-        val datePickerDialog = DatePickerDialog(activity, appclass, 1999, 9, 9)
 
-        val calender = Calendar.getInstance()
-        val currentYear = calender.get(Calendar.YEAR)
-        // change  only user greater than  16 old is accepted
-        calender.set(Calendar.YEAR, currentYear - 16)
-        val maxDate = calender.timeInMillis
 
-        // only user smaller then 100 year is accepted
-        calender.set(Calendar.YEAR, currentYear - 100)
-        val minDate = calender.timeInMillis
-
-        datePickerDialog.datePicker.maxDate =  maxDate
-        datePickerDialog.datePicker.minDate = minDate
-        return datePickerDialog
-    }
 }

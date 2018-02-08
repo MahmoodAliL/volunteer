@@ -3,9 +3,8 @@ package com.teaml.iq.volunteer.data.firebase
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.teaml.iq.volunteer.data.DataManager
 import javax.inject.Inject
 
 /**
@@ -37,5 +36,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         return mFirestore.collection(USERS_COL).document(mFireBaseAuth.currentUser!!.uid).set(basicUserInfo)
     }
 
-
+    override fun loadProfileInfo(): Task<DocumentSnapshot> {
+        return mFirestore.collection(USERS_COL).document(mFireBaseAuth.currentUser?.uid ?: "").get()
+    }
 }

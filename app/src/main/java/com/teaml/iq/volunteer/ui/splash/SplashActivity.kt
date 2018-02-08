@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.intro.MainIntroActivity
+import com.teaml.iq.volunteer.ui.main.MainActivity
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -31,7 +32,8 @@ class SplashActivity : BaseActivity(), SplashMvpView {
     }
 
     override fun openMainActivity() {
-
+        startActivity<MainActivity>()
+        finish()
     }
 
     override fun openBaseInfoActivity() {

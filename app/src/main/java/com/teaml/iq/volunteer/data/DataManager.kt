@@ -23,5 +23,4 @@ interface DataManager : PreferenceHelper, FirebaseHelper {
 
 
 
-    fun hasBaseProfileInfo(): Boolean
 }

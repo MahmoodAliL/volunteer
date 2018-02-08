@@ -47,14 +47,14 @@ class SignUpPresenter<V : SignUpMvpView> @Inject constructor(dataManager: DataMa
 
             view.hideKeyboard()
             view.getBaseActivity()?.let { activity ->
-                view.showLoading(R.string.connection_error)
+                view.showLoading(R.string.sign_up)
                 dataManager.createUserWithEmailAndPassword(email, password).addOnCompleteListener(activity) { task ->
 
                     if (mvpView == null)
                         return@addOnCompleteListener
 
                     if (task.isSuccessful) {
-                        view.showMessage("user created Successfully")
+                        view.showBasicInfoFragment()
                     } else {
                         view.onError("${task.exception?.message}")
                     }

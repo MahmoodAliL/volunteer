@@ -1,12 +1,10 @@
 package com.teaml.iq.volunteer.data
 
-import android.content.Context
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
 import com.teaml.iq.volunteer.data.pref.PreferenceHelper
-import com.teaml.iq.volunteer.di.annotation.ApplicationContext
 import javax.inject.Inject
 
 /**
@@ -14,8 +12,7 @@ import javax.inject.Inject
  */
 class AppDataManager @Inject constructor(
         val  preferenceHelper: PreferenceHelper ,
-        val firebaseHelper: FirebaseHelper
-) : DataManager {
+        val firebaseHelper: FirebaseHelper) : DataManager {
 
     /**
      * SharedPreferences
@@ -25,9 +22,17 @@ class AppDataManager @Inject constructor(
 
     override fun isFirstStart(): Boolean = preferenceHelper.isFirstStart()
 
-    override fun hasBaseProfileInfo(): Boolean {
-        return false
+    override fun setHasBasicProfileInfo(value: Boolean) {
+        preferenceHelper.setHasBasicProfileInfo(value)
     }
+
+    override fun hasBasicProfileInfo(): Boolean = preferenceHelper.hasBasicProfileInfo()
+
+    override fun setCurrentUserLoggedInMode(mode: DataManager.LoggedInMode) {
+        preferenceHelper.setCurrentUserLoggedInMode(mode)
+    }
+
+    override fun getCurrentUserLoggedInMode(): Int = preferenceHelper.getCurrentUserLoggedInMode()
 
     /**
      * Firebase Auth
@@ -50,4 +55,8 @@ class AppDataManager @Inject constructor(
 
     override fun saveBasicUserInfo(basicUserInfo: HashMap<String, Any>): Task<Void> =
             firebaseHelper.saveBasicUserInfo(basicUserInfo)
+
+    override fun loadProfileInfo(): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo()
+
+
 }
