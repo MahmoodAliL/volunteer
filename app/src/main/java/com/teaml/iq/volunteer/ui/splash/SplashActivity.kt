@@ -39,6 +39,7 @@ class SplashActivity : BaseActivity(), SplashMvpView {
     override fun openBaseInfoActivity() {
         val data = AccountActivity.EXTRA_CURRENT_FRAGMENT to AccountActivity.CurrentFragment.BASE_INFO_FRAGMENT.type
        startActivity<AccountActivity>(data)
+        finish()
     }
 
     override fun finishActivity() = finish()

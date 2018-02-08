@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
+import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoFragment
 import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordFragment
 import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.main.MainActivity
+import com.teaml.iq.volunteer.utils.replaceFragment
 import com.teaml.iq.volunteer.utils.replaceFragmentAndAddToBackStack
-import kotlinx.android.synthetic.main.fragment_signin.*
+import kotlinx.android.synthetic.main.sign_in_layout.*
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import javax.inject.Inject
 
 
@@ -31,7 +37,7 @@ class SignInFragment : BaseFragment(), SignInMvpView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_signin, container, false)
+        val view = inflater.inflate(R.layout.sign_in_layout, container, false)
 
         if (activityComponent != null) {
             activityComponent?.inject(this)
@@ -70,6 +76,14 @@ class SignInFragment : BaseFragment(), SignInMvpView {
         )
     }
 
+    override fun showBasicInfoFragment() {
+        activity?.replaceFragment(
+                R.id.rootView,
+                BasicInfoFragment.newInstance(),
+                BasicInfoFragment.TAG
+        )
+    }
+
     override fun showForgetPasswordFragment() {
         //Extension function
         activity?.replaceFragmentAndAddToBackStack(
@@ -77,6 +91,14 @@ class SignInFragment : BaseFragment(), SignInMvpView {
                 ForgetPasswordFragment.newInstance(),
                 ForgetPasswordFragment.TAG
         )
+    }
+
+
+    override fun openMainActivity() {
+        activity?.apply {
+            startActivity(intentFor<MainActivity>().clearTask().newTask())
+        }
+
     }
 
     override fun onDestroyView() {

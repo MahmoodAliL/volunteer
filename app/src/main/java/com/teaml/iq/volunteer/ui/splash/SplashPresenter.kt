@@ -45,6 +45,7 @@ class SplashPresenter<V : SplashMvpView> @Inject constructor(dataManager: DataMa
 
             if (resultCode == RESULT_OK) {
                 dataManager.setFirstStart(false)
+                mvpView?.openMainActivity()
             } else {
                 //User cancelled the intro so we'll finish this activity too.
                 dataManager.setFirstStart(true)

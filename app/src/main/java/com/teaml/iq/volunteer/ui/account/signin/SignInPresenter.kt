@@ -76,15 +76,23 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
         // check if user has basic profile info if data of document is exist
         // that mean user save has data to firestore
         dataManager.loadProfileInfo()
-                .addOnSuccessListener(activity) { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        dataManager.setHasBasicProfileInfo(true)
-                        mvpView?.openMainActivity()
+                .addOnCompleteListener(activity) { task->
+
+                    mvpView?.hideLoading()
+
+                    if (task.isSuccessful) {
+                        if (task.result.exists()) {
+                            dataManager.setHasBasicProfileInfo(true)
+                            mvpView?.openMainActivity()
+                        } else {
+                            mvpView?.showBasicInfoFragment()
+                        }
                     } else {
-                        mvpView?.showBasicInfoFragment()
+                        mvpView?.onError("${task.exception?.message}")
                     }
-                }.addOnFailureListener { mvpView?.onError("${it.message}") }
-                .addOnCompleteListener { mvpView?.hideLoading() }
+
+
+                }
 
     }
 
