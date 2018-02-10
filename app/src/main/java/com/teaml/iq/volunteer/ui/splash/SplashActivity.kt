@@ -26,6 +26,10 @@ class SplashActivity : BaseActivity(), SplashMvpView {
 
     }
 
+    override fun setup() {
+
+    }
+
     override fun openIntroActivityForResult(requestCode: Int) {
         val intent = Intent(this, MainIntroActivity::class.java)
         startActivityForResult(intent, requestCode)

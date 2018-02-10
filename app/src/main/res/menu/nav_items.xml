@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
 
 
     <item
-        android:id="@+id/group"
-        android:title="Group"
-        android:icon="@drawable/ic_group_black_24dp"
-        />
-    <item
-        android:id="@+id/home"
-        android:title="Home"
+        android:id="@+id/action_home"
         android:icon="@drawable/ic_home_black_24dp"
-        />
+        android:title="@string/home" />
+
     <item
-        android:id="@+id/profile"
-        android:title="Profile"
+        android:id="@+id/action_group"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:title="@string/group" />
+
+    <item
+        android:id="@+id/action_activity"
+        android:icon="@drawable/ic_featured_play_list_black_24dp"
+        android:title="@string/activity" />
+
+    <item
+        android:id="@+id/action_profile"
         android:icon="@drawable/ic_person_black_24dp"
-        />
+        android:title="@string/profile" />
 </menu>

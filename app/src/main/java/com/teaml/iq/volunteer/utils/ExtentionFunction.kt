@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 
 /**
  * Created by Mahmood Ali on 02/02/2018.
@@ -102,3 +103,16 @@ fun FragmentActivity.replaceFragmentAndAddToBackStack(frameId: Int, fragment: Fr
     supportFragmentManager.inTransaction { replace(frameId, fragment, tag); addToBackStack(tag) }
 }
 
+
+// view utils
+val View.visible: Unit
+    get() {
+        visibility = View.VISIBLE
+    }
+val View.invisible: Unit
+    get() {
+        visibility = View.INVISIBLE
+    }
+
+val View.gone: Unit
+    get() { visibility = View.GONE}

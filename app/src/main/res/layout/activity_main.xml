@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.teaml.iq.volunteer.ui.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -11,23 +12,24 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <include layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar" />
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <include
-        layout="@layout/main_content_layout"
-        />
+    <com.teaml.iq.volunteer.ui.main.NoSwipViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="112dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        app:elevation="16dp"
-        app:menu="@menu/nav_items"
-        />
+        app:elevation="8dp"
+        app:menu="@menu/nav_items" />
 
 </android.support.design.widget.CoordinatorLayout>

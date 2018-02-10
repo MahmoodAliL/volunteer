@@ -2,7 +2,7 @@
 
 
 
-    <string name="app_name">volunteer</string>
+    <string name="app_name">Volunteer IQ</string>
     <string name="hello_blank_fragment">volunteer</string>
 
     <!--App Message -->
@@ -43,9 +43,11 @@
 
     <!-- Base Profile Info -->
     <string name="done">Done</string>
-    <string name="about_me">About Me</string>
+    <string name="about_your">About your</string>
     <string name="name">Name</string>
+    <string name="gender">Gender</string>
     <string name="birth_of_day">Birth Of Day</string>
+
 
     <!-- validation -->
     <string name="empty_email">Please provide a non empty email.</string>
@@ -54,18 +56,19 @@
     <string name="password_does_not_match">Password does not match</string>
     <!--<string name="empty_confirm_password">Please provide a non empty confirm password.</string>-->
     <string name="invalid_password">Password must be at least 6 characters</string>
+    <string name="empty_name">Please provide a non empty name.</string>
+    <string name="empty_birth_of_date">Please select your birth of date .</string>
 
 
     <!-- accessibility -->
     <string name="img_logo">img logo</string>
     <string name="img_bottom_description">bottom_image_description</string>
 
-    <!-- basic user info -->
-    <string name="gender">Gender</string>
-    <string name="about_your">About your</string>
-    <string name="empty_name">Please provide a non empty name.</string>
-    <string name="empty_birth_of_date">Please select your birth of date .</string>
-
-
+    <!-- Bottom bar menu -->
+    <string name="home">Home</string>
+    <string name="group">Group</string>
+    <string name="subscription">Subscription</string>
+    <string name="profile">Profile</string>
+    <string name="activity">Activity</string>
 
 </resources>

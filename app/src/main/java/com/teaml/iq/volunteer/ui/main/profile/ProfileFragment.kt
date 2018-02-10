@@ -17,7 +17,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 class ProfileFragment : BaseFragment() {
 
     companion object {
-        val TAG = ProfileFragment::class.java.simpleName
+        val TAG: String = ProfileFragment::class.java.simpleName
 
         fun newInstance(): ProfileFragment = ProfileFragment().apply {
             val args = Bundle()

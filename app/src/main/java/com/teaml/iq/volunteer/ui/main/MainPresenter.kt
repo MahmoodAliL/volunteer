@@ -13,17 +13,15 @@ class MainPresenter<V : MainMvpView> @Inject constructor(dataManager: DataManage
 
     override fun onNavigationItemSelected(itemId: Int) {
         when(itemId){
-            R.id.home -> {
-                mvpView?.viewHomeFragment()
+            R.id.action_home -> {
+                mvpView?.showHomeFragment()
             }
 
-            R.id.group -> {
-                mvpView?.viewGroupFragment()
+            R.id.action_group -> {
+                mvpView?.showGroupFragment()
             }
 
-            R.id.profile -> {
-                mvpView?.viewProfileFragment()
-            }
+
         }
     }
 }

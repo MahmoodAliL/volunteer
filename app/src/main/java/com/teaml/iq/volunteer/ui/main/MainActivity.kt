@@ -1,15 +1,11 @@
 package com.teaml.iq.volunteer.ui.main
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.main.group.GroupFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
 import com.teaml.iq.volunteer.ui.main.profile.ProfileFragment
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
@@ -20,10 +16,9 @@ class MainActivity : BaseActivity() , MainMvpView {
     @Inject
     lateinit var mPresenter: MainMvpPresenter<MainMvpView>
 
+    @Inject
+    lateinit var mBottomBarAdapter: BottomBarAdapter
 
-    companion object {
-        fun getStartIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,37 +27,42 @@ class MainActivity : BaseActivity() , MainMvpView {
         activityComponent.inject(this)
         mPresenter.onAttach(this)
 
-        setSupportActionBar(toolbar)
+        setup()
 
-
-        bottomNavigation.selectedItemId = R.id.home
 
         // when the item select first time
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             mPresenter.onNavigationItemSelected(item.itemId)
-            return@setOnNavigationItemSelectedListener true
+            true
         }
 
-
-    }
-    override fun viewHomeFragment() {
-        openFragment(HomeFragment.newInstance())
     }
 
-    override fun viewGroupFragment() {
-        openFragment(GroupFragment.newInstance())
+    override fun setup() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        with(mBottomBarAdapter) {
+            addFragment(HomeFragment.newInstance())
+            addFragment(GroupFragment.newInstance())
+            addFragment(ProfileFragment.newInstance())
+        }
+
+        viewPager.adapter = mBottomBarAdapter
+    }
+
+    override fun showHomeFragment() {
+        viewPager.setCurrentItem(0, false)
+    }
+
+    override fun showGroupFragment() {
+        viewPager.setCurrentItem(1, false)
     }
 
     override fun viewProfileFragment() {
-        openFragment(ProfileFragment.newInstance())
+        viewPager.setCurrentItem(2, false)
     }
 
-    private fun openFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction()
-                .disallowAddToBackStack()
-                .replace(R.id.mainContent,fragment)
-                .commit()
-    }
 
 
 }

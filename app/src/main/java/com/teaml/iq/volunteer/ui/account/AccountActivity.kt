@@ -39,6 +39,9 @@ class AccountActivity : BaseActivity(), AccountMvpView {
 
     }
 
+    override fun setup() {
+
+    }
 
     override fun showSignInFragment() {
         addFragment(R.id.rootView, SignInFragment.newInstance(), SignInFragment.TAG)

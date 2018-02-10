@@ -1,6 +1,5 @@
 package com.teaml.iq.volunteer.ui.main
 
-import android.content.Context
 import com.teaml.iq.volunteer.ui.base.MvpView
 
 /**
@@ -8,8 +7,8 @@ import com.teaml.iq.volunteer.ui.base.MvpView
  */
 interface MainMvpView : MvpView {
 
-    fun viewHomeFragment()
-    fun viewGroupFragment()
+    fun showHomeFragment()
+    fun showGroupFragment()
     fun viewProfileFragment()
 
 }

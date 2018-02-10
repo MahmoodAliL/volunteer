@@ -45,7 +45,7 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
             view.getBaseActivity()?.let { activity ->
 
                 view.hideKeyboard()
-                view.showLoading(R.string.please_wait)
+                view.showLoading(R.string.sign_in)
 
 
                 dataManager.signWithEmailAndPassword(email, password)

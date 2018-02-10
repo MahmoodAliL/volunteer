@@ -44,6 +44,7 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.Callbac
                 .build()
     }
 
+    abstract fun setup()
 
     @TargetApi(Build.VERSION_CODES.M)
     fun requestPermissionsSafely(permission: Array<out String>, requestCode: Int) {
