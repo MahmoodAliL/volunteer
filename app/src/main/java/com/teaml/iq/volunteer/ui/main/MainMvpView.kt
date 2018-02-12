@@ -7,8 +7,20 @@ import com.teaml.iq.volunteer.ui.base.MvpView
  */
 interface MainMvpView : MvpView {
 
+
+    fun addFragmentWithSignInStatus()
+
+    fun addFragmentWithSignOutStatus()
+/*
+
     fun showHomeFragment()
+
     fun showGroupFragment()
-    fun viewProfileFragment()
+
+    fun showMyActivityFragment()
+
+    fun showMyAccountFragment()
+
+*/
 
 }

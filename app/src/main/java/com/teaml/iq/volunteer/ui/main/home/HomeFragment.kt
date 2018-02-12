@@ -1,18 +1,17 @@
 package com.teaml.iq.volunteer.ui.main.home
 
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
-import com.teaml.iq.volunteer.data.model.Campaign
+import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.utils.gone
 import com.teaml.iq.volunteer.utils.invisible
 import com.teaml.iq.volunteer.utils.visible
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.recycler_view_layout.*
 import javax.inject.Inject
 
 
@@ -39,11 +38,14 @@ class HomeFragment : BaseFragment(), HomeMvpView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        if (activityComponent != null) {
-            activityComponent?.inject(this)
+        val view = inflater.inflate(R.layout.recycler_view_layout, container, false)
+
+        getActivityComponent()?.let {
+            it.inject(this)
             mPresenter.onAttach(this)
         }
+
+
 
 
         return view
@@ -54,7 +56,6 @@ class HomeFragment : BaseFragment(), HomeMvpView {
         mLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = mLinearLayoutManager
         recyclerView.adapter = mCampaignAdapter
-        recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.setHasFixedSize(true)
         mCampaignAdapter.initRecyclerView(recyclerView)
 
@@ -78,6 +79,11 @@ class HomeFragment : BaseFragment(), HomeMvpView {
 
     }
 
+
+    override fun showEmptyResult() {
+        emptyLayout.visible
+    }
+
     override fun setFieldError(value: Boolean) {
         mCampaignAdapter.isFieldError = value
     }
@@ -91,12 +97,12 @@ class HomeFragment : BaseFragment(), HomeMvpView {
     }
 
     override fun setLoadingMoreDone() {
-        mCampaignAdapter.setLoadedMoreDone()
+        mCampaignAdapter.setLoadMoreDone()
     }
 
 
-    override fun updateCampaign(campaigns: MutableList<Campaign>) {
-        mCampaignAdapter.addCampaigns(campaigns)
+    override fun updateCampaign(campaignPosts: MutableList<CampaignPost>) {
+        mCampaignAdapter.addCampaigns(campaignPosts)
     }
 
 

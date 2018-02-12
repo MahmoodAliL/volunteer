@@ -3,6 +3,7 @@ package com.teaml.iq.volunteer.data
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
 import com.teaml.iq.volunteer.data.pref.PreferenceHelper
 import javax.inject.Inject
@@ -59,4 +60,5 @@ class AppDataManager @Inject constructor(
     override fun loadProfileInfo(): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo()
 
 
+    override fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> = firebaseHelper.loadCampaignList(lastVisibleItem)
 }

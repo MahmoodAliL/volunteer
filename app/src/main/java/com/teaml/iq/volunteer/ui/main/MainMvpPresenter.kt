@@ -9,4 +9,7 @@ interface MainMvpPresenter<V : MainMvpView> : MvpPresenter<V> {
 
     fun onNavigationItemSelected(itemId: Int)
 
+    fun onAddFragmentToBottomBar()
+
+
 }

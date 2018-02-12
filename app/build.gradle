@@ -46,6 +46,9 @@ dependencies {
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    // bottom bar
+    compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
+
     // spots dialog 
     implementation 'com.github.d-max:spots-dialog:0.7@aar'
 

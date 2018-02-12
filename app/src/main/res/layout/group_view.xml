@@ -1,69 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgGroup"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/animate_bottom_image"
+        android:id="@+id/groupImg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        app:civ_border_width="1dp"
+        android:src="@drawable/org_placeholder_img"
         app:civ_border_color="@color/image_border"
+        app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/groupTitle"
+    <TextView
+        android:id="@+id/groupName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Team_L"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toRightOf="@id/imgGroup"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Team_L"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000"
+        app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/memberNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
         android:text="3 Member"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_marginTop="7dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toRightOf="@id/imgGroup"
-        app:layout_constraintTop_toBottomOf="@+id/groupTitle"
+        android:textColor="@color/color_caption"
+        app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/groupName" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/campaignNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:paddingBottom="24dp"
         android:text="35 Campaign"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toRightOf="@id/imgGroup"
-        app:layout_constraintTop_toBottomOf="@+id/memberNumber"
+        android:textColor="@color/color_caption"
+        app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/memberNumber" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000000"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/campaignNumber"
-        />
+
 </android.support.constraint.ConstraintLayout>

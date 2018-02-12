@@ -4,12 +4,12 @@ import com.teaml.iq.volunteer.di.annotation.PerActivity
 import com.teaml.iq.volunteer.di.module.ActivityModule
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoFragment
-import com.teaml.iq.volunteer.ui.account.basicinfo.BasicInfoMvpView
 import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordFragment
 import com.teaml.iq.volunteer.ui.account.forget.password.emailsend.EmailSendSuccessfullyFragment
 import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
 import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.main.MainActivity
+import com.teaml.iq.volunteer.ui.main.group.GroupFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
 import com.teaml.iq.volunteer.ui.splash.SplashActivity
 import dagger.Component
@@ -39,6 +39,9 @@ interface ActivityComponent {
     fun inject(fragment: BasicInfoFragment)
 
     fun inject(fragment: HomeFragment)
+
+    fun inject(fragment: GroupFragment)
+
 
 
 }

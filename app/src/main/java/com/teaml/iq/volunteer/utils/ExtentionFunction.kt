@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Mahmood Ali on 02/02/2018.
@@ -116,3 +118,10 @@ val View.invisible: Unit
 
 val View.gone: Unit
     get() { visibility = View.GONE}
+
+//
+
+fun Date.toSimpleString(): String {
+    val format = SimpleDateFormat(AppConstants.TIMESTAM_FORMAT, Locale.ENGLISH)
+    return format.format(this)
+}

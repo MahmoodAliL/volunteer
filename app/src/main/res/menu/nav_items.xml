@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 
     <item
         android:id="@+id/action_home"
+        android:enabled="true"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/home" />
+        android:title="@string/home"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_group"
+        android:enabled="true"
         android:icon="@drawable/ic_group_black_24dp"
-        android:title="@string/group" />
+        android:title="@string/group"
+        app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_activity"
+        android:id="@+id/action_myactivity"
+        android:enabled="true"
         android:icon="@drawable/ic_featured_play_list_black_24dp"
-        android:title="@string/activity" />
+        android:title="@string/activity"
+        app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_profile"
+        android:id="@+id/action_myaccount"
+        android:enabled="true"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/profile" />
+        android:title="@string/account"
+        app:showAsAction="ifRoom"/>
 </menu>

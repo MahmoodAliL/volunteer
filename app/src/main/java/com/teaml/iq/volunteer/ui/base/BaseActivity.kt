@@ -32,9 +32,8 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.Callbac
 
     private var progressDialog: SpotsDialog? = null
 
-    lateinit var activityComponent: ActivityComponent
+    var activityComponent: ActivityComponent? = null
         private set
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

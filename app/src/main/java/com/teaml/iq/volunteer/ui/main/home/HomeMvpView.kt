@@ -1,27 +1,13 @@
 package com.teaml.iq.volunteer.ui.main.home
 
-import com.teaml.iq.volunteer.data.model.Campaign
-import com.teaml.iq.volunteer.ui.base.MvpView
+import com.teaml.iq.volunteer.data.model.CampaignPost
+import com.teaml.iq.volunteer.ui.base.BaseMainMvpView
 
 /**
  * Created by ali on 2/4/2018.
  */
-interface HomeMvpView : MvpView {
+interface HomeMvpView : BaseMainMvpView {
 
-    fun showRetryImg()
-
-    fun hideRetryImg()
-
-    fun setFieldError(value: Boolean)
-
-    fun updateCampaign(campaigns: MutableList<Campaign>)
-
-    fun setLoadingMoreDone()
-
-    fun showProgress()
-
-    fun hideProgress()
-
-
+    fun updateCampaign(campaignPosts: MutableList<CampaignPost>)
 
 }

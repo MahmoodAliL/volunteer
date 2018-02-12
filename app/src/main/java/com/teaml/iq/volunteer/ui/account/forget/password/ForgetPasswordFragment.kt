@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.account.forget.password.emailsend.EmailSendSuccessfullyFragment
 import com.teaml.iq.volunteer.ui.base.BaseFragment
-import com.teaml.iq.volunteer.utils.addFragment
 import com.teaml.iq.volunteer.utils.replaceFragment
 import kotlinx.android.synthetic.main.forget_password_layout.*
 import javax.inject.Inject
@@ -33,8 +32,8 @@ class ForgetPasswordFragment : BaseFragment(), ForgetPasswordMvpView {
 
         val view = layoutInflater.inflate(R.layout.forget_password_layout, container, false)
 
-        if (activityComponent != null) {
-            activityComponent?.inject(this)
+        getActivityComponent()?.let {
+            it.inject(this)
             mPresenter.onAttach(this)
         }
 

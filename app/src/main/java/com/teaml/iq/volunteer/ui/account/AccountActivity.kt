@@ -27,12 +27,12 @@ class AccountActivity : BaseActivity(), AccountMvpView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account)
+        setContentView(R.layout.account_activity_layout)
 
         val currentFragmentId = intent.extras?.getInt(EXTRA_CURRENT_FRAGMENT)
                 ?: CurrentFragment.SING_IN_FRAGMENT.type
 
-        activityComponent.inject(this)
+        activityComponent?.inject(this)
         mPresenter.onAttach(this)
 
         mPresenter.decideCurrentFragment(currentFragmentId)

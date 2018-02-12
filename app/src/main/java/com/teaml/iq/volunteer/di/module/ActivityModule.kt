@@ -27,6 +27,10 @@ import com.teaml.iq.volunteer.ui.main.BottomBarAdapter
 import com.teaml.iq.volunteer.ui.main.MainMvpPresenter
 import com.teaml.iq.volunteer.ui.main.MainMvpView
 import com.teaml.iq.volunteer.ui.main.MainPresenter
+import com.teaml.iq.volunteer.ui.main.group.GroupAdapter
+import com.teaml.iq.volunteer.ui.main.group.GroupMvpPresenter
+import com.teaml.iq.volunteer.ui.main.group.GroupMvpView
+import com.teaml.iq.volunteer.ui.main.group.GroupPresenter
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpPresenter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpView
@@ -51,15 +55,6 @@ class ActivityModule(val activity: AppCompatActivity) {
     @Provides
     @ActivityContext
     fun provideContext(): Context = activity
-
-    @Provides
-    @PerActivity
-    fun provideMainPresenter(presenter: MainPresenter<MainMvpView>): MainMvpPresenter<MainMvpView> =
-            presenter
-
-    @Provides
-    fun provideHomePresenter(presenter: HomePresenter<HomeMvpView>): HomeMvpPresenter<HomeMvpView> =
-            presenter
 
     @Provides
     @PerActivity
@@ -90,6 +85,23 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideBasicInfoPresenter(presenter: BasicInfoPresenter<BasicInfoMvpView>)
             : BasicInfoMvpPresenter<BasicInfoMvpView> = presenter
 
+    /**
+     * Main Activity
+     */
+
+    @Provides
+    @PerActivity
+    fun provideMainPresenter(presenter: MainPresenter<MainMvpView>): MainMvpPresenter<MainMvpView> =
+            presenter
+
+    @Provides
+    fun provideHomePresenter(presenter: HomePresenter<HomeMvpView>): HomeMvpPresenter<HomeMvpView> =
+            presenter
+
+    @Provides
+    fun provideGroupPresenter(presenter: GroupPresenter<GroupMvpView>)
+            : GroupMvpPresenter<GroupMvpView> = presenter
+
     @Provides
     fun provideBottomBarAdapter(activity: AppCompatActivity) = BottomBarAdapter(activity.supportFragmentManager)
 
@@ -98,5 +110,9 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     fun provideCampaignAdapter() = CampaignAdapter(mutableListOf())
+
+    @Provides
+    fun provideGroupAdapter() = GroupAdapter(mutableListOf())
+
 
 }

@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.View
-import com.teaml.iq.volunteer.di.component.ActivityComponent
-import dmax.dialog.SpotsDialog
 
 /**
  * Created by Mahmood Ali on 31/01/2018.
@@ -17,24 +15,24 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
     var baseActivity: BaseActivity? = null
         private set
 
-    var activityComponent: ActivityComponent? = null
-        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(false)
     }
 
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is BaseActivity) {
             baseActivity = context
             baseActivity?.onFragmentAttached()
-            activityComponent = baseActivity?.activityComponent
-
         }
 
     }
+
+
+    fun getActivityComponent() = baseActivity?.activityComponent
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

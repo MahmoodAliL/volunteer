@@ -26,8 +26,8 @@ class SignUpFragment : BaseFragment(), SignUpMvpView {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.sign_up_layout, container, false)
-        if (activityComponent != null) {
-            activityComponent?.inject(this)
+        getActivityComponent()?.let {
+            it.inject(this)
             mPresenter.onAttach(this)
         }
 

@@ -10,6 +10,7 @@
     <string name="loading">loading</string>
     <string name="connection_error">Internet connection lost!</string>
     <string name="please_wait">Please Wait</string>
+    <string name="no_item_found">No item found</string>
 
     <!-- Intro -->
     <string name="intro_evaluation">تطور المجتمع</string>
@@ -54,7 +55,7 @@
     <string name="invalid_email">Please provide a valid email.</string>
     <string name="empty_password">Please provide a non empty password</string>
     <string name="password_does_not_match">Password does not match</string>
-    <!--<string name="empty_confirm_password">Please provide a non empty confirm password.</string>-->
+    <!--<strtitlename="empty_confirm_password">Please provide a non empty confirm password.</string>-->
     <string name="invalid_password">Password must be at least 6 characters</string>
     <string name="empty_name">Please provide a non empty name.</string>
     <string name="empty_birth_of_date">Please select your birth of date .</string>
@@ -68,7 +69,11 @@
     <string name="home">Home</string>
     <string name="group">Group</string>
     <string name="subscription">Subscription</string>
-    <string name="profile">Profile</string>
+    <string name="account">Account</string>
     <string name="activity">Activity</string>
+
+    <!-- campaign post -->
+    <string name="group_name_and_date">%1$s . %2$s </string>
+
 
 </resources>

@@ -48,7 +48,7 @@ class BasicInfoFragment : BaseFragment(), BasicInfoMvpView , LabelledSpinner.OnI
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.base_user_info_layout, container, false)
 
-        activityComponent?.let {
+        getActivityComponent()?.let {
             it.inject(this)
             mPresenter.onAttach(this)
         }

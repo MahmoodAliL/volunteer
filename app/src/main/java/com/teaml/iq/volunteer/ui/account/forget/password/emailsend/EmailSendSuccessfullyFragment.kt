@@ -26,8 +26,8 @@ class EmailSendSuccessfullyFragment : BaseFragment(), EmailSendSuccessfullyMvpVi
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = layoutInflater.inflate(R.layout.email_send_successfully_layout, container, false)
 
-        if (activityComponent != null) {
-            activityComponent?.inject(this)
+        getActivityComponent()?.let {
+            it.inject(this)
             mPresenter.onAttach(this)
         }
 

@@ -10,14 +10,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
-import com.teaml.iq.volunteer.data.model.Campaign
+import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
+import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_IMG_FOLDER
+import com.teaml.iq.volunteer.utils.AppConstants.GROUP_LOGO_IMG_FOLDER
+import org.jetbrains.anko.find
 
 /**
  * Created by Mahmood Ali on 09/02/2018.
  */
-class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : RecyclerView.Adapter<BaseViewHolder>() {
+class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) : RecyclerView.Adapter<BaseViewHolder>() {
 
 
     companion object {
@@ -30,8 +33,6 @@ class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : Recycl
     }
 
 
-    val firebaseStorage = FirebaseStorage.getInstance()
-
     var isLoading = false
     var isFieldError = false
 
@@ -39,6 +40,42 @@ class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : Recycl
 
     private var lastVisibleItem: Int = 0
     private var totalVisibleItem: Int = 0
+
+    fun initRecyclerView(recyclerView: RecyclerView) {
+
+
+        if (recyclerView.layoutManager is LinearLayoutManager) {
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+
+            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    totalVisibleItem = layoutManager.itemCount
+                    lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+
+                    if (!isFieldError && !isLoading && totalVisibleItem <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
+                        isLoading = true
+                        onLoading?.invoke()
+                    }
+                }
+            })
+        }
+    }
+
+    fun setOnLoadingMoreListener(listener: () -> Unit) {
+        onLoading = listener
+    }
+
+    fun setLoadMoreDone() {
+        isLoading = false
+    }
+
+
+    fun addCampaigns(campaignPostList: MutableList<CampaignPost>) {
+        this.mCampaignPostList.addAll(campaignPostList)
+        notifyDataSetChanged()
+    }
 
 
     /**
@@ -66,40 +103,14 @@ class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : Recycl
      */
 
 
-    fun initRecyclerView(recyclerView: RecyclerView) {
-
-
-        if (recyclerView.layoutManager is LinearLayoutManager) {
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-
-                    totalVisibleItem = layoutManager.itemCount
-                    lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-
-                    if (!isFieldError && !isLoading && totalVisibleItem <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
-                        isLoading = true
-                        onLoading?.invoke()
-                    }
-                }
-            })
-        }
-    }
-
-    fun setOnLoadingMoreListener(listener: () -> Unit) { onLoading = listener }
-
-    fun setLoadedMoreDone() {
-        isLoading = false
-    }
-
     inner class CampaignVH(itemView: View) : BaseViewHolder(itemView) {
 
-        private val campaignTitle: TextView = itemView.findViewById(R.id.campaignTitle)
-        private val orgNameAndUploadDate = itemView.findViewById<TextView>(R.id.orgNameAndUploadDate)
-        private val orgImgView = itemView.findViewById<ImageView>(R.id.orgImgView)
-        private val campaignCoverImgView = itemView.findViewById<ImageView>(R.id.campaignCoverImg)
+        private val firebaseStorage = FirebaseStorage.getInstance()
+
+        private val campaignTitle: TextView = itemView.find(R.id.campaignTitle)
+        private val orgNameAndUploadDate = itemView.find<TextView>(R.id.orgNameAndUploadDate)
+        private val orgImgView = itemView.find<ImageView>(R.id.orgImgView)
+        private val campaignCoverImgView = itemView.find<ImageView>(R.id.campaignCoverImg)
 
 
         override fun clear() {
@@ -113,28 +124,40 @@ class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : Recycl
         override fun onBind(position: Int) {
             super.onBind(position)
 
-            val item = mCampaignList[position] ?: return
+            val item = mCampaignPostList[position]
 
             with(item) {
 
                 campaignTitle.text = title
-                orgNameAndUploadDate.text = "$orgName . 2017/10/20 "
+                // if we need to translate some string in text and make concatenating
+                // them we should using this way
 
-                val campaignCoverImgRef = firebaseStorage.getReference(coverImg)
-                val orgImgRef = firebaseStorage.getReference(orgImg)
+                // orgNameAndUploadDate.text = orgImgView.context.getString(R.string.group_name_and_date, groupName, uploadDate)
+                val temp = "$groupName . $uploadDate"
+                orgNameAndUploadDate.text = temp
+
+                try {
+                    // sometimes image null or empty and that will cause app to crush
+                    val campaignCoverImgRef = firebaseStorage.getReference("$CAMPAIGN_IMG_FOLDER/$coverImgName")
+                    val orgImgRef = firebaseStorage.getReference("$GROUP_LOGO_IMG_FOLDER/$groupLogoImg")
+
+                    GlideApp.with(itemView.context)
+                            .load(orgImgRef)
+                            .circleCrop()
+                            .placeholder(R.drawable.org_placeholder_img)
+                            .into(orgImgView)
+
+                    GlideApp.with(itemView.context)
+                            .load(campaignCoverImgRef)
+                            .centerCrop()
+                            .placeholder(R.drawable.campaign_placeholder_img)
+                            .into(campaignCoverImgView)
+
+                } catch (e: Exception) {
+                    Log.e(TAG, e.message)
+                }
 
 
-                GlideApp.with(itemView.context)
-                        .load(orgImgRef)
-                        .circleCrop()
-                        .placeholder(R.drawable.org_placeholder_img)
-                        .into(orgImgView)
-
-                GlideApp.with(itemView.context)
-                        .load(campaignCoverImgRef)
-                        .centerCrop()
-                        .placeholder(R.drawable.campaign_placeholder_img)
-                        .into(campaignCoverImgView)
 
                 orgImgView.setOnClickListener { Log.d(TAG, "orgImgClicked") }
 
@@ -144,14 +167,6 @@ class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : Recycl
 
     }
 
-    fun addCampaigns(campaignList: MutableList<Campaign>) {
-        this.mCampaignList.addAll(campaignList)
-        notifyDataSetChanged()
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return VIEW_TYPE_NORMAL
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder {
         return CampaignVH(LayoutInflater.from(parent?.context).inflate(R.layout.campaign_view, parent, false))
@@ -163,7 +178,7 @@ class CampaignAdapter(private val mCampaignList: MutableList<Campaign>) : Recycl
      *
      * @return The total number of items in this adapter.
      */
-    override fun getItemCount(): Int = mCampaignList.size
+    override fun getItemCount(): Int = mCampaignPostList.size
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
