@@ -39,8 +39,8 @@ class SignInFragment : BaseFragment(), SignInMvpView {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.sign_in_layout, container, false)
 
-        if (activityComponent != null) {
-            activityComponent?.inject(this)
+        getActivityComponent()?.let {
+            it.inject(this)
             mPresenter.onAttach(this)
         }
 
@@ -57,7 +57,6 @@ class SignInFragment : BaseFragment(), SignInMvpView {
 
             mPresenter.onSignInClick(email, password)
         }
-
 
         btnSignUp.setOnClickListener { mPresenter.onSignUpClick() }
 
