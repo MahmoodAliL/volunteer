@@ -44,6 +44,7 @@ class SignInFragment : BaseFragment(), SignInMvpView {
             mPresenter.onAttach(this)
         }
 
+        //something changed
         return view
     }
 
