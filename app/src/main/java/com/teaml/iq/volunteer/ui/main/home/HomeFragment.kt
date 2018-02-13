@@ -11,6 +11,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.utils.gone
 import com.teaml.iq.volunteer.utils.invisible
 import com.teaml.iq.volunteer.utils.visible
+import kotlinx.android.synthetic.main.progressbar_layout.*
 import kotlinx.android.synthetic.main.recycler_view_layout.*
 import javax.inject.Inject
 
@@ -44,8 +45,6 @@ class HomeFragment : BaseFragment(), HomeMvpView {
             it.inject(this)
             mPresenter.onAttach(this)
         }
-
-
 
 
         return view

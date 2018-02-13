@@ -1,8 +1,6 @@
 package com.teaml.iq.volunteer.ui.base
 
-import android.app.Activity
 import android.support.annotation.StringRes
-import com.teaml.iq.volunteer.R
 
 /**
  * Created by Mahmood Ali on 20/01/2018.
@@ -31,6 +29,9 @@ interface MvpView {
 
     fun hideKeyboard()
 
-    // openActivityOnTakenExpire()
-    fun openSignInActivity()
+    fun openSignInActivityWhenTokenExpire()
+
+    fun openSplashActivity()
+
+
 }

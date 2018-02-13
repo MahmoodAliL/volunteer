@@ -30,6 +30,7 @@
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.main.MainActivity" />
+        <activity android:name="com.teaml.iq.volunteer.ui.profile.ProfileActivity" />
     </application>
 
 </manifest>

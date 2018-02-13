@@ -98,7 +98,11 @@ class MainActivity : BaseActivity(), MainMvpView {
 
         mBottomBarAdapter.addFragment(HomeFragment.newInstance())
         mBottomBarAdapter.addFragment(GroupFragment.newInstance())
-        mPresenter.onAddFragmentToBottomBar()
+        mBottomBarAdapter.addFragment(MyActivityFragment.newInstance())
+        mBottomBarAdapter.addFragment(MyAccountFragment.newInstance())
+        viewPager.adapter = mBottomBarAdapter
+
+        //mPresenter.onAddFragmentToBottomBar()
 
 
 
@@ -109,8 +113,6 @@ class MainActivity : BaseActivity(), MainMvpView {
     override fun addFragmentWithSignOutStatus() {
         mBottomBarAdapter.addFragment(MyActivityFragment.newInstance())
         mBottomBarAdapter.addFragment(MyAccountFragment.newInstance())
-
-        viewPager.adapter = mBottomBarAdapter
     }
 
     override fun addFragmentWithSignInStatus() {

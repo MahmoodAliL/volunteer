@@ -15,4 +15,6 @@ interface SignInMvpView : FragmentMvpView {
 
     fun openMainActivity()
 
+    fun showPreviousActivityOrExit()
+
 }

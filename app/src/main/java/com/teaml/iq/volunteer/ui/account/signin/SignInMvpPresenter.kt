@@ -12,5 +12,5 @@ interface SignInMvpPresenter<V : SignInMvpView> : MvpPresenter<V> {
 
     fun onForgetPasswordClick()
 
-
+    fun onBackImgClick()
 }

@@ -15,6 +15,7 @@ import com.teaml.iq.volunteer.di.component.ActivityComponent
 import com.teaml.iq.volunteer.di.component.DaggerActivityComponent
 import com.teaml.iq.volunteer.di.module.ActivityModule
 import com.teaml.iq.volunteer.ui.account.AccountActivity
+import com.teaml.iq.volunteer.ui.splash.SplashActivity
 import com.teaml.iq.volunteer.utils.KeyboardUtils
 import com.teaml.iq.volunteer.utils.NetworkUtils
 import dmax.dialog.SpotsDialog
@@ -127,7 +128,12 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.Callbac
         KeyboardUtils.hideSoftInput(this)
     }
 
-    override fun openSignInActivity() {
+    override fun openSplashActivity() {
+        startActivity(intentFor<SplashActivity>().clearTask().newTask())
+    }
+
+    override fun openSignInActivityWhenTokenExpire() {
         startActivity(intentFor<AccountActivity>().clearTask().newTask())
     }
+
 }

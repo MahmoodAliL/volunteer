@@ -8,11 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
-import com.teaml.iq.volunteer.data.model.GroupPost
+import com.teaml.iq.volunteer.data.model.GroupInfo
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.utils.gone
 import com.teaml.iq.volunteer.utils.invisible
 import com.teaml.iq.volunteer.utils.visible
+import kotlinx.android.synthetic.main.progressbar_layout.*
 import kotlinx.android.synthetic.main.recycler_view_layout.*
 import javax.inject.Inject
 
@@ -86,8 +87,8 @@ class GroupFragment : BaseFragment(), GroupMvpView {
         mGroupAdapter.setLoadMoreDone()
     }
 
-    override fun updateGroups(groupPosts: MutableList<GroupPost>) {
-        mGroupAdapter.addGroups(groupPosts)
+    override fun updateGroups(listOfgroupInfo: MutableList<GroupInfo>) {
+        mGroupAdapter.addGroups(listOfgroupInfo)
     }
 
     override fun showRetryImg() {

@@ -48,8 +48,8 @@ class SignInFragment : BaseFragment(), SignInMvpView {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    override fun setup(view: View) {
 
         btnSignIn.setOnClickListener {
 
@@ -62,11 +62,15 @@ class SignInFragment : BaseFragment(), SignInMvpView {
         btnSignUp.setOnClickListener { mPresenter.onSignUpClick() }
 
         btnForgetPassword.setOnClickListener { mPresenter.onForgetPasswordClick() }
+
+        backImgView.setOnClickListener { mPresenter.onBackImgClick() }
+
     }
 
-    override fun setup(view: View) {
-
+    override fun showPreviousActivityOrExit() {
+        activity?.onBackPressed()
     }
+
 
     override fun showSignUpFragment() {
         activity?.replaceFragmentAndAddToBackStack(

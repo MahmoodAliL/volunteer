@@ -11,6 +11,10 @@ import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.main.MainActivity
 import com.teaml.iq.volunteer.ui.main.group.GroupFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
+import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountFragment
+import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityFragment
+import com.teaml.iq.volunteer.ui.profile.ProfileActivity
+import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoFragment
 import com.teaml.iq.volunteer.ui.splash.SplashActivity
 import dagger.Component
 
@@ -28,6 +32,8 @@ interface ActivityComponent {
 
     fun inject(activity: MainActivity)
 
+    fun inject(activity: ProfileActivity)
+
     fun inject(fragment: SignInFragment)
 
     fun inject(fragment: SignUpFragment)
@@ -41,6 +47,14 @@ interface ActivityComponent {
     fun inject(fragment: HomeFragment)
 
     fun inject(fragment: GroupFragment)
+
+    fun inject(fragment: MyActivityFragment)
+
+    fun inject(fragment: MyAccountFragment)
+
+    fun inject(fragment: ProfileInfoFragment)
+
+
 
 
 

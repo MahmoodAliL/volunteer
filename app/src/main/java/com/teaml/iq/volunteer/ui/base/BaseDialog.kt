@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
 import android.view.ViewGroup
@@ -120,8 +119,12 @@ abstract class BaseDialog : DialogFragment(), DialogMvpView {
         baseActivity?.hideKeyboard()
     }
 
-    override fun openSignInActivity() {
-        baseActivity?.openSignInActivity()
+    override fun openSplashActivity() {
+        baseActivity?.openSplashActivity()
+    }
+
+    override fun openSignInActivityWhenTokenExpire() {
+        baseActivity?.openSignInActivityWhenTokenExpire()
     }
 
 }

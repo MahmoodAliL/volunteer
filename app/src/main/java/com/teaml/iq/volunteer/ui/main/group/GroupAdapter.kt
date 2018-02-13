@@ -2,6 +2,7 @@ package com.teaml.iq.volunteer.ui.main.group
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +10,17 @@ import android.widget.TextView
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.GlideApp
-import com.teaml.iq.volunteer.data.model.GroupPost
+import com.teaml.iq.volunteer.data.model.GroupInfo
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
+import com.teaml.iq.volunteer.utils.AppConstants
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
 
 /**
  * Created by Mahmood Ali on 11/02/2018.
  */
-class GroupAdapter(private val groupPostList: MutableList<GroupPost>) : RecyclerView.Adapter<BaseViewHolder>() {
+class GroupAdapter(private val listOfGroupInfo: MutableList<GroupInfo>) : RecyclerView.Adapter<BaseViewHolder>() {
 
     companion object {
         val TAG: String = CampaignAdapter::class.java.simpleName
@@ -66,8 +68,8 @@ class GroupAdapter(private val groupPostList: MutableList<GroupPost>) : Recycler
         isLoading = false
     }
 
-    fun addGroups(groupPosts: MutableList<GroupPost>) {
-        this.groupPostList.addAll(groupPosts)
+    fun addGroups(listOfGroupInfo: MutableList<GroupInfo>) {
+        this.listOfGroupInfo.addAll(listOfGroupInfo)
         notifyDataSetChanged()
     }
 
@@ -103,7 +105,7 @@ class GroupAdapter(private val groupPostList: MutableList<GroupPost>) : Recycler
      *
      * @return The total number of items in this adapter.
      */
-    override fun getItemCount(): Int  = groupPostList.size
+    override fun getItemCount(): Int  = listOfGroupInfo.size
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
@@ -151,20 +153,24 @@ class GroupAdapter(private val groupPostList: MutableList<GroupPost>) : Recycler
         override fun onBind(position: Int) {
             super.onBind(position)
 
-            val group = groupPostList[position]
+            val group = listOfGroupInfo[position]
 
             with(group) {
                 groupNameView.text = name
-                memberNumberView.text = "Member : $memberNumber"
-                campaignNumberView.text = "CampaignPost : $campaignNumber"
+                campaignNumberView.text = itemView.context.getString(R.string.campaigns_number, campaignsNum)
 
-                val groupImgRef = firebaseStorage.getReference(groupImg)
+                try {
+                    val groupImgRef = firebaseStorage.getReference("${AppConstants.GROUP_LOGO_IMG_FOLDER}/$groupImg")
 
-                GlideApp.with(itemView.context)
-                        .load(groupImgRef)
-                        //.circleCrop()
-                        .placeholder(R.drawable.org_placeholder_img)
-                        .into(groupImgView)
+                    GlideApp.with(itemView.context)
+                            .load(groupImgRef)
+                            //.circleCrop()
+                            .placeholder(R.drawable.org_placeholder_img)
+                            .into(groupImgView)
+                } catch (e: Exception) {
+                    Log.e(TAG, e.message)
+                }
+
             }
         }
 

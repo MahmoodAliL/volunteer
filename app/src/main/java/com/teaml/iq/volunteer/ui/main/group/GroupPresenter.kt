@@ -1,12 +1,11 @@
 package com.teaml.iq.volunteer.ui.main.group
 
 import android.util.Log
+import com.google.firebase.firestore.DocumentSnapshot
 import com.teaml.iq.volunteer.data.DataManager
-import com.teaml.iq.volunteer.data.model.GroupPost
+import com.teaml.iq.volunteer.data.model.FbGroup
+import com.teaml.iq.volunteer.data.model.GroupInfo
 import com.teaml.iq.volunteer.ui.base.BasePresenter
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -17,66 +16,68 @@ class GroupPresenter<V : GroupMvpView> @Inject constructor(dataManager: DataMana
 
 
 
-    private var pageNumber = 0
+    private var lastVisibleItem: DocumentSnapshot? = null
 
     companion object {
         val TAG: String = GroupPresenter::class.java.simpleName
     }
 
     override fun onViewPrepared() {
-        Log.d(TAG, "onViewPrepared")
-        loadingDataFromServer()
+        loadGroupList()
     }
 
 
     override fun onRetryClick() {
         mvpView?.setFieldError(false)
         mvpView?.hideRetryImg()
-        loadingDataFromServer()
+        mvpView?.showProgress()
+        loadGroupList()
     }
 
-    fun loadingDataFromServer() {
+    private fun loadGroupList() {
 
-        mvpView?.showProgress()
+        val groups = mutableListOf<GroupInfo>()
 
-        doAsync {
-            Thread.sleep(1000)
+        dataManager.loadGroupList(this.lastVisibleItem).addOnCompleteListener {task ->
+            // before everything hide progress
+            mvpView?.hideProgress()
 
-            uiThread {
-                mvpView?.setLoadingMoreDone()
-                mvpView?.hideProgress()
-            }
+            if (task.isSuccessful) {
 
-            if (Random().nextBoolean()) {
-                val groups = mutableListOf<GroupPost>()
+                val result = task.result
 
-                for (i in 1..5) {
-                    groups.add(GroupPost(
-                            groupImg = "logo1.jpg",
-                            name = "Team-L",
-                            memberNumber = 3,
-                            campaignNumber = 43
-                    ))
+                if (result.isEmpty)
+                    return@addOnCompleteListener
+
+                // used for pagination
+                lastVisibleItem = result.documents[result.documents.size - 1]
+
+                val fbGroup = result.toObjects(FbGroup::class.java)
+
+                val listOfGroupInfo = fbGroup.mapIndexedTo(groups) { index, value ->
+                    GroupInfo(
+                            id = result.documents[index].id,
+                            name = value.name,
+                            groupImg = value.logoImg,
+                            campaignsNum = value.campaignsNum,
+                            memberNumber = 0)
                 }
-                uiThread { onComplete(groups)  }
+
+                mvpView?.updateGroups(listOfGroupInfo)
+
 
             } else {
-                uiThread { onError() }
-
+                Log.e(TAG, "${task.exception?.message}")
+                onError()
             }
+
         }
+
+
+
 
     }
 
-    fun onComplete(data: MutableList<GroupPost>) {
-
-        if (data.isEmpty() && pageNumber == 0)
-            mvpView?.showEmptyResult()
-        else {
-            pageNumber++
-            mvpView?.updateGroups(data)
-        }
-    }
 
     fun onError() {
         mvpView?.setFieldError(true)
@@ -84,7 +85,7 @@ class GroupPresenter<V : GroupMvpView> @Inject constructor(dataManager: DataMana
     }
 
     override fun onLoadingMore() {
-        loadingDataFromServer()
+        loadGroupList()
     }
 
 }

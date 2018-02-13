@@ -3,7 +3,7 @@ package com.teaml.iq.volunteer.ui.base
 /**
  * Created by Mahmood Ali on 11/02/2018.
  */
-interface BaseMainMvpView : MvpView {
+interface BaseLoadDataWithRecyclerViewMvpView : FragmentMvpView {
 
     fun showRetryImg()
 

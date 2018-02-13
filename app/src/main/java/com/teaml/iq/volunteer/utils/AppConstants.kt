@@ -14,11 +14,14 @@ object AppConstants {
     const val GROUP_COL = "groups"
 
     const val CAMPAIGN_QUERY_LIMIT = 10L
+    const val GROUP_QUERY_LIMIT = 20L
 
     // firestorage
     const val CAMPAIGN_IMG_FOLDER = "campaign img"
+    const val USER_IMG_FOLDER = "user img"
     const val GROUP_COVER_IMG_FOLDER = "group cover img"
     const val GROUP_LOGO_IMG_FOLDER = "group logo img"
+
 
 
 

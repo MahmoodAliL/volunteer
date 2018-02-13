@@ -34,7 +34,7 @@ class BasicInfoPresenter<V : BasicInfoMvpView> @Inject constructor(dataManager: 
 
             // if user does not has uid that mean user need to sign in
             if (dataManager.getFirebaseUserAuthID() == null) {
-                view.openSignInActivity()
+                view.openSplashActivity()
                 return
             }
 

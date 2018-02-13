@@ -1,5 +1,8 @@
 package com.teaml.iq.volunteer.utils
 
+import android.content.Context
+import com.teaml.iq.volunteer.R
+import com.teaml.iq.volunteer.data.DataManager
 import java.util.regex.Pattern
 
 /**
@@ -15,5 +18,13 @@ object CommonUtils {
         return matcher.matches()
     }
 
+    fun intGenderToString(type: Int, context: Context) =
+            when (type) {
+                DataManager.UserGender.MALE.type -> context.getString(R.string.male)
+
+                DataManager.UserGender.FEMALE.type -> context.getString(R.string.female)
+
+                else -> context.getString(R.string.any)
+            }
 
 }

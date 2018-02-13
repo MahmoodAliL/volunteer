@@ -11,11 +11,13 @@
         android:id="@+id/groupImg"
         android:layout_width="72dp"
         android:layout_height="72dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/org_placeholder_img"
         app:civ_border_color="@color/image_border"
         app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,9 +45,10 @@
         android:text="3 Member"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_caption"
+        android:visibility="invisible"
         app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupName" />
+        app:layout_constraintTop_toBottomOf="@+id/campaignNumber" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/campaignNumber"
@@ -54,13 +57,12 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:paddingBottom="24dp"
-        android:text="35 Campaign"
+        android:text="Campaign 32"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_caption"
         app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/memberNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/groupName" />
 
 
 </android.support.constraint.ConstraintLayout>

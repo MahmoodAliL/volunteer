@@ -1,12 +1,12 @@
 package com.teaml.iq.volunteer.ui.main.group
 
-import com.teaml.iq.volunteer.data.model.GroupPost
-import com.teaml.iq.volunteer.ui.base.BaseMainMvpView
+import com.teaml.iq.volunteer.data.model.GroupInfo
+import com.teaml.iq.volunteer.ui.base.BaseLoadDataWithRecyclerViewMvpView
 
 /**
  * Created by ali on 2/4/2018.
  */
-interface GroupMvpView : BaseMainMvpView {
+interface GroupMvpView : BaseLoadDataWithRecyclerViewMvpView {
 
-    fun updateGroups(groupPosts: MutableList<GroupPost>)
+    fun updateGroups(listOfgroupInfo: MutableList<GroupInfo>)
 }

@@ -2,6 +2,7 @@ package com.teaml.iq.volunteer.data
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
@@ -12,7 +13,7 @@ import javax.inject.Inject
  * Created by Mahmood Ali on 24/01/2018.
  */
 class AppDataManager @Inject constructor(
-        val  preferenceHelper: PreferenceHelper ,
+        val preferenceHelper: PreferenceHelper,
         val firebaseHelper: FirebaseHelper) : DataManager {
 
     /**
@@ -50,6 +51,10 @@ class AppDataManager @Inject constructor(
     override fun sendPasswordResetEmail(email: String): Task<Void> =
             firebaseHelper.sendPasswordResetEmail(email)
 
+    override fun signOut() {
+        firebaseHelper.signOut()
+    }
+
     /**
      * Firestore
      */
@@ -57,8 +62,14 @@ class AppDataManager @Inject constructor(
     override fun saveBasicUserInfo(basicUserInfo: HashMap<String, Any>): Task<Void> =
             firebaseHelper.saveBasicUserInfo(basicUserInfo)
 
-    override fun loadProfileInfo(): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo()
+    override fun loadProfileInfo(uid: String): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo(uid)
 
+    override fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> =
+            firebaseHelper.loadCampaignList(lastVisibleItem)
 
-    override fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> = firebaseHelper.loadCampaignList(lastVisibleItem)
+    override fun loadGroupList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> =
+            firebaseHelper.loadGroupList(lastVisibleItem)
+
+    override fun getUserReference(uid: String): DocumentReference =
+            firebaseHelper.getUserReference(uid)
 }

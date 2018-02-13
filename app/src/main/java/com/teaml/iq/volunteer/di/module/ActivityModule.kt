@@ -35,6 +35,18 @@ import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpPresenter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpView
 import com.teaml.iq.volunteer.ui.main.home.HomePresenter
+import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountMvpPresenter
+import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountMvpView
+import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountPresenter
+import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityMvpPresenter
+import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityMvpView
+import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityPresenter
+import com.teaml.iq.volunteer.ui.profile.ProfileMvpPresenter
+import com.teaml.iq.volunteer.ui.profile.ProfileMvpView
+import com.teaml.iq.volunteer.ui.profile.ProfilePresenter
+import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoMvpPresenter
+import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoMvpView
+import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpView
 import com.teaml.iq.volunteer.ui.splash.SplashPresenter
@@ -113,6 +125,24 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     fun provideGroupAdapter() = GroupAdapter(mutableListOf())
+
+
+    @Provides
+    fun provideMyActivityPresenter(presenter: MyActivityPresenter<MyActivityMvpView>): MyActivityMvpPresenter<MyActivityMvpView> =
+            presenter
+
+    @Provides
+    fun provideMyAccountPresenter(presenter: MyAccountPresenter<MyAccountMvpView>): MyAccountMvpPresenter<MyAccountMvpView> =
+            presenter
+
+    @Provides
+    fun provideUserProfilePresenter(presenter: ProfileInfoPresenter<ProfileInfoMvpView>): ProfileInfoMvpPresenter<ProfileInfoMvpView> =
+            presenter
+
+    @Provides
+    fun  providesProfilePresetner(presenter: ProfilePresenter<ProfileMvpView>): ProfileMvpPresenter<ProfileMvpView> =
+            presenter
+
 
 
 }

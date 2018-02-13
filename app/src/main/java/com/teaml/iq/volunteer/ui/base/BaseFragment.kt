@@ -76,8 +76,8 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
         baseActivity?.hideKeyboard()
     }
 
-    override fun openSignInActivity() {
-        baseActivity?.openSignInActivity()
+    override fun openSplashActivity() {
+        baseActivity?.openSplashActivity()
     }
 
     override fun onDetach() {
@@ -85,6 +85,10 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
         super.onDetach()
     }
 
+
+    override fun openSignInActivityWhenTokenExpire() {
+        baseActivity?.openSignInActivityWhenTokenExpire()
+    }
 
     protected abstract fun setup(view: View)
 

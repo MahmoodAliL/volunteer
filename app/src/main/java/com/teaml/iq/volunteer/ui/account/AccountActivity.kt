@@ -27,7 +27,7 @@ class AccountActivity : BaseActivity(), AccountMvpView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.account_activity_layout)
+        setContentView(R.layout.account_activity)
 
         val currentFragmentId = intent.extras?.getInt(EXTRA_CURRENT_FRAGMENT)
                 ?: CurrentFragment.SING_IN_FRAGMENT.type

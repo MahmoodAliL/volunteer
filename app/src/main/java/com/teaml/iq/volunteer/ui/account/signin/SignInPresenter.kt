@@ -75,7 +75,14 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
 
         // check if user has basic profile info if data of document is exist
         // that mean user save has data to firestore
-        dataManager.loadProfileInfo()
+        val uid = dataManager.getFirebaseUserAuthID()
+
+        if (uid == null) {
+            mvpView?.onError(R.string.some_error)
+            return
+        }
+
+        dataManager.loadProfileInfo(uid)
                 .addOnCompleteListener(activity) { task->
 
                     mvpView?.hideLoading()
@@ -88,6 +95,7 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
                             mvpView?.showBasicInfoFragment()
                         }
                     } else {
+
                         mvpView?.onError("${task.exception?.message}")
                     }
 
@@ -102,5 +110,9 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
 
     override fun onSignUpClick() {
         mvpView?.showSignUpFragment()
+    }
+
+    override fun onBackImgClick() {
+        mvpView?.showPreviousActivityOrExit()
     }
 }

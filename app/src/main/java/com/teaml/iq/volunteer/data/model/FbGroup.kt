@@ -8,5 +8,10 @@ data class FbGroup(
         val logoImg: String = "",
         val coverImg: String = "",
         val bio: String = "",
-        val userRef: String = ""
-)
+        val userRef: String = "",
+        val campaignsNum: Int = 0
+) {
+    companion object {
+        val CAMPAIGNS_NUM = "campaignsNum"
+    }
+}

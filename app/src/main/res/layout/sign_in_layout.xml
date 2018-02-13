@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
@@ -12,6 +13,16 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         tools:context=".ui.account.signin.SignInFragment">
+
+        <ImageView
+            android:id="@+id/backImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_arrow_back_24dp" />
 
         <ImageView
             android:id="@+id/imgLogo"
@@ -30,7 +41,6 @@
             android:layout_marginTop="8dp"
             android:text="@string/great_to_see_you_again"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
 
 
         <android.support.design.widget.TextInputLayout
@@ -96,7 +106,7 @@
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.0"/>
+            android:layout_weight="1.0" />
 
         <ImageView
             android:id="@+id/imgAnimateBottom"

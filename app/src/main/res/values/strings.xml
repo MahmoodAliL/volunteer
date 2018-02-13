@@ -5,12 +5,13 @@
     <string name="app_name">Volunteer IQ</string>
     <string name="hello_blank_fragment">volunteer</string>
 
-    <!--App Message -->
+    <!--App  -->
     <string name="some_error">Some error occurred!</string>
     <string name="loading">loading</string>
     <string name="connection_error">Internet connection lost!</string>
     <string name="please_wait">Please Wait</string>
     <string name="no_item_found">No item found</string>
+
 
     <!-- Intro -->
     <string name="intro_evaluation">تطور المجتمع</string>
@@ -74,6 +75,16 @@
 
     <!-- campaign post -->
     <string name="group_name_and_date">%1$s . %2$s </string>
+
+    <!-- list of group info -->
+    <string name="campaigns_number">%1$d Campaign </string>
+    <string name="edit">edit</string>
+
+    <!-- profile  info -->
+    <string name="profile">Profile</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="any">Any</string>
 
 
 </resources>

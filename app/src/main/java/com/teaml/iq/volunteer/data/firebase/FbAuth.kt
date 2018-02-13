@@ -16,4 +16,6 @@ interface FbAuth {
 
     fun sendPasswordResetEmail(email: String): Task<Void>
 
+    fun signOut()
+
 }
