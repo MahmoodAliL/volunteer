@@ -27,7 +27,7 @@ class ForgetPasswordPresenter<V : ForgetPasswordMvpView> @Inject constructor(dat
                 return
             }
 
-            if (!CommonUtils.isVaildEmail(email)) {
+            if (!CommonUtils.isValidEmail(email)) {
                 view.onError(R.string.invalid_email)
                 return
             }

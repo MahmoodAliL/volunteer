@@ -9,5 +9,4 @@ interface ProfileMvpView : MvpView {
 
     fun showProfileInfoFragment(uid: String)
 
-    fun showEditProfileInfo(uid: String)
 }

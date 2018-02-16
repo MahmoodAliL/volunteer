@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), MainMvpView {
 
 
         val homeItem = AHBottomNavigationItem(getString(R.string.home), R.drawable.ic_home_black_24dp)
-        val groupItem = AHBottomNavigationItem(getString(R.string.group), R.drawable.ic_group_black_24dp)
+        val groupItem = AHBottomNavigationItem(getString(R.string.group), R.drawable.ic_group_dark_grey_24dp)
         val myActivityItem = AHBottomNavigationItem(getString(R.string.activity), R.drawable.ic_notifications_black_24dp)
         val myAccountItem = AHBottomNavigationItem(getString(R.string.account), R.drawable.ic_person_black_24dp)
 

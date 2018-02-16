@@ -137,7 +137,7 @@ class GroupAdapter(private val listOfGroupInfo: MutableList<GroupInfo>) : Recycl
 
         private val firebaseStorage = FirebaseStorage.getInstance()
 
-        private val groupNameView = itemView.find<TextView>(R.id.groupName)
+        private val groupNameView = itemView.find<TextView>(R.id.txtGroupName)
         private val memberNumberView = itemView.find<TextView>(R.id.memberNumber)
         private val campaignNumberView = itemView.find<TextView>(R.id.campaignNumber)
         private val groupImgView = itemView.find<CircleImageView>(R.id.groupImg)

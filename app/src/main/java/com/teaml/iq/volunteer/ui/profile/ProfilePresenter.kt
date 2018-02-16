@@ -20,15 +20,6 @@ class ProfilePresenter<V : ProfileMvpView> @Inject constructor(dataManager: Data
     }
 
 
-    override fun onActionEditClick() {
-        uid?.let {
-            mvpView?.showEditProfileInfo(it)
-        }
-    }
 
-    override fun canEditProfile(): Boolean {
-        val currentUserId = dataManager.getFirebaseUserAuthID()
-        return uid != null && currentUserId != null && uid == currentUserId
-    }
 
 }

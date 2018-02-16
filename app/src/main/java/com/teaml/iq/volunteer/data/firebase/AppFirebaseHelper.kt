@@ -1,11 +1,15 @@
 package com.teaml.iq.volunteer.data.firebase
 
+import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
+import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_COL
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_QUERY_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_COL
@@ -20,11 +24,15 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     private val mFirebaseAuth = FirebaseAuth.getInstance()
     private val mFirestore = FirebaseFirestore.getInstance()
+    private val mFirestorage = FirebaseStorage.getInstance()
 
     /**
      * Firebase auth
      */
 
+    override fun getCurrentUserEmail(): String? {
+        return mFirebaseAuth.currentUser?.email
+    }
 
     override fun getFirebaseUserAuthID(): String? = mFirebaseAuth.currentUser?.uid
 
@@ -42,8 +50,9 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     // Firestore function
 
-    override fun saveBasicUserInfo(basicUserInfo: HashMap<String, Any>): Task<Void> {
-        return mFirestore.collection(USERS_COL).document(mFirebaseAuth.currentUser!!.uid).set(basicUserInfo)
+
+    override fun saveProfileInfo(profileInfo: HashMap<String, Any>): Task<Void> {
+        return mFirestore.collection(USERS_COL).document(mFirebaseAuth.currentUser!!.uid).set(profileInfo, SetOptions.merge())
     }
 
     override fun loadProfileInfo(uid: String): Task<DocumentSnapshot> {
@@ -71,4 +80,20 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         else
             query.get()
     }
+
+
+    override fun getCampaignReference(campaignId: String): DocumentReference {
+        return mFirestore.collection(CAMPAIGN_COL).document(campaignId)
+    }
+
+    override fun getGroupReference(groupId: String): DocumentReference {
+        return mFirestore.collection(CAMPAIGN_COL).document(groupId)
+    }
+
+    // firebase storage
+
+    override fun uploadProfileImg(uri: Uri): UploadTask {
+        return mFirestorage.getReference(AppConstants.USER_IMG_FOLDER).child(getFirebaseUserAuthID()!!).putFile(uri)
+    }
+
 }

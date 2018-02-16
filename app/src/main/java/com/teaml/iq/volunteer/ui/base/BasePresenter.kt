@@ -40,6 +40,11 @@ open class BasePresenter<V : MvpView> constructor(dataManager: DataManager) : Mv
             throw MvpViewNotAttachedException()
     }
 
+    override fun isSameUser(uid: String): Boolean {
+        val currentUserId = dataManager.getFirebaseUserAuthID()
+        return currentUserId != null && uid == currentUserId
+    }
+
     // make it static class
     companion object {
         class MvpViewNotAttachedException : RuntimeException("Please call mPresenter.onAttach(MvpView)" +

@@ -2,16 +2,18 @@ package com.teaml.iq.volunteer.ui.profile.info
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
-import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseFragment
-import com.teaml.iq.volunteer.utils.*
+import com.teaml.iq.volunteer.ui.profile.edit.EditProfileFragment
+import com.teaml.iq.volunteer.utils.AppConstants
+import com.teaml.iq.volunteer.utils.gone
+import com.teaml.iq.volunteer.utils.replaceFragmentAndAddToBackStack
+import com.teaml.iq.volunteer.utils.visible
 import kotlinx.android.synthetic.main.profile_header_layout.*
 import kotlinx.android.synthetic.main.profile_info_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
@@ -33,6 +35,12 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         const val BUNDLE_KEY_UID = "bundle_key_uid"
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -52,6 +60,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
     override fun setup(view: View) {
         val uid = arguments?.getString(BUNDLE_KEY_UID, "default uid") ?: "default uid"
         mPresenter.fetchProfileInfo(uid)
+
     }
 
     override fun showProgress() {
@@ -70,28 +79,11 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         retryImg.gone
     }
 
-    override fun showProfileInfo(profileInfo: FbUserDetail) {
-
-        context?.let { context ->
-
-            with(profileInfo) {
-                txtName.text = name
-                txtGender.text = CommonUtils.intGenderToString(gender, context)
-                txtBirthDay.text = birthOfDay.toSimpleString()
-
-                if (!phone.isEmpty())
-                    txtPhone.text = phone
-                if (!email.isEmpty())
-                    txtEmail.text = email
-                if (!bio.isEmpty())
-                    txtBio.text = bio
-            }
-
-        }
 
 
+    override fun updateProfileImg(currentProfileImg: String) {
         try {
-            val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${profileInfo.img}")
+            val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${currentProfileImg}")
             GlideApp.with(this)
                     .load(imgRef)
                     .placeholder(R.drawable.profile_placeholder_img)
@@ -100,8 +92,58 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         } catch (e: Exception) {
             Log.d(TAG, e.message)
         }
-
     }
 
+    override fun updateUserName(currentUserName: String) {
+        txtName.text = currentUserName
+    }
 
+    override fun updateUserBio(currentUserBio: String) {
+        txtBio.text = currentUserBio
+    }
+
+    override fun updateGender(gender: String) {
+        txtGender.text = gender
+    }
+
+    override fun updateBirthOfDay(currentBirthOfDay: String) {
+        txtBirthOfDay.text = currentBirthOfDay
+    }
+
+    override fun updatePhoneNumber(currentPhoneNumber: String) {
+        txtPhone.text = currentPhoneNumber
+    }
+
+    override fun showAndUpdateEmail(email: String) {
+        txtEmail.visible
+        txtEmail.text = email
+    }
+
+    override fun showEditProfileInfo(uid: String) {
+        activity?.replaceFragmentAndAddToBackStack(R.id.fragmentContainer, EditProfileFragment.newInstance(), EditProfileFragment.TAG)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        mPresenter.onCreateOptionMenu(menu, inflater)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_edit -> {
+                mPresenter.onActionEditClick()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
+    }
+    override fun onDestroyView() {
+        mPresenter.onDetach()
+        super.onDestroyView()
+    }
 }

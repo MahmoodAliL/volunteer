@@ -119,9 +119,15 @@ val View.invisible: Unit
 val View.gone: Unit
     get() { visibility = View.GONE}
 
-//
+// Date utils
 
-fun Date.toSimpleString(): String {
-    val format = SimpleDateFormat(AppConstants.TIMESTAM_FORMAT, Locale.ENGLISH)
+
+fun Date.toDateString(): String {
+    val format = SimpleDateFormat(AppConstants.DATE_FORMAT, Locale.ENGLISH)
+    return format.format(this)
+}
+
+fun Date.toTimeString(): String {
+    val format = SimpleDateFormat(AppConstants.TIME_FORMAT, Locale.ENGLISH)
     return format.format(this)
 }

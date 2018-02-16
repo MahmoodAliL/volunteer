@@ -18,6 +18,12 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
         val TAG: String = MyAccountPresenter::class.java.simpleName
     }
 
+    var isLoggOut: Boolean = false
+
+    override fun onAttach(mvpView: V) {
+        super.onAttach(mvpView)
+        isLoggOut =  dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_OUT.type
+    }
     override fun onSignInClick() {
         mvpView?.openSignInActivity()
     }
@@ -29,12 +35,17 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
     }
 
     override fun decideCurrentLayout(): Int {
-       return if (dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_OUT.type)
+       return if (isLoggOut)
             R.layout.myaccount_layout_not_sign_in
         else
             R.layout.myaccount_layout
     }
 
+    override fun onResume() {
+        if (!isLoggOut) {
+            fetchProfileInfo()
+        }
+    }
 
     override fun onViewPrepared() {
         if (dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_OUT.type)

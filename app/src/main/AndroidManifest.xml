@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.teaml.iq.volunteer">
 
+    <!-- Danger Permission -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".MvpApp"
         android:allowBackup="true"
@@ -29,8 +32,11 @@
             android:configChanges="keyboardHidden|keyboard"
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/CropImageTheme"/>
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name="com.teaml.iq.volunteer.ui.profile.ProfileActivity" />
+        <activity android:name=".ui.campaign.CampaignActivity" />
     </application>
 
 </manifest>

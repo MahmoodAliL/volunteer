@@ -1,5 +1,7 @@
 package com.teaml.iq.volunteer.ui.profile.info
 
+import android.view.Menu
+import android.view.MenuInflater
 import com.teaml.iq.volunteer.ui.base.MvpPresenter
 
 /**
@@ -11,4 +13,7 @@ interface ProfileInfoMvpPresenter<V : ProfileInfoMvpView> : MvpPresenter<V> {
 
     fun fetchProfileInfo(uid: String)
 
+    fun onActionEditClick()
+
+    fun onCreateOptionMenu(menu: Menu?, inflater: MenuInflater?)
 }

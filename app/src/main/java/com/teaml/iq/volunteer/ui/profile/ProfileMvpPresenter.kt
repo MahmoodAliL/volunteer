@@ -8,8 +8,4 @@ import com.teaml.iq.volunteer.ui.base.MvpPresenter
 interface ProfileMvpPresenter<V : ProfileMvpView> : MvpPresenter<V> {
 
     fun loadUserInfo(uid: String?)
-
-    fun onActionEditClick()
-
-    fun canEditProfile(): Boolean
 }

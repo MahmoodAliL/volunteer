@@ -29,11 +29,11 @@
             app:layout_constraintTop_toBottomOf="@id/profile_header" />
 
         <TextView
-            android:id="@+id/txtBirthDay"
+            android:id="@+id/txtBirthOfDay"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_today24dp"
+            android:drawableStart="@drawable/ic_today_24dp"
             android:text="-----"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -51,7 +51,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtBirthDay" />
+            app:layout_constraintTop_toBottomOf="@id/txtBirthOfDay" />
 
         <TextView
             android:id="@+id/txtEmail"

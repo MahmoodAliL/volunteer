@@ -9,7 +9,7 @@ import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
 import com.teaml.iq.volunteer.ui.base.BasePresenter
-import com.teaml.iq.volunteer.utils.toSimpleString
+import com.teaml.iq.volunteer.utils.toDateString
 import javax.inject.Inject
 
 /**
@@ -59,6 +59,7 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
 
                     task.result.forEach {
                         val campaign = it.toObject(FbCampaign::class.java)
+                        campaign.id = it.id
                         // store campaignInfo to temp list to use them when don
                         campaignList.add(campaign)
                         // store task of get groupRef to check it later
@@ -93,7 +94,7 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                                     campaignId = campaign.id,
                                     title = campaign.title,
                                     coverImgName = campaign.imgName,
-                                    uploadDate = campaign.uploadDate.toSimpleString(),
+                                    uploadDate = campaign.uploadDate.toDateString(),
                                     groupId = it.id,
                                     groupName = group.name,
                                     groupLogoImg = group.logoImg

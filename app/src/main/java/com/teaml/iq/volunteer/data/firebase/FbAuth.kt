@@ -8,6 +8,8 @@ import com.google.firebase.auth.AuthResult
  */
 interface FbAuth {
 
+    fun getCurrentUserEmail(): String?
+
     fun getFirebaseUserAuthID(): String?
 
     fun signWithEmailAndPassword(email: String, password: String): Task<AuthResult>

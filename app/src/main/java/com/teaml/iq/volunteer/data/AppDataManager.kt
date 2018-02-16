@@ -1,10 +1,12 @@
 package com.teaml.iq.volunteer.data
 
+import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.storage.UploadTask
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
 import com.teaml.iq.volunteer.data.pref.PreferenceHelper
 import javax.inject.Inject
@@ -36,9 +38,7 @@ class AppDataManager @Inject constructor(
 
     override fun getCurrentUserLoggedInMode(): Int = preferenceHelper.getCurrentUserLoggedInMode()
 
-    /**
-     * Firebase Auth
-     */
+    override fun getCurrentUserEmail(): String? = firebaseHelper.getCurrentUserEmail()
 
     override fun getFirebaseUserAuthID(): String? = firebaseHelper.getFirebaseUserAuthID()
 
@@ -59,8 +59,9 @@ class AppDataManager @Inject constructor(
      * Firestore
      */
 
-    override fun saveBasicUserInfo(basicUserInfo: HashMap<String, Any>): Task<Void> =
-            firebaseHelper.saveBasicUserInfo(basicUserInfo)
+    override fun saveProfileInfo(profileInfo: HashMap<String, Any>): Task<Void> =
+            firebaseHelper.saveProfileInfo(profileInfo)
+
 
     override fun loadProfileInfo(uid: String): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo(uid)
 
@@ -72,4 +73,16 @@ class AppDataManager @Inject constructor(
 
     override fun getUserReference(uid: String): DocumentReference =
             firebaseHelper.getUserReference(uid)
+
+    override fun getCampaignReference(campaignId: String): DocumentReference {
+        return firebaseHelper.getCampaignReference(campaignId)
+    }
+
+    override fun getGroupReference(groupId: String): DocumentReference {
+        return firebaseHelper.getGroupReference(groupId)
+    }
+
+    //firebase storage
+
+    override fun uploadProfileImg(uri: Uri): UploadTask = firebaseHelper.uploadProfileImg(uri)
 }

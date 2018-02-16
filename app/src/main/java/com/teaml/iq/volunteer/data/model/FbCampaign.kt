@@ -8,15 +8,18 @@ import java.util.*
  * Created by Mahmood Ali on 09/02/2018.
  */
 data class FbCampaign(
-        val id: String = "",
+        var id: String = "",
         val imgName: String = "",
         val title: String = "",
         val groupRef: DocumentReference = FirebaseFirestore.getInstance().document("group/team-l"),
-        val uploadDate: Date = Date()
-
+        val location: String = "",
+        val uploadDate: Date = Date(),
+        val startDate: Date = Date(),
+        val description: String = "",
+        val age: Int = 0,
+        val gender: Int = 0
 ) {
-
     companion object {
-        val UPLOAD_DATE = "uploadDate"
+       const val UPLOAD_DATE = "uploadDate"
     }
 }

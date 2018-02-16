@@ -8,12 +8,15 @@ import com.teaml.iq.volunteer.ui.account.forget.password.ForgetPasswordFragment
 import com.teaml.iq.volunteer.ui.account.forget.password.emailsend.EmailSendSuccessfullyFragment
 import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
 import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.main.MainActivity
 import com.teaml.iq.volunteer.ui.main.group.GroupFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountFragment
 import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityFragment
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
+import com.teaml.iq.volunteer.ui.profile.edit.EditProfileFragment
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoFragment
 import com.teaml.iq.volunteer.ui.splash.SplashActivity
 import dagger.Component
@@ -34,6 +37,8 @@ interface ActivityComponent {
 
     fun inject(activity: ProfileActivity)
 
+    fun inject(activity: CampaignActivity)
+
     fun inject(fragment: SignInFragment)
 
     fun inject(fragment: SignUpFragment)
@@ -53,6 +58,10 @@ interface ActivityComponent {
     fun inject(fragment: MyAccountFragment)
 
     fun inject(fragment: ProfileInfoFragment)
+
+    fun inject(fragment: EditProfileFragment)
+
+    fun inject(fragment: CampaignDetailFragment)
 
 
 

@@ -11,6 +11,13 @@
     <string name="connection_error">Internet connection lost!</string>
     <string name="please_wait">Please Wait</string>
     <string name="no_item_found">No item found</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="any">Any</string>
+    <string name="retry">Retry</string>
+    <string name="saving">Saving…</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
 
     <!-- Intro -->
@@ -82,9 +89,16 @@
 
     <!-- profile  info -->
     <string name="profile">Profile</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
-    <string name="any">Any</string>
+    <string name="Phone">Phone Number</string>
+    <string name="bio">Bio</string>
+    <string name="permission_deny">Permission deny</string>
+    <string name="read_external_storage_rationale_for_select_image">App need  storage permission to allow you to select image</string>
+
+    <!-- Detail -->
+    <string name="description">Description</string>
+    <string name="requirement">Requirement</string>
+    <string name="Join">join</string>
+    <string name="campaign_requirement">* For %1$s \n\n * %2$d year old </string>
 
 
 </resources>

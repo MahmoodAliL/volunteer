@@ -33,4 +33,14 @@
     <color name="grey_900">#212121</color>
     <color name="color_caption">#484848</color>
 
+
+    <!-- button join color -->
+    <color name="color_btn_join">#512da8</color>
+    <color name="color_btn_join_pressed">#512da8</color>
+
+    <color name="color_btn_leave">#FF2424</color>
+    <color name="color_btn_leave_pressed">#d41c1c</color>
+    <color name="color_btn_join_disable">#999999</color>
+
+
 </resources>

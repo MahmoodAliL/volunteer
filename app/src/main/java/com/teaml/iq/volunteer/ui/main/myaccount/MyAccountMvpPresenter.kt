@@ -10,4 +10,6 @@ interface MyAccountMvpPresenter<V : MyAccountMvpView> : BaseSignInSignOutMvpPres
     fun fetchProfileInfo()
 
     fun onMyProfileClick()
+
+    fun onResume()
 }

@@ -1,6 +1,5 @@
 package com.teaml.iq.volunteer.ui.base
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.StringRes
@@ -12,7 +11,7 @@ import android.view.View
  */
 abstract class BaseFragment : Fragment(), FragmentMvpView {
 
-    var baseActivity: BaseActivity? = null
+    var mBaseActivity: BaseActivity? = null
         private set
 
 
@@ -25,69 +24,69 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is BaseActivity) {
-            baseActivity = context
-            baseActivity?.onFragmentAttached()
+            mBaseActivity = context
+            mBaseActivity?.onFragmentAttached()
         }
 
     }
 
 
-    fun getActivityComponent() = baseActivity?.activityComponent
+    fun getActivityComponent() = mBaseActivity?.activityComponent
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup(view)
     }
-    override fun getBaseActivity(): Activity? = activity
+    override fun getBaseActivity(): BaseActivity? = mBaseActivity
 
     override fun showLoading(msg: String) {
-        baseActivity?.showLoading(msg)
+        mBaseActivity?.showLoading(msg)
     }
 
     override fun showLoading(msg: Int) {
-        baseActivity?.showLoading(msg)
+        mBaseActivity?.showLoading(msg)
     }
 
     override fun hideLoading() {
-        baseActivity?.hideLoading()
+        mBaseActivity?.hideLoading()
     }
 
     override fun onError(@StringRes msg: Int) {
-        baseActivity?.onError(msg)
+        mBaseActivity?.onError(msg)
     }
 
     override fun onError(msg: String) {
-        baseActivity?.onError(msg)
+        mBaseActivity?.onError(msg)
     }
 
     override fun showMessage(@StringRes msg: Int) {
-        baseActivity?.showMessage(msg)
+        mBaseActivity?.showMessage(msg)
     }
 
     override fun showMessage(msg: String) {
-        baseActivity?.showMessage(msg)
+        mBaseActivity?.showMessage(msg)
     }
 
     override fun isNetworkConnection(): Boolean {
-        return baseActivity?.isNetworkConnection() == true
+        return mBaseActivity?.isNetworkConnection() == true
     }
 
     override fun hideKeyboard() {
-        baseActivity?.hideKeyboard()
+        mBaseActivity?.hideKeyboard()
     }
 
     override fun openSplashActivity() {
-        baseActivity?.openSplashActivity()
+        mBaseActivity?.openSplashActivity()
     }
 
     override fun onDetach() {
-        baseActivity = null
+        mBaseActivity = null
         super.onDetach()
     }
 
 
     override fun openSignInActivityWhenTokenExpire() {
-        baseActivity?.openSignInActivityWhenTokenExpire()
+        mBaseActivity?.openSignInActivityWhenTokenExpire()
     }
 
     protected abstract fun setup(view: View)

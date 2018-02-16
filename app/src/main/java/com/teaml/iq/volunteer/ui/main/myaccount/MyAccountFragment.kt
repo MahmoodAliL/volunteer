@@ -3,6 +3,7 @@ package com.teaml.iq.volunteer.ui.main.myaccount
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,20 +76,30 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
         mPresenter.fetchProfileInfo()
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        mPresenter.fetchProfileInfo()
+    }
     override fun showProfileInfo(profileInfo: FbUserDetail) {
 
-        val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/$profileInfo.img")
 
         txtName.text = profileInfo.name
         if (!profileInfo.bio.isEmpty())
             txtBio.text = profileInfo.bio
+        else
+            txtBio.text = "Bio about you"
 
-        GlideApp.with(this)
-                .load(imgRef)
-                .circleCrop()
-                .placeholder(R.drawable.profile_placeholder_img)
-                .into(profileImg)
+        try {
+            val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${profileInfo.img}")
+            GlideApp.with(this)
+                    .load(imgRef)
+                    .circleCrop()
+                    .placeholder(R.drawable.profile_placeholder_img)
+                    .into(profileImg)
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
+        }
+
     }
 
     override fun openProfileActivity(uid: String) {

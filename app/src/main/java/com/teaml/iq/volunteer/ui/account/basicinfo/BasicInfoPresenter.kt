@@ -45,7 +45,7 @@ class BasicInfoPresenter<V : BasicInfoMvpView> @Inject constructor(dataManager: 
 
                 val basicUserInfo = BasicUserInfo(name, gender, birthOfDate)
 
-                dataManager.saveBasicUserInfo(basicUserInfo.toMap()).addOnCompleteListener(activity) { task ->
+                dataManager.saveProfileInfo(basicUserInfo.toMap()).addOnCompleteListener(activity) { task ->
 
                     if (mvpView == null)
                         return@addOnCompleteListener

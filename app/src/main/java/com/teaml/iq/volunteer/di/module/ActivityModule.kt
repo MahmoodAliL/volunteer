@@ -23,6 +23,12 @@ import com.teaml.iq.volunteer.ui.account.signin.SignInPresenter
 import com.teaml.iq.volunteer.ui.account.signup.SignUpMvpPresenter
 import com.teaml.iq.volunteer.ui.account.signup.SignUpMvpView
 import com.teaml.iq.volunteer.ui.account.signup.SignUpPresenter
+import com.teaml.iq.volunteer.ui.campaign.CampaignMvpPresenter
+import com.teaml.iq.volunteer.ui.campaign.CampaignMvpView
+import com.teaml.iq.volunteer.ui.campaign.CampaignPresenter
+import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpPresenter
+import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpView
+import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailPresenter
 import com.teaml.iq.volunteer.ui.main.BottomBarAdapter
 import com.teaml.iq.volunteer.ui.main.MainMvpPresenter
 import com.teaml.iq.volunteer.ui.main.MainMvpView
@@ -44,6 +50,9 @@ import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityPresenter
 import com.teaml.iq.volunteer.ui.profile.ProfileMvpPresenter
 import com.teaml.iq.volunteer.ui.profile.ProfileMvpView
 import com.teaml.iq.volunteer.ui.profile.ProfilePresenter
+import com.teaml.iq.volunteer.ui.profile.edit.EditProfileMvpPresenter
+import com.teaml.iq.volunteer.ui.profile.edit.EditProfileMvpView
+import com.teaml.iq.volunteer.ui.profile.edit.EditProfilePresenter
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoMvpPresenter
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoMvpView
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoPresenter
@@ -140,9 +149,20 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
-    fun  providesProfilePresetner(presenter: ProfilePresenter<ProfileMvpView>): ProfileMvpPresenter<ProfileMvpView> =
+    fun providesProfilePresenter(presenter: ProfilePresenter<ProfileMvpView>): ProfileMvpPresenter<ProfileMvpView> =
             presenter
 
+    @Provides
+    fun providesEditProfilePresenter(presenter: EditProfilePresenter<EditProfileMvpView>): EditProfileMvpPresenter<EditProfileMvpView> =
+            presenter
+
+    @Provides
+    fun proivdesCampaignPresenter(presenter: CampaignPresenter<CampaignMvpView>): CampaignMvpPresenter<CampaignMvpView> =
+            presenter
+
+    @Provides
+    fun provideCampaignDetailPresenter(presenter: CampaignDetailPresenter<CampaignDetailMvpView>): CampaignDetailMvpPresenter<CampaignDetailMvpView> =
+            presenter
 
 
 }

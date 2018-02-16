@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/campaignCoverImg"
+                android:layout_width="match_parent"
+                android:layout_height="172dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/campaign_placeholder_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/headerBackground"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#EFEFEF"
+                app:layout_constraintBottom_toTopOf="@id/headerDivider"
+                app:layout_constraintTop_toBottomOf="@id/campaignCoverImg" />
+
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingBottom="16dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="16dp"
+                android:text="The title of campaing will be here which may be to long sometimes"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintTop_toBottomOf="@id/campaignCoverImg" />
+
+
+            <TextView
+                android:id="@+id/txtStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/ic_today_dark_grey_24dp"
+                android:text="2017-12-03"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toStartOf="@+id/txtStartTime"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                tools:layout_editor_absoluteY="295dp" />
+
+            <TextView
+                android:id="@+id/txtStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/ic_timer_dark_grey_24dp"
+                android:gravity="center_horizontal"
+                android:text="9:34 PM"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toStartOf="@+id/txtMember"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/txtStartDate"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                tools:layout_editor_absoluteY="245dp" />
+
+            <TextView
+                android:id="@+id/txtMember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/ic_group_dark_grey_24dp"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:text="34 Memeber"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toStartOf="@+id/txtLocation"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/txtStartTime"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                tools:layout_editor_absoluteY="245dp" />
+
+            <TextView
+                android:id="@+id/txtLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/ic_location_on_24dp"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:text="Location"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtMember"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                tools:layout_editor_absoluteY="245dp" />
+
+
+            <View
+                android:id="@+id/headerDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/divider"
+                app:layout_constraintTop_toBottomOf="@id/txtStartDate" />
+
+
+            <ImageView
+                android:id="@+id/groupImg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/org_placeholder_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/headerDivider"
+                tools:layout_editor_absoluteY="332dp" />
+
+            <TextView
+                android:id="@+id/txtGroupName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Team-L"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintStart_toEndOf="@id/groupImg"
+                app:layout_constraintTop_toBottomOf="@id/headerDivider"
+                tools:layout_editor_absoluteX="91dp"
+                tools:layout_editor_absoluteY="332dp" />
+
+            <TextView
+                android:id="@+id/txtPublishDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Publish On 2018-10-32"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintStart_toEndOf="@id/groupImg"
+                app:layout_constraintTop_toBottomOf="@id/txtGroupName"
+                tools:layout_editor_absoluteX="89dp"
+                tools:layout_editor_absoluteY="353dp" />
+
+
+            <View
+                android:id="@+id/groupDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/divider"
+                app:layout_constraintTop_toBottomOf="@id/groupImg" />
+
+
+            <TextView
+                android:id="@+id/txtDescriptionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/groupDivider" />
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="We went to do something unique that people will remeber We went to do something unique that people will remeber will remeber We went to do something unique that will remeber We went to do something unique that"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtDescriptionTitle" />
+
+
+            <View
+                android:id="@+id/descriptionDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/divider"
+                app:layout_constraintTop_toBottomOf="@id/txtDescription" />
+
+            <TextView
+                android:id="@+id/txtRequirementTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/requirement"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionDivider" />
+
+            <TextView
+                android:id="@+id/txtRequirement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:paddingBottom="32dp"
+                android:text="* Male Only \n\n * 23 old \n\n * 50 Member"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtRequirementTitle" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+    <View
+        android:id="@+id/topShadowView"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/top_shadow_background"
+        app:layout_constraintBottom_toTopOf="@id/bottomBackground" />
+
+    <View
+        android:id="@+id/bottomBackground"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#efefef"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btnJoin"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/btn_join_background"
+        android:text="@string/Join"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtJoinNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:text="Make you live Better"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/hideDetailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
+
+    <include
+        layout="@layout/progressbar_layout"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/retryImg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_refresh_black_24dp" />
+
+
+</android.support.constraint.ConstraintLayout>

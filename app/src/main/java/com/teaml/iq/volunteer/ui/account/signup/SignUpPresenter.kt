@@ -25,7 +25,7 @@ class SignUpPresenter<V : SignUpMvpView> @Inject constructor(dataManager: DataMa
                 return
             }
 
-            if(!CommonUtils.isVaildEmail(email)) {
+            if(!CommonUtils.isValidEmail(email)) {
                 view.onError(R.string.invalid_email)
                 return
             }

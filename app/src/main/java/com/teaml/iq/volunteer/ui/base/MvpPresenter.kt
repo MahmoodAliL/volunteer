@@ -6,12 +6,14 @@ package com.teaml.iq.volunteer.ui.base
  * Every mPresenter in the app must either implement this interface or extend BasePresenter
  * indicating the MvpView type that wants to be attached with.
  */
-interface MvpPresenter<V: MvpView> {
+interface MvpPresenter<V : MvpView> {
 
     fun onAttach(mvpView: V)
 
     fun onDetach()
 
     fun setUserAsLoggedOut()
+
+    fun isSameUser(uid: String): Boolean
 
 }

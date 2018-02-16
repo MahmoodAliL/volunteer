@@ -7,7 +7,9 @@ object AppConstants {
 
     const val PREF_NAME = "general"
 
-    const val TIMESTAM_FORMAT = "yyyy/MM/dd"
+    const val DATE_FORMAT = "yyyy/MM/dd"
+    const val TIME_FORMAT = "HH:mm"
+
     // firestore collection
     const val USERS_COL = "users"
     const val CAMPAIGN_COL = "campaigns"

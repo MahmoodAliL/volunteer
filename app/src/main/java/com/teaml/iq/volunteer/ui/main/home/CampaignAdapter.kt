@@ -13,9 +13,11 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_IMG_FOLDER
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_LOGO_IMG_FOLDER
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by Mahmood Ali on 09/02/2018.
@@ -112,6 +114,18 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
         private val orgImgView = itemView.find<ImageView>(R.id.orgImgView)
         private val campaignCoverImgView = itemView.find<ImageView>(R.id.campaignCoverImg)
 
+        init {
+            itemView.setOnClickListener {
+                val campaign = mCampaignPostList[currentPosition]
+
+                Log.e(TAG, "CampaignId: ${campaign.campaignId}, GroupId: ${campaign.groupId}")
+
+                itemView.context.startActivity<CampaignActivity>(
+                        CampaignActivity.EXTRA_KEY_CAMPAIGN_ID to campaign.campaignId,
+                        CampaignActivity.EXTRA_KEY_GROUP_ID to campaign.groupId
+                )
+            }
+        }
 
         override fun clear() {
             campaignTitle.text = ""
@@ -161,9 +175,9 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
 
                 orgImgView.setOnClickListener { Log.d(TAG, "orgImgClicked") }
 
-                campaignCoverImgView.setOnClickListener { Log.d(TAG, "CampaignCoverImg Clicked") }
             }
         }
+
 
     }
 
