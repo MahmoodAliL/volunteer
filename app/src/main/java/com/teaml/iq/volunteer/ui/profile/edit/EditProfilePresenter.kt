@@ -186,7 +186,7 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
                     }
 
                 } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    mvpView?.onError("result.error.message")
+                    mvpView?.onError("${result.error.message}")
                 }
 
             }
@@ -194,9 +194,13 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode) {
-            RC_READ_EXTERNAL_STORAGE -> {
 
+        Log.d(TAG,"onRequestPermissionResult : $requestCode")
+
+        when (requestCode) {
+
+            RC_READ_EXTERNAL_STORAGE -> {
+                Log.e(TAG, "on read external storage")
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mvpView?.openCropImage()
                 } else {

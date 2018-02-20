@@ -35,7 +35,6 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
         val TAG: String = MyAccountFragment::class.java.simpleName
         fun newInstance(args: Bundle = Bundle.EMPTY) = MyAccountFragment().apply { arguments = args }
 
-        const val BUNDLE_KEY_LAYOUT_TYPE = "bundle_key_layout_type"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +50,6 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
             // decideCurrentLayout()
             layout = mPresenter.decideCurrentLayout()
         }
-
-
 
         return inflater.inflate(layout, container, false)
     }
@@ -80,6 +77,7 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
         super.onResume()
         mPresenter.fetchProfileInfo()
     }
+
     override fun showProfileInfo(profileInfo: FbUserDetail) {
 
 

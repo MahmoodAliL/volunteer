@@ -7,9 +7,5 @@ import com.teaml.iq.volunteer.ui.base.MvpPresenter
  */
 interface MainMvpPresenter<V : MainMvpView> : MvpPresenter<V> {
 
-    fun onNavigationItemSelected(itemId: Int)
-
-    fun onAddFragmentToBottomBar()
-
 
 }

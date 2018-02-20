@@ -18,24 +18,23 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
         val TAG: String = MyAccountPresenter::class.java.simpleName
     }
 
-    var isLoggOut: Boolean = false
+    private var isLoggOut: Boolean = false
 
     override fun onAttach(mvpView: V) {
         super.onAttach(mvpView)
-        isLoggOut =  dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_OUT.type
+        isLoggOut = dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_OUT.type
     }
+
     override fun onSignInClick() {
         mvpView?.openSignInActivity()
     }
 
     override fun onSignOutClick() {
-        dataManager.signOut()
-        dataManager.setCurrentUserLoggedInMode(DataManager.LoggedInMode.LOGGED_OUT)
-        mvpView?.openSplashActivity()
+       setUserAsLoggedOut()
     }
 
     override fun decideCurrentLayout(): Int {
-       return if (isLoggOut)
+        return if (isLoggOut)
             R.layout.myaccount_layout_not_sign_in
         else
             R.layout.myaccount_layout
@@ -58,23 +57,22 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
     override fun fetchProfileInfo() {
         mvpView?.getBaseActivity()?.let { activity ->
 
-            val uid = dataManager.getFirebaseUserAuthID()
 
-            if (uid == null) {
-                setUserAsLoggedOut()
-                return
-            }
+            val uid = dataManager.getFirebaseUserAuthID() ?: return
+            Log.e(TAG,"on fetch Info  uid: $uid")
 
-            dataManager.getUserReference(uid).addSnapshotListener (activity){
-                documentSnapshot, firebaseFirestoreException ->
+            dataManager.getUserReference(uid).addSnapshotListener(activity) { documentSnapshot, firebaseFirestoreException ->
 
                 if (firebaseFirestoreException != null) {
                     Log.w(TAG, firebaseFirestoreException.message)
                     return@addSnapshotListener
                 }
 
-                val profileInfo = documentSnapshot.toObject(FbUserDetail::class.java)
-                mvpView?.showProfileInfo(profileInfo)
+                if (documentSnapshot.exists()) {
+                    val profileInfo = documentSnapshot.toObject(FbUserDetail::class.java)
+                    mvpView?.showProfileInfo(profileInfo)
+                }
+
             }
         }
     }
@@ -89,7 +87,6 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
 
         mvpView?.openProfileActivity(uid)
     }
-
 
 
 }

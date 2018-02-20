@@ -39,7 +39,6 @@ class MainActivity : BaseActivity(), MainMvpView {
         mPresenter.onAttach(this)
 
 
-
         setup()
 
 
@@ -62,6 +61,8 @@ class MainActivity : BaseActivity(), MainMvpView {
 
     override fun setup() {
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val homeItem = AHBottomNavigationItem(getString(R.string.home), R.drawable.ic_home_black_24dp)
         val groupItem = AHBottomNavigationItem(getString(R.string.group), R.drawable.ic_group_dark_grey_24dp)
@@ -89,12 +90,9 @@ class MainActivity : BaseActivity(), MainMvpView {
             true
         }
 
-
+        // لكي تمنع عادة حدوث اعادة تحميل البيانات الخاصة بالفراكمنت بمعنى اخر تمنع اعادة انشاء الفراكمنت
+        // و تسمح بالبقاء البيانات في الرام
         viewPager.offscreenPageLimit = 4
-
-
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         mBottomBarAdapter.addFragment(HomeFragment.newInstance())
         mBottomBarAdapter.addFragment(GroupFragment.newInstance())
@@ -105,50 +103,7 @@ class MainActivity : BaseActivity(), MainMvpView {
         //mPresenter.onAddFragmentToBottomBar()
 
 
-
-
-
     }
 
-    override fun addFragmentWithSignOutStatus() {
-        mBottomBarAdapter.addFragment(MyActivityFragment.newInstance())
-        mBottomBarAdapter.addFragment(MyAccountFragment.newInstance())
-    }
-
-    override fun addFragmentWithSignInStatus() {
-        /*val myActivityFragmentBundle = Bundle()
-
-        myActivityFragmentBundle.putInt(MyActivityFragment.BUNDLE_KEY_LAYOUT_TYPE, R.layout.recycler_view_layout)
-        mBottomBarAdapter.addFragment(MyActivityFragment.newInstance(myActivityFragmentBundle))*/
-
-        mBottomBarAdapter.addFragment(HomeFragment.newInstance())
-
-        val myAccountFragmentBundle = Bundle()
-        myAccountFragmentBundle.putInt(MyAccountFragment.BUNDLE_KEY_LAYOUT_TYPE, R.layout.myaccount_layout)
-        mBottomBarAdapter.addFragment(MyAccountFragment.newInstance(myAccountFragmentBundle))
-
-        viewPager.adapter = mBottomBarAdapter
-    }
-/*
-
-    override fun showHomeFragment() {
-        viewPager.setCurrentItem(0, false)
-        actionBarLayout.setExpanded(true, true)
-    }
-
-    override fun showGroupFragment() {
-        viewPager.setCurrentItem(1, false)
-        actionBarLayout.setExpanded(true, true)
-    }
-
-    override fun showMyActivityFragment() {
-        viewPager.setCurrentItem(2, false)
-        actionBarLayout.setExpanded(true, true)
-    }
-
-    override fun showMyAccountFragment() {
-        viewPager.setCurrentItem(3, false)
-        actionBarLayout.setExpanded(true, true)
-    }*/
 
 }

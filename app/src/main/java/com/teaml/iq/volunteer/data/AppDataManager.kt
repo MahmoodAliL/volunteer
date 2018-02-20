@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.UploadTask
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
@@ -71,6 +72,9 @@ class AppDataManager @Inject constructor(
     override fun loadGroupList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> =
             firebaseHelper.loadGroupList(lastVisibleItem)
 
+    override fun loadCampaignUserJoined(uid: String, lastVisibleItem: DocumentSnapshot?): Query =
+            firebaseHelper.loadCampaignUserJoined(uid, lastVisibleItem)
+
     override fun getUserReference(uid: String): DocumentReference =
             firebaseHelper.getUserReference(uid)
 
@@ -80,6 +84,18 @@ class AppDataManager @Inject constructor(
 
     override fun getGroupReference(groupId: String): DocumentReference {
         return firebaseHelper.getGroupReference(groupId)
+    }
+
+    override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> {
+        return firebaseHelper.checkUserJoinWithCampaign(campaignRef)
+    }
+
+    override fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<DocumentSnapshot> {
+        return firebaseHelper.addUserToCampaign(campaignRef, uid)
+    }
+
+    override fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<DocumentSnapshot> {
+        return firebaseHelper.onUserLeaveCampaign(campaignRef, uid)
     }
 
     //firebase storage

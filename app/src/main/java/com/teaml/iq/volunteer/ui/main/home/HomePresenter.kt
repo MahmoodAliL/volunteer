@@ -43,6 +43,8 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
 
         var lastVisibleItem: DocumentSnapshot? = null
 
+
+
         dataManager.loadCampaignList(this.lastVisibleItem)
                 .continueWithTask { task ->
 
@@ -111,7 +113,6 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                         onError()
                     }
 
-
                 }
     }
 
@@ -121,7 +122,8 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
     }
 
     override fun onLoadingMore() {
-       loadCampaignList()
+        mvpView?.showProgress()
+        loadCampaignList()
     }
 
 

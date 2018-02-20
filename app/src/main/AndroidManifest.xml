@@ -26,6 +26,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.account.AccountActivity"
@@ -37,6 +38,9 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name="com.teaml.iq.volunteer.ui.profile.ProfileActivity" />
         <activity android:name=".ui.campaign.CampaignActivity" />
+        <activity android:name=".ui.group.GroupDetailActivity" >
+
+        </activity>
     </application>
 
 </manifest>

@@ -29,6 +29,9 @@ import com.teaml.iq.volunteer.ui.campaign.CampaignPresenter
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpView
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailPresenter
+import com.teaml.iq.volunteer.ui.group.GroupDetailMvpPresenter
+import com.teaml.iq.volunteer.ui.group.GroupDetailMvpView
+import com.teaml.iq.volunteer.ui.group.GroupDetailPresenter
 import com.teaml.iq.volunteer.ui.main.BottomBarAdapter
 import com.teaml.iq.volunteer.ui.main.MainMvpPresenter
 import com.teaml.iq.volunteer.ui.main.MainMvpView
@@ -127,7 +130,7 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideBottomBarAdapter(activity: AppCompatActivity) = BottomBarAdapter(activity.supportFragmentManager)
 
     @Provides
-    fun provideLinearLayout(activity: AppCompatActivity) = LinearLayoutManager(activity)
+    fun provideLinearLayout(activity: AppCompatActivity) = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
     @Provides
     fun provideCampaignAdapter() = CampaignAdapter(mutableListOf())
@@ -157,11 +160,15 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
-    fun proivdesCampaignPresenter(presenter: CampaignPresenter<CampaignMvpView>): CampaignMvpPresenter<CampaignMvpView> =
+    fun providesCampaignPresenter(presenter: CampaignPresenter<CampaignMvpView>): CampaignMvpPresenter<CampaignMvpView> =
             presenter
 
     @Provides
     fun provideCampaignDetailPresenter(presenter: CampaignDetailPresenter<CampaignDetailMvpView>): CampaignDetailMvpPresenter<CampaignDetailMvpView> =
+            presenter
+
+    @Provides
+    fun provideGroupDetailPresenter(presenter: GroupDetailPresenter<GroupDetailMvpView>): GroupDetailMvpPresenter<GroupDetailMvpView> =
             presenter
 
 

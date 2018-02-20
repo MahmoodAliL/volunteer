@@ -1,5 +1,7 @@
 package com.teaml.iq.volunteer.ui.campaign.detail
 
+import android.support.annotation.StringRes
+import com.google.firebase.firestore.GeoPoint
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
 import com.teaml.iq.volunteer.ui.base.FragmentMvpView
@@ -16,6 +18,18 @@ interface CampaignDetailMvpView : FragmentMvpView {
     fun showProgress()
 
     fun hideProgress()
+
+    fun updateJoinBtnToJoin()
+
+    fun updateJoinBtnToLeave()
+
+    fun openSignInActivity()
+
+    fun openGoogleMap(geoPoint: GeoPoint)
+
+    fun updateCampaignDetail(campaign: FbCampaign)
+
+    fun disableJoinBtn(@StringRes note: Int)
 
     fun showCampaignDetail(campaign: FbCampaign, group: FbGroup)
 

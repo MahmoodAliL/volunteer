@@ -8,4 +8,9 @@ import com.teaml.iq.volunteer.ui.base.BaseSignInSignOutMvpPresenter
 interface MyActivityMvpPresenter<V : MyActivityMvpView> : BaseSignInSignOutMvpPresenter<V> {
 
 
+    fun onRetryClick()
+
+    fun onLoadingMore()
+
+
 }

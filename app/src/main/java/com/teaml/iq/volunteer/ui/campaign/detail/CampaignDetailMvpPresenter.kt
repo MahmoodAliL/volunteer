@@ -7,5 +7,12 @@ import com.teaml.iq.volunteer.ui.base.MvpPresenter
  */
 interface CampaignDetailMvpPresenter<V : CampaignDetailMvpView> : MvpPresenter<V> {
 
-    fun loadCampaignDetail(campaignId: String, groupId: String)
+
+    fun prepareLoadCampaign(campaignId: String, groupId: String)
+
+    fun onRetryImgClick()
+
+    fun onJoinClick()
+
+    fun onOpenMapClick()
 }
