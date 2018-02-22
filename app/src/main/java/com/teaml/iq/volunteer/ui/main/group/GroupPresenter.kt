@@ -85,6 +85,7 @@ class GroupPresenter<V : GroupMvpView> @Inject constructor(dataManager: DataMana
     }
 
     override fun onLoadingMore() {
+        mvpView?.showProgress()
         loadGroupList()
     }
 

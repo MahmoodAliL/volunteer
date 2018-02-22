@@ -48,10 +48,27 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         this.campaignId = campaignId
         this.groupId = groupId
 
-
         loadCampaign()
+
+        updateCampaignDetail()
+
     }
 
+    private fun updateCampaignDetail() {
+        mvpView?.getBaseActivity()?.let {
+
+            dataManager.getCampaignDocRef(campaignId).addSnapshotListener(it) { documentSnapshot, firebaseFirestoreException ->
+
+                if (firebaseFirestoreException != null) {
+                    Log.e(TAG, "on snapshot document", firebaseFirestoreException)
+                    return@addSnapshotListener
+                }
+
+                val campaign = documentSnapshot.toObject(FbCampaign::class.java)
+                mvpView?.updateCampaignDetail(campaign)
+            }
+        }
+    }
 
     override fun onRetryImgClick() {
         mvpView?.hideRetryImg()
@@ -63,6 +80,10 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         geoPoint?.let {
             mvpView?.openGoogleMap(it)
         }
+    }
+
+    override fun onMembersClick() {
+        mvpView?.showCampaignMembersFragment(campaignId)
     }
 
     private fun loadCampaign() {
@@ -78,7 +99,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
                 Log.d(TAG, "loading campaign detail")
                 // loading campaign detail
-                val loadCampaignDetail = dataManager.getCampaignReference(campaignId).get()
+                val loadCampaignDetail = dataManager.getCampaignDocRef(campaignId).get()
                 Tasks.await(loadCampaignDetail, 20, TimeUnit.SECONDS)
                 // save campaign result
                 val campaign = loadCampaignDetail.result.toObject(FbCampaign::class.java)
@@ -87,7 +108,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
                 // loading group detail
                 Log.d(TAG, "loading group detail ")
-                val loadGroupDetail = dataManager.getGroupReference(groupId).get()
+                val loadGroupDetail = dataManager.getGroupDocRef(groupId).get()
                 Tasks.await(loadGroupDetail, 20, TimeUnit.SECONDS)
                 // save group result
                 val group = loadGroupDetail.result.toObject(FbGroup::class.java)
@@ -96,7 +117,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
                 // check if user sign in or not to determine task need
                 if (isSignIn && uid != null) {
                     Log.d(TAG, "on sign in ")
-                    val campaignRef = dataManager.getCampaignReference(campaignId)
+                    val campaignRef = dataManager.getCampaignDocRef(campaignId)
                     val checkUserJoinWithCampaign = dataManager.checkUserJoinWithCampaign(campaignRef)
                     // wait task until complete
                     Tasks.await(checkUserJoinWithCampaign, 20, TimeUnit.SECONDS)
@@ -207,18 +228,17 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
     private fun onUserLeaveCampaign() {
         mvpView?.getBaseActivity()?.let { baseActivity ->
             dataManager.getFirebaseUserAuthID()?.let { uid ->
-                val campaignRef = dataManager.getCampaignReference(campaignId)
+                val campaignRef = dataManager.getCampaignDocRef(campaignId)
                 mvpView?.showLoading()
                 dataManager.onUserLeaveCampaign(campaignRef, uid).addOnCompleteListener(baseActivity) {
 
                     mvpView?.hideLoading()
 
                     if (it.isSuccessful) {
-                        val campaign = it.result.toObject(FbCampaign::class.java)
-                        geoPoint = campaign.location
-                        mvpView?.updateCampaignDetail(campaign)
+
+                        mvpView?.updateCurrentMembers(it.result)
                         mvpView?.updateJoinBtnToJoin()
-                        isJoin = true
+                        isJoin = false
 
                     } else {
                         Log.e(TAG, it.exception?.message)
@@ -232,17 +252,15 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
     private fun onUserJoinToCampaign() {
         mvpView?.getBaseActivity()?.let { baseActivity ->
             dataManager.getFirebaseUserAuthID()?.let { uid ->
-                val campaignRef = dataManager.getCampaignReference(campaignId)
+                val campaignRef = dataManager.getCampaignDocRef(campaignId)
                 mvpView?.showLoading()
                 dataManager.addUserToCampaign(campaignRef, uid).addOnCompleteListener(baseActivity) {
 
                     mvpView?.hideLoading()
 
                     if (it.isSuccessful) {
-                        val campaign = it.result.toObject(FbCampaign::class.java)
-                        // get last update of location and campaign in general
-                        geoPoint = campaign.location
-                        mvpView?.updateCampaignDetail(campaign)
+
+                        mvpView?.updateCurrentMembers(it.result)
                         mvpView?.updateJoinBtnToLeave()
                         isJoin = true
 

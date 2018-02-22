@@ -1,10 +1,7 @@
 package com.teaml.iq.volunteer.data.firebase
 
 import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 
 /**
  * Created by Mahmood Ali on 07/02/2018.
@@ -15,15 +12,19 @@ interface FbFirestore {
 
     fun loadProfileInfo(uid: String): Task<DocumentSnapshot>
 
-    fun getUserReference(uid: String): DocumentReference
+    fun getUserDocRef(uid: String): DocumentReference
 
 
     //TODO: make sure to add index to each query
     fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot>
 
-    fun getCampaignReference(campaignId: String): DocumentReference
+    fun getCampaignDocRef(campaignId: String): DocumentReference
 
-    fun getGroupReference(groupId: String): DocumentReference
+    fun getGroupDocRef(groupId: String): DocumentReference
+
+    fun getCampaignMembersColRef(campaignId: String): CollectionReference
+
+    fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query
 
     fun loadGroupList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot>
 
@@ -31,9 +32,9 @@ interface FbFirestore {
 
     fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot>
 
-    fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<DocumentSnapshot>
+    fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<Long>
 
-    fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<DocumentSnapshot>
+    fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<Long>
 
 
 }

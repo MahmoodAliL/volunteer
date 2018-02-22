@@ -15,4 +15,6 @@ interface CampaignDetailMvpPresenter<V : CampaignDetailMvpView> : MvpPresenter<V
     fun onJoinClick()
 
     fun onOpenMapClick()
+
+    fun onMembersClick()
 }

@@ -3,10 +3,7 @@ package com.teaml.iq.volunteer.data
 import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import com.google.firebase.storage.UploadTask
 import com.teaml.iq.volunteer.data.firebase.FirebaseHelper
 import com.teaml.iq.volunteer.data.pref.PreferenceHelper
@@ -18,6 +15,7 @@ import javax.inject.Inject
 class AppDataManager @Inject constructor(
         val preferenceHelper: PreferenceHelper,
         val firebaseHelper: FirebaseHelper) : DataManager {
+
 
     /**
      * SharedPreferences
@@ -63,6 +61,8 @@ class AppDataManager @Inject constructor(
     override fun saveProfileInfo(profileInfo: HashMap<String, Any>): Task<Void> =
             firebaseHelper.saveProfileInfo(profileInfo)
 
+    override fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query =
+            firebaseHelper.loadCampaignMembers(campaignId, lastVisibleItem)
 
     override fun loadProfileInfo(uid: String): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo(uid)
 
@@ -75,28 +75,26 @@ class AppDataManager @Inject constructor(
     override fun loadCampaignUserJoined(uid: String, lastVisibleItem: DocumentSnapshot?): Query =
             firebaseHelper.loadCampaignUserJoined(uid, lastVisibleItem)
 
-    override fun getUserReference(uid: String): DocumentReference =
-            firebaseHelper.getUserReference(uid)
+    override fun getUserDocRef(uid: String): DocumentReference =
+            firebaseHelper.getUserDocRef(uid)
 
-    override fun getCampaignReference(campaignId: String): DocumentReference {
-        return firebaseHelper.getCampaignReference(campaignId)
-    }
+    override fun getCampaignDocRef(campaignId: String): DocumentReference =
+            firebaseHelper.getCampaignDocRef(campaignId)
 
-    override fun getGroupReference(groupId: String): DocumentReference {
-        return firebaseHelper.getGroupReference(groupId)
-    }
+    override fun getGroupDocRef(groupId: String): DocumentReference =
+            firebaseHelper.getGroupDocRef(groupId)
 
-    override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> {
-        return firebaseHelper.checkUserJoinWithCampaign(campaignRef)
-    }
+    override fun getCampaignMembersColRef(campaignId: String): CollectionReference =
+            firebaseHelper.getCampaignMembersColRef(campaignId)
 
-    override fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<DocumentSnapshot> {
-        return firebaseHelper.addUserToCampaign(campaignRef, uid)
-    }
+    override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> =
+            firebaseHelper.checkUserJoinWithCampaign(campaignRef)
 
-    override fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<DocumentSnapshot> {
-        return firebaseHelper.onUserLeaveCampaign(campaignRef, uid)
-    }
+    override fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<Long> =
+            firebaseHelper.addUserToCampaign(campaignRef, uid)
+
+    override fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<Long> =
+            firebaseHelper.onUserLeaveCampaign(campaignRef, uid)
 
     //firebase storage
 

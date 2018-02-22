@@ -61,7 +61,7 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
             val uid = dataManager.getFirebaseUserAuthID() ?: return
             Log.e(TAG,"on fetch Info  uid: $uid")
 
-            dataManager.getUserReference(uid).addSnapshotListener(activity) { documentSnapshot, firebaseFirestoreException ->
+            dataManager.getUserDocRef(uid).addSnapshotListener(activity) { documentSnapshot, firebaseFirestoreException ->
 
                 if (firebaseFirestoreException != null) {
                     Log.w(TAG, firebaseFirestoreException.message)

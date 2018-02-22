@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -130,4 +131,11 @@ fun Date.toDateString(): String {
 fun Date.toTimeString(): String {
     val format = SimpleDateFormat(AppConstants.TIME_FORMAT, Locale.ENGLISH)
     return format.format(this)
+}
+
+
+// ui utils
+
+fun TextView.clearText() {
+    this.text = ""
 }

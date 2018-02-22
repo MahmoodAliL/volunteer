@@ -36,7 +36,7 @@ class ProfileInfoPresenter<V : ProfileInfoMvpView> @Inject constructor(dataManag
 
             view.showProgress()
             view.getBaseActivity()?.let { activity ->
-                dataManager.getUserReference(uid).addSnapshotListener(activity) { documentSnapshot, firebaseFirestoreException ->
+                dataManager.getUserDocRef(uid).addSnapshotListener(activity) { documentSnapshot, firebaseFirestoreException ->
 
                     if (mvpView == null)
                         return@addSnapshotListener

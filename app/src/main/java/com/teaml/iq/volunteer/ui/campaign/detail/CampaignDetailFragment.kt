@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.StringRes
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.teaml.iq.volunteer.data.model.FbGroup
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
 import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.campaign_detail_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
@@ -43,6 +45,8 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        (activity as AppCompatActivity).supportActionBar?.title = "Campaign Detail"
+
         getActivityComponent()?.let {
             it.inject(this)
             mPresenter.onAttach(this)
@@ -63,6 +67,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
             retryImg.setOnClickListener { mPresenter.onRetryImgClick() }
             btnJoin.setOnClickListener { mPresenter.onJoinClick() }
             txtLocation.setOnClickListener { mPresenter.onOpenMapClick() }
+            txtMember.setOnClickListener { mPresenter.onMembersClick() }
         }
     }
 
@@ -145,6 +150,11 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         txtRequirement.text = getString(R.string.campaign_requirement, campaign.maxMemberCount, gender, campaign.age)
     }
 
+    override fun updateCurrentMembers(currentMembers: Long) {
+        txtMember.text = getString(R.string.campaign_member, currentMembers)
+    }
+
+
     override fun updateCampaignDetail(campaign: FbCampaign) {
         // campaign detail
         txtCampaignTitle.text = campaign.title
@@ -158,6 +168,18 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
     override fun openSignInActivity() {
         context?.startActivity<AccountActivity>()
+    }
+
+    override fun showCampaignMembersFragment(campaignId: String) {
+
+        val bundle = Bundle()
+        bundle.putString(BUNDLE_KEY_CAMPAIGN_ID, campaignId)
+
+        activity?.addFragmentAndAddToBackStack(
+                R.id.fragmentContainer,
+                CampaignMembersFragment.newInstance(bundle),
+                CampaignMembersFragment.TAG
+        )
     }
 
     override fun showProgress() {

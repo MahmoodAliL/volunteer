@@ -53,10 +53,10 @@ class GroupFragment : BaseFragment(), GroupMvpView {
     }
 
     override fun setup(view: View) {
-        mLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = mLinearLayoutManager
         recyclerView.adapter = mGroupAdapter
-        recyclerView.setHasFixedSize(true)
         mGroupAdapter.initRecyclerView(recyclerView)
 
         mGroupAdapter.setOnLoadingMoreListener { mPresenter.onLoadingMore() }

@@ -8,5 +8,8 @@ import com.teaml.iq.volunteer.ui.base.MvpView
 interface CampaignMvpView : MvpView {
     fun showDetailFragment()
 
+    fun updateToolbarToDetail()
+
+    fun updateToolbarToMember()
 
 }

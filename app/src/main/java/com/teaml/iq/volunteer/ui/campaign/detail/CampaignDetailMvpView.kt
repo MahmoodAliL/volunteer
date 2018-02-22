@@ -25,9 +25,13 @@ interface CampaignDetailMvpView : FragmentMvpView {
 
     fun openSignInActivity()
 
+    fun showCampaignMembersFragment(campaignId: String)
+
     fun openGoogleMap(geoPoint: GeoPoint)
 
     fun updateCampaignDetail(campaign: FbCampaign)
+
+    fun updateCurrentMembers(currentMembers: Long)
 
     fun disableJoinBtn(@StringRes note: Int)
 

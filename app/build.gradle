@@ -69,6 +69,8 @@ dependencies {
 
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:3.2.1'
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:3.2.1'
 
     // material intro
     implementation 'com.heinrichreimersoftware:material-intro:1.6.2'

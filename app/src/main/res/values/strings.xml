@@ -107,6 +107,9 @@
     <string name="this_campaign_for_female">This campaign for female only </string>
     <string name="your_age_is_less_then_required">Your age is less then required</string>
     <string name="location">Location</string>
+    <string name="join_date">Join on %1$s</string>
+    <string name="campaign_detail">Campaign Detail</string>
+    <string name="member">Member</string>
 
 
 </resources>

@@ -5,7 +5,7 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.utils.addFragment
-import kotlinx.android.synthetic.main.fragment_container_with_toolbar.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 /**
@@ -20,6 +20,7 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
         const val EXTRA_KEY_GROUP_ID = "extra_key_group_id"
         const val EXTRA_KEY_CAMPAIGN_ID = "extra_key_campaign_id"
     }
+
     override fun setup() {
 
     }
@@ -37,8 +38,22 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
         }
 
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Campaign Detail"
 
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            mPresenter.addOnBackStackChangedListener(supportFragmentManager.backStackEntryCount)
+        }
+
+    }
+
+    override fun updateToolbarToDetail() {
+        supportActionBar?.title = getString(R.string.campaign_detail)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
+    }
+
+    override fun updateToolbarToMember() {
+        supportActionBar?.title = getString(R.string.member)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
     }
 
     override fun showDetailFragment() {

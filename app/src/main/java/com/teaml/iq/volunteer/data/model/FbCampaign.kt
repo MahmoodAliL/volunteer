@@ -3,6 +3,7 @@ package com.teaml.iq.volunteer.data.model
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
 /**
@@ -14,7 +15,7 @@ data class FbCampaign(
         val title: String = "",
         val groupRef: DocumentReference = FirebaseFirestore.getInstance().document("group/team-l"),
         val location: GeoPoint = GeoPoint(33.33, 44.33),
-        val uploadDate: Date = Date(),
+        @ServerTimestamp val uploadDate: Date = Date(),
         val startDate: Date = Date(),
         val currentMemberCount: Int = 0,
         val maxMemberCount: Int = 0,

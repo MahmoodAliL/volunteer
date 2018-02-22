@@ -29,6 +29,10 @@ import com.teaml.iq.volunteer.ui.campaign.CampaignPresenter
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpView
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailPresenter
+import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpPresenter
+import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpView
+import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersPresenter
+import com.teaml.iq.volunteer.ui.campaign.members.adapter.CampaignMembersAdapter
 import com.teaml.iq.volunteer.ui.group.GroupDetailMvpPresenter
 import com.teaml.iq.volunteer.ui.group.GroupDetailMvpView
 import com.teaml.iq.volunteer.ui.group.GroupDetailPresenter
@@ -82,7 +86,7 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     @PerActivity
-    fun provideSplashPresenter(presenter: SplashPresenter<SplashMvpView> ): SplashMvpPresenter<SplashMvpView> =
+    fun provideSplashPresenter(presenter: SplashPresenter<SplashMvpView>): SplashMvpPresenter<SplashMvpView> =
             presenter
 
     @Provides
@@ -100,7 +104,8 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     fun provideForgetPasswordPresenter(presenter: ForgetPasswordPresenter<ForgetPasswordMvpView>)
-            : ForgetPasswordMvpPresenter<ForgetPasswordMvpView>  = presenter
+            : ForgetPasswordMvpPresenter<ForgetPasswordMvpView> = presenter
+
     @Provides
     fun provideEmailSendPresenter(presenter: EmailSendSuccessfullyPresenter<EmailSendSuccessfullyMvpView>)
             : EmailSendSuccessfullyMvpPresenter<EmailSendSuccessfullyMvpView> = presenter
@@ -132,12 +137,17 @@ class ActivityModule(val activity: AppCompatActivity) {
     @Provides
     fun provideLinearLayout(activity: AppCompatActivity) = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
+
+    // Adapter provides
+
     @Provides
     fun provideCampaignAdapter() = CampaignAdapter(mutableListOf())
 
     @Provides
     fun provideGroupAdapter() = GroupAdapter(mutableListOf())
 
+    @Provides
+    fun provideCampaignMembersAdapter() = CampaignMembersAdapter(mutableListOf())
 
     @Provides
     fun provideMyActivityPresenter(presenter: MyActivityPresenter<MyActivityMvpView>): MyActivityMvpPresenter<MyActivityMvpView> =
@@ -165,6 +175,10 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     fun provideCampaignDetailPresenter(presenter: CampaignDetailPresenter<CampaignDetailMvpView>): CampaignDetailMvpPresenter<CampaignDetailMvpView> =
+            presenter
+
+    @Provides
+    fun provideCampaignMembersPresenter(presenter: CampaignMembersPresenter<CampaignMembersMvpView>): CampaignMembersMvpPresenter<CampaignMembersMvpView> =
             presenter
 
     @Provides
