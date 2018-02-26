@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/campaignCoverImg"
+        android:id="@+id/campaignCoverImgView"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginEnd="8dp"
@@ -29,8 +29,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:gravity="left"
         android:maxLines="3"
-        android:text="This is the title of the page which may  be to long or too long so just keep typeing and typeing fro ever t...."
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:text="عنوان الحملة "
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline"
@@ -41,6 +44,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
         android:text="2017/05/12"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         app:layout_constraintEnd_toEndOf="parent"

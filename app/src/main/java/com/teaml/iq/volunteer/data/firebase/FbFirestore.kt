@@ -30,6 +30,10 @@ interface FbFirestore {
 
     fun loadCampaignUserJoined(uid: String , lastVisibleItem: DocumentSnapshot?): Query
 
+    fun loadFirstTenGroupCampaign(groupId: String): Query
+
+    fun loadGroupCampaignList(groupId: String, lastVisibleItem: DocumentSnapshot?): Query
+
     fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot>
 
     fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<Long>

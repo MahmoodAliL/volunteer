@@ -1,6 +1,7 @@
 package com.teaml.iq.volunteer.data.model
 
 import com.teaml.iq.volunteer.data.DataManager
+import java.util.*
 
 /**
  * Created by Mahmood Ali on 07/02/2018.
@@ -8,7 +9,7 @@ import com.teaml.iq.volunteer.data.DataManager
 data class BasicUserInfo(
         private val name: String = "",
         private val gender: DataManager.UserGender = DataManager.UserGender.MALE,
-        private val birthOfDay: Long = 0L
+        private val birthOfDay: Date = Date()
 ) {
 
     companion object {

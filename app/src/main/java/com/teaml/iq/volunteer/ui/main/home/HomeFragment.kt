@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.ui.base.BaseFragment
-import com.teaml.iq.volunteer.utils.gone
 import com.teaml.iq.volunteer.utils.invisible
 import com.teaml.iq.volunteer.utils.visible
-import kotlinx.android.synthetic.main.progressbar_layout.*
 import kotlinx.android.synthetic.main.recycler_view_layout.*
 import javax.inject.Inject
 
@@ -61,20 +59,12 @@ class HomeFragment : BaseFragment(), HomeMvpView {
         mCampaignAdapter.setOnLoadingMoreListener { mPresenter.onLoadingMore() }
         retryImg.setOnClickListener { mPresenter.onRetryClick() }
 
+        swipeRefreshLayout.setOnRefreshListener {
+            mCampaignAdapter.clearList()
+            mPresenter.onLoadingMore()
+        }
+
         mPresenter.onViewPrepared()
-
-
-        /* btnCenterRetry.setOnClickListener { mPresenter.onRetryClick() }
-         btnBottomRetry.setOnClickListener {  }
-
-
-        activity?.let { activity ->
-            db.collection("campaign").get().addOnSuccessListener(activity) {
-                val campaignList: MutableList<FbCampaign> = it.toObjects(FbCampaign::class.java)
-
-                campaignList.do
-            }
-        }*/
 
     }
 
@@ -88,11 +78,13 @@ class HomeFragment : BaseFragment(), HomeMvpView {
     }
 
     override fun showProgress() {
-        progressBarLayout.visible
+        swipeRefreshLayout.isRefreshing = true
+        //progressBarLayout.visible
     }
 
     override fun hideProgress() {
-        progressBarLayout.gone
+        swipeRefreshLayout.isRefreshing = false
+        // /progressBarLayout.gone
     }
 
     override fun setLoadingMoreDone() {

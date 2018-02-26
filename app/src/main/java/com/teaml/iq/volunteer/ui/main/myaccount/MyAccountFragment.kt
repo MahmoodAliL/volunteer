@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.FbUserDetail
@@ -85,12 +86,13 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
         if (!profileInfo.bio.isEmpty())
             txtBio.text = profileInfo.bio
         else
-            txtBio.text = "Bio about you"
+            txtBio.text = "-----"
 
         try {
             val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${profileInfo.img}")
             GlideApp.with(this)
                     .load(imgRef)
+                    .signature(ObjectKey(profileInfo.lastImgUpdate))
                     .circleCrop()
                     .placeholder(R.drawable.profile_placeholder_img)
                     .into(profileImg)

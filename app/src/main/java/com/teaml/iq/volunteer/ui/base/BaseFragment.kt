@@ -1,6 +1,8 @@
 package com.teaml.iq.volunteer.ui.base
 
+import android.annotation.TargetApi
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
@@ -38,6 +40,15 @@ abstract class BaseFragment : Fragment(), FragmentMvpView {
         setup(view)
     }
     override fun getBaseActivity(): BaseActivity? = mBaseActivity
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    fun requestPermissionsSafely(permission: Array<out String>, requestCode: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            requestPermissions(permission, requestCode)
+    }
+
+    override fun getBaseFragment(): BaseFragment  = this
 
     override fun showLoading(msg: String) {
         mBaseActivity?.showLoading(msg)

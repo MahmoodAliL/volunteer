@@ -15,7 +15,7 @@ class CampaignPresenter<V : CampaignMvpView> @Inject constructor(dataManager: Da
         mvpView.showDetailFragment()
     }
 
-    override fun addOnBackStackChangedListener(backpackStackEntryCount: Int) {
+    override fun onBackStackChangedListener(backpackStackEntryCount: Int) {
         if (backpackStackEntryCount == 0 ) {
             mvpView?.updateToolbarToDetail()
         } else {

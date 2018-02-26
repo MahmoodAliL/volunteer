@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import com.google.firebase.storage.FirebaseStorage
@@ -44,7 +43,6 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
     }
 
     @Inject
@@ -102,6 +100,9 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
         }
     }
 
+    override fun getBaseFragment(): BaseFragment = this
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         mPresenter.onActivityResult(requestCode, resultCode, data)
     }
@@ -114,17 +115,19 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
             negativeButton(R.string.cancel) { }
         })?.show()
     }
+
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        Log.e(TAG, "onRequestPermissionsResult")
         mPresenter.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    override fun onError(msg: String) {
-        indefiniteSnackbar(profileImgView, msg, "retry") { mPresenter.fetchProfileInfo() }
+
+    override fun onFetchProfileInfoError(msg: String) {
+        val retryString = getString(R.string.retry)
+        indefiniteSnackbar(profileImgView, msg, retryString) { mPresenter.fetchProfileInfo() }
     }
 
-    override fun onError(msg: Int) {
-        indefiniteSnackbar(profileImgView, msg, R.string.retry) { mPresenter.fetchProfileInfo() }
-    }
 
     override fun showProfileInfo(profileInfo: FbUserDetail) {
 

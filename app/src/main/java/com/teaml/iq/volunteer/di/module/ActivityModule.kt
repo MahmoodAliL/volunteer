@@ -33,9 +33,16 @@ import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpView
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersPresenter
 import com.teaml.iq.volunteer.ui.campaign.members.adapter.CampaignMembersAdapter
-import com.teaml.iq.volunteer.ui.group.GroupDetailMvpPresenter
-import com.teaml.iq.volunteer.ui.group.GroupDetailMvpView
-import com.teaml.iq.volunteer.ui.group.GroupDetailPresenter
+import com.teaml.iq.volunteer.ui.group.GroupsMvpPresenter
+import com.teaml.iq.volunteer.ui.group.GroupsMvpView
+import com.teaml.iq.volunteer.ui.group.GroupsPresenter
+import com.teaml.iq.volunteer.ui.group.detail.GroupCampaignsAdapter
+import com.teaml.iq.volunteer.ui.group.detail.GroupDetailMvpPresenter
+import com.teaml.iq.volunteer.ui.group.detail.GroupDetailMvpView
+import com.teaml.iq.volunteer.ui.group.detail.GroupDetailPresenter
+import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsMvpPresenter
+import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsMvpView
+import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsPresenter
 import com.teaml.iq.volunteer.ui.main.BottomBarAdapter
 import com.teaml.iq.volunteer.ui.main.MainMvpPresenter
 import com.teaml.iq.volunteer.ui.main.MainMvpView
@@ -150,6 +157,9 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideCampaignMembersAdapter() = CampaignMembersAdapter(mutableListOf())
 
     @Provides
+    fun provideGroupCampaignsAdapter() = GroupCampaignsAdapter(mutableListOf())
+
+    @Provides
     fun provideMyActivityPresenter(presenter: MyActivityPresenter<MyActivityMvpView>): MyActivityMvpPresenter<MyActivityMvpView> =
             presenter
 
@@ -182,8 +192,17 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
+    fun provideGroupsPresenter(presenter: GroupsPresenter<GroupsMvpView>): GroupsMvpPresenter<GroupsMvpView> =
+            presenter
+
+    @Provides
     fun provideGroupDetailPresenter(presenter: GroupDetailPresenter<GroupDetailMvpView>): GroupDetailMvpPresenter<GroupDetailMvpView> =
             presenter
+
+    @Provides
+    fun provideGroupCampaignDetail(presenter: GroupCampaignsPresenter<GroupCampaignsMvpView>): GroupCampaignsMvpPresenter<GroupCampaignsMvpView> =
+            presenter
+
 
 
 }

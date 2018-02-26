@@ -14,6 +14,7 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.main.MainActivity
+import com.teaml.iq.volunteer.utils.toDateString
 import kotlinx.android.synthetic.main.base_user_info_layout.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
@@ -40,7 +41,7 @@ class BasicInfoFragment : BaseFragment(), BasicInfoMvpView , LabelledSpinner.OnI
 
     // user info
     private lateinit var gender: DataManager.UserGender
-    private var birthOfDate: Long = 0L
+    private var birthOfDate: Date? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +54,7 @@ class BasicInfoFragment : BaseFragment(), BasicInfoMvpView , LabelledSpinner.OnI
             mPresenter.onAttach(this)
         }
 
+
         setupDatePickerDialog()
 
 
@@ -60,10 +62,8 @@ class BasicInfoFragment : BaseFragment(), BasicInfoMvpView , LabelledSpinner.OnI
     }
 
     override fun onDateSet(dataPicker: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-
-        birthOfDate = GregorianCalendar(year, month, dayOfMonth).timeInMillis
-        val date = "$year/$month/$dayOfMonth"
-        birthOfDayField.setText(date)
+        birthOfDate = GregorianCalendar(year, month, dayOfMonth).time
+        birthOfDayField.setText(birthOfDate?.toDateString())
     }
 
 

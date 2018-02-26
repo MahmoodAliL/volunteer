@@ -20,6 +20,12 @@ class ProfilePresenter<V : ProfileMvpView> @Inject constructor(dataManager: Data
     }
 
 
-
+    override fun onBackStackChangedListener(backStackEntryCount: Int) {
+        if (backStackEntryCount == 0 ) {
+            mvpView?.updateToolbarToProfileInfo()
+        } else {
+            mvpView?.updateToolbarToEditProfile()
+        }
+    }
 
 }

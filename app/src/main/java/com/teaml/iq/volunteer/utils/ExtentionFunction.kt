@@ -133,9 +133,15 @@ fun Date.toTimeString(): String {
     return format.format(this)
 }
 
+fun Date.toTimestamp(): String {
+    val format = SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.ENGLISH)
+    return format.format(this)
+}
+
 
 // ui utils
 
 fun TextView.clearText() {
     this.text = ""
 }
+

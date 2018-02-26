@@ -7,4 +7,6 @@ interface FragmentMvpView : MvpView {
 
     fun getBaseActivity(): BaseActivity?
 
+    fun getBaseFragment(): BaseFragment
+
 }

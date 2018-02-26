@@ -13,6 +13,7 @@ object AppConstants {
 
     const val DATE_FORMAT = "yyyy/MM/dd"
     const val TIME_FORMAT = "HH:mm"
+    const val TIMESTAMP_FORMAT = "yyyy/MM/dd HH:mm:ss"
 
 
     // firestore collection
@@ -23,8 +24,9 @@ object AppConstants {
     const val MEMBER_COL = "members"
 
     // query limit
+    const val GROUP_CAMPAIGNS_LIMIT = 6L
     const val CAMPAIGN_QUERY_LIMIT = 10L
-    const val CAMPAING_MEMBERS_LIMIT = 20L
+    const val CAMPAIGN_MEMBERS_LIMIT = 20L
     const val GROUP_QUERY_LIMIT = 20L
 
     // firestorage

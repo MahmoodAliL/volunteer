@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.GlideApp
@@ -79,13 +80,12 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         retryImg.gone
     }
 
-
-
-    override fun updateProfileImg(currentProfileImg: String) {
+    override fun updateProfileImg(currentProfileImg: String, lastImgUpdate: String) {
         try {
-            val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${currentProfileImg}")
+            val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/$currentProfileImg")
             GlideApp.with(this)
                     .load(imgRef)
+                    .signature(ObjectKey(lastImgUpdate))
                     .placeholder(R.drawable.profile_placeholder_img)
                     .circleCrop()
                     .into(profileImg)

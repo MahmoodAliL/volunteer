@@ -41,7 +41,7 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
 
 
         supportFragmentManager.addOnBackStackChangedListener {
-            mPresenter.addOnBackStackChangedListener(supportFragmentManager.backStackEntryCount)
+            mPresenter.onBackStackChangedListener(supportFragmentManager.backStackEntryCount)
         }
 
     }

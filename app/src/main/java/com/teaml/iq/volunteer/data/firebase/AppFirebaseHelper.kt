@@ -13,8 +13,8 @@ import com.teaml.iq.volunteer.data.model.FbGroup
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_COL
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_JOINED
+import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_MEMBERS_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_QUERY_LIMIT
-import com.teaml.iq.volunteer.utils.AppConstants.CAMPAING_MEMBERS_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_COL
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_QUERY_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.MEMBER_COL
@@ -33,6 +33,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     companion object {
         const val CAMPAIGN_REF_FIELD = "campaignRef"
+        const val GROUP_REF_FIELD = "groupRef"
         const val JOIN_DATE_FIELD = "joinDate"
         const val USER_REF_FIELD = "userRef"
     }
@@ -84,7 +85,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     }
 
     override fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query {
-        val query = getCampaignMembersColRef(campaignId).limit(CAMPAING_MEMBERS_LIMIT)
+        val query = getCampaignMembersColRef(campaignId).limit(CAMPAIGN_MEMBERS_LIMIT)
                 .orderBy(JOIN_DATE_FIELD)
         return if (lastVisibleItem != null)
             query.startAfter(lastVisibleItem)
@@ -101,6 +102,23 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             query.get()
     }
 
+    override fun loadGroupCampaignList(groupId: String, lastVisibleItem: DocumentSnapshot?): Query {
+        val query =  mFirestore.collection(CAMPAIGN_COL)
+                .whereEqualTo(GROUP_REF_FIELD, getGroupDocRef(groupId))
+                .limit(CAMPAIGN_QUERY_LIMIT)
+        /* .orderBy(FbCampaign.UPLOAD_DATE, Query.Direction.DESCENDING)*/
+        return if (lastVisibleItem != null)
+            query.startAfter(lastVisibleItem)
+        else
+            query
+    }
+
+    override fun loadFirstTenGroupCampaign(groupId: String): Query {
+        return mFirestore.collection(CAMPAIGN_COL)
+                .whereEqualTo(GROUP_REF_FIELD, getGroupDocRef(groupId))
+                /*.orderBy(FbCampaign.UPLOAD_DATE,Query.Direction.DESCENDING)*/
+                .limit(AppConstants.GROUP_CAMPAIGNS_LIMIT)
+    }
 
     override fun loadCampaignUserJoined(uid: String, lastVisibleItem: DocumentSnapshot?): Query {
         val query = mFirestore.collection(AppConstants.USERS_COL)
@@ -116,7 +134,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> {
         return mFirestore.collection("$USERS_COL/${getFirebaseUserAuthID()}/$CAMPAIGN_JOINED")
-                .whereEqualTo(CAMPAIGN_REF_FIELD, campaignRef).get()
+                .whereEqualTo(GROUP_REF_FIELD, campaignRef).get()
     }
 
     override fun getCampaignDocRef(campaignId: String): DocumentReference {
@@ -151,7 +169,6 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
                 it.update(campaignRef, FbCampaign::currentMemberCount.name, newCurrentMemberCount)
 
 
-
             // get join date of user
             val joinDate = JOIN_DATE_FIELD to FieldValue.serverTimestamp()
             // get user reference
@@ -161,7 +178,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             it.set(campaignMembersDocRef, memberHashMap)
 
             // hash map to put campaign reference and join date in users/uid/joinCampaign collection
-            val campaignHashMap = hashMapOf(joinDate, CAMPAIGN_REF_FIELD to campaignRef)
+            val campaignHashMap = hashMapOf(joinDate, GROUP_REF_FIELD to campaignRef)
             it.set(joinCampaignDocRef, campaignHashMap)
 
             newCurrentMemberCount

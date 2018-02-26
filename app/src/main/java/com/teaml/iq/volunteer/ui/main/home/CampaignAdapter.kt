@@ -8,14 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.group.GroupsActivity
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_IMG_FOLDER
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_LOGO_IMG_FOLDER
+import com.teaml.iq.volunteer.utils.toDateString
+import com.teaml.iq.volunteer.utils.toTimestamp
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
@@ -79,40 +83,22 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
         notifyDataSetChanged()
     }
 
-
-    /**
-     * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
-     * an item.
-     *
-     *
-     * This new ViewHolder should be constructed with a new View that can represent the items
-     * of the given type. You can either create a new View manually or inflate it from an XML
-     * layout file.
-     *
-     *
-     * The new ViewHolder will be used to display items of the adapter using
-     * [.onBindViewHolder]. Since it will be re-used to display
-     * different items in the data set, it is a good idea to cache references to sub views of
-     * the View to avoid unnecessary [View.findViewById] calls.
-     *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to
-     * an adapter position.
-     * @param viewType The itemView type of the new View.
-     *
-     * @return A new ViewHolder that holds a View of the given itemView type.
-     * @see .getItemViewType
-     * @see .onBindViewHolder
-     */
-
+    fun clearList() {
+        mCampaignPostList.clear()
+        notifyDataSetChanged()
+    }
 
     inner class CampaignVH(itemView: View) : BaseViewHolder(itemView) {
 
         private val firebaseStorage = FirebaseStorage.getInstance()
+        private val mContext = itemView.context
 
         private val campaignTitle: TextView = itemView.find(R.id.campaignTitle)
         private val orgNameAndUploadDate = itemView.find<TextView>(R.id.orgNameAndUploadDate)
         private val orgImgView = itemView.find<ImageView>(R.id.orgImgView)
         private val campaignCoverImgView = itemView.find<ImageView>(R.id.campaignCoverImg)
+
+
 
         init {
             itemView.setOnClickListener {
@@ -120,7 +106,7 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
 
                 Log.e(TAG, "CampaignId: ${campaign.campaignId}, GroupId: ${campaign.groupId}")
 
-                itemView.context.startActivity<CampaignActivity>(
+                mContext.startActivity<CampaignActivity>(
                         CampaignActivity.EXTRA_KEY_CAMPAIGN_ID to campaign.campaignId,
                         CampaignActivity.EXTRA_KEY_GROUP_ID to campaign.groupId
                 )
@@ -147,7 +133,7 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
                 // them we should using this way
 
                 // orgNameAndUploadDate.text = orgImgView.context.getString(R.string.group_name_and_date, groupName, uploadDate)
-                val temp = "$groupName . $uploadDate"
+                val temp = "$groupName . ${uploadDate.toDateString()}"
                 orgNameAndUploadDate.text = temp
 
                 try {
@@ -155,14 +141,15 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
                     val campaignCoverImgRef = firebaseStorage.getReference("$CAMPAIGN_IMG_FOLDER/$coverImgName")
                     val orgImgRef = firebaseStorage.getReference("$GROUP_LOGO_IMG_FOLDER/$groupLogoImg")
 
-                    GlideApp.with(itemView.context)
+                    GlideApp.with(mContext)
                             .load(orgImgRef)
                             .circleCrop()
                             .placeholder(R.drawable.org_placeholder_img)
                             .into(orgImgView)
 
-                    GlideApp.with(itemView.context)
+                    GlideApp.with(mContext)
                             .load(campaignCoverImgRef)
+                            .signature(ObjectKey(lastModificationDate.toTimestamp()))
                             .centerCrop()
                             .placeholder(R.drawable.campaign_placeholder_img)
                             .into(campaignCoverImgView)
@@ -173,7 +160,14 @@ class CampaignAdapter(private val mCampaignPostList: MutableList<CampaignPost>) 
 
 
 
-                orgImgView.setOnClickListener { Log.d(TAG, "orgImgClicked") }
+                orgImgView.setOnClickListener {
+                    Log.d(TAG, "orgImgClicked")
+                    mContext.startActivity<GroupsActivity>(
+                            //using campaign variable may be not good idea
+                            //TODO:Thing more about this
+                            CampaignActivity.EXTRA_KEY_GROUP_ID to groupId
+                    )
+                }
 
             }
         }

@@ -72,6 +72,12 @@ class AppDataManager @Inject constructor(
     override fun loadGroupList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> =
             firebaseHelper.loadGroupList(lastVisibleItem)
 
+    override fun loadFirstTenGroupCampaign(groupId: String): Query =
+            firebaseHelper.loadFirstTenGroupCampaign(groupId)
+
+    override fun loadGroupCampaignList(groupId: String, lastVisibleItem: DocumentSnapshot?): Query =
+            firebaseHelper.loadGroupCampaignList(groupId, lastVisibleItem)
+
     override fun loadCampaignUserJoined(uid: String, lastVisibleItem: DocumentSnapshot?): Query =
             firebaseHelper.loadCampaignUserJoined(uid, lastVisibleItem)
 

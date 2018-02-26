@@ -88,13 +88,16 @@
     <string name="edit">edit</string>
 
     <!-- profile  info -->
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="profile_info">Profile Info</string>
     <string name="profile">Profile</string>
     <string name="Phone">Phone Number</string>
     <string name="bio">Bio</string>
     <string name="permission_deny">Permission deny</string>
     <string name="read_external_storage_rationale_for_select_image">App need  storage permission to allow you to select image</string>
 
-    <!-- Detail -->
+    <!-- Campaign Detail -->
     <string name="description">Description</string>
     <string name="requirement">Requirement</string>
     <string name="Join">join</string>
@@ -110,6 +113,12 @@
     <string name="join_date">Join on %1$s</string>
     <string name="campaign_detail">Campaign Detail</string>
     <string name="member">Member</string>
+
+
+
+    <!-- Group detail  -->
+    <string name="group_detail">Group Detail</string>
+    <string name="view_all">view all</string>
 
 
 </resources>

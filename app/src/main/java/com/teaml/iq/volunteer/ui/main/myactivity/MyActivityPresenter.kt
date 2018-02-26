@@ -10,7 +10,6 @@ import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
 import com.teaml.iq.volunteer.ui.base.BasePresenter
-import com.teaml.iq.volunteer.utils.toDateString
 import javax.inject.Inject
 
 /**
@@ -138,7 +137,8 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
                                     campaignId = campaign.id,
                                     title = campaign.title,
                                     coverImgName = campaign.imgName,
-                                    uploadDate = campaign.uploadDate.toDateString(),
+                                    lastModificationDate = campaign.lastModificationDate,
+                                    uploadDate = campaign.uploadDate,
                                     groupId = it.id,
                                     groupName = group.name,
                                     groupLogoImg = group.logoImg

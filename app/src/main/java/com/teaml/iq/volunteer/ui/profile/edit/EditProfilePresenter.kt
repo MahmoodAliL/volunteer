@@ -29,6 +29,7 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
 
     }
 
+
     private var isFieldLoadProfileInfo = true
     private var profileImgUri: Uri? = null
 
@@ -64,9 +65,8 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
                     } else {
                         Log.e(ProfileInfoPresenter.TAG, "${task.exception?.message}")
                         isFieldLoadProfileInfo = true
-                        view.onError("${task.exception?.message}")
+                        view.onFetchProfileInfoError("${task.exception?.message}")
                     }
-
 
                 }
             }
@@ -99,6 +99,7 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
                 view.showLoading(R.string.saving)
 
                 val profileInfo = hashMapOf(FbUserDetail::name.name to name,
+                        FbUserDetail::lastImgUpdate.name to System.currentTimeMillis().toString(),
                         FbUserDetail::bio.name to bio, FbUserDetail::phone.name to phoneNumber,
                         FbUserDetail::birthOfDay.name to birthOfDay, FbUserDetail::img.name to uid)
 
@@ -165,15 +166,21 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
 
 
     override fun onRequestReadExternalStoragePermissionAfterRationale() {
-        mvpView?.getBaseActivity()?.requestPermissionsSafely(
+        mvpView?.getBaseFragment()?.requestPermissionsSafely(
                 arrayOf(READ_EXTERNAL_STORAGE_PERMISSION),
                 RC_READ_EXTERNAL_STORAGE
         )
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+
+
         when (requestCode) {
+
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+
                 // if user does not select image
                 if (data == null)
                     return
@@ -181,6 +188,7 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
 
                 if (resultCode == Activity.RESULT_OK) {
                     profileImgUri = result.uri
+
                     profileImgUri?.let {
                         mvpView?.updateProfileImg(it)
                     }

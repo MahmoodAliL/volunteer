@@ -13,6 +13,8 @@ interface EditProfileMvpView : FragmentMvpView {
 
     fun showEmail(email: String)
 
+    fun onFetchProfileInfoError(msg: String)
+
     fun updateProfileImg(uri: Uri)
 
     fun updateProfileImg(imgName: String)

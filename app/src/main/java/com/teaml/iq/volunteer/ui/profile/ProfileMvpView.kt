@@ -9,4 +9,8 @@ interface ProfileMvpView : MvpView {
 
     fun showProfileInfoFragment(uid: String)
 
+    fun updateToolbarToProfileInfo()
+
+    fun updateToolbarToEditProfile()
+
 }

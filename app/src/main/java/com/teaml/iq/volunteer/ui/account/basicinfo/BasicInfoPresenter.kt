@@ -2,8 +2,9 @@ package com.teaml.iq.volunteer.ui.account.basicinfo
 
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
-import com.teaml.iq.volunteer.data.model.BasicUserInfo
+import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.ui.base.BasePresenter
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -13,7 +14,7 @@ class BasicInfoPresenter<V : BasicInfoMvpView> @Inject constructor(dataManager: 
     : BasePresenter<V>(dataManager), BasicInfoMvpPresenter<V> {
 
 
-    override fun onDoneClick(name: String, gender: DataManager.UserGender, birthOfDate: Long) {
+    override fun onDoneClick(name: String, gender: DataManager.UserGender, birthOfDate: Date?) {
         mvpView?.let { view ->
 
             // validate basic user info
@@ -27,7 +28,7 @@ class BasicInfoPresenter<V : BasicInfoMvpView> @Inject constructor(dataManager: 
                 return
             }
 
-            if (birthOfDate == 0L) {
+            if (birthOfDate == null) {
                 view.onError(R.string.empty_birth_of_date)
                 return
             }
@@ -43,9 +44,13 @@ class BasicInfoPresenter<V : BasicInfoMvpView> @Inject constructor(dataManager: 
                 view.hideKeyboard()
                 view.showLoading()
 
-                val basicUserInfo = BasicUserInfo(name, gender, birthOfDate)
 
-                dataManager.saveProfileInfo(basicUserInfo.toMap()).addOnCompleteListener(activity) { task ->
+                val userInfo = FbUserDetail(name = name,
+                        gender = gender.type,
+                        birthOfDay = birthOfDate,
+                        email = dataManager.getCurrentUserEmail()!!)
+
+                dataManager.saveProfileInfo(userInfo.toHashMap()).addOnCompleteListener(activity) { task ->
 
                     if (mvpView == null)
                         return@addOnCompleteListener

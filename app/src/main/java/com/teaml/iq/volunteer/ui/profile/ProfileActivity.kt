@@ -27,13 +27,28 @@ class ProfileActivity : BaseActivity(), ProfileMvpView {
 
         val uid= intent?.getStringExtra(EXTRA_KEY_UID)
 
+
         activityComponent?.let {
             it.inject(this)
             mPresenter.onAttach(this)
             mPresenter.loadUserInfo(uid)
         }
 
+        supportFragmentManager.addOnBackStackChangedListener {
+            mPresenter.onBackStackChangedListener(supportFragmentManager.backStackEntryCount)
+        }
+
         setup()
+    }
+
+    override fun updateToolbarToEditProfile() {
+        supportActionBar?.title = getString(R.string.edit_profile)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
+    }
+
+    override fun updateToolbarToProfileInfo() {
+        supportActionBar?.title = getString(R.string.profile_info)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -43,6 +58,12 @@ class ProfileActivity : BaseActivity(), ProfileMvpView {
 
     override fun setup() {
         setSupportActionBar(toolbar)
+        supportActionBar?.title = getString(R.string.profile_info)
+    }
+
+    override fun onDestroy() {
+        mPresenter.onDetach()
+        super.onDestroy()
     }
 
     override fun showProfileInfoFragment(uid: String) {

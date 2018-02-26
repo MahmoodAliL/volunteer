@@ -7,5 +7,5 @@ import com.teaml.iq.volunteer.ui.base.MvpPresenter
  */
 interface CampaignMvpPresenter<V : CampaignMvpView> : MvpPresenter<V> {
 
-    fun addOnBackStackChangedListener(backpackStackEntryCount: Int)
+    fun onBackStackChangedListener(backpackStackEntryCount: Int)
 }

@@ -51,7 +51,7 @@ class ProfileInfoPresenter<V : ProfileInfoMvpView> @Inject constructor(dataManag
                     val profileInfo = documentSnapshot.toObject(FbUserDetail::class.java)
 
                     if (profileInfo.img.isNotEmpty()) {
-                        view.updateProfileImg(profileInfo.img)
+                        view.updateProfileImg(profileInfo.img, profileInfo.lastImgUpdate)
                     }
 
                     if (profileInfo.bio.isNotEmpty()) {

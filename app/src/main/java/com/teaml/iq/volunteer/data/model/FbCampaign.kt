@@ -12,6 +12,7 @@ import java.util.*
 data class FbCampaign(
         var id: String = "",
         val imgName: String = "",
+        val lastModificationDate: Date = Date(),
         val title: String = "",
         val groupRef: DocumentReference = FirebaseFirestore.getInstance().document("group/team-l"),
         val location: GeoPoint = GeoPoint(33.33, 44.33),

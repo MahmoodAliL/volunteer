@@ -6,6 +6,7 @@ import com.teaml.iq.volunteer.ui.base.FragmentMvpView
  * Created by Mahmood Ali on 13/02/2018.
  */
 interface ProfileInfoMvpView : FragmentMvpView {
+
     fun showRetryImg()
 
     fun hideRetryImg()
@@ -16,7 +17,7 @@ interface ProfileInfoMvpView : FragmentMvpView {
 
     fun showEditProfileInfo(uid: String)
 
-    fun updateProfileImg(currentProfileImg: String)
+    fun updateProfileImg(currentProfileImg: String, lastImgUpdate: String)
 
     fun updateUserName(currentUserName: String)
 
