@@ -11,6 +11,7 @@ data class CampaignPost(
         val groupId: String,
         val lastModificationDate: Date,
         val groupLogoImg: String,
+        val lastModificationDateForGroup: Date = Date(),
         val groupName: String,
         val uploadDate: Date,
         val coverImgName: String)

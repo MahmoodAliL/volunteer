@@ -2,11 +2,10 @@ package com.teaml.iq.volunteer.ui.group.view_all_campaign
 
 import android.util.Log
 import com.google.android.gms.tasks.Tasks
-import com.google.firebase.firestore.DocumentSnapshot
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.GroupCampaigns
-import com.teaml.iq.volunteer.ui.base.BasePresenter
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDatePresenter
 import com.teaml.iq.volunteer.utils.AppConstants
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -17,9 +16,8 @@ import javax.inject.Inject
  * Created by ali on 2/21/2018.
  */
 class GroupCampaignsPresenter<V : GroupCampaignsMvpView> @Inject constructor(dataManager: DataManager)
-    : BasePresenter<V>(dataManager), GroupCampaignsMvpPresenter<V> {
+    : BaseLoadDatePresenter<V>(dataManager), GroupCampaignsMvpPresenter<V> {
 
-    private var lastVisibleItem: DocumentSnapshot? = null
 
     private var groupId: String? = null
 
@@ -29,19 +27,12 @@ class GroupCampaignsPresenter<V : GroupCampaignsMvpView> @Inject constructor(dat
 
     override fun onViewPrepared(groupId: String) {
         this.groupId = groupId
-        loadCampaignList()
+        loadListData()
     }
 
-    override fun onRetryClick() {
-        mvpView?.setFieldError(false)
-        mvpView?.hideRetryImg()
-        mvpView?.showProgress()
-        loadCampaignList()
-    }
 
-    private fun loadCampaignList() {
-
-        mvpView?.showProgress()
+    override fun loadListData() {
+        showProgress()
 
         doAsync {
 
@@ -53,8 +44,14 @@ class GroupCampaignsPresenter<V : GroupCampaignsMvpView> @Inject constructor(dat
                 val documentSnapshot = loadGroupCampaignsTask.result
                 // check if data is empty to prevent index out or rang exception
                 // when preform
-                if (!documentSnapshot.isEmpty)
-                    lastVisibleItem = documentSnapshot.documents[documentSnapshot.size() - 1]
+
+                if (documentSnapshot.isEmpty) {
+                    uiThread {  mvpView?.enableLoadMore(false) }
+                    return@doAsync
+                }
+
+
+                lastVisibleItem = documentSnapshot.documents[documentSnapshot.size() - 1]
 
                 val campaignList = mutableListOf<GroupCampaigns>()
                 documentSnapshot.forEach {
@@ -73,21 +70,12 @@ class GroupCampaignsPresenter<V : GroupCampaignsMvpView> @Inject constructor(dat
 
             } catch (e: Exception) {
                 Log.e(TAG, "on loading group campaigns -> ", e)
-                uiThread { onError() }
+                uiThread { onLoadError() }
             } finally {
-                uiThread { mvpView?.hideProgress() }
+                uiThread { onLoadComplete() }
             }
         }
 
-    }
-
-    private fun onError() {
-        mvpView?.setFieldError(true)
-        mvpView?.showRetryImg()
-    }
-
-    override fun onLoadingMore() {
-        loadCampaignList()
     }
 
 

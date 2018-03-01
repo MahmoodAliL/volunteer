@@ -9,7 +9,7 @@ interface BaseLoadDataWithRecyclerViewMvpView : FragmentMvpView {
 
     fun hideRetryImg()
 
-    fun setFieldError(value: Boolean)
+    fun enableLoadMore(isEnable: Boolean)
 
     fun setLoadingMoreDone()
 

@@ -115,10 +115,22 @@
     <string name="member">Member</string>
 
 
-
     <!-- Group detail  -->
     <string name="group_detail">Group Detail</string>
     <string name="view_all">view all</string>
+
+    <!-- human readable elapse time  -->
+    <string name="less_then_minute">less then minutes</string>
+    <string name="since_x_minutes">since %1$d minutes</string>
+    <string name="since_x_hours">since %1$d hours</string>
+    <string name="since_x_days">since %1$d days</string>
+    <string name="since_x_weeks">since %1$d weeks</string>
+
+
+    <!--text placeholder only -->
+    <string name="campaign_32">Campaign 32</string>
+    <string name="_3_member">3 Member</string>
+    <string name="team_l">Team_L</string>
 
 
 </resources>

@@ -24,8 +24,8 @@ class CampaignMembersAdapterUI(option: FirestoreRecyclerOptions<CampaignMembers>
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CampaignMembersVH {
-        val v = LayoutInflater.from(parent?.context).inflate(R.layout.campaign_members_view, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CampaignMembersVH {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.campaign_members_view, parent, false)
         return CampaignMembersVH(v)
     }
 

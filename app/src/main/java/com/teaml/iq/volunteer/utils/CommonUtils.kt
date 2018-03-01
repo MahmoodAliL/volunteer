@@ -4,6 +4,7 @@ import android.content.Context
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
 import java.util.*
+import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 
 /**
@@ -28,9 +29,48 @@ object CommonUtils {
                 else -> context.getString(R.string.any)
             }
 
-    fun DateFrom(year: Int, month: Int, dayOfMonth: Int): Date {
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month -1, dayOfMonth, 0, 0)
-            return calendar.time
+    fun dateFrom(year: Int, month: Int, dayOfMonth: Int): Date {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month - 1, dayOfMonth, 0, 0)
+        return calendar.time
+    }
+
+    fun getHumanReadableElapseTime(uploadDate: Date, context: Context): String {
+
+        val calendarUploadDate = Calendar.getInstance()
+        calendarUploadDate.time = uploadDate
+
+        val differentTime = (System.currentTimeMillis() - calendarUploadDate.timeInMillis)
+
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(differentTime)
+
+        if (seconds <= 59) {
+            return context.getString(R.string.less_then_minute)
+        }
+
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(differentTime)
+
+        if (minutes <= 59) {
+            return context.getString(R.string.since_x_minutes, minutes)
+        }
+
+        val hours = TimeUnit.MILLISECONDS.toHours(differentTime)
+
+        if (hours <= 23) {
+            return context.getString(R.string.since_x_hours, hours)
+        }
+
+        val days = TimeUnit.MILLISECONDS.toDays(differentTime)
+        if (days <= 6) {
+            return context.getString(R.string.since_x_days, days)
+        }
+
+        val weeks = days / 7
+        if (weeks <= 4) {
+            return context.getString(R.string.since_x_weeks, weeks)
+        }
+
+
+        return uploadDate.toDateString()
     }
 }

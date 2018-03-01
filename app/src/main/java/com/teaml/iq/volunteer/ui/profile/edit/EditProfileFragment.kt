@@ -63,7 +63,7 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
 
         mDatePickerDialog = DatePickerDialog(context, { _, year, month, dayOfMonth ->
 
-            mBirthOfDate = CommonUtils.DateFrom(year, month, dayOfMonth)
+            mBirthOfDate = CommonUtils.dateFrom(year, month, dayOfMonth)
             birthOfDayField.setText(mBirthOfDate.toDateString())
 
         }, 1999, 9, 9)

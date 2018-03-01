@@ -1,13 +1,13 @@
 package com.teaml.iq.volunteer.ui.main.home
 
 import com.teaml.iq.volunteer.data.model.CampaignPost
-import com.teaml.iq.volunteer.ui.base.BaseLoadDataWithRecyclerViewMvpView
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataMvpView
 
 /**
  * Created by ali on 2/4/2018.
  */
-interface HomeMvpView : BaseLoadDataWithRecyclerViewMvpView {
+interface HomeMvpView : BaseLoadDataMvpView {
 
-    fun updateCampaign(campaignPosts: MutableList<CampaignPost>)
+    fun addNewItems(newItems: MutableList<CampaignPost>)
 
 }

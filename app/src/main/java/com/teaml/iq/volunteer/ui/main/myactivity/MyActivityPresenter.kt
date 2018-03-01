@@ -9,20 +9,19 @@ import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
-import com.teaml.iq.volunteer.ui.base.BasePresenter
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDatePresenter
 import javax.inject.Inject
 
 /**
  * Created by Mahmood Ali on 11/02/2018.
  */
 class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager: DataManager)
-    : BasePresenter<V>(dataManager), MyActivityMvpPresenter<V> {
+    : BaseLoadDatePresenter<V>(dataManager), MyActivityMvpPresenter<V> {
 
     companion object {
         val TAG: String = MyActivityPresenter::class.java.simpleName
     }
 
-    private var lastVisibleItem: DocumentSnapshot? = null
 
     override fun onSignInClick() {
         mvpView?.openSignInActivity()
@@ -47,13 +46,12 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
             mvpView?.setupViewWithSignOutStatus()
         } else {
             mvpView?.setupViewWithSignInStatus()
-            loadingJoinCampaignList()
+            loadListData()
         }
-
     }
 
-    private fun loadingJoinCampaignList() {
 
+    override fun loadListData() {
         val campaignPostList = mutableListOf<CampaignPost>()
         val campaignList = mutableListOf<FbCampaign>()
 
@@ -77,10 +75,9 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
 
             Log.d(TAG, "documentSize: ${result.size()}")
 
-            if (result.isEmpty && this.lastVisibleItem == null) {
+            if (result.isEmpty && this.lastVisibleItem == null && !isLoadFromSwipeRefreshListener) {
                 mvpView?.showEmptyResult()
             }
-
 
             // حفظ اخر عنصر في متغر محلي لانة من المحتمل ان يحدث خطا في العمليات التالية
             if (!result.isEmpty)
@@ -112,7 +109,7 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
                     Tasks.whenAllSuccess<DocumentSnapshot>(tasks)
                 }.addOnCompleteListener {
 
-                    mvpView?.hideProgress()
+                    onLoadComplete()
 
                     if (it.isSuccessful) {
 
@@ -152,26 +149,14 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
                     } else {
                         Log.e(TAG, "${it.exception?.message}")
                         mvpView?.onError("${it.exception?.message}")
-                        onError()
+                        onLoadError()
                     }
 
                 }
     }
 
-    private fun onError() {
-        mvpView?.setFieldError(true)
-        mvpView?.hideProgress()
-        mvpView?.showProgress()
-    }
 
-    override fun onLoadingMore() {
-        loadingJoinCampaignList()
-    }
 
-    override fun onRetryClick() {
-        mvpView?.showProgress()
-        mvpView?.hideRetryImg()
 
-    }
 
 }

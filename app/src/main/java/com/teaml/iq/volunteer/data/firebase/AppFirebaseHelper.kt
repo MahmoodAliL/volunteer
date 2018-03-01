@@ -134,7 +134,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> {
         return mFirestore.collection("$USERS_COL/${getFirebaseUserAuthID()}/$CAMPAIGN_JOINED")
-                .whereEqualTo(GROUP_REF_FIELD, campaignRef).get()
+                .whereEqualTo(CAMPAIGN_REF_FIELD, campaignRef).get()
     }
 
     override fun getCampaignDocRef(campaignId: String): DocumentReference {
@@ -178,7 +178,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             it.set(campaignMembersDocRef, memberHashMap)
 
             // hash map to put campaign reference and join date in users/uid/joinCampaign collection
-            val campaignHashMap = hashMapOf(joinDate, GROUP_REF_FIELD to campaignRef)
+            val campaignHashMap = hashMapOf(joinDate, CAMPAIGN_REF_FIELD to campaignRef)
             it.set(joinCampaignDocRef, campaignHashMap)
 
             newCurrentMemberCount

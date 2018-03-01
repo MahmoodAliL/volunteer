@@ -1,26 +1,19 @@
 package com.teaml.iq.volunteer.ui.main.home
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignPost
-import com.teaml.iq.volunteer.ui.base.BaseFragment
-import com.teaml.iq.volunteer.utils.invisible
-import com.teaml.iq.volunteer.utils.visible
+import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
 import kotlinx.android.synthetic.main.recycler_view_layout.*
 import javax.inject.Inject
 
 
-class HomeFragment : BaseFragment(), HomeMvpView {
+class HomeFragment : BaseLoadDataFragment<CampaignPost>(), HomeMvpView {
+
 
     @Inject
     lateinit var mPresenter: HomeMvpPresenter<HomeMvpView>
-
-    @Inject
-    lateinit var mLinearLayoutManager: LinearLayoutManager
 
     @Inject
     lateinit var mCampaignAdapter: CampaignAdapter
@@ -34,77 +27,33 @@ class HomeFragment : BaseFragment(), HomeMvpView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.recycler_view_layout, container, false)
-
+    override fun initActivityComponent() {
         getActivityComponent()?.let {
             it.inject(this)
             mPresenter.onAttach(this)
         }
+    }
 
 
-        return view
+    override fun onCreateRecyclerAdapter(): BaseRecyclerAdapter<CampaignPost> {
+        return mCampaignAdapter
     }
 
     override fun setup(view: View) {
 
-        mLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = mLinearLayoutManager
-        recyclerView.adapter = mCampaignAdapter
-        recyclerView.setHasFixedSize(true)
-        mCampaignAdapter.initRecyclerView(recyclerView)
+        mCampaignAdapter.setOnLoadMoreListener { mPresenter.onLoadMore() }
 
-        mCampaignAdapter.setOnLoadingMoreListener { mPresenter.onLoadingMore() }
         retryImg.setOnClickListener { mPresenter.onRetryClick() }
-
-        swipeRefreshLayout.setOnRefreshListener {
-            mCampaignAdapter.clearList()
-            mPresenter.onLoadingMore()
-        }
+        swipeRefreshLayout.setOnRefreshListener { mPresenter.onSwipeRefresh() }
 
         mPresenter.onViewPrepared()
 
     }
 
 
-    override fun showEmptyResult() {
-        emptyLayout.visible
+    override fun addNewItems(newItems: MutableList<CampaignPost>) {
+        mCampaignAdapter.addItems(newItems)
     }
-
-    override fun setFieldError(value: Boolean) {
-        mCampaignAdapter.isFieldError = value
-    }
-
-    override fun showProgress() {
-        swipeRefreshLayout.isRefreshing = true
-        //progressBarLayout.visible
-    }
-
-    override fun hideProgress() {
-        swipeRefreshLayout.isRefreshing = false
-        // /progressBarLayout.gone
-    }
-
-    override fun setLoadingMoreDone() {
-        mCampaignAdapter.setLoadMoreDone()
-    }
-
-
-    override fun updateCampaign(campaignPosts: MutableList<CampaignPost>) {
-        mCampaignAdapter.addCampaigns(campaignPosts)
-    }
-
-
-    override fun showRetryImg() {
-        retryImg.visible
-    }
-
-    override fun hideRetryImg() {
-        retryImg.invisible
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

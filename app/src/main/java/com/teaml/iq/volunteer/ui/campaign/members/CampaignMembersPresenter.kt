@@ -2,11 +2,10 @@ package com.teaml.iq.volunteer.ui.campaign.members
 
 import android.util.Log
 import com.google.android.gms.tasks.Tasks
-import com.google.firebase.firestore.DocumentSnapshot
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.CampaignMembers
 import com.teaml.iq.volunteer.data.model.FbUserDetail
-import com.teaml.iq.volunteer.ui.base.BasePresenter
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDatePresenter
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.toDateString
 import org.jetbrains.anko.doAsync
@@ -17,22 +16,22 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 21/02/2018.
  */
-class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(dataManager: DataManager) : BasePresenter<V>(dataManager), CampaignMembersMvpPresenter<V> {
+class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(dataManager: DataManager) : BaseLoadDatePresenter<V>(dataManager), CampaignMembersMvpPresenter<V> {
 
     companion object {
         val TAG: String = CampaignMembersPresenter::class.java.simpleName
     }
 
-    private var lastVisibleItem: DocumentSnapshot? = null
+
     private var campaignId = ""
 
     override fun onViewPrepared(campaignId: String) {
         this.campaignId = campaignId
-        loadMembersList()
+        loadListData()
     }
 
-    private fun loadMembersList() {
-
+    override fun loadListData() {
+        showProgress()
         doAsync {
 
             Log.d(TAG, "on loading ")
@@ -46,8 +45,10 @@ class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(d
                 // if result is empty
                 if (!membersCampaignTask.result.isEmpty) {
                     lastVisibleItem = membersCampaignTask.result.documents[membersCampaignTask.result.size() - 1]
-                } else if (lastVisibleItem == null) {
+                } else if (lastVisibleItem == null && !isLoadFromSwipeRefreshListener) {
                     uiThread { mvpView?.showEmptyResult() }
+                } else {
+                    mvpView?.enableLoadMore(false)
                 }
 
                 membersCampaignTask.result.forEach {
@@ -77,14 +78,14 @@ class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(d
 
             } catch (e: Exception) {
                 uiThread {
-                    mvpView?.setFieldError(true)
+                    mvpView?.enableLoadMore(true)
                     mvpView?.showRetryImg()
                 }
 
                 Log.e(TAG, "on error", e)
             } finally {
                 uiThread {
-                    mvpView?.setLoadingMoreDone()
+                    onLoadComplete()
                     mvpView?.hideProgress()
                 }
 
@@ -92,16 +93,5 @@ class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(d
         }
     }
 
-    override fun onLoadingMore() {
-        loadMembersList()
-    }
-
-
-    override fun onRetryClick() {
-        mvpView?.showProgress()
-        mvpView?.hideRetryImg()
-
-        loadMembersList()
-    }
 
 }

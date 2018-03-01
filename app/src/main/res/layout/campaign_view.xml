@@ -20,16 +20,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/orgImgView"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        android:contentDescription="Organization Image"
+        android:contentDescription="@null"
         android:focusable="true"
         android:src="@drawable/org_placeholder_img"
+        app:civ_border_color="@color/cardview_shadow_start_color"
+        app:civ_border_overlay="true"
+        app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/campaignCoverImg" />
 
@@ -58,7 +61,7 @@
         android:layout_marginStart="16dp"
         android:text="Team-L . 2 Week"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#616161"
+        android:textColor="@android:color/secondary_text_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/orgImgView"
         app:layout_constraintTop_toBottomOf="@+id/campaignTitle" />

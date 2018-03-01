@@ -40,10 +40,10 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
     }
 
     @Inject
-    lateinit var mLinearLayoutManager: LinearLayoutManager
+    lateinit var mAdapter: GroupCampaignsAdapter
 
     @Inject
-    lateinit var mAdapter: GroupCampaignsAdapter
+    lateinit var mLinearLayoutManager: LinearLayoutManager
 
     @Inject
     lateinit var mPresenter: GroupDetailMvpPresenter<GroupDetailMvpView>
@@ -131,7 +131,7 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
     }
 
     override fun updateCampaign(list: MutableList<GroupCampaigns>) {
-        mAdapter.addCampaign(list)
+        mAdapter.addItems(list)
     }
 
     override fun showViewAll() {

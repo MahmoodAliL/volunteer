@@ -17,9 +17,11 @@
         tools:replace="android:supportsRtl">
         <activity
             android:name=".ui.intro.MainIntroActivity"
-            android:theme="@style/Theme.Intro" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Intro"/>
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,14 +33,20 @@
         <activity
             android:name=".ui.account.AccountActivity"
             android:configChanges="keyboardHidden|keyboard"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CropImageTheme"/>
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name="com.teaml.iq.volunteer.ui.profile.ProfileActivity" />
-        <activity android:name=".ui.campaign.CampaignActivity" />
-        <activity android:name=".ui.group.GroupsActivity" >
+        <activity android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.profile.ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.campaign.CampaignActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.group.GroupsActivity"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>

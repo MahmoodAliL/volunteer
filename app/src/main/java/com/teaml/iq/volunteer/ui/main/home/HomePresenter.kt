@@ -8,41 +8,28 @@ import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
-import com.teaml.iq.volunteer.ui.base.BasePresenter
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDatePresenter
 import javax.inject.Inject
 
 /**
  * Created by ali on 2/4/2018.
  */
 class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManager)
-    : BasePresenter<V>(dataManager), HomeMvpPresenter<V> {
-
-    private var lastVisibleItem: DocumentSnapshot? = null
+    : BaseLoadDatePresenter<V>(dataManager), HomeMvpPresenter<V> {
 
 
     companion object {
         val TAG: String = HomePresenter::class.java.simpleName
     }
 
-    override fun onViewPrepared() {
-        loadCampaignList()
-    }
 
-    override fun onRetryClick() {
-        mvpView?.setFieldError(false)
-        mvpView?.hideRetryImg()
-        mvpView?.showProgress()
-        loadCampaignList()
-    }
-
-    private fun loadCampaignList() {
-
+    override fun loadListData() {
         val campaignPostList = mutableListOf<CampaignPost>()
         val campaignList = mutableListOf<FbCampaign>()
 
         var lastVisibleItem: DocumentSnapshot? = null
 
-        mvpView?.showProgress()
+        showProgress()
 
         dataManager.loadCampaignList(this.lastVisibleItem)
                 .continueWithTask { task ->
@@ -70,13 +57,14 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                     Tasks.whenAllSuccess<DocumentSnapshot>(tasks)
                 }.addOnCompleteListener {
 
-                    mvpView?.hideProgress()
+                    onLoadComplete()
 
                     if (it.isSuccessful) {
-
                         // exit when result is empty
-                        if (it.result.isEmpty())
+                        if (it.result.isEmpty()){
+                            mvpView?.enableLoadMore(false)
                             return@addOnCompleteListener
+                        }
 
                         // only when all success load change global lastVisibleItem to local
                         // so when data is field we still load first item not last item
@@ -97,6 +85,7 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                                     coverImgName = campaign.imgName,
                                     lastModificationDate = campaign.lastModificationDate,
                                     uploadDate = campaign.uploadDate,
+                                    lastModificationDateForGroup = group.lastModificationDate,
                                     groupId = it.id,
                                     groupName = group.name,
                                     groupLogoImg = group.logoImg
@@ -105,25 +94,17 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                             index++
                         }
 
-                        mvpView?.updateCampaign(campaignPostList)
+                        mvpView?.addNewItems(campaignPostList)
 
                     } else {
                         Log.e(TAG, "${it.exception?.message}")
                         mvpView?.onError("${it.exception?.message}")
-                        onError()
+                        onLoadError()
                     }
 
                 }
     }
 
-    private fun onError() {
-        mvpView?.setFieldError(true)
-        mvpView?.showRetryImg()
-    }
-
-    override fun onLoadingMore() {
-        loadCampaignList()
-    }
 
 
 }

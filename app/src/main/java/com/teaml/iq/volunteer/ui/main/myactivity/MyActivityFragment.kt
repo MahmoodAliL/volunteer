@@ -1,20 +1,16 @@
 package com.teaml.iq.volunteer.ui.main.myactivity
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.ui.account.AccountActivity
-import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
+import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
-import com.teaml.iq.volunteer.utils.gone
-import com.teaml.iq.volunteer.utils.invisible
-import com.teaml.iq.volunteer.utils.visible
 import kotlinx.android.synthetic.main.myactivity_not_sign_in.*
-import kotlinx.android.synthetic.main.progressbar_layout.*
 import kotlinx.android.synthetic.main.recycler_view_layout.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
@@ -22,14 +18,10 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 11/02/2018.
  */
-class MyActivityFragment : BaseFragment(), MyActivityMvpView{
-
+class MyActivityFragment : BaseLoadDataFragment<CampaignPost>(), MyActivityMvpView{
 
     @Inject
     lateinit var mPresenter: MyActivityMvpPresenter<MyActivityMvpView>
-
-    @Inject
-    lateinit var mLinearLayoutManager: LinearLayoutManager
 
     @Inject
     lateinit var mCampaignAdapter: CampaignAdapter
@@ -53,19 +45,30 @@ class MyActivityFragment : BaseFragment(), MyActivityMvpView{
         return layoutInflater.inflate(layout, container, false)
     }
 
+    override fun onCreateRecyclerAdapter(): BaseRecyclerAdapter<CampaignPost> {
+        return mCampaignAdapter
+    }
+
+    override fun initActivityComponent() {
+        // لن نكون بحاجة اليها لاننا قمنا بتهائتها في onCreateView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // just to override
+        setup(view)
+    }
+
     override fun setup(view: View) {
         mPresenter.onViewPrepared()
     }
 
+
     override fun setupViewWithSignInStatus() {
-        mLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = mLinearLayoutManager
-        recyclerView.adapter = mCampaignAdapter
-        recyclerView.setHasFixedSize(true)
-        mCampaignAdapter.initRecyclerView(recyclerView)
 
-        mCampaignAdapter.setOnLoadingMoreListener { mPresenter.onLoadingMore() }
+        setupLoadDateView()
 
+        mCampaignAdapter.setOnLoadMoreListener { mPresenter.onLoadMore() }
+        swipeRefreshLayout.setOnRefreshListener { mPresenter.onSwipeRefresh() }
         retryImg.setOnClickListener { mPresenter.onRetryClick() }
 
     }
@@ -80,36 +83,8 @@ class MyActivityFragment : BaseFragment(), MyActivityMvpView{
     }
 
 
-    override fun showRetryImg() {
-        retryImg.visible
-    }
-
-    override fun hideRetryImg() {
-        retryImg.gone
-    }
-
-    override fun setFieldError(value: Boolean) {
-        mCampaignAdapter.isFieldError = value
-    }
-
-    override fun setLoadingMoreDone() {
-        mCampaignAdapter.isLoading = false
-    }
-
-    override fun showProgress() {
-        progressBarLayout.visible
-    }
-
-    override fun hideProgress() {
-        progressBarLayout.invisible
-    }
-
-    override fun showEmptyResult() {
-        emptyLayout.visible
-    }
-
     override fun updateCampaign(campaignPosts: MutableList<CampaignPost>) {
-        mCampaignAdapter.addCampaigns(campaignPosts)
+        mCampaignAdapter.addItems(campaignPosts)
     }
 
     override fun onDestroyView() {
