@@ -14,18 +14,18 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 18/02/2018.
  */
-class GroupsActivity : BaseActivity(), GroupsMvpView {
+class GroupActivity : BaseActivity(), GroupMvpView {
 
 
     companion object {
-        val TAG: String = GroupsActivity::class.java.simpleName
+        val TAG: String = GroupActivity::class.java.simpleName
     }
 
     @Inject
     lateinit var mLinearLayoutManager: LinearLayoutManager
 
     @Inject
-    lateinit var mPresenter: GroupsMvpPresenter<GroupsMvpView>
+    lateinit var mPresenter: GroupMvpPresenter<GroupMvpView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,18 @@ class GroupsActivity : BaseActivity(), GroupsMvpView {
             mPresenter.onAttach(this)
         }
 
+        supportFragmentManager.addOnBackStackChangedListener {
+            mPresenter.OnBackStackChangedListener(supportFragmentManager.backStackEntryCount)
+        }
         setup()
+    }
+
+    override fun updateToolbarToGroupCampaigns() {
+        supportActionBar?.title = getString(R.string.group_campaigns)
+    }
+
+    override fun updateToolbarToGroupDetail() {
+        supportActionBar?.title = getString(R.string.group_detail)
     }
 
     override fun setup() {

@@ -14,19 +14,19 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class GroupFragment : BaseLoadDataFragment<GroupInfo>(), GroupMvpView {
+class GroupsFragment : BaseLoadDataFragment<GroupInfo>(), GroupsMvpView {
 
 
     companion object {
-        val TAG = GroupFragment::class.java.simpleName
-        fun newInstance(args: Bundle? = null): GroupFragment = GroupFragment().apply { arguments = args }
+        val TAG = GroupsFragment::class.java.simpleName
+        fun newInstance(args: Bundle? = null): GroupsFragment = GroupsFragment().apply { arguments = args }
     }
 
     @Inject
     lateinit var mGroupAdapter: GroupAdapter
 
     @Inject
-    lateinit var mPresenter: GroupMvpPresenter<GroupMvpView>
+    lateinit var mPresenter: GroupsMvpPresenter<GroupsMvpView>
 
     override fun initActivityComponent() {
         getActivityComponent()?.let {

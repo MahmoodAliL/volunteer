@@ -8,7 +8,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseActivity
-import com.teaml.iq.volunteer.ui.main.group.GroupFragment
+import com.teaml.iq.volunteer.ui.main.group.GroupsFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountFragment
 import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityFragment
@@ -95,7 +95,7 @@ class MainActivity : BaseActivity(), MainMvpView {
         viewPager.offscreenPageLimit = 4
 
         mBottomBarAdapter.addFragment(HomeFragment.newInstance())
-        mBottomBarAdapter.addFragment(GroupFragment.newInstance())
+        mBottomBarAdapter.addFragment(GroupsFragment.newInstance())
         mBottomBarAdapter.addFragment(MyActivityFragment.newInstance())
         mBottomBarAdapter.addFragment(MyAccountFragment.newInstance())
         viewPager.adapter = mBottomBarAdapter

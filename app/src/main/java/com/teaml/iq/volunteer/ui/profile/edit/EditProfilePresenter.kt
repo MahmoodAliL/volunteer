@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
+import com.google.firebase.firestore.FieldValue
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.FbUserDetail
@@ -99,7 +100,7 @@ class EditProfilePresenter<V : EditProfileMvpView> @Inject constructor(dataManag
                 view.showLoading(R.string.saving)
 
                 val profileInfo = hashMapOf(FbUserDetail::name.name to name,
-                        FbUserDetail::lastImgUpdate.name to System.currentTimeMillis().toString(),
+                        FbUserDetail::lastModificationDate.name to FieldValue.serverTimestamp(),
                         FbUserDetail::bio.name to bio, FbUserDetail::phone.name to phoneNumber,
                         FbUserDetail::birthOfDay.name to birthOfDay, FbUserDetail::img.name to uid)
 

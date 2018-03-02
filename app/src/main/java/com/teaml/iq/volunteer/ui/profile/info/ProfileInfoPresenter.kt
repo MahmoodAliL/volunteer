@@ -9,6 +9,7 @@ import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.ui.base.BasePresenter
 import com.teaml.iq.volunteer.utils.CommonUtils
 import com.teaml.iq.volunteer.utils.toDateString
+import com.teaml.iq.volunteer.utils.toTimestamp
 import javax.inject.Inject
 
 /**
@@ -51,7 +52,7 @@ class ProfileInfoPresenter<V : ProfileInfoMvpView> @Inject constructor(dataManag
                     val profileInfo = documentSnapshot.toObject(FbUserDetail::class.java)
 
                     if (profileInfo.img.isNotEmpty()) {
-                        view.updateProfileImg(profileInfo.img, profileInfo.lastImgUpdate)
+                        view.updateProfileImg(profileInfo.img, profileInfo.lastModificationDate.toTimestamp())
                     }
 
                     if (profileInfo.bio.isNotEmpty()) {
@@ -86,6 +87,12 @@ class ProfileInfoPresenter<V : ProfileInfoMvpView> @Inject constructor(dataManag
     }
 
     override fun onActionEditClick() {
+
+        if (mvpView?.isNetworkConnection() == false) {
+            mvpView?.onError(R.string.connection_error)
+            return
+        }
+
         uid?.let {
             mvpView?.showEditProfileInfo(it)
         }

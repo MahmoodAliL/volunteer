@@ -45,7 +45,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.campaign.CampaignActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.group.GroupsActivity"
+        <activity android:name=".ui.group.GroupActivity"
             android:screenOrientation="portrait">
 
         </activity>

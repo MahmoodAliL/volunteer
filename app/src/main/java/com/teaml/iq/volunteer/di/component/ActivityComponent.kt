@@ -11,11 +11,11 @@ import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
-import com.teaml.iq.volunteer.ui.group.GroupsActivity
+import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailFragment
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsFragment
 import com.teaml.iq.volunteer.ui.main.MainActivity
-import com.teaml.iq.volunteer.ui.main.group.GroupFragment
+import com.teaml.iq.volunteer.ui.main.group.GroupsFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountFragment
 import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityFragment
@@ -43,7 +43,7 @@ interface ActivityComponent {
 
     fun inject(activity: CampaignActivity)
 
-    fun inject(activity: GroupsActivity)
+    fun inject(activity: GroupActivity)
 
     fun inject(fragment: SignInFragment)
 
@@ -57,7 +57,7 @@ interface ActivityComponent {
 
     fun inject(fragment: HomeFragment)
 
-    fun inject(fragment: GroupFragment)
+    fun inject(fragment: GroupsFragment)
 
     fun inject(fragment: MyActivityFragment)
 

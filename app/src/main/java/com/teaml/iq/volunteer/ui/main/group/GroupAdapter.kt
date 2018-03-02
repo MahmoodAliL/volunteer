@@ -12,11 +12,14 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.data.model.GroupInfo
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.toTimestamp
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by Mahmood Ali on 11/02/2018.
@@ -31,11 +34,22 @@ class GroupAdapter(listOfGroupInfo: MutableList<GroupInfo>) : BaseRecyclerAdapte
     inner class GroupVH(itemView: View) : BaseViewHolder(itemView) {
 
         private val firebaseStorage = FirebaseStorage.getInstance()
+        private val mContext = itemView.context
 
         private val groupNameView = itemView.find<TextView>(R.id.txtGroupName)
         private val memberNumberView = itemView.find<TextView>(R.id.memberNumber)
         private val txtCampaignCount = itemView.find<TextView>(R.id.campaignCount)
         private val groupImgView = itemView.find<CircleImageView>(R.id.groupImg)
+
+
+        init {
+            itemView.setOnClickListener {
+                val groupId = mList[adapterPosition].id
+                mContext.startActivity<GroupActivity>(
+                        CampaignActivity.EXTRA_KEY_GROUP_ID to groupId
+                )
+            }
+        }
 
         override fun clear() {
             groupImgView.setImageDrawable(null)
@@ -57,7 +71,7 @@ class GroupAdapter(listOfGroupInfo: MutableList<GroupInfo>) : BaseRecyclerAdapte
                 try {
                     val groupImgRef = firebaseStorage.getReference("${AppConstants.GROUP_LOGO_IMG_FOLDER}/$groupImg")
 
-                    GlideApp.with(itemView.context)
+                    GlideApp.with(mContext)
                             .load(groupImgRef)
                             .signature(ObjectKey(lastModificationDate.toTimestamp()))
                             .placeholder(R.drawable.org_placeholder_img)

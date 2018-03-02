@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
@@ -16,7 +15,9 @@ import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
 import com.teaml.iq.volunteer.utils.AppConstants
+import com.teaml.iq.volunteer.utils.CommonUtils
 import com.teaml.iq.volunteer.utils.clearText
+import com.teaml.iq.volunteer.utils.toTimestamp
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
@@ -53,26 +54,25 @@ class CampaignMembersAdapter(memberList: MutableList<CampaignMembers>) : BaseRec
 
         override fun onBind(position: Int) {
 
-            val model = mList[position]
+            val user = mList[position]
 
-            txtUsername.text = model.userName
-            txtJoinDate.text = mContext.getString(R.string.join_date, model.joinDate)
+            txtUsername.text = user.userName
+            txtJoinDate.text = mContext.getString(R.string.join_date, CommonUtils.getHumanReadableElapseTime(user.joinDate, mContext))
 
             userImgView.setOnClickListener {
                 mContext.startActivity<ProfileActivity>(
-                        ProfileActivity.EXTRA_KEY_UID to model.uid
+                        ProfileActivity.EXTRA_KEY_UID to user.uid
                 )
             }
 
             try {
 
-                val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${model.imgName}")
+                val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${user.imgName}")
 
                 GlideApp.with(mContext)
                         .load(imgRef)
-                        .signature(ObjectKey(imgRef.name))
+                        .signature(ObjectKey(user.lastModificationDate.toTimestamp()))
                         .circleCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .placeholder(R.drawable.profile_placeholder_img)
                         .into(userImgView)
 

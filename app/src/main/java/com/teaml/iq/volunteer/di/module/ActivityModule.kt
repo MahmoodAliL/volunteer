@@ -33,9 +33,9 @@ import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpView
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersPresenter
 import com.teaml.iq.volunteer.ui.campaign.members.adapter.CampaignMembersAdapter
-import com.teaml.iq.volunteer.ui.group.GroupsMvpPresenter
-import com.teaml.iq.volunteer.ui.group.GroupsMvpView
-import com.teaml.iq.volunteer.ui.group.GroupsPresenter
+import com.teaml.iq.volunteer.ui.group.GroupMvpPresenter
+import com.teaml.iq.volunteer.ui.group.GroupMvpView
+import com.teaml.iq.volunteer.ui.group.GroupPresenter
 import com.teaml.iq.volunteer.ui.group.detail.GroupCampaignsAdapter
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailMvpPresenter
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailMvpView
@@ -48,9 +48,9 @@ import com.teaml.iq.volunteer.ui.main.MainMvpPresenter
 import com.teaml.iq.volunteer.ui.main.MainMvpView
 import com.teaml.iq.volunteer.ui.main.MainPresenter
 import com.teaml.iq.volunteer.ui.main.group.GroupAdapter
-import com.teaml.iq.volunteer.ui.main.group.GroupMvpPresenter
-import com.teaml.iq.volunteer.ui.main.group.GroupMvpView
-import com.teaml.iq.volunteer.ui.main.group.GroupPresenter
+import com.teaml.iq.volunteer.ui.main.group.GroupsMvpPresenter
+import com.teaml.iq.volunteer.ui.main.group.GroupsMvpView
+import com.teaml.iq.volunteer.ui.main.group.GroupsPresenter
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpPresenter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpView
@@ -135,8 +135,8 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
-    fun provideGroupPresenter(presenter: GroupPresenter<GroupMvpView>)
-            : GroupMvpPresenter<GroupMvpView> = presenter
+    fun provideGroupsPresenter(presenter: GroupsPresenter<GroupsMvpView>)
+            : GroupsMvpPresenter<GroupsMvpView> = presenter
 
     @Provides
     fun provideBottomBarAdapter(activity: AppCompatActivity) = BottomBarAdapter(activity.supportFragmentManager)
@@ -192,7 +192,7 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
-    fun provideGroupsPresenter(presenter: GroupsPresenter<GroupsMvpView>): GroupsMvpPresenter<GroupsMvpView> =
+    fun provideGroupPresenter(presenter: GroupPresenter<GroupMvpView>): GroupMvpPresenter<GroupMvpView> =
             presenter
 
     @Provides

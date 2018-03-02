@@ -110,7 +110,7 @@
     <string name="this_campaign_for_female">This campaign for female only </string>
     <string name="your_age_is_less_then_required">Your age is less then required</string>
     <string name="location">Location</string>
-    <string name="join_date">Join on %1$s</string>
+    <string name="join_date">Join  %1$s</string>
     <string name="campaign_detail">Campaign Detail</string>
     <string name="member">Member</string>
 
@@ -131,6 +131,7 @@
     <string name="campaign_32">Campaign 32</string>
     <string name="_3_member">3 Member</string>
     <string name="team_l">Team_L</string>
+    <string name="group_campaigns">Group Campaigns</string>
 
 
 </resources>

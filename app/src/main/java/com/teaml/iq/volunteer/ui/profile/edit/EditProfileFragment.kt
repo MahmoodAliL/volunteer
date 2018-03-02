@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.FbUserDetail
@@ -14,6 +15,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.CommonUtils
 import com.teaml.iq.volunteer.utils.toDateString
+import com.teaml.iq.volunteer.utils.toTimestamp
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
@@ -131,7 +133,7 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
 
     override fun showProfileInfo(profileInfo: FbUserDetail) {
 
-        updateProfileImg(profileInfo.img)
+        updateProfileImg(profileInfo.img, profileInfo.lastModificationDate.toTimestamp())
 
         nameField.setText(profileInfo.name)
         bioField.setText(profileInfo.bio)
@@ -141,12 +143,13 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
 
     }
 
-    override fun updateProfileImg(imgName: String) {
+    override fun updateProfileImg(imgName: String, lastModificationDate: String) {
 
         try {
             val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/$imgName")
             GlideApp.with(this)
                     .load(imgRef)
+                    .signature(ObjectKey(lastModificationDate))
                     .circleCrop()
                     .placeholder(R.drawable.profile_placeholder_img)
                     .into(profileImgView)

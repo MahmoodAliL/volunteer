@@ -14,7 +14,7 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.BaseViewHolder
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
-import com.teaml.iq.volunteer.ui.group.GroupsActivity
+import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_IMG_FOLDER
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_LOGO_IMG_FOLDER
 import com.teaml.iq.volunteer.utils.CommonUtils
@@ -109,7 +109,7 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
 
                 orgImgView.setOnClickListener {
                     Log.d(TAG, "orgImgClicked")
-                    mContext.startActivity<GroupsActivity>(
+                    mContext.startActivity<GroupActivity>(
                             //using campaign variable may be not good idea
                             //TODO:Thing more about this
                             CampaignActivity.EXTRA_KEY_GROUP_ID to groupId

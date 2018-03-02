@@ -7,7 +7,6 @@ import com.teaml.iq.volunteer.data.model.CampaignMembers
 import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDatePresenter
 import com.teaml.iq.volunteer.utils.AppConstants
-import com.teaml.iq.volunteer.utils.toDateString
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.util.concurrent.TimeUnit
@@ -68,7 +67,8 @@ class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(d
                             uid = uid,
                             imgName = userInfo.img,
                             userName = userInfo.name,
-                            joinDate = joinDate.toDateString()
+                            joinDate = joinDate,
+                            lastModificationDate = userInfo.lastModificationDate
                     ))
                 }
 

@@ -5,9 +5,11 @@ import com.teaml.iq.volunteer.ui.base.MvpView
 /**
  * Created by Mahmood Ali on 18/02/2018.
  */
-interface GroupsMvpView : MvpView {
+interface GroupMvpView : MvpView {
 
     fun showGroupDetailFragment()
 
+    fun updateToolbarToGroupDetail()
 
+    fun updateToolbarToGroupCampaigns()
 }

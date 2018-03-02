@@ -6,7 +6,7 @@ import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataMvpView
 /**
  * Created by ali on 2/4/2018.
  */
-interface GroupMvpView : BaseLoadDataMvpView {
+interface GroupsMvpView : BaseLoadDataMvpView {
 
     fun updateGroups(listOfGroupInfo: MutableList<GroupInfo>)
 }

@@ -92,7 +92,7 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
             val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${profileInfo.img}")
             GlideApp.with(this)
                     .load(imgRef)
-                    .signature(ObjectKey(profileInfo.lastImgUpdate))
+                    .signature(ObjectKey(profileInfo.lastModificationDate))
                     .circleCrop()
                     .placeholder(R.drawable.profile_placeholder_img)
                     .into(profileImg)

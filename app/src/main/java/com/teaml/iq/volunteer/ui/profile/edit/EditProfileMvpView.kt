@@ -17,7 +17,7 @@ interface EditProfileMvpView : FragmentMvpView {
 
     fun updateProfileImg(uri: Uri)
 
-    fun updateProfileImg(imgName: String)
+    fun updateProfileImg(imgName: String, lastModificationDate: String)
 
     fun openCropImage()
 

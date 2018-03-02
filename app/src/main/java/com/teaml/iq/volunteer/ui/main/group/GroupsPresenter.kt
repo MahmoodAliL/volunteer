@@ -10,12 +10,12 @@ import javax.inject.Inject
 /**
  * Created by ali on 2/4/2018.
  */
-class GroupPresenter<V : GroupMvpView> @Inject constructor(dataManager: DataManager)
-    : BaseLoadDatePresenter<V>(dataManager), GroupMvpPresenter<V> {
+class GroupsPresenter<V : GroupsMvpView> @Inject constructor(dataManager: DataManager)
+    : BaseLoadDatePresenter<V>(dataManager), GroupsMvpPresenter<V> {
 
 
     companion object {
-        val TAG: String = GroupPresenter::class.java.simpleName
+        val TAG: String = GroupsPresenter::class.java.simpleName
     }
 
     override fun loadListData() {
@@ -32,8 +32,11 @@ class GroupPresenter<V : GroupMvpView> @Inject constructor(dataManager: DataMana
 
                 val result = task.result
 
-                if (result.isEmpty)
+                if (result.isEmpty) {
+                    // disable load more when user reach to end
+                    mvpView?.enableLoadMore(false)
                     return@addOnCompleteListener
+                }
 
                 // used for pagination
                 lastVisibleItem = result.documents[result.documents.size - 1]

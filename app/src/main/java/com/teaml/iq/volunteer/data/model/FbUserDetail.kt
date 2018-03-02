@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.data.model
 
+import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
 /**
@@ -7,7 +8,7 @@ import java.util.*
  */
 class FbUserDetail(
         val img: String = "",
-        val lastImgUpdate: String = "",
+        @ServerTimestamp val lastModificationDate: Date = Date(),
         val name: String = "",
         val bio: String = "Hi there i am using volunteer iq app ",
         val gender: Int = 0,
@@ -18,7 +19,7 @@ class FbUserDetail(
     companion object {
         const val NAME = "name"
         const val IMG = "img"
-        const val LAST_IMG_UPDATE = "lastImgUpdate"
+        const val LAST_IMG_UPDATE = "lastModificationDate"
         const val BIO = "bio"
         const val GENDER = "gender"
         const val EMAIL = "email"
@@ -29,7 +30,7 @@ class FbUserDetail(
     // which one is best ?
     // في رئي استعمال الرفلكشن افضل لانة اذا حدث تغير في اسم المتغير فلن نقوم اي شي لان اسم المتغير سوف يتم اخذ اسم التغير من المتغير نفسة
     fun toHashMap() = hashMapOf(FbUserDetail::img.name to img,
-            FbUserDetail::lastImgUpdate.name to lastImgUpdate,
+            FbUserDetail::lastModificationDate.name to lastModificationDate,
             FbUserDetail::name.name to name,
             FbUserDetail::bio.name to bio,
             FbUserDetail::gender.name to gender,

@@ -213,6 +213,11 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
     override fun onJoinClick() {
 
+        if (mvpView?.isNetworkConnection() == false) {
+            mvpView?.onError(R.string.connection_error)
+            return
+        }
+
         if (isSignIn) {
 
             if (isJoin)
