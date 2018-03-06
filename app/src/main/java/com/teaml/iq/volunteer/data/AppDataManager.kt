@@ -39,6 +39,13 @@ class AppDataManager @Inject constructor(
 
     override fun getCurrentUserEmail(): String? = firebaseHelper.getCurrentUserEmail()
 
+    override fun hasGroup(): Boolean = preferenceHelper.hasGroup()
+
+    override fun setHasGroup(hasGroup: Boolean) {
+        preferenceHelper.setHasGroup(hasGroup)
+    }
+
+    // firebase auth
     override fun getFirebaseUserAuthID(): String? = firebaseHelper.getFirebaseUserAuthID()
 
     override fun signWithEmailAndPassword(email: String, password: String): Task<AuthResult> =
@@ -57,6 +64,15 @@ class AppDataManager @Inject constructor(
     /**
      * Firestore
      */
+
+    override fun getUserDocRef(uid: String): DocumentReference =
+            firebaseHelper.getUserDocRef(uid)
+
+    override fun getCampaignDocRef(campaignId: String): DocumentReference =
+            firebaseHelper.getCampaignDocRef(campaignId)
+
+    override fun getGroupDocRef(groupId: String): DocumentReference =
+            firebaseHelper.getGroupDocRef(groupId)
 
     override fun saveProfileInfo(profileInfo: HashMap<String, Any>): Task<Void> =
             firebaseHelper.saveProfileInfo(profileInfo)
@@ -81,18 +97,10 @@ class AppDataManager @Inject constructor(
     override fun loadCampaignUserJoined(uid: String, lastVisibleItem: DocumentSnapshot?): Query =
             firebaseHelper.loadCampaignUserJoined(uid, lastVisibleItem)
 
-    override fun getUserDocRef(uid: String): DocumentReference =
-            firebaseHelper.getUserDocRef(uid)
-
-    override fun getCampaignDocRef(campaignId: String): DocumentReference =
-            firebaseHelper.getCampaignDocRef(campaignId)
-
-    override fun getGroupDocRef(groupId: String): DocumentReference =
-            firebaseHelper.getGroupDocRef(groupId)
-
     override fun getCampaignMembersColRef(campaignId: String): CollectionReference =
             firebaseHelper.getCampaignMembersColRef(campaignId)
 
+    // campaign detail
     override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> =
             firebaseHelper.checkUserJoinWithCampaign(campaignRef)
 
@@ -102,7 +110,22 @@ class AppDataManager @Inject constructor(
     override fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<Long> =
             firebaseHelper.onUserLeaveCampaign(campaignRef, uid)
 
-    //firebase storage
+    // group operation
+
+    override fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void> =
+            firebaseHelper.saveGroupInfo(groupInfo)
+
+    /**
+     * firebase storage
+     */
 
     override fun uploadProfileImg(uri: Uri): UploadTask = firebaseHelper.uploadProfileImg(uri)
+
+    override fun uploadGroupCoverImg(imgUri: Uri): UploadTask {
+        return firebaseHelper.uploadGroupCoverImg(imgUri)
+    }
+
+    override fun uploadGroupLogoImg(imgUri: Uri): UploadTask {
+        return firebaseHelper.uploadGroupLogoImg(imgUri)
+    }
 }

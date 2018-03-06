@@ -29,7 +29,7 @@
         android:clickable="true"
         android:contentDescription="@null"
         android:focusable="true"
-        android:src="@drawable/org_placeholder_img"
+        android:src="@drawable/group_logo_placeholder_img"
         app:civ_border_color="@color/cardview_shadow_start_color"
         app:civ_border_overlay="true"
         app:civ_border_width="1dp"

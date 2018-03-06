@@ -100,7 +100,7 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
                             .load(orgImgRef)
                             .circleCrop()
                             .signature(ObjectKey(lastModificationDateForGroup.toTimestamp()))
-                            .placeholder(R.drawable.org_placeholder_img)
+                            .placeholder(R.drawable.group_logo_placeholder_img)
                             .into(orgImgView)
 
                 } catch (e: Exception) {

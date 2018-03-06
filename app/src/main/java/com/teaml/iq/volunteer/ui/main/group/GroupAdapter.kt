@@ -74,7 +74,7 @@ class GroupAdapter(listOfGroupInfo: MutableList<GroupInfo>) : BaseRecyclerAdapte
                     GlideApp.with(mContext)
                             .load(groupImgRef)
                             .signature(ObjectKey(lastModificationDate.toTimestamp()))
-                            .placeholder(R.drawable.org_placeholder_img)
+                            .placeholder(R.drawable.group_logo_placeholder_img)
                             .into(groupImgView)
                 } catch (e: Exception) {
                     Log.e(TAG, e.message)

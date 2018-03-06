@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.data.model
 
+import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
 /**
@@ -12,10 +13,10 @@ data class FbGroup(
         val bio: String = "",
         val userRef: String = "",
         val campaignsNum: Int = 0,
-        val joinDate: Date = Date(),
-        val lastModificationDate: Date = Date()
+        @ServerTimestamp val joinDate: Date = Date(),
+        @ServerTimestamp val lastModificationDate: Date = Date()
 ) {
     companion object {
-        val CAMPAIGNS_NUM = "campaignsNum"
+        const val CAMPAIGNS_NUM = "campaignsNum"
     }
 }

@@ -11,16 +11,18 @@ class GroupPresenter<V : GroupMvpView> @Inject constructor(dataManager: DataMana
     : BasePresenter<V>(dataManager), GroupMvpPresenter<V> {
 
 
-    override fun onAttach(mvpView: V) {
-        super.onAttach(mvpView)
-        mvpView.showGroupDetailFragment()
+
+    override fun decideCurrentFragment(fragmentType: Int) {
+        if (fragmentType == GroupActivity.FragmentType.GROUP_DETAIL.type) {
+            mvpView?.showGroupDetailFragment()
+        } else {
+            mvpView?.showCreateGroupFragment()
+        }
     }
 
-    override fun OnBackStackChangedListener(backStackEntryCount: Int) {
-        if (backStackEntryCount == 0 ) {
+    override fun onBackStackChangedListener(backStackEntryCount: Int) {
+        if (backStackEntryCount == 0) {
             mvpView?.updateToolbarToGroupDetail()
-        } else {
-            mvpView?.updateToolbarToGroupCampaigns()
         }
     }
 }

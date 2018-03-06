@@ -27,7 +27,6 @@ class ProfileActivity : BaseActivity(), ProfileMvpView {
 
         val uid= intent?.getStringExtra(EXTRA_KEY_UID)
 
-
         activityComponent?.let {
             it.inject(this)
             mPresenter.onAttach(this)

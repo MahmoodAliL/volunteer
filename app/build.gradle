@@ -6,7 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-kapt { generateStubs = true }
+kapt {
+    generateStubs = true
+    //mapDiagnosticLocation = true
+}
 
 android {
     buildToolsVersion "27.0.3"

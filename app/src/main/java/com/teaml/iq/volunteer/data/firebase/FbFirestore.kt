@@ -40,5 +40,10 @@ interface FbFirestore {
 
     fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<Long>
 
+    // group detail
+
+    fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void>
+
+
 
 }

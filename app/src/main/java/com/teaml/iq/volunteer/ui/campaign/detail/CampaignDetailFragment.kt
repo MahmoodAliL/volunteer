@@ -18,7 +18,9 @@ import com.teaml.iq.volunteer.data.model.FbGroup
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
+import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.campaign_detail_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
@@ -64,11 +66,17 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
             val campaignId = it.getString(BUNDLE_KEY_CAMPAIGN_ID)
             mPresenter.prepareLoadCampaign(campaignId, groupId)
 
+
+            groupImg.setOnClickListener { mPresenter.onGroupImgClick() }
             retryImg.setOnClickListener { mPresenter.onRetryImgClick() }
             btnJoin.setOnClickListener { mPresenter.onJoinClick() }
             txtLocation.setOnClickListener { mPresenter.onOpenMapClick() }
             txtMember.setOnClickListener { mPresenter.onMembersClick() }
         }
+    }
+
+    override fun openGroupActivity(groupId: String) {
+        context?.startActivity<GroupActivity>(CampaignActivity.EXTRA_KEY_GROUP_ID to groupId)
     }
 
     /**
@@ -129,7 +137,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
             GlideApp.with(this)
                     .load(groupImgRef)
                     .circleCrop()
-                    .placeholder(R.drawable.org_placeholder_img)
+                    .placeholder(R.drawable.group_logo_placeholder_img)
                     .into(groupImg)
 
             val campaignImg = FirebaseStorage.getInstance()

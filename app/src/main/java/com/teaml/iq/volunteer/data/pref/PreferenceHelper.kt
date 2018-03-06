@@ -20,6 +20,10 @@ interface PreferenceHelper {
 
     fun setHasBasicProfileInfo(value: Boolean)
 
+    fun setHasGroup(hasGroup: Boolean)
+
+    fun hasGroup(): Boolean
+
     fun hasBasicProfileInfo(): Boolean
 
 }

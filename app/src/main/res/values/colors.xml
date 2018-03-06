@@ -28,7 +28,7 @@
     <color name="item_color">#737474</color>
     <color name="item_selected_color">#FF4081</color>
 
-    <color name="image_border">#95989A</color>
+    <color name="image_border">#b7b7b7</color>
     <color name="divider">#1f000000</color>
     <color name="grey_900">#212121</color>
     <color name="color_caption">#484848</color>

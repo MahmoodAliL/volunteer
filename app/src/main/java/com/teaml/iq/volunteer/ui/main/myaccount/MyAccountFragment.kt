@@ -14,6 +14,8 @@ import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
 import com.teaml.iq.volunteer.utils.AppConstants
 import kotlinx.android.synthetic.main.myaccount_layout.*
@@ -71,6 +73,7 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
     override fun setupViewWithSignInStatus() {
         signOut.setOnClickListener { mPresenter.setUserAsLoggedOut() }
         myProfile.setOnClickListener { mPresenter.onMyProfileClick() }
+        myGroup.setOnClickListener { mPresenter.onMyGroupClick() }
         mPresenter.fetchProfileInfo()
     }
 
@@ -105,5 +108,16 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
     override fun openProfileActivity(uid: String) {
         activity?.startActivity<ProfileActivity>(ProfileActivity.EXTRA_KEY_UID to uid)
     }
+
+    override fun openGroupActivityWithCreateGroup() {
+        activity?.startActivity<GroupActivity>(
+                GroupActivity.EXTRA_CURRENT_FRAGMENT to GroupActivity.FragmentType.CREATE_GROUP.type
+        )
+    }
+
+    override fun openGroupActivityWithGroupDetail(groupId: String) {
+        activity?.startActivity<GroupActivity>(CampaignActivity.EXTRA_KEY_GROUP_ID to groupId)
+    }
+
 
 }// Required empty public constructor

@@ -17,6 +17,12 @@ interface GroupDetailMvpView : FragmentMvpView {
 
     fun hideProgress()
 
+    fun showFabAddGroup()
+
+    fun onMyGroupShow()
+
+    fun showEmptyResult()
+
     fun showViewAll()
 
     fun showGroupDetail(fbGroup: FbGroup)

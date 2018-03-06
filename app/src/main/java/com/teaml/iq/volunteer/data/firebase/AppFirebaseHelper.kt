@@ -60,8 +60,9 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         mFirebaseAuth.signOut()
     }
 
-    // Firestore function
-
+    /**
+     * Firestore function
+     */
 
     override fun saveProfileInfo(profileInfo: HashMap<String, Any>): Task<Void> {
         return mFirestore.collection(USERS_COL).document(mFirebaseAuth.currentUser!!.uid).set(profileInfo, SetOptions.merge())
@@ -103,7 +104,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     }
 
     override fun loadGroupCampaignList(groupId: String, lastVisibleItem: DocumentSnapshot?): Query {
-        val query =  mFirestore.collection(CAMPAIGN_COL)
+        val query = mFirestore.collection(CAMPAIGN_COL)
                 .whereEqualTo(GROUP_REF_FIELD, getGroupDocRef(groupId))
                 .limit(CAMPAIGN_QUERY_LIMIT)
         /* .orderBy(FbCampaign.UPLOAD_DATE, Query.Direction.DESCENDING)*/
@@ -205,10 +206,25 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         }
 
     }
+
+    // group operation
+
+    override fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void> {
+        return mFirestore.collection(GROUP_COL).document(getFirebaseUserAuthID()!!).set(groupInfo, SetOptions.merge())
+    }
+
+
     // firebase storage
 
     override fun uploadProfileImg(uri: Uri): UploadTask {
         return mFirestorage.getReference(AppConstants.USER_IMG_FOLDER).child(getFirebaseUserAuthID()!!).putFile(uri)
     }
 
+    override fun uploadGroupCoverImg(imgUri: Uri): UploadTask {
+        return mFirestorage.getReference(AppConstants.GROUP_COVER_IMG_FOLDER).child(getFirebaseUserAuthID()!!).putFile(imgUri)
+    }
+
+    override fun uploadGroupLogoImg(imgUri: Uri): UploadTask {
+        return mFirestorage.getReference(AppConstants.GROUP_LOGO_IMG_FOLDER).child(getFirebaseUserAuthID()!!).putFile(imgUri)
+    }
 }

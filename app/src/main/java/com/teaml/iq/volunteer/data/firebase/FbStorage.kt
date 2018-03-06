@@ -9,4 +9,8 @@ import com.google.firebase.storage.UploadTask
 interface FbStorage {
 
     fun uploadProfileImg(uri: Uri): UploadTask
+
+    fun uploadGroupLogoImg(imgUri: Uri): UploadTask
+
+    fun uploadGroupCoverImg(imgUri: Uri): UploadTask
 }

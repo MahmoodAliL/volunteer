@@ -37,4 +37,6 @@ interface CampaignDetailMvpView : FragmentMvpView {
 
     fun showCampaignDetail(campaign: FbCampaign, group: FbGroup)
 
+    fun openGroupActivity(groupId: String)
+
 }

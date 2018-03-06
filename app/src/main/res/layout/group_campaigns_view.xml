@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,7 +16,8 @@
         android:src="@drawable/campaign_placeholder_img"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -23,6 +25,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/imgMore"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:scaleType="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_more_vert_24dp" />
 
     <TextView
         android:id="@+id/txtCampaignTitle"
@@ -33,11 +49,11 @@
         android:maxLines="3"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
-        android:text="عنوان الحملة "
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgMore"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem/random" />
 
     <TextView
         android:id="@+id/txtUploadDate"
@@ -46,10 +62,10 @@
         android:layout_marginTop="8dp"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
-        android:text="2017/05/12"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgMore"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtCampaignTitle" />
+        app:layout_constraintTop_toBottomOf="@id/txtCampaignTitle"
+        tools:text="@tools:sample/date/ddmmyy" />
 
 </android.support.constraint.ConstraintLayout>

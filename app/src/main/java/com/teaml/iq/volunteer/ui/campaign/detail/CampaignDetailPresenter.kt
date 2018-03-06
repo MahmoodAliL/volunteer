@@ -210,6 +210,10 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         return true
     }
 
+    override fun onGroupImgClick() {
+        mvpView?.openGroupActivity(groupId)
+    }
+
 
     override fun onJoinClick() {
 

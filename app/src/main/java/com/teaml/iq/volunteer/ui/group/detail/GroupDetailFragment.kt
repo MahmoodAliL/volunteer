@@ -3,11 +3,11 @@ package com.teaml.iq.volunteer.ui.group.detail
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.FbGroup
@@ -15,6 +15,7 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.data.model.GroupCampaigns
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.group.edit.EditGroupFragment
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsFragment
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.addFragmentAndAddToBackStack
@@ -30,6 +31,12 @@ import javax.inject.Inject
  * A simple [Fragment] subclass.
  */
 class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
+
+
+
+    init {
+        setHasOptionsMenu(true)
+    }
 
     companion object {
         val TAG: String = GroupDetailFragment::class.java.simpleName
@@ -50,6 +57,12 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
 
     private var groupId = ""
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -61,10 +74,12 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
         return inflater.inflate(R.layout.fragment_group_detail, container, false)
     }
 
+
+
     override fun setup(view: View) {
         arguments?.let {
             groupId = it.getString(BUNDLE_KEY_GROUP_ID)
-            mPresenter.loadGroupDetail(groupId)
+
 
             // val list = (1..9).map { GroupCampaigns("","title of campaign $it","campaign.jpg", "2018/04/0$it" ) }.toMutableList()
 
@@ -80,11 +95,27 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
                 )
             }
 
+            mPresenter.onViewPrepared(groupId)
             btnViewAll.setOnClickListener { mPresenter.onViewAllClick() }
 
         }
     }
 
+    override fun onMyGroupShow() {
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.my_group_toolbar)
+        txtCampaigns.text = getString(R.string.my_campaigns)
+    }
+
+    override fun showFabAddGroup() {
+        fab.visible
+        //fab.show()
+    }
+
+    override fun showEmptyResult() {
+        recyclerView.gone
+        emptyImgView.visible
+        txtEmptyResult.visible
+    }
 
     override fun showGroupDetail(fbGroup: FbGroup) {
 
@@ -99,7 +130,8 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
 
         GlideApp.with(this)
                 .load(groupLogoRef)
-                .placeholder(R.color.image_border)
+                .signature(ObjectKey(fbGroup.lastModificationDate))
+                .placeholder(R.drawable.group_logo_placeholder_img)
                 .into(logoImgView)
 
         val groupCoverImgRef = FirebaseStorage.getInstance()
@@ -107,6 +139,7 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
 
         GlideApp.with(this)
                 .load(groupCoverImgRef)
+                .signature(ObjectKey(fbGroup.lastModificationDate))
                 .placeholder(R.drawable.campaign_placeholder_img)
                 .into(groupCoverImgView)
 
@@ -119,17 +152,36 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
             onError(R.string.some_error)
 
         } else {
-            val bunlde = Bundle()
-            bunlde.putString(GroupCampaignsFragment.BUNDLE_KEY_GROUP_ID , groupId)
+            val bundle = Bundle()
+            bundle.putString(GroupCampaignsFragment.BUNDLE_KEY_GROUP_ID , groupId)
             activity?.addFragmentAndAddToBackStack(
                     R.id.fragmentContainer,
-                    GroupCampaignsFragment.newInstance(bunlde),
+                    GroupCampaignsFragment.newInstance(bundle),
                     GroupCampaignsFragment.TAG
             )
         }
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        mPresenter.onCreateOptionsMenu(menu, inflater)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item?.itemId) {
+            R.id.action_edit -> {
+                activity?.addFragmentAndAddToBackStack(
+                        R.id.fragmentContainer,
+                        EditGroupFragment.newInstance(),
+                        EditGroupFragment.TAG
+                )
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
     override fun updateCampaign(list: MutableList<GroupCampaigns>) {
         mAdapter.addItems(list)
     }

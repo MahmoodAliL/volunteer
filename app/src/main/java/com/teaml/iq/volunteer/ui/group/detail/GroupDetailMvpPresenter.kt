@@ -1,5 +1,7 @@
 package com.teaml.iq.volunteer.ui.group.detail
 
+import android.view.Menu
+import android.view.MenuInflater
 import com.teaml.iq.volunteer.ui.base.MvpPresenter
 
 /**
@@ -7,8 +9,13 @@ import com.teaml.iq.volunteer.ui.base.MvpPresenter
  */
 interface GroupDetailMvpPresenter<V: GroupDetailMvpView>: MvpPresenter<V> {
 
-    fun loadGroupDetail(groupId: String)
 
     fun onViewAllClick()
+
+    fun onFabClick()
+
+    fun onViewPrepared(groupId: String)
+
+    fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?)
 
 }

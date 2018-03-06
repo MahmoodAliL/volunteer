@@ -3,6 +3,7 @@ package com.teaml.iq.volunteer.ui.account.signin
 import android.app.Activity
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
+import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.ui.base.BasePresenter
 import com.teaml.iq.volunteer.utils.CommonUtils
 import javax.inject.Inject
@@ -83,13 +84,19 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
         }
 
         dataManager.loadProfileInfo(uid)
-                .addOnCompleteListener(activity) { task->
+                .addOnCompleteListener(activity) { task ->
 
                     mvpView?.hideLoading()
 
                     if (task.isSuccessful) {
                         if (task.result.exists()) {
+
                             dataManager.setHasBasicProfileInfo(true)
+
+                            val userDetail = task.result.toObject(FbUserDetail::class.java)
+                            if (userDetail.myGroupId == uid)
+                                dataManager.setHasGroup(true)
+
                             mvpView?.openMainActivity()
                         } else {
                             mvpView?.showBasicInfoFragment()

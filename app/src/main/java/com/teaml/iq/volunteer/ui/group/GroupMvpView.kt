@@ -9,6 +9,8 @@ interface GroupMvpView : MvpView {
 
     fun showGroupDetailFragment()
 
+    fun showCreateGroupFragment()
+
     fun updateToolbarToGroupDetail()
 
     fun updateToolbarToGroupCampaigns()

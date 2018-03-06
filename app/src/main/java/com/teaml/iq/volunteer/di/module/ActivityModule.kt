@@ -36,10 +36,16 @@ import com.teaml.iq.volunteer.ui.campaign.members.adapter.CampaignMembersAdapter
 import com.teaml.iq.volunteer.ui.group.GroupMvpPresenter
 import com.teaml.iq.volunteer.ui.group.GroupMvpView
 import com.teaml.iq.volunteer.ui.group.GroupPresenter
+import com.teaml.iq.volunteer.ui.group.create.CreateGroupMvpPresenter
+import com.teaml.iq.volunteer.ui.group.create.CreateGroupMvpView
+import com.teaml.iq.volunteer.ui.group.create.CreateGroupPresenter
 import com.teaml.iq.volunteer.ui.group.detail.GroupCampaignsAdapter
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailMvpPresenter
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailMvpView
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailPresenter
+import com.teaml.iq.volunteer.ui.group.edit.EditGroupMvpPresenter
+import com.teaml.iq.volunteer.ui.group.edit.EditGroupMvpView
+import com.teaml.iq.volunteer.ui.group.edit.EditGroupPresenter
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsMvpPresenter
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsMvpView
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsPresenter
@@ -203,6 +209,11 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideGroupCampaignDetail(presenter: GroupCampaignsPresenter<GroupCampaignsMvpView>): GroupCampaignsMvpPresenter<GroupCampaignsMvpView> =
             presenter
 
+    @Provides
+    fun provideCreateGroupPresenter(presenter: CreateGroupPresenter<CreateGroupMvpView>): CreateGroupMvpPresenter<CreateGroupMvpView> =
+            presenter
 
-
+    @Provides
+    fun provideEditGroupPresenter(presenter: EditGroupPresenter<EditGroupMvpView>): EditGroupMvpPresenter<EditGroupMvpView> =
+            presenter
 }

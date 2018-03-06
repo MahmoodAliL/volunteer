@@ -33,6 +33,21 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
        setUserAsLoggedOut()
     }
 
+    override fun onMyGroupClick() {
+        if (!dataManager.hasGroup())
+            mvpView?.openGroupActivityWithCreateGroup()
+        else{
+            val uid = dataManager.getFirebaseUserAuthID()
+
+            if (uid == null) {
+                mvpView?.onError(R.string.some_error)
+                return
+            }
+
+            mvpView?.openGroupActivityWithGroupDetail(uid)
+        }
+    }
+
     override fun decideCurrentLayout(): Int {
         return if (isLoggOut)
             R.layout.myaccount_layout_not_sign_in

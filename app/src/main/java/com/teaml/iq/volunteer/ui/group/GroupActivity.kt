@@ -6,8 +6,10 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity.Companion.EXTRA_KEY_GROUP_ID
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment.Companion.BUNDLE_KEY_GROUP_ID
+import com.teaml.iq.volunteer.ui.group.create.CreateGroupFragment
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailFragment
 import com.teaml.iq.volunteer.utils.addFragment
+import com.teaml.iq.volunteer.utils.replaceFragment
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
@@ -16,9 +18,17 @@ import javax.inject.Inject
  */
 class GroupActivity : BaseActivity(), GroupMvpView {
 
-
     companion object {
         val TAG: String = GroupActivity::class.java.simpleName
+        const val EXTRA_CURRENT_FRAGMENT = "EXTRA_CURRENT_FRAGMENT"
+        /*const val EXTRA_KEY_GROUP_ID = ""*/
+
+    }
+
+
+    enum class FragmentType(val type: Int) {
+        CREATE_GROUP(0),
+        GROUP_DETAIL(1)
     }
 
     @Inject
@@ -27,6 +37,7 @@ class GroupActivity : BaseActivity(), GroupMvpView {
     @Inject
     lateinit var mPresenter: GroupMvpPresenter<GroupMvpView>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,12 +45,29 @@ class GroupActivity : BaseActivity(), GroupMvpView {
         activityComponent?.let {
             it.inject(this)
             mPresenter.onAttach(this)
+
+
+            intent?.let {
+                val fragmentType = it.getIntExtra(EXTRA_CURRENT_FRAGMENT, FragmentType.GROUP_DETAIL.type)
+                mPresenter.decideCurrentFragment(fragmentType)
+            }
+
+
         }
 
         supportFragmentManager.addOnBackStackChangedListener {
-            mPresenter.OnBackStackChangedListener(supportFragmentManager.backStackEntryCount)
+            mPresenter.onBackStackChangedListener(supportFragmentManager.backStackEntryCount)
         }
         setup()
+    }
+
+
+    override fun showCreateGroupFragment() {
+        addFragment(
+                R.id.fragmentContainer,
+                CreateGroupFragment.newInstance(),
+                CreateGroupFragment.TAG
+        )
     }
 
     override fun updateToolbarToGroupCampaigns() {
@@ -66,7 +94,11 @@ class GroupActivity : BaseActivity(), GroupMvpView {
             val groupId = it.getStringExtra(EXTRA_KEY_GROUP_ID)
             val bundle = Bundle()
             bundle.putString(BUNDLE_KEY_GROUP_ID, groupId)
-            addFragment(R.id.fragmentContainer, GroupDetailFragment.newInstance(bundle), GroupDetailFragment.TAG)
+            replaceFragment(
+                    R.id.fragmentContainer,
+                    GroupDetailFragment.newInstance(bundle),
+                    GroupDetailFragment.TAG
+            )
 
         }
     }

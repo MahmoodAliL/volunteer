@@ -13,7 +13,7 @@
         tools:context=".ui.account.signin.SignInFragment">
 
         <ImageView
-            android:id="@+id/imgLogo"
+            android:id="@+id/groupLogoImgView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"

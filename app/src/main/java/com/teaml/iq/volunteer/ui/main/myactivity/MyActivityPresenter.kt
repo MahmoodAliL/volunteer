@@ -64,7 +64,6 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
             return
         }
 
-        Log.e(TAG, "on loading userActivity $uid")
 
         dataManager.loadCampaignUserJoined(uid!!, this.lastVisibleItem).get().continueWithTask { task ->
 

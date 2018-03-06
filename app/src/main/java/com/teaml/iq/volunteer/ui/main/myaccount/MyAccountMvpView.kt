@@ -11,4 +11,8 @@ interface MyAccountMvpView : BaseSignInSignOutMvpView {
     fun showProfileInfo(profileInfo: FbUserDetail)
 
     fun openProfileActivity(uid: String)
+
+    fun openGroupActivityWithCreateGroup()
+
+    fun openGroupActivityWithGroupDetail(uid: String)
 }

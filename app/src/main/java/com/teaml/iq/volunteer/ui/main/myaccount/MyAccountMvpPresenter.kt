@@ -11,5 +11,7 @@ interface MyAccountMvpPresenter<V : MyAccountMvpView> : BaseSignInSignOutMvpPres
 
     fun onMyProfileClick()
 
+    fun onMyGroupClick()
+
     fun onResume()
 }

@@ -10,6 +10,7 @@ class FbUserDetail(
         val img: String = "",
         @ServerTimestamp val lastModificationDate: Date = Date(),
         val name: String = "",
+        val myGroupId: String =  "",
         val bio: String = "Hi there i am using volunteer iq app ",
         val gender: Int = 0,
         val birthOfDay: Date = Date(),

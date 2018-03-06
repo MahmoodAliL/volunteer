@@ -21,6 +21,7 @@ class AppPreferenceHelper @Inject constructor(@ApplicationContext context: Conte
         private const val PREF_KEY_FIRST_START = "PREF_KEY_FIRST_START"
         private const val PREF_KEY_LOGGED_IN_MODE = "PREF_KEY_LOGGED_IN_MODE"
         private const val PREF_KEY_HAS_BASIC_PROFILE_INFO = "PREF_KEY_HAS_BASIC_PROFILE_INFO"
+        private const val PREF_KEY_HAS_GROUP = "PREF_KEY_HAS_GROUP"
     }
 
     override fun isFirstStart(): Boolean = prefs.getBoolean(PREF_KEY_FIRST_START, true)
@@ -35,6 +36,14 @@ class AppPreferenceHelper @Inject constructor(@ApplicationContext context: Conte
 
     override fun getCurrentUserLoggedInMode(): Int =
             prefs.getInt(PREF_KEY_LOGGED_IN_MODE, DataManager.LoggedInMode.LOGGED_OUT.type)
+
+    override fun hasGroup(): Boolean {
+        return prefs.getBoolean(PREF_KEY_HAS_GROUP, false)
+    }
+
+    override fun setHasGroup(hasGroup: Boolean) {
+        prefs.setValue(PREF_KEY_HAS_GROUP, hasGroup)
+    }
 
     override fun hasBasicProfileInfo(): Boolean = prefs.getBoolean(PREF_KEY_HAS_BASIC_PROFILE_INFO, false)
 
