@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import kotlinx.android.synthetic.main.fragment_map.*
 import org.jetbrains.anko.find
 
 

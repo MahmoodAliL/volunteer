@@ -13,6 +13,10 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
 import com.satsuware.usefulviews.LabelledSpinner
 import com.teaml.iq.volunteer.R
@@ -28,6 +32,7 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_add_campaign.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.bundleOf
+import org.jetbrains.anko.find
 import java.util.*
 import javax.inject.Inject
 
@@ -36,7 +41,7 @@ import javax.inject.Inject
  * A simple [Fragment] subclass.
  */
 class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.OnItemChosenListener,
-        TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+        TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback {
 
     companion object {
         val TAG: String = AddCampaignFragment::class.java.simpleName
@@ -55,6 +60,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     private var editMenuItem: MenuItem? = null
 
     private var volunteersGender = DataManager.UserGender.ANY
+    private var location = GeoPoint(0.0,0.0)
 
     @Inject
     lateinit var mPresenter: AddCampaignMvpPresenter<AddCampaignMvpView>
@@ -72,16 +78,21 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        val view = inflater.inflate(R.layout.fragment_add_campaign, container, false)
         getActivityComponent()?.let {
             it.inject(this)
             mPresenter.onAttach(this)
 
         }
+        val map = view.find<MapView>(R.id.googleMap)
+        map.getMapAsync(this)
+        map.onCreate(savedInstanceState)
+        map.onResume()
 
         setUpDatePicker()
         setUpTimePicker()
 
-        return inflater.inflate(R.layout.fragment_add_campaign, container, false)
+        return view
     }
 
     override fun setup(view: View) {
@@ -199,7 +210,6 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         when (item?.itemId) {
             R.id.action_done -> {
                 val name = titleField.text.toString()
-                val location = GeoPoint(15.0008, 50.0005)
                 val description = descriptionField.text.toString()
                 val gender = volunteersGender
                 val age = ageField.text.toString()
@@ -228,6 +238,19 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
     override fun onNothingChosen(labelledSpinner: View?, adapterView: AdapterView<*>?) {
 
+    }
+
+    override fun onMapReady(googleMap: GoogleMap?) {
+        val marker = MarkerOptions().alpha(0.7f)
+
+            googleMap?.setOnMapLongClickListener {
+                googleMap.clear()
+                googleMap.addMarker(marker.position(it))
+                location = GeoPoint(it.latitude,it.longitude)
+            }
+            googleMap?.setOnMapClickListener {
+                googleMap.clear()
+            }
     }
 
     override fun onDestroyView() {
