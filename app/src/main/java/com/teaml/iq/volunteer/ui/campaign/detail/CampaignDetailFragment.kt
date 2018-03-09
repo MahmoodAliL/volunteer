@@ -19,6 +19,7 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.campaign.map.MapFragment
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
 import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.*
@@ -83,7 +84,17 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
      * for more info please  visit  https://developers.google.com/maps/documentation/urls/android-intents#uriencoding
      */
     override fun openGoogleMap(geoPoint: GeoPoint) {
-        Log.e(TAG, "open google map clicked")
+
+        val bundle = Bundle()
+        bundle.putDouble(MapFragment.BUNDLE_KEY_LATITUDE,geoPoint.latitude)
+        bundle.putDouble(MapFragment.BUNDLE_KEY_LONGITUDE,geoPoint.longitude)
+
+        activity?.addFragmentAndAddToBackStack(
+                R.id.fragmentContainer,
+                MapFragment.newInstance(bundle),
+                MapFragment.TAG
+        )
+       /* Log.e(TAG, "open google map clicked")
 
         val gmUri = Uri.parse("geo:0,0?q=${geoPoint.latitude},${geoPoint.longitude}(campaign place)?z=10")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmUri)
@@ -95,7 +106,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
                 showMessage("google map not install ")
                 it.browse("https://www.google.iq/maps/place/${geoPoint.latitude}+${geoPoint.longitude}/10z?hl=ar", true)
             }
-        }
+        }*/
     }
 
     override fun updateJoinBtnToJoin() {

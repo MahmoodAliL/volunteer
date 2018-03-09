@@ -12,4 +12,5 @@ interface CampaignMvpView : MvpView {
 
     fun updateToolbarToMember()
 
+
 }

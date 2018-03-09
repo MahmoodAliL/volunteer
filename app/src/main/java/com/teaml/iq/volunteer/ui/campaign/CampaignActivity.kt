@@ -46,6 +46,7 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
 
     }
 
+
     override fun updateToolbarToDetail() {
         supportActionBar?.title = getString(R.string.campaign_detail)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
@@ -55,6 +56,8 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
         supportActionBar?.title = getString(R.string.member)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
     }
+
+
 
     override fun showDetailFragment() {
 
