@@ -1,8 +1,6 @@
 package com.teaml.iq.volunteer.ui.campaign.detail
 
-import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.app.AppCompatActivity
@@ -25,7 +23,7 @@ import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.campaign_detail_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
-import org.jetbrains.anko.browse
+import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -85,28 +83,28 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
      */
     override fun openGoogleMap(geoPoint: GeoPoint) {
 
-        val bundle = Bundle()
-        bundle.putDouble(MapFragment.BUNDLE_KEY_LATITUDE,geoPoint.latitude)
-        bundle.putDouble(MapFragment.BUNDLE_KEY_LONGITUDE,geoPoint.longitude)
-
+        val bundle = bundleOf(
+                MapFragment.BUNDLE_KEY_LATITUDE to geoPoint.latitude,
+                MapFragment.BUNDLE_KEY_LONGITUDE to geoPoint.longitude
+        )
         activity?.addFragmentAndAddToBackStack(
                 R.id.fragmentContainer,
                 MapFragment.newInstance(bundle),
                 MapFragment.TAG
         )
-       /* Log.e(TAG, "open google map clicked")
+        /* Log.e(TAG, "open google map clicked")
 
-        val gmUri = Uri.parse("geo:0,0?q=${geoPoint.latitude},${geoPoint.longitude}(campaign place)?z=10")
-        val mapIntent = Intent(Intent.ACTION_VIEW, gmUri)
-        mapIntent.`package` = "com.google.android.apps.maps"
-        context?.let {
-            if (mapIntent.resolveActivity(it.packageManager) != null) {
-                startActivity(mapIntent)
-            } else {
-                showMessage("google map not install ")
-                it.browse("https://www.google.iq/maps/place/${geoPoint.latitude}+${geoPoint.longitude}/10z?hl=ar", true)
-            }
-        }*/
+         val gmUri = Uri.parse("geo:0,0?q=${geoPoint.latitude},${geoPoint.longitude}(campaign place)?z=10")
+         val mapIntent = Intent(Intent.ACTION_VIEW, gmUri)
+         mapIntent.`package` = "com.google.android.apps.maps"
+         context?.let {
+             if (mapIntent.resolveActivity(it.packageManager) != null) {
+                 startActivity(mapIntent)
+             } else {
+                 showMessage("google map not install ")
+                 it.browse("https://www.google.iq/maps/place/${geoPoint.latitude}+${geoPoint.longitude}/10z?hl=ar", true)
+             }
+         }*/
     }
 
     override fun updateJoinBtnToJoin() {

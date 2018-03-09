@@ -22,13 +22,14 @@ import org.jetbrains.anko.toast
 /**
  * Created by Mahmood Ali on 18/02/2018.
  */
-class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>, val isGroupOwner: Boolean = false) : BaseRecyclerAdapter<GroupCampaigns>(list) {
+class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAdapter<GroupCampaigns>(list) {
 
     companion object {
         val TAG: String = GroupCampaignsAdapter::class.java.simpleName
     }
 
 
+    var isGroupOwner: Boolean = false
     var onItemClick: ((String) -> Unit)? = null
 
     inner class GroupCampaignsVH(view: View) : BaseViewHolder(view) {
@@ -56,16 +57,16 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>, val isGroupOwner:
             imgMore.setOnClickListener {
 
                 popupMenu.setOnMenuItemClickListener { menuItem ->
-
                     when (menuItem.itemId) {
                         R.id.action_edit -> {
                             val campaignId = mList[adapterPosition].campaignId
                             mContext.toast("campaign id : $campaignId")
                         }
                     }
-
                     true
                 }
+
+                popupMenu.show()
 
             }
         }

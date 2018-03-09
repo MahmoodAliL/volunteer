@@ -15,6 +15,7 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.data.model.GroupCampaigns
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignFragment
 import com.teaml.iq.volunteer.ui.group.edit.EditGroupFragment
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsFragment
 import com.teaml.iq.volunteer.utils.AppConstants
@@ -75,6 +76,12 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
     }
 
 
+    override fun onMyGroupShow() {
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.my_group_toolbar)
+        txtCampaigns.text = getString(R.string.my_campaigns)
+        mAdapter.isGroupOwner = true
+    }
+
 
     override fun setup(view: View) {
         arguments?.let {
@@ -95,21 +102,31 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
                 )
             }
 
+
             mPresenter.onViewPrepared(groupId)
             btnViewAll.setOnClickListener { mPresenter.onViewAllClick() }
+            fab.setOnClickListener { mPresenter.onFabClick() }
 
         }
     }
 
-    override fun onMyGroupShow() {
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.my_group_toolbar)
-        txtCampaigns.text = getString(R.string.my_campaigns)
+    override fun showAddCampaignFragment() {
+
+        //i think so far !! need more check all code will be take if group id is not empty
+        groupId.takeIf {
+
+            activity?.addFragmentAndAddToBackStack(
+                    R.id.fragmentContainer,
+                    AddCampaignFragment.newInstance(),
+                    AddCampaignFragment.TAG
+            )
+
+            false
+        }
     }
 
-    override fun showFabAddGroup() {
-        fab.visible
-        //fab.show()
-    }
+
+    override fun showFabAddGroup() { fab.visible }
 
     override fun showEmptyResult() {
         recyclerView.gone

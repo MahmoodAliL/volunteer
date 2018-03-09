@@ -35,6 +35,12 @@ object CommonUtils {
         return calendar.time
     }
 
+    fun dateTimeFrom(year: Int, month: Int, dayOfMonth: Int, hourOfDay: Int, minute: Int): Date {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month - 1, dayOfMonth, hourOfDay, minute)
+        return calendar.time
+    }
+
     fun getHumanReadableElapseTime(uploadDate: Date, context: Context): String {
 
         val calendarUploadDate = Calendar.getInstance()

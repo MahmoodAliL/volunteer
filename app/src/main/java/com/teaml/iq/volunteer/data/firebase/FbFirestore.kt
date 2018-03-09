@@ -44,6 +44,8 @@ interface FbFirestore {
 
     fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void>
 
+    fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<DocumentReference>
+
 
 
 }

@@ -40,7 +40,7 @@ class GroupDetailPresenter<V : GroupDetailMvpView> @Inject constructor(dataManag
     }
 
     override fun onFabClick() {
-        mvpView?.showMessage("onFabClick")
+        mvpView?.showAddCampaignFragment()
     }
 
     private fun loadGroupDetail(groupId: String) {

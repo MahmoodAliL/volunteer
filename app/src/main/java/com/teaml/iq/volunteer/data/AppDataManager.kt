@@ -115,6 +115,9 @@ class AppDataManager @Inject constructor(
     override fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void> =
             firebaseHelper.saveGroupInfo(groupInfo)
 
+    override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<DocumentReference> =
+            firebaseHelper.saveCampaignInfo(campaignInfo)
+
     /**
      * firebase storage
      */
@@ -127,5 +130,9 @@ class AppDataManager @Inject constructor(
 
     override fun uploadGroupLogoImg(imgUri: Uri): UploadTask {
         return firebaseHelper.uploadGroupLogoImg(imgUri)
+    }
+
+    override fun uploadCampaignImg(imgUri: Uri, imgName: String): UploadTask {
+        return firebaseHelper.uploadCampaignImg(imgUri, imgName)
     }
 }

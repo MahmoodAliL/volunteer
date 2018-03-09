@@ -23,6 +23,8 @@ interface GroupDetailMvpView : FragmentMvpView {
 
     fun showEmptyResult()
 
+    fun showAddCampaignFragment()
+
     fun showViewAll()
 
     fun showGroupDetail(fbGroup: FbGroup)

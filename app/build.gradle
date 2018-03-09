@@ -93,6 +93,9 @@ dependencies {
 
     // google play services
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    // android KTX
+    // read this from more info: https://medium.com/exploring-android/exploring-ktx-for-android-13a369795b51
+    implementation 'androidx.core:core-ktx:0.2'
 
     // Material spinner
     implementation 'com.satsuware.lib:usefulviews:2.3.6'

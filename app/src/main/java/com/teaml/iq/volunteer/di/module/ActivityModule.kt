@@ -26,6 +26,9 @@ import com.teaml.iq.volunteer.ui.account.signup.SignUpPresenter
 import com.teaml.iq.volunteer.ui.campaign.CampaignMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.CampaignMvpView
 import com.teaml.iq.volunteer.ui.campaign.CampaignPresenter
+import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignMvpPresenter
+import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignMvpView
+import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignPresenter
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailMvpView
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailPresenter
@@ -215,5 +218,9 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     fun provideEditGroupPresenter(presenter: EditGroupPresenter<EditGroupMvpView>): EditGroupMvpPresenter<EditGroupMvpView> =
+            presenter
+
+    @Provides
+    fun provideAddCampaignPresenter(presenter: AddCampaignPresenter<AddCampaignMvpView>): AddCampaignMvpPresenter<AddCampaignMvpView> =
             presenter
 }

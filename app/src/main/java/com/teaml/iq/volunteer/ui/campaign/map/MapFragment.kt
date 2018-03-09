@@ -66,12 +66,12 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
             val latitude = it.getDouble(BUNDLE_KEY_LATITUDE)
             val longitude = it.getDouble(BUNDLE_KEY_LONGITUDE)
 
-            val location = LatLng(latitude,longitude)
+            val location = LatLng(latitude, longitude)
             val marker = MarkerOptions().position(location)
 
             googleMap?.let {
                 it.addMarker(marker)
-                it.animateCamera(CameraUpdateFactory.newLatLngZoom(location,ZOOM))
+                it.animateCamera(CameraUpdateFactory.newLatLngZoom(location, ZOOM))
             }
         }
     }

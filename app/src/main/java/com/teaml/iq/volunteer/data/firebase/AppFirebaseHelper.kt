@@ -207,6 +207,10 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     }
 
+    override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<DocumentReference> {
+        return mFirestore.collection(CAMPAIGN_COL).add(campaignInfo)
+    }
+
     // group operation
 
     override fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void> {
@@ -226,5 +230,9 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     override fun uploadGroupLogoImg(imgUri: Uri): UploadTask {
         return mFirestorage.getReference(AppConstants.GROUP_LOGO_IMG_FOLDER).child(getFirebaseUserAuthID()!!).putFile(imgUri)
+    }
+
+    override fun uploadCampaignImg(imgUri: Uri, imgName: String): UploadTask {
+        return mFirestorage.getReference(AppConstants.CAMPAIGN_IMG_FOLDER).child(imgName).putFile(imgUri)
     }
 }

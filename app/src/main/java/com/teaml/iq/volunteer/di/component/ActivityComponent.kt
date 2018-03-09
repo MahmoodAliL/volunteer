@@ -9,6 +9,7 @@ import com.teaml.iq.volunteer.ui.account.forget.password.emailsend.EmailSendSucc
 import com.teaml.iq.volunteer.ui.account.signin.SignInFragment
 import com.teaml.iq.volunteer.ui.account.signup.SignUpFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignFragment
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
 import com.teaml.iq.volunteer.ui.group.GroupActivity
@@ -80,5 +81,7 @@ interface ActivityComponent {
     fun inject(fragment: CreateGroupFragment)
 
     fun inject(fragment: EditGroupFragment)
+
+    fun inject(fragment: AddCampaignFragment)
 
 }

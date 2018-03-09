@@ -13,4 +13,7 @@ interface FbStorage {
     fun uploadGroupLogoImg(imgUri: Uri): UploadTask
 
     fun uploadGroupCoverImg(imgUri: Uri): UploadTask
+
+    fun uploadCampaignImg(imgUri: Uri, imgName: String): UploadTask
+
 }
