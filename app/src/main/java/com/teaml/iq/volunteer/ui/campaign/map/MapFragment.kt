@@ -43,7 +43,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
 
         with(activity as CampaignActivity) {
-            supportActionBar?.title = "Map"
+            supportActionBar?.title = getString(R.string.map)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
         }
 
@@ -67,7 +67,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
             val longitude = it.getDouble(BUNDLE_KEY_LONGITUDE)
 
             val location = LatLng(latitude,longitude)
-            val marker = MarkerOptions().position(location).title("campaign location")
+            val marker = MarkerOptions().position(location)
 
             googleMap?.let {
                 it.addMarker(marker)

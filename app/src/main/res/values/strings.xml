@@ -140,6 +140,7 @@
     <string name="my_group_toolbar">My Group</string>
     <string name="my_campaigns">My Campaigns</string>
     <string name="edit_group">Edit Group</string>
+    <string name="map">Map</string>
 
 
 </resources>
