@@ -78,6 +78,7 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
 
     override fun onMyGroupShow() {
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.my_group_toolbar)
+
         txtCampaigns.text = getString(R.string.my_campaigns)
         mAdapter.isGroupOwner = true
     }

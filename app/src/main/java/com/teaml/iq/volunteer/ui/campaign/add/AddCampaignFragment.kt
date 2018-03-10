@@ -13,9 +13,10 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
 import com.satsuware.usefulviews.LabelledSpinner
@@ -25,14 +26,15 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.data.model.SelectedDate
 import com.teaml.iq.volunteer.data.model.SelectedTime
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.campaign.map.MapInScrollViewFragment
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailFragment
-import com.teaml.iq.volunteer.utils.replaceFragmentAndAddToBackStack
+import com.teaml.iq.volunteer.utils.AppConstants
+import com.teaml.iq.volunteer.utils.replaceFragment
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_add_campaign.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.bundleOf
-import org.jetbrains.anko.find
 import java.util.*
 import javax.inject.Inject
 
@@ -50,7 +52,6 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     }
 
 
-
     private lateinit var datePickerDialog: DatePickerDialog
     private lateinit var timePickerDialog: TimePickerDialog
 
@@ -60,7 +61,9 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     private var editMenuItem: MenuItem? = null
 
     private var volunteersGender = DataManager.UserGender.ANY
-    private var location = GeoPoint(0.0,0.0)
+    private var location = GeoPoint(0.0, 0.0)
+
+    private var mMapInScrollViewFragment: MapInScrollViewFragment?  = null
 
     @Inject
     lateinit var mPresenter: AddCampaignMvpPresenter<AddCampaignMvpView>
@@ -84,16 +87,14 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
             mPresenter.onAttach(this)
 
         }
-        val map = view.find<MapView>(R.id.googleMap)
-        map.getMapAsync(this)
-        map.onCreate(savedInstanceState)
-        map.onResume()
+
 
         setUpDatePicker()
         setUpTimePicker()
 
         return view
     }
+
 
     override fun setup(view: View) {
 
@@ -104,12 +105,24 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         timeField.setOnClickListener { timePickerDialog.show() }
 
         dateField.setOnClickListener { datePickerDialog.show() }
+
+
+        mMapInScrollViewFragment = childFragmentManager.findFragmentById(R.id.googleMap) as MapInScrollViewFragment
+
+        mMapInScrollViewFragment?.let {
+            it.getMapAsync(this)
+            it.setOnTouchListener {
+                scrollView.requestDisallowInterceptTouchEvent(true)
+            }
+        }
+
     }
+
 
     override fun showMyGroupFragment(groupId: String) {
 
         activity?.supportFragmentManager?.popBackStack()
-        activity?.replaceFragmentAndAddToBackStack(
+        activity?.replaceFragment(
                 R.id.fragmentContainer,
                 GroupDetailFragment.newInstance(bundleOf(GroupDetailFragment.BUNDLE_KEY_GROUP_ID to groupId)),
                 GroupDetailFragment.TAG
@@ -149,7 +162,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         val currentDay = calender.get(Calendar.DAY_OF_YEAR)
 
-        val year = calender.get(Calendar.YEAR )
+        val year = calender.get(Calendar.YEAR)
         val month = calender.get(Calendar.MONTH)
         // campaign will be set on the next day
         calender.set(Calendar.DAY_OF_YEAR, currentDay + 1)
@@ -205,7 +218,6 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     }
 
 
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_done -> {
@@ -227,9 +239,9 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         when (labelledSpinner?.id) {
             R.id.spinnerGender -> {
                 volunteersGender = when (position) {
-                    0 -> DataManager.UserGender.FEMALE
+                    0 -> DataManager.UserGender.ANY
                     1 -> DataManager.UserGender.MALE
-                    else -> DataManager.UserGender.ANY
+                    else -> DataManager.UserGender.FEMALE
                 }
 
             }
@@ -240,22 +252,34 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
     }
 
-    override fun onMapReady(googleMap: GoogleMap?) {
-        val marker = MarkerOptions().alpha(0.7f)
+    override fun onMapReady(googleMap: GoogleMap) {
 
-            googleMap?.setOnMapLongClickListener {
-                googleMap.clear()
-                googleMap.addMarker(marker.position(it))
-                location = GeoPoint(it.latitude,it.longitude)
-            }
-            googleMap?.setOnMapClickListener {
-                googleMap.clear()
-            }
+        val marker = MarkerOptions().alpha(0.8f)
+
+        val karbala = LatLng(32.6049946, 44.0098118)
+
+        googleMap.addMarker(MarkerOptions().position(karbala))
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(karbala, AppConstants.MAP_ZOOM))
+
+        googleMap.setOnMapClickListener {
+            googleMap.clear()
+            googleMap.animateCamera(CameraUpdateFactory.newLatLng(it))
+            googleMap.addMarker(marker.position(it))
+            location = GeoPoint(it.latitude, it.longitude)
+        }
+    }
+
+    override fun onResume() {
+        mMapInScrollViewFragment?.onResume()
+        super.onResume()
+
     }
 
     override fun onDestroyView() {
         editMenuItem?.isVisible = true
 
+        mMapInScrollViewFragment?.onDestroyView()
         mPresenter.onDetach()
         super.onDestroyView()
     }

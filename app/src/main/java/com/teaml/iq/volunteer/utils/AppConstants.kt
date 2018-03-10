@@ -34,7 +34,7 @@ object AppConstants {
     const val USER_IMG_FOLDER = "user img"
     const val GROUP_COVER_IMG_FOLDER = "group cover img"
     const val GROUP_LOGO_IMG_FOLDER = "group logo img"
-
+    const val MAP_ZOOM: Float = 15f
 
 
 }

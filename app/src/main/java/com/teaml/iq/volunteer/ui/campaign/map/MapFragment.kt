@@ -15,7 +15,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
-import kotlinx.android.synthetic.main.fragment_map.*
 import org.jetbrains.anko.find
 
 
@@ -29,7 +28,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         const val BUNDLE_KEY_LATITUDE = "bundle_key_latitude"
         const val BUNDLE_KEY_LONGITUDE = "bundle_key_longitude"
 
-        val TAG = MapFragment::class.java.simpleName
+        val TAG: String = MapFragment::class.java.simpleName
         fun newInstance(bundle: Bundle = Bundle.EMPTY): MapFragment = MapFragment().apply {
             arguments = bundle
         }

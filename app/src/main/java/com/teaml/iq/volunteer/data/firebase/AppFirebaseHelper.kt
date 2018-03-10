@@ -19,6 +19,7 @@ import com.teaml.iq.volunteer.utils.AppConstants.GROUP_COL
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_QUERY_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.MEMBER_COL
 import com.teaml.iq.volunteer.utils.AppConstants.USERS_COL
+import java.util.*
 import javax.inject.Inject
 
 
@@ -107,7 +108,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         val query = mFirestore.collection(CAMPAIGN_COL)
                 .whereEqualTo(GROUP_REF_FIELD, getGroupDocRef(groupId))
                 .limit(CAMPAIGN_QUERY_LIMIT)
-        /* .orderBy(FbCampaign.UPLOAD_DATE, Query.Direction.DESCENDING)*/
+                //.orderBy(FbCampaign.UPLOAD_DATE, Query.Direction.DESCENDING)
         return if (lastVisibleItem != null)
             query.startAfter(lastVisibleItem)
         else
@@ -207,8 +208,20 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     }
 
-    override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<DocumentReference> {
-        return mFirestore.collection(CAMPAIGN_COL).add(campaignInfo)
+    override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<Transaction> {
+        val uuid = UUID.randomUUID()
+        return mFirestore.runTransaction {
+            val groupDocRef = getGroupDocRef(getFirebaseUserAuthID()!!)
+            val snapshot = it.get(groupDocRef)
+
+            val newCampaignCount = snapshot.getLong(FbGroup::campaignsNum.name) + 1
+            it.update(groupDocRef, FbGroup::campaignsNum.name, newCampaignCount)
+
+            val campaignDocRef = getCampaignDocRef(uuid.toString())
+
+            it.set(campaignDocRef, campaignInfo)
+        }
+
     }
 
     // group operation

@@ -115,7 +115,7 @@ class AppDataManager @Inject constructor(
     override fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void> =
             firebaseHelper.saveGroupInfo(groupInfo)
 
-    override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<DocumentReference> =
+    override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<Transaction> =
             firebaseHelper.saveCampaignInfo(campaignInfo)
 
     /**

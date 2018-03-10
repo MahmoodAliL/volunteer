@@ -1,5 +1,6 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -65,8 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/title"
-                android:maxLength="80"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences"
+                android:maxLength="80" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -125,8 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/description"
-                android:maxLength="400"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:maxLength="400" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -139,15 +140,16 @@
             app:layout_constraintStart_toEndOf="@id/line1"
             app:layout_constraintTop_toBottomOf="@id/tilDescription" />
 
-        <com.google.android.gms.maps.MapView
+        <fragment
             android:id="@+id/googleMap"
+            class="com.teaml.iq.volunteer.ui.campaign.map.MapInScrollViewFragment"
             android:layout_width="0dp"
             android:layout_height="250dp"
             android:layout_marginTop="16dp"
+            android:tag="googleMap"
             app:layout_constraintEnd_toStartOf="@id/line2"
             app:layout_constraintStart_toEndOf="@id/line1"
-            app:layout_constraintTop_toBottomOf="@+id/txtLocation"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/txtLocation" />
 
 
         <com.satsuware.usefulviews.LabelledSpinner
@@ -177,8 +179,8 @@
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
                 android:hint="@string/max_members"
-                android:maxLength="4"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="4" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -196,8 +198,8 @@
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
                 android:hint="@string/age"
-                android:maxLength="2"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="2" />
         </android.support.design.widget.TextInputLayout>
 
         <ImageView

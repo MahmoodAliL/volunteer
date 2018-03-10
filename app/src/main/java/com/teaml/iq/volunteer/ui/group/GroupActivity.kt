@@ -76,6 +76,7 @@ class GroupActivity : BaseActivity(), GroupMvpView {
 
     override fun updateToolbarToGroupDetail() {
         supportActionBar?.title = getString(R.string.group_detail)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
     }
 
     override fun setup() {
