@@ -64,7 +64,7 @@ class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManag
             }
 
             if (description.isEmpty()) {
-                view.onError(R.string.empty_name)
+                view.onError(R.string.empty_descriotion)
                 return
             }
 
@@ -82,8 +82,8 @@ class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManag
                 view.onError(R.string.required_age_should_be_in_range_10_100)
                 return
             }
-            if (maxMembers !in 10..200) {
-                view.onError(R.string.max_count_member_should_be_in_range_10_100)
+            if (maxMembers !in 10..1000) {
+                view.onError(R.string.max_count_member_should_be_in_range_10_1000)
                 return
             }
 

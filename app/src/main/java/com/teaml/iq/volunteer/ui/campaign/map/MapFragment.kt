@@ -10,11 +10,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.utils.AppConstants
 import org.jetbrains.anko.find
 
 
@@ -33,7 +35,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
             arguments = bundle
         }
 
-        const val ZOOM = 15f
+        lateinit var googleMapView:MapView
     }
 
 
@@ -48,17 +50,25 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         }
 
         // google map setup
-        val googleMapView = view.find<MapView>(R.id.googleMap)
-        googleMapView.getMapAsync(this)
-
+        googleMapView = view.find(R.id.googleMap)
         googleMapView.onCreate(savedInstanceState)
-        googleMapView.onResume()
+        googleMapView.getMapAsync(this)
 
         return view
     }
 
     override fun setup(view: View) {
 
+    }
+
+    override fun onResume() {
+        googleMapView.onResume()
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        googleMapView.onDestroy()
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -71,8 +81,9 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 
             googleMap?.let {
                 it.addMarker(marker)
-                it.animateCamera(CameraUpdateFactory.newLatLngZoom(location, ZOOM))
+                it.animateCamera(CameraUpdateFactory.newLatLngZoom(location,AppConstants.MAP_ZOOM))
             }
+
         }
     }
 }// Required empty public constructor

@@ -154,8 +154,9 @@
     <string name="please_select_required_age">Please select required age</string>
     <string name="please_select_max_count_members">please select maximum count member required of campaign</string>
     <string name="required_age_should_be_in_range_10_100">Required age should be in the range 10 to 100</string>
-    <string name="max_count_member_should_be_in_range_10_100">max count member should be in the range of 5 to 200</string>
+    <string name="max_count_member_should_be_in_range_10_1000">max count member should be in the range of 5 to 1000</string>
     <string name="error_while_upload_camapign">Error while upload campaign</string>
+    <string name="empty_descriotion">Please provide a non empty description</string>
 
 
 </resources>

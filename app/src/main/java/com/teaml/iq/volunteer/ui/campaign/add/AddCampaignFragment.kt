@@ -26,6 +26,7 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.data.model.SelectedDate
 import com.teaml.iq.volunteer.data.model.SelectedTime
 import com.teaml.iq.volunteer.ui.base.BaseFragment
+import com.teaml.iq.volunteer.ui.campaign.map.CustomMapView
 import com.teaml.iq.volunteer.ui.campaign.map.MapInScrollViewFragment
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailFragment
 import com.teaml.iq.volunteer.utils.AppConstants
@@ -35,6 +36,7 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_add_campaign.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.bundleOf
+import org.jetbrains.anko.find
 import java.util.*
 import javax.inject.Inject
 
@@ -65,6 +67,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
     private var mMapInScrollViewFragment: MapInScrollViewFragment?  = null
 
+
     @Inject
     lateinit var mPresenter: AddCampaignMvpPresenter<AddCampaignMvpView>
 
@@ -88,7 +91,6 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         }
 
-
         setUpDatePicker()
         setUpTimePicker()
 
@@ -107,6 +109,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         dateField.setOnClickListener { datePickerDialog.show() }
 
 
+
         mMapInScrollViewFragment = childFragmentManager.findFragmentById(R.id.googleMap) as MapInScrollViewFragment
 
         mMapInScrollViewFragment?.let {
@@ -115,7 +118,6 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
                 scrollView.requestDisallowInterceptTouchEvent(true)
             }
         }
-
     }
 
 
