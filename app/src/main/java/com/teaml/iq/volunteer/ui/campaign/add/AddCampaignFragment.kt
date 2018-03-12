@@ -9,12 +9,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -27,7 +30,6 @@ import com.teaml.iq.volunteer.data.model.SelectedDate
 import com.teaml.iq.volunteer.data.model.SelectedTime
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.map.CustomMapView
-import com.teaml.iq.volunteer.ui.campaign.map.MapInScrollViewFragment
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailFragment
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.replaceFragment
@@ -63,10 +65,9 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     private var editMenuItem: MenuItem? = null
 
     private var volunteersGender = DataManager.UserGender.ANY
-    private var location = GeoPoint(0.0, 0.0)
+    private var location = GeoPoint(32.6049946, 44.0098118)
 
-    private var mMapInScrollViewFragment: MapInScrollViewFragment?  = null
-
+    private lateinit var mMapView: CustomMapView
 
     @Inject
     lateinit var mPresenter: AddCampaignMvpPresenter<AddCampaignMvpView>
@@ -91,14 +92,19 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         }
 
-        setUpDatePicker()
-        setUpTimePicker()
+        mMapView = view.find(R.id.googleMap)
+        mMapView.onCreate(savedInstanceState)
+        mMapView.getMapAsync(this)
 
         return view
     }
 
 
     override fun setup(view: View) {
+
+
+        setUpDatePicker()
+        setUpTimePicker()
 
         spinnerGender.onItemChosenListener = this
 
@@ -108,16 +114,8 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         dateField.setOnClickListener { datePickerDialog.show() }
 
+        googleMap.getMapAsync(this)
 
-
-        mMapInScrollViewFragment = childFragmentManager.findFragmentById(R.id.googleMap) as MapInScrollViewFragment
-
-        mMapInScrollViewFragment?.let {
-            it.getMapAsync(this)
-            it.setOnTouchListener {
-                scrollView.requestDisallowInterceptTouchEvent(true)
-            }
-        }
     }
 
 
@@ -256,6 +254,13 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
     override fun onMapReady(googleMap: GoogleMap) {
 
+
+        try {
+            MapsInitializer.initialize(this.activity)
+        } catch (e: GooglePlayServicesNotAvailableException) {
+            Log.e(TAG, e.message)
+        }
+
         val marker = MarkerOptions().alpha(0.8f)
 
         val karbala = LatLng(32.6049946, 44.0098118)
@@ -273,17 +278,22 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     }
 
     override fun onResume() {
-        mMapInScrollViewFragment?.onResume()
         super.onResume()
+        mMapView.onResume()
 
     }
 
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mMapView.onLowMemory()
+    }
     override fun onDestroyView() {
         editMenuItem?.isVisible = true
 
-        mMapInScrollViewFragment?.onDestroyView()
         mPresenter.onDetach()
         super.onDestroyView()
+        mMapView.onDestroy()
     }
 
 }// Required empty public constructor
