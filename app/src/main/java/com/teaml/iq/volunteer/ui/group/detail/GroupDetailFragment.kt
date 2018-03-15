@@ -16,6 +16,8 @@ import com.teaml.iq.volunteer.data.model.GroupCampaigns
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignFragment
+import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
+import com.teaml.iq.volunteer.ui.campaign.edit.EditCampaignFragment
 import com.teaml.iq.volunteer.ui.group.edit.EditGroupFragment
 import com.teaml.iq.volunteer.ui.group.view_all_campaign.GroupCampaignsFragment
 import com.teaml.iq.volunteer.utils.AppConstants
@@ -24,6 +26,7 @@ import com.teaml.iq.volunteer.utils.gone
 import com.teaml.iq.volunteer.utils.visible
 import kotlinx.android.synthetic.main.fragment_group_detail.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
+import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -103,6 +106,9 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
                 )
             }
 
+            mAdapter.setOnEditCampaignClick { campaignId ->
+                showEditCampaignFragment(campaignId)
+            }
 
             mPresenter.onViewPrepared(groupId)
             btnViewAll.setOnClickListener { mPresenter.onViewAllClick() }
@@ -111,19 +117,26 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
         }
     }
 
+
+    private fun showEditCampaignFragment(campaignId: String) {
+        val bundle = bundleOf(CampaignDetailFragment.BUNDLE_KEY_CAMPAIGN_ID to campaignId)
+        activity?.addFragmentAndAddToBackStack(
+                R.id.fragmentContainer,
+                EditCampaignFragment.newInstance(bundle),
+                EditCampaignFragment.TAG
+        )
+    }
     override fun showAddCampaignFragment() {
 
         //i think so far !! need more check all code will be take if group id is not empty
-        groupId.takeIf {
-
+        if (groupId.isEmpty()) {
             activity?.addFragmentAndAddToBackStack(
                     R.id.fragmentContainer,
                     AddCampaignFragment.newInstance(),
                     AddCampaignFragment.TAG
             )
-
-            false
         }
+
     }
 
 

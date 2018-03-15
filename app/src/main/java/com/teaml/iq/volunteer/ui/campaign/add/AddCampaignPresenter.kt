@@ -22,7 +22,7 @@ import javax.inject.Inject
 /**
  * Created by ali on 2/25/2018.
  */
-class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManager: DataManager)
+open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManager: DataManager)
     : BasePresenter<V>(dataManager), AddCampaignMvpPresenter<V> {
 
     companion object {
@@ -32,9 +32,9 @@ class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManag
         val TAG: String = AddCampaignPresenter::class.java.simpleName
     }
 
-    private var imgUri: Uri? = null
+    protected var imgUri: Uri? = null
     private val imgName = UUID.randomUUID()
-    private var campaignInfo: HashMap<String, Any> = HashMap()
+    protected var campaignInfo: HashMap<String, Any> = HashMap()
 
 
     override fun onActionDoneClick(name: String, selectedTime: SelectedTime?, selectedDate: SelectedDate?, location: GeoPoint, description: String, gender: DataManager.UserGender, age: Int?, maxMembers: Int?) {
@@ -115,7 +115,7 @@ class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManag
         }
     }
 
-    private fun uploadImg() {
+    protected fun uploadImg() {
 
         imgUri?.let {
 
@@ -135,7 +135,7 @@ class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(dataManag
         }
     }
 
-    private fun uploadOtherInfo() {
+    protected open fun uploadOtherInfo() {
         mvpView?.let { view ->
 
             dataManager.saveCampaignInfo(campaignInfo).addOnCompleteListener {

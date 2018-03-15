@@ -46,7 +46,7 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.OnItemChosenListener,
+open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.OnItemChosenListener,
         TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback {
 
     companion object {
@@ -56,18 +56,18 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     }
 
 
-    private lateinit var datePickerDialog: DatePickerDialog
-    private lateinit var timePickerDialog: TimePickerDialog
+    private lateinit var mDatePickerDialog: DatePickerDialog
+    private lateinit var mTimePickerDialog: TimePickerDialog
 
-    private var selectedDate: SelectedDate? = null
-    private var selectedTime: SelectedTime? = null
+    protected var mSelectedDate: SelectedDate? = null
+    protected var mSelectedTime: SelectedTime? = null
 
-    private var editMenuItem: MenuItem? = null
+    private var mEditMenuItem: MenuItem? = null
 
-    private var volunteersGender = DataManager.UserGender.ANY
-    private var location = GeoPoint(32.6049946, 44.0098118)
+    protected var mVolunteersGender = DataManager.UserGender.ANY
+    protected var mLocation = GeoPoint(32.6049946, 44.0098118)
 
-    private lateinit var mMapView: CustomMapView
+    protected lateinit var mMapView: CustomMapView
 
     @Inject
     lateinit var mPresenter: AddCampaignMvpPresenter<AddCampaignMvpView>
@@ -94,14 +94,12 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         mMapView = view.find(R.id.googleMap)
         mMapView.onCreate(savedInstanceState)
-        mMapView.getMapAsync(this)
 
         return view
     }
 
 
     override fun setup(view: View) {
-
 
         setUpDatePicker()
         setUpTimePicker()
@@ -110,14 +108,17 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         imgCampaign.setOnClickListener { mPresenter.onImgClick() }
 
-        timeField.setOnClickListener { timePickerDialog.show() }
+        startTimeField.setOnClickListener { mTimePickerDialog.show() }
 
-        dateField.setOnClickListener { datePickerDialog.show() }
+        startDateField.setOnClickListener { mDatePickerDialog.show() }
 
-        googleMap.getMapAsync(this)
 
+        getSyncGoogleMap()
     }
 
+    open protected fun getSyncGoogleMap() {
+        mMapView.getMapAsync(this)
+    }
 
     override fun showMyGroupFragment(groupId: String) {
 
@@ -153,8 +154,8 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         val hourOfDay = calender.get(Calendar.HOUR_OF_DAY)
         val min = calender.get(Calendar.MINUTE)
 
-        timePickerDialog = TimePickerDialog(activity, this, hourOfDay, min, false)
-        timePickerDialog.setTitle("add the begin time")
+        mTimePickerDialog = TimePickerDialog(activity, this, hourOfDay, min, false)
+        mTimePickerDialog.setTitle("add the begin time")
     }
 
     private fun setUpDatePicker() {
@@ -169,26 +170,26 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         val day = calender.get(Calendar.DAY_OF_MONTH)
 
         // set min date
-        datePickerDialog = DatePickerDialog(activity, this, year, month, day)
-        datePickerDialog.datePicker.minDate = calender.timeInMillis
+        mDatePickerDialog = DatePickerDialog(activity, this, year, month, day)
+        mDatePickerDialog.datePicker.minDate = calender.timeInMillis
     }
 
 
     override fun onTimeSet(timePicker: TimePicker?, hourOfDay: Int, minute: Int) {
 
 
-        selectedTime = SelectedTime(hourOfDay, minute)
+        mSelectedTime = SelectedTime(hourOfDay, minute)
 
         val time = "$hourOfDay:$minute"
-        timeField.setText(time)
+        startTimeField.setText(time)
     }
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
 
-        selectedDate = SelectedDate(year, month, dayOfMonth)
+        mSelectedDate = SelectedDate(year, month + 1, dayOfMonth)
 
         val date = "$year/$month/$dayOfMonth"
-        dateField.setText(date)
+        startDateField.setText(date)
     }
 
     override fun showReadExternalStorageRationale() {
@@ -213,8 +214,8 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         inflater?.inflate(R.menu.edit_profile_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
         // hide editMenu
-        editMenuItem = menu?.findItem(R.id.action_edit)
-        editMenuItem?.isVisible = false
+        mEditMenuItem = menu?.findItem(R.id.action_edit)
+        mEditMenuItem?.isVisible = false
     }
 
 
@@ -223,11 +224,11 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
             R.id.action_done -> {
                 val name = titleField.text.toString()
                 val description = descriptionField.text.toString()
-                val gender = volunteersGender
+                val gender = mVolunteersGender
                 val age = ageField.text.toString()
                 val maxMember = maxMemberField.text.toString()
 
-                mPresenter.onActionDoneClick(name, selectedTime, selectedDate, location, description, gender, age.toIntOrNull(), maxMember.toIntOrNull())
+                mPresenter.onActionDoneClick(name, mSelectedTime, mSelectedDate, mLocation, description, gender, age.toIntOrNull(), maxMember.toIntOrNull())
 
             }
         }
@@ -238,7 +239,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
     override fun onItemChosen(labelledSpinner: View?, adapterView: AdapterView<*>?, itemView: View?, position: Int, id: Long) {
         when (labelledSpinner?.id) {
             R.id.spinnerGender -> {
-                volunteersGender = when (position) {
+                mVolunteersGender = when (position) {
                     0 -> DataManager.UserGender.ANY
                     1 -> DataManager.UserGender.MALE
                     else -> DataManager.UserGender.FEMALE
@@ -263,7 +264,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
 
         val marker = MarkerOptions().alpha(0.8f)
 
-        val karbala = LatLng(32.6049946, 44.0098118)
+        val karbala = LatLng(mLocation.latitude, mLocation.longitude)
 
         googleMap.addMarker(MarkerOptions().position(karbala))
 
@@ -273,7 +274,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
             googleMap.clear()
             googleMap.animateCamera(CameraUpdateFactory.newLatLng(it))
             googleMap.addMarker(marker.position(it))
-            location = GeoPoint(it.latitude, it.longitude)
+            mLocation = GeoPoint(it.latitude, it.longitude)
         }
     }
 
@@ -289,7 +290,7 @@ class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpinner.
         mMapView.onLowMemory()
     }
     override fun onDestroyView() {
-        editMenuItem?.isVisible = true
+        mEditMenuItem?.isVisible = true
 
         mPresenter.onDetach()
         super.onDestroyView()

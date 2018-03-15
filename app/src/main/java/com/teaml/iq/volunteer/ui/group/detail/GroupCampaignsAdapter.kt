@@ -17,7 +17,6 @@ import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.CommonUtils
 import com.teaml.iq.volunteer.utils.visible
 import org.jetbrains.anko.find
-import org.jetbrains.anko.toast
 
 /**
  * Created by Mahmood Ali on 18/02/2018.
@@ -31,6 +30,7 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAda
 
     var isGroupOwner: Boolean = false
     var onItemClick: ((String) -> Unit)? = null
+    private var onEditCampaignMenuItemClick: ((String) -> Unit)? = null
 
     inner class GroupCampaignsVH(view: View) : BaseViewHolder(view) {
 
@@ -60,7 +60,7 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAda
                     when (menuItem.itemId) {
                         R.id.action_edit -> {
                             val campaignId = mList[adapterPosition].campaignId
-                            mContext.toast("campaign id : $campaignId")
+                            onEditCampaignMenuItemClick?.invoke(campaignId)
                         }
                     }
                     true
@@ -105,6 +105,10 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAda
 
     fun setOnViewItemClick(ref: (String) -> Unit) {
         onItemClick = ref
+    }
+
+    fun setOnEditCampaignClick(onEditCampaign: ((String) -> Unit)) {
+        this.onEditCampaignMenuItemClick = onEditCampaign
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {

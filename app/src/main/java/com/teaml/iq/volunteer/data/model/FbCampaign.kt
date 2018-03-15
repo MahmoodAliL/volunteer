@@ -22,7 +22,8 @@ data class FbCampaign(
         val maxMemberCount: Int = 0,
         val description: String = "",
         val age: Int = 0,
-        val gender: Int = 0
+        val gender: Int = 0,
+        val isEdited: Boolean = false
 ) {
     companion object {
        const val UPLOAD_DATE = "uploadDate"
