@@ -89,7 +89,6 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
         getActivityComponent()?.let {
             it.inject(this)
             mPresenter.onAttach(this)
-
         }
 
         mMapView = view.find(R.id.googleMap)

@@ -263,4 +263,3 @@ open class CreateGroupPresenter<V : CreateGroupMvpView> @Inject constructor(data
     }
 
 }
-
