@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
@@ -54,7 +55,6 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
             mPresenter.onAttach(this)
         }
 
-
         return layoutInflater.inflate(R.layout.campaign_detail_layout, container, false)
     }
 
@@ -77,6 +77,14 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
     override fun openGroupActivity(groupId: String) {
         context?.startActivity<GroupActivity>(CampaignActivity.EXTRA_KEY_GROUP_ID to groupId)
+    }
+
+    override fun onUserOwnerCampaign() {
+        Log.d(TAG, "onUserOwnerCampaign")
+    }
+
+    override fun showRateMembersFragment(campaignId: String) {
+        Log.d(TAG, "showRateMembersFragment")
     }
 
     /**
@@ -110,7 +118,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
     override fun updateJoinBtnToJoin() {
         btnJoin.setBackgroundResource(R.drawable.btn_join_background)
-        btnJoin.text = getString(R.string.Join)
+        btnJoin.text = getString(R.string.join)
     }
 
     override fun updateJoinBtnToLeave() {
@@ -118,12 +126,17 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         btnJoin.text = getString(R.string.leave)
     }
 
+    override fun updateJoinBtnToRateMember() {
+        btnJoin.setText(R.string.rate_member)
+    }
 
-    override fun disableJoinBtn(@StringRes note: Int) {
+    override fun disableJoinBtn(@StringRes btnText: Int ,  @StringRes note: Int) {
+        btnJoin.setText(btnText)
         btnJoin.setBackgroundResource(R.drawable.btn_join_background)
         btnJoin.isEnabled = false
-        txtJoinNote.setTextColor(Color.RED)
-        txtJoinNote.text = getString(note)
+        txtNote.setTextColor(Color.RED)
+        txtNote.text = getString(note)
+
     }
 
     override fun showCampaignDetail(campaign: FbCampaign, group: FbGroup) {
@@ -138,6 +151,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         txtMember.text = getString(R.string.campaign_member, campaign.currentMemberCount)
 
         txtGroupName.text = group.name
+        txtPublishDate.text = getString(R.string.publish_date, campaign.uploadDate.toDateString())
 
         // loading image
         try {
@@ -147,6 +161,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
             GlideApp.with(this)
                     .load(groupImgRef)
                     .circleCrop()
+                    .signature(ObjectKey(group.lastModificationDate))
                     .placeholder(R.drawable.group_logo_placeholder_img)
                     .into(groupImg)
 
@@ -155,6 +170,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
             GlideApp.with(this)
                     .load(campaignImg)
+                    .signature(ObjectKey(campaign.lastModificationDate))
                     .placeholder(R.drawable.campaign_placeholder_img)
                     .into(campaignCoverImg)
 
@@ -171,6 +187,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
     override fun updateCurrentMembers(currentMembers: Long) {
         txtMember.text = getString(R.string.campaign_member, currentMembers)
     }
+
 
 
     override fun updateCampaignDetail(campaign: FbCampaign) {

@@ -95,11 +95,17 @@
     <string name="bio">Bio</string>
     <string name="permission_deny">Permission deny</string>
     <string name="read_external_storage_rationale_for_select_image">App need  storage permission to allow you to select image</string>
-
+    <string name="txt_name_placeholder">-------</string>
+    <string name="txt_bio_placeholder">-----------------------------------</string>
+    <string name="helpful">Helpful</string>
+    <string name="unhelpful">Unhelpful</string>
+    <string name="not_attend">Not Attend</string>
+    <string name="campaign_join_count">%1$d CAMPAIGNS</string>
     <!-- Campaign Detail -->
+    <string name="publish_date">Publish on %1$s</string>
     <string name="description">Description</string>
     <string name="requirement">Requirement</string>
-    <string name="Join">join</string>
+    <string name="join">join</string>
     <string name="campaign_requirement">- %1$d Member \n\n- For %2$s \n\n- More then %3$d year </string>
     <string name="campaign_member">%1$d Member</string>
     <string name="campaigns">Campaigns</string>
@@ -111,6 +117,11 @@
     <string name="join_date">Join  %1$s</string>
     <string name="campaign_detail">Campaign Detail</string>
     <string name="member">Member</string>
+    <string name="rate_member">Rate Member</string>
+    <string name="make_your_live_better">Make your live Better</string>
+    <string name="not_allow_rate_member_now">You can rate member after one day of start campaign</string>
+    <string name="not_allow_leave_now">Not allow to leave now</string>
+    <string name="campaign_is_finish">Good work campaign is finished</string>
 
 
     <!-- Group detail  -->
@@ -124,11 +135,6 @@
     <string name="since_x_days">since %1$d days</string>
     <string name="since_x_weeks">since %1$d weeks</string>
 
-
-    <!--text placeholder only -->
-    <string name="campaign_32">Campaign 32</string>
-    <string name="_3_member">3 Member</string>
-    <string name="team_l">Team_L</string>
 
     <!-- create group -->
     <string name="group_campaigns">Group Campaigns</string>
@@ -154,11 +160,12 @@
     <string name="please_select_max_count_members">please select maximum count member required of campaign</string>
     <string name="required_age_should_be_in_range_10_100">Required age should be in the range 10 to 100</string>
     <string name="max_count_member_should_be_in_range_10_1000">max count member should be in the range of 5 to 1000</string>
-    <string name="error_while_upload_camapign">Error while upload campaign</string>
-    <string name="empty_descriotion">Please provide a non empty description</string>
+    <string name="error_while_upload_campaign">Error while upload campaign</string>
+    <string name="empty_description">Please provide a non empty description</string>
     <string name="edit_campaign">Edit Campaign</string>
     <string name="required_age_should_be_equal_or_greater_then_old_age">required age should be equal or greater than old age</string>
     <string name="required_max_member_should_be_equal_or_greater_then_old_max_member">max member should be equal or greater than old max member</string>
+
 
 
 </resources>

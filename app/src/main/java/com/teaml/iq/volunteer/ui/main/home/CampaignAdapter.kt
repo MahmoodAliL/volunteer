@@ -18,7 +18,7 @@ import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_IMG_FOLDER
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_LOGO_IMG_FOLDER
 import com.teaml.iq.volunteer.utils.CommonUtils
-import com.teaml.iq.volunteer.utils.toTimestamp
+import com.teaml.iq.volunteer.utils.toTimestampString
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
@@ -91,7 +91,7 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
 
                     GlideApp.with(mContext)
                             .load(campaignCoverImgRef)
-                            .signature(ObjectKey(lastModificationDate.toTimestamp()))
+                            .signature(ObjectKey(lastModificationDate.toTimestampString()))
                             .centerCrop()
                             .placeholder(R.drawable.campaign_placeholder_img)
                             .into(campaignCoverImgView)
@@ -99,7 +99,7 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
                     GlideApp.with(mContext)
                             .load(orgImgRef)
                             .circleCrop()
-                            .signature(ObjectKey(lastModificationDateForGroup.toTimestamp()))
+                            .signature(ObjectKey(lastModificationDateForGroup.toTimestampString()))
                             .placeholder(R.drawable.group_logo_placeholder_img)
                             .into(orgImgView)
 

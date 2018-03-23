@@ -8,14 +8,11 @@ import android.view.*
 import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
+import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.profile.edit.EditProfileFragment
-import com.teaml.iq.volunteer.utils.AppConstants
-import com.teaml.iq.volunteer.utils.gone
-import com.teaml.iq.volunteer.utils.replaceFragmentAndAddToBackStack
-import com.teaml.iq.volunteer.utils.visible
-import kotlinx.android.synthetic.main.profile_header_layout.*
+import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.profile_info_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
 import javax.inject.Inject
@@ -64,6 +61,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
 
     }
 
+
     override fun showProgress() {
         progressBarLayout.visible
     }
@@ -94,24 +92,27 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         }
     }
 
-    override fun updateUserName(currentUserName: String) {
-        txtName.text = currentUserName
-    }
+    override fun showProfileInfo(profileInfo: FbUserDetail) {
 
-    override fun updateUserBio(currentUserBio: String) {
-        txtBio.text = currentUserBio
-    }
 
-    override fun updateGender(gender: String) {
-        txtGender.text = gender
-    }
+        if (context == null)
+            return
 
-    override fun updateBirthOfDay(currentBirthOfDay: String) {
-        txtBirthOfDay.text = currentBirthOfDay
-    }
+        hideDetailLayout.gone
 
-    override fun updatePhoneNumber(currentPhoneNumber: String) {
-        txtPhone.text = currentPhoneNumber
+        with(profileInfo) {
+            txtName.text = name
+            txtBio.text = bio
+            txtGender.text = CommonUtils.intGenderToString(profileInfo.gender, context!!)
+            txtBirthOfDay.text = birthOfDay.toDateString()
+            txtPhone.text = phone
+
+            // gamification view
+            txtCampaignJoinCount.text = getString(R.string.campaign_join_count, campaignJoinCount)
+            txtHelpfulCount.text = helpfulCount.toString()
+            txtUnhelpful.text = unhelpfulCount.toString()
+            txtNotAttendCount.text = notAttendCount.toString()
+        }
     }
 
     override fun showAndUpdateEmail(email: String) {
@@ -119,7 +120,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         txtEmail.text = email
     }
 
-    override fun showEditProfileInfo(uid: String) {
+    override fun showEditProfileInfoFragment(uid: String) {
         activity?.replaceFragmentAndAddToBackStack(R.id.fragmentContainer, EditProfileFragment.newInstance(), EditProfileFragment.TAG)
     }
 

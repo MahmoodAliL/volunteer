@@ -36,6 +36,8 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
     private var campaignId = ""
     private var groupId = ""
 
+    private var isOwnerCampaign = false
+
 
     override fun onAttach(mvpView: V) {
         super.onAttach(mvpView)
@@ -113,38 +115,51 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
                 // save group result
                 val group = loadGroupDetail.result.toObject(FbGroup::class.java)
 
-
                 // check if user sign in or not to determine task need
                 if (isSignIn && uid != null) {
                     Log.d(TAG, "on sign in ")
-                    val campaignRef = dataManager.getCampaignDocRef(campaignId)
-                    val checkUserJoinWithCampaign = dataManager.checkUserJoinWithCampaign(campaignRef)
-                    // wait task until complete
-                    Tasks.await(checkUserJoinWithCampaign, 20, TimeUnit.SECONDS)
-                    // is  user join
-                    if (checkUserJoinWithCampaign.result.isEmpty) {
-                        // load user data to using them to check user
-                        val loadProfileInfo = dataManager.loadProfileInfo(uid)
-                        Tasks.await(loadProfileInfo, 20, TimeUnit.SECONDS)
 
-                        profileInfo = loadProfileInfo.result.toObject(FbUserDetail::class.java)
-                        Log.d(TAG, "not join loading profile info")
-                        // to check if user can join to campaign if not why can't join
-                        Log.d(TAG, "start check if user joint to campaign")
+                    // if user is owner this campaign then  user can rate member only if start date
+                    if (groupId == uid) {
+                        Log.d(TAG, "user is owner of this campaign")
+                        isOwnerCampaign = true
                         uiThread {
-                            canJoinToCampaign(profileInfo!!, campaign)
+                            canRateMemberNow(campaign)
+                            mvpView?.onUserOwnerCampaign()
                         }
 
-                        isJoin = false
+                    }
+                    // check is user is join or not
+                    else {
+                        val campaignRef = dataManager.getCampaignDocRef(campaignId)
+                        val checkUserJoinWithCampaignTask = dataManager.checkUserJoinWithCampaign(campaignRef)
+                        // wait task until complete
+                        Tasks.await(checkUserJoinWithCampaignTask, 20, TimeUnit.SECONDS)
+                        // is  user join
+                        if (checkUserJoinWithCampaignTask.result.isEmpty) {
+                            // load user data to using them to check user
+                            val loadProfileInfo = dataManager.loadProfileInfo(uid)
+                            Tasks.await(loadProfileInfo, 20, TimeUnit.SECONDS)
 
-                    } else {
-                        isJoin = true
+                            profileInfo = loadProfileInfo.result.toObject(FbUserDetail::class.java)
+                            Log.d(TAG, "not join loading profile info")
+                            // to check if user can join to campaign if not why can't join
+                            Log.d(TAG, "start check if user joint to campaign")
+                            uiThread {
+                                canJoinToCampaign(profileInfo!!, campaign)
+                            }
+                            isJoin = false
 
-                        uiThread { mvpView?.updateJoinBtnToLeave() }
+                        } else {
+                            isJoin = true
+                            uiThread {
+                                mvpView?.updateJoinBtnToLeave()
+                                checkCanLeaveCampaign(campaign)
+                            }
+                        }
                     }
 
                 }
-
 
                 // نقوم باستدعى الدالة في uiThread لاننا نتعامل مع الوجهة المستخدم هذا مختصر بعض الشي
                 uiThread {
@@ -167,11 +182,39 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
     }
 
+    private fun checkCanLeaveCampaign(campaign: FbCampaign) {
+        val now = Calendar.getInstance()
+        val startDate = Calendar.getInstance()
+        startDate.time = campaign.startDate
+
+        val currentDayOfYear = now.get(Calendar.DAY_OF_YEAR)
+        now.set(Calendar.DAY_OF_YEAR, currentDayOfYear + 1)
+
+        if (startDate.timeInMillis < now.timeInMillis) {
+            mvpView?.disableJoinBtn(R.string.leave, R.string.not_allow_leave_now)
+        }
+    }
+
+    private fun canRateMemberNow(campaign: FbCampaign) {
+
+        val startDate = Calendar.getInstance()
+        startDate.time = campaign.startDate
+
+        val nowDate = Calendar.getInstance()
+        val currentDayOfYear = nowDate.get(Calendar.DAY_OF_YEAR)
+        nowDate.set(Calendar.DAY_OF_YEAR, currentDayOfYear - 1)
+
+        if (startDate.timeInMillis <= nowDate.timeInMillis ) {
+            mvpView?.updateJoinBtnToRateMember()
+        } else {
+            mvpView?.disableJoinBtn(R.string.rate_member, R.string.not_allow_rate_member_now)
+        }
+    }
 
     private fun canJoinToCampaign(profileInfo: FbUserDetail, campaign: FbCampaign): Boolean {
 
         if (campaign.currentMemberCount >= campaign.maxMemberCount) {
-            mvpView?.disableJoinBtn(R.string.full_campaign)
+            mvpView?.disableJoinBtn(note = R.string.full_campaign)
             return false
         }
 
@@ -182,7 +225,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
             else
                 R.string.this_campaign_for_female
 
-            mvpView?.disableJoinBtn(stringRed)
+            mvpView?.disableJoinBtn(note = stringRed)
 
             return false
         }
@@ -198,12 +241,13 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         // different between current age and this year
         var age = today.get(Calendar.YEAR) - birthOfDate.get(Calendar.YEAR)
 
-        // let see day of year is = 100 and old
+        // let see day of year is = 100 and day of year of birth day is 101 so it need one day to
+        // to complete has day old
         if (today.get(Calendar.DAY_OF_YEAR) < birthOfDate.get(Calendar.DAY_OF_YEAR))
             age--
 
         if (age < campaign.age) {
-            mvpView?.disableJoinBtn(R.string.your_age_is_less_then_required)
+            mvpView?.disableJoinBtn(note = R.string.your_age_is_less_then_required)
             return false
         }
 
@@ -224,10 +268,11 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
         if (isSignIn) {
 
-            if (isJoin)
-                onUserLeaveCampaign()
-            else
-                onUserJoinToCampaign()
+            when {
+                isOwnerCampaign -> mvpView?.showRateMembersFragment(campaignId)
+                isJoin -> onUserLeaveCampaign()
+                else -> onUserJoinToCampaign()
+            }
 
         } else {
             mvpView?.openSignInActivity()

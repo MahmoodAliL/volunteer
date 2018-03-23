@@ -8,10 +8,8 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import com.teaml.iq.volunteer.data.model.CampaignMembers
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
-import com.teaml.iq.volunteer.data.model.RateMembers
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_COL
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_JOINED
@@ -19,12 +17,8 @@ import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_MEMBERS_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_QUERY_LIMIT
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_COL
 import com.teaml.iq.volunteer.utils.AppConstants.GROUP_QUERY_LIMIT
-import com.teaml.iq.volunteer.utils.AppConstants.HELPFUL_COUNT
 import com.teaml.iq.volunteer.utils.AppConstants.MEMBER_COL
-import com.teaml.iq.volunteer.utils.AppConstants.NOT_ATTEND_COUNT
-import com.teaml.iq.volunteer.utils.AppConstants.UNHELPFUL_COUNT
 import com.teaml.iq.volunteer.utils.AppConstants.USERS_COL
-import java.lang.ref.Reference
 import java.util.*
 import javax.inject.Inject
 
@@ -43,7 +37,6 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         const val GROUP_REF_FIELD = "groupRef"
         const val JOIN_DATE_FIELD = "joinDate"
         const val USER_REF_FIELD = "userRef"
-        const val IS_RATE_FIELD = "isRate"
     }
 
     /**
@@ -96,14 +89,6 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     override fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query {
         val query = getCampaignMembersColRef(campaignId).limit(CAMPAIGN_MEMBERS_LIMIT)
                 .orderBy(JOIN_DATE_FIELD)
-        return if (lastVisibleItem != null)
-            query.startAfter(lastVisibleItem)
-        else
-            query
-    }
-
-    override fun loadRateMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query {
-        val query = getCampaignMembersColRef(campaignId).whereEqualTo(IS_RATE_FIELD, 0).limit(CAMPAIGN_MEMBERS_LIMIT)
         return if (lastVisibleItem != null)
             query.startAfter(lastVisibleItem)
         else
@@ -223,58 +208,6 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
     }
 
-    override fun onHelpfulRate(campaignId: String, userId: String): Task<Long> {
-
-        val campaignMembersRef = getCampaignDocRef(campaignId).collection(MEMBER_COL).document(userId)
-        val userRef = getUserDocRef(userId)
-
-        return mFirestore.runTransaction {
-            val userSnapshot = it.get(userRef)
-            val helpfulCount = userSnapshot.getLong(HELPFUL_COUNT)
-
-            val newHelpfulCount = helpfulCount + 1
-            it.update(userRef, HELPFUL_COUNT, newHelpfulCount)
-
-            it.update(campaignMembersRef,  IS_RATE_FIELD, 1)
-
-            newHelpfulCount
-        }
-    }
-
-    override fun onUnhelpfulRate(campaignId: String, userId: String): Task<Long> {
-
-        val campaignMembersRef = getCampaignDocRef(campaignId).collection(MEMBER_COL).document(userId)
-        val userRef = getUserDocRef(userId)
-
-        return mFirestore.runTransaction {
-            val userSnapshot = it.get(userRef)
-            val unhelpfulCount = userSnapshot.getLong(UNHELPFUL_COUNT)
-
-            val newUnhelpfulCount = unhelpfulCount + 1
-            it.update(userRef, UNHELPFUL_COUNT, newUnhelpfulCount)
-
-            it.update(campaignMembersRef, IS_RATE_FIELD, 2)
-
-            newUnhelpfulCount
-        }
-    }
-
-    override fun onNotAttendRate(campaignId: String, userId: String): Task<Long> {
-        val campaignMemberRef = getCampaignDocRef(campaignId).collection(MEMBER_COL).document(userId)
-        val userRef = getUserDocRef(userId)
-
-        return mFirestore.runTransaction {
-            val userSnapshot = it.get(userRef)
-            val notAttendCount = userSnapshot.getLong(NOT_ATTEND_COUNT)
-
-            val newNotAttendCount = notAttendCount + 1
-            it.update(userRef, NOT_ATTEND_COUNT, newNotAttendCount)
-
-            it.update(campaignMemberRef, IS_RATE_FIELD, 3)
-
-            newNotAttendCount
-        }
-    }
     override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<Transaction> {
         val uuid = UUID.randomUUID()
         return mFirestore.runTransaction {

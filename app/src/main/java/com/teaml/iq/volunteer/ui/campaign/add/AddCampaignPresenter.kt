@@ -64,7 +64,7 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
             }
 
             if (description.isEmpty()) {
-                view.onError(R.string.empty_descriotion)
+                view.onError(R.string.empty_description)
                 return
             }
 
@@ -143,7 +143,7 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
                     view.hideLoading()
                     view.showMyGroupFragment(dataManager.getFirebaseUserAuthID()!!)
                 } else {
-                    view.onError(R.string.error_while_upload_camapign)
+                    view.onError(R.string.error_while_upload_campaign)
                     view.hideLoading()
                 }
             }

@@ -18,9 +18,9 @@ import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
 import com.teaml.iq.volunteer.utils.AppConstants
+import kotlinx.android.synthetic.main.my_account_header.*
 import kotlinx.android.synthetic.main.myaccount_layout.*
 import kotlinx.android.synthetic.main.myaccount_layout_not_sign_in.*
-import kotlinx.android.synthetic.main.profile_header_layout.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 

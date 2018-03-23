@@ -133,7 +133,7 @@ fun Date.toTimeString(): String {
     return format.format(this)
 }
 
-fun Date.toTimestamp(): String {
+fun Date.toTimestampString(): String {
     val format = SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.ENGLISH)
     return format.format(this)
 }

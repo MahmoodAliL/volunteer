@@ -7,9 +7,7 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.ui.base.BasePresenter
-import com.teaml.iq.volunteer.utils.CommonUtils
-import com.teaml.iq.volunteer.utils.toDateString
-import com.teaml.iq.volunteer.utils.toTimestamp
+import com.teaml.iq.volunteer.utils.toTimestampString
 import javax.inject.Inject
 
 /**
@@ -51,20 +49,11 @@ class ProfileInfoPresenter<V : ProfileInfoMvpView> @Inject constructor(dataManag
                     }
                     val profileInfo = documentSnapshot.toObject(FbUserDetail::class.java)
 
+                    view.showProfileInfo(profileInfo)
+
                     if (profileInfo.img.isNotEmpty()) {
-                        view.updateProfileImg(profileInfo.img, profileInfo.lastModificationDate.toTimestamp())
+                        view.updateProfileImg(profileInfo.img, profileInfo.lastModificationDate.toTimestampString())
                     }
-
-                    if (profileInfo.bio.isNotEmpty()) {
-                        view.updateUserBio(profileInfo.bio)
-                    }
-
-                    if (profileInfo.phone.isNotEmpty())
-                        view.updatePhoneNumber(profileInfo.phone)
-
-                    view.updateUserName(profileInfo.name)
-                    view.updateBirthOfDay(profileInfo.birthOfDay.toDateString())
-                    view.updateGender(CommonUtils.intGenderToString(profileInfo.gender, activity))
 
                     if (isSameUser(uid))
                         dataManager.getCurrentUserEmail()?.let { email ->
@@ -94,7 +83,7 @@ class ProfileInfoPresenter<V : ProfileInfoMvpView> @Inject constructor(dataManag
         }
 
         uid?.let {
-            mvpView?.showEditProfileInfo(it)
+            mvpView?.showEditProfileInfoFragment(it)
         }
     }
 

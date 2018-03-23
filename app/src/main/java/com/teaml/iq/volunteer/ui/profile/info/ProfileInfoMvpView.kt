@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.ui.profile.info
 
+import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.ui.base.FragmentMvpView
 
 /**
@@ -15,19 +16,11 @@ interface ProfileInfoMvpView : FragmentMvpView {
 
     fun hideProgress()
 
-    fun showEditProfileInfo(uid: String)
+    fun showEditProfileInfoFragment(uid: String)
+
+    fun showProfileInfo(profileInfo: FbUserDetail)
 
     fun updateProfileImg(currentProfileImg: String, lastImgUpdate: String)
-
-    fun updateUserName(currentUserName: String)
-
-    fun updateUserBio(currentUserBio: String)
-
-    fun updateGender(gender: String)
-
-    fun updateBirthOfDay(currentBirthOfDay: String)
-
-    fun updatePhoneNumber(currentPhoneNumber: String)
 
     fun showAndUpdateEmail(email: String)
 
