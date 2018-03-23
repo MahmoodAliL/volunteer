@@ -19,6 +19,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.campaign.map.MapFragment
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
+import com.teaml.iq.volunteer.ui.campaign.members.rate.RateMemberFragment
 import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.campaign_detail_layout.*
@@ -194,7 +195,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
         activity?.addFragmentAndAddToBackStack(
                 R.id.fragmentContainer,
-                CampaignMembersFragment.newInstance(bundle),
+                RateMemberFragment.newInstance(bundle),
                 CampaignMembersFragment.TAG
         )
     }

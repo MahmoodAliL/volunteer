@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 21/02/2018.
  */
-class CampaignMembersFragment : BaseLoadDataFragment<CampaignMembers>(), CampaignMembersMvpView {
+open class CampaignMembersFragment : BaseLoadDataFragment<CampaignMembers>(), CampaignMembersMvpView {
 
     @Inject
     lateinit var mPresenter: CampaignMembersMvpPresenter<CampaignMembersMvpView>

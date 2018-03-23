@@ -26,6 +26,14 @@ interface FbFirestore {
 
     fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query
 
+    fun loadRateMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query
+
+    fun onHelpfulRate(campaignId: String, userId: String): Task<Long>
+
+    fun onUnhelpfulRate(campaignId: String, userId: String): Task<Long>
+
+    fun onNotAttendRate(campaignId: String,userId: String): Task<Long>
+
     fun loadGroupList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot>
 
     fun loadCampaignUserJoined(uid: String , lastVisibleItem: DocumentSnapshot?): Query

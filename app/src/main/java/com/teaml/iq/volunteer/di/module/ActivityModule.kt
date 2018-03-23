@@ -39,6 +39,10 @@ import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpPresenter
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpView
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersPresenter
 import com.teaml.iq.volunteer.ui.campaign.members.adapter.CampaignMembersAdapter
+import com.teaml.iq.volunteer.ui.campaign.members.adapter.RateMemberAdapter
+import com.teaml.iq.volunteer.ui.campaign.members.rate.RateMemberMvpPresenter
+import com.teaml.iq.volunteer.ui.campaign.members.rate.RateMemberMvpView
+import com.teaml.iq.volunteer.ui.campaign.members.rate.RateMemberPresenter
 import com.teaml.iq.volunteer.ui.group.GroupMvpPresenter
 import com.teaml.iq.volunteer.ui.group.GroupMvpView
 import com.teaml.iq.volunteer.ui.group.GroupPresenter
@@ -172,6 +176,9 @@ class ActivityModule(val activity: AppCompatActivity) {
     fun provideGroupCampaignsAdapter() = GroupCampaignsAdapter(mutableListOf())
 
     @Provides
+    fun provideRateMemberAdapter() = RateMemberAdapter(mutableListOf())
+
+    @Provides
     fun provideMyActivityPresenter(presenter: MyActivityPresenter<MyActivityMvpView>): MyActivityMvpPresenter<MyActivityMvpView> =
             presenter
 
@@ -230,5 +237,8 @@ class ActivityModule(val activity: AppCompatActivity) {
     @Provides
     fun provideEditCampaignPresenter(presenter: EditCampaignPresenter<EditCampaignMvpView>): EditCampaignMvpPresenter<EditCampaignMvpView> =
             presenter
+
+    @Provides
+    fun provideRatePresneter(presenter: RateMemberPresenter<RateMemberMvpView>): RateMemberMvpPresenter<RateMemberMvpView> = presenter
 
 }

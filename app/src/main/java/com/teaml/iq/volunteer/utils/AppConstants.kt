@@ -23,6 +23,12 @@ object AppConstants {
     const val GROUP_COL = "groups"
     const val MEMBER_COL = "members"
 
+    // firestore field
+
+    const val HELPFUL_COUNT = "helpfulCount"
+    const val UNHELPFUL_COUNT = "unhelpfulCount"
+    const val NOT_ATTEND_COUNT = "notAttendCount"
+
     // query limit
     const val GROUP_CAMPAIGNS_LIMIT = 6L
     const val CAMPAIGN_QUERY_LIMIT = 10L

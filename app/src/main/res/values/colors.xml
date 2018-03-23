@@ -25,6 +25,7 @@
 
     <!-- navigation bar color-->
     <color name="white">#ffffff</color>
+    <color name="milk">#c8ffffff</color>
     <color name="item_color">#737474</color>
     <color name="item_selected_color">#FF4081</color>
 

@@ -13,6 +13,7 @@ import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignFragment
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.campaign.edit.EditCampaignFragment
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
+import com.teaml.iq.volunteer.ui.campaign.members.rate.RateMemberFragment
 import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.group.create.CreateGroupFragment
 import com.teaml.iq.volunteer.ui.group.detail.GroupDetailFragment
@@ -86,5 +87,7 @@ interface ActivityComponent {
     fun inject(fragment: AddCampaignFragment)
 
     fun inject(fragment: EditCampaignFragment)
+
+    fun inject(fragment: RateMemberFragment)
 
 }

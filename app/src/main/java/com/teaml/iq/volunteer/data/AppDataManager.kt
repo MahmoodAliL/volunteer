@@ -80,6 +80,9 @@ class AppDataManager @Inject constructor(
     override fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query =
             firebaseHelper.loadCampaignMembers(campaignId, lastVisibleItem)
 
+    override fun loadRateMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query =
+        firebaseHelper.loadRateMembers(campaignId,lastVisibleItem)
+
     override fun loadProfileInfo(uid: String): Task<DocumentSnapshot> = firebaseHelper.loadProfileInfo(uid)
 
     override fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot> =
@@ -99,6 +102,17 @@ class AppDataManager @Inject constructor(
 
     override fun getCampaignMembersColRef(campaignId: String): CollectionReference =
             firebaseHelper.getCampaignMembersColRef(campaignId)
+
+    // rate fun
+    override fun onHelpfulRate(campaignId: String, userId: String): Task<Long> =
+         firebaseHelper.onHelpfulRate(campaignId,userId)
+
+    override fun onUnhelpfulRate(campaignId: String, userId: String): Task<Long> =
+        firebaseHelper.onUnhelpfulRate(campaignId,userId)
+
+    override fun onNotAttendRate(campaignId: String, userId: String): Task<Long> =
+        firebaseHelper.onNotAttendRate(campaignId,userId)
+
 
     // campaign detail
     override fun checkUserJoinWithCampaign(campaignRef: DocumentReference): Task<QuerySnapshot> =

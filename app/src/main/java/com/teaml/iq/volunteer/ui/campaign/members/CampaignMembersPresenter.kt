@@ -15,7 +15,8 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 21/02/2018.
  */
-class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(dataManager: DataManager) : BaseLoadDatePresenter<V>(dataManager), CampaignMembersMvpPresenter<V> {
+open class CampaignMembersPresenter<V : CampaignMembersMvpView> @Inject constructor(dataManager: DataManager)
+    : BaseLoadDatePresenter<V>(dataManager), CampaignMembersMvpPresenter<V> {
 
     companion object {
         val TAG: String = CampaignMembersPresenter::class.java.simpleName
