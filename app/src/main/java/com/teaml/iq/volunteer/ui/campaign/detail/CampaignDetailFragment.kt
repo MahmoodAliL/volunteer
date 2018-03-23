@@ -85,6 +85,13 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
     override fun showRateMembersFragment(campaignId: String) {
         Log.d(TAG, "showRateMembersFragment")
+        val bundle = bundleOf(RateMemberFragment.BUNDLE_KEY_CAMPAIGN_ID to campaignId)
+
+        activity?.addFragmentAndAddToBackStack(
+                R.id.fragmentContainer,
+                RateMemberFragment.newInstance(bundle),
+                RateMemberFragment.TAG
+        )
     }
 
     /**
@@ -184,6 +191,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         txtRequirement.text = getString(R.string.campaign_requirement, campaign.maxMemberCount, gender, campaign.age)
     }
 
+
     override fun updateCurrentMembers(currentMembers: Long) {
         txtMember.text = getString(R.string.campaign_member, currentMembers)
     }
@@ -212,7 +220,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
         activity?.addFragmentAndAddToBackStack(
                 R.id.fragmentContainer,
-                RateMemberFragment.newInstance(bundle),
+                CampaignMembersFragment.newInstance(bundle),
                 CampaignMembersFragment.TAG
         )
     }

@@ -26,6 +26,9 @@ class RateMemberFragment : BaseLoadDataFragment<RateMembers>(), RateMemberMvpVie
     companion object {
         val TAG = RateMemberFragment::class.java.simpleName
         fun newInstance(args: Bundle = Bundle.EMPTY) = RateMemberFragment().apply { arguments = args }
+
+        const val BUNDLE_KEY_CAMPAIGN_ID = "bundle_key_campaign_id"
+
     }
 
     @Inject
@@ -44,13 +47,12 @@ class RateMemberFragment : BaseLoadDataFragment<RateMembers>(), RateMemberMvpVie
         getActivityComponent()?.let {
             it.inject(this)
             mRatePresenter.onAttach(this)
-            showMessage("run ")
         }
     }
 
     override fun setup(view: View) {
         arguments?.let {
-            val campaignId = it.getString(CampaignDetailFragment.BUNDLE_KEY_CAMPAIGN_ID)
+            val campaignId = it.getString(BUNDLE_KEY_CAMPAIGN_ID)
             retryImg.setOnClickListener { mRatePresenter.onRetryClick() }
             mRateAdapter.setOnLoadMoreListener { mRatePresenter.onLoadMore() }
             swipeRefreshLayout.setOnRefreshListener { mRatePresenter.onSwipeRefresh() }

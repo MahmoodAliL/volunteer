@@ -108,7 +108,7 @@ class RateMemberAdapter(memberList: MutableList<RateMembers>): BaseRecyclerAdapt
                 val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${member.imgName}")
                 GlideApp.with(mContext)
                         .load(imgRef)
-                        .signature(ObjectKey{member.lastModificationDate.toTimestamp()})
+                        .signature(ObjectKey{member.lastModificationDate.toTimestampString()})
                         .placeholder(R.drawable.profile_placeholder_img)
                         .circleCrop()
                         .into(memberImg)
