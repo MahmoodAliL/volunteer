@@ -42,6 +42,7 @@
     <color name="color_btn_leave_pressed">#d41c1c</color>
     <color name="color_btn_join_disable">#999999</color>
     <color name="color_header">#62cecece</color>
+    <color name="color_profile_header">#F1F1F1</color>
 
 
 </resources>

@@ -3,6 +3,7 @@
 
     <item android:state_enabled="true" android:state_pressed="false">
         <shape android:shape="rectangle">
+            <padding android:left="16dp" android:right="16dp"/>
             <solid android:color="@color/colorPrimary" />
             <corners android:radius="18dp" />
         </shape>
@@ -10,6 +11,7 @@
 
     <item android:state_enabled="true" android:state_pressed="true">
         <shape android:shape="rectangle">
+            <padding android:left="16dp" android:right="16dp"/>
             <solid android:color="@color/color_btn_join_pressed" />
             <corners android:radius="18dp" />
         </shape>
@@ -17,7 +19,7 @@
 
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
-
+            <padding android:left="16dp" android:right="16dp"/>
             <solid android:color="@color/color_btn_join_disable" />
             <corners android:radius="18dp" />
         </shape>

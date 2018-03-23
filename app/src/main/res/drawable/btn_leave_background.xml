@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item  android:state_pressed="false">
+    <item android:state_enabled="true" android:state_pressed="false">
         <shape android:shape="rectangle">
-            <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
+            <padding android:left="16dp" android:right="16dp"/>
             <solid android:color="@color/color_btn_leave" />
             <corners android:radius="18dp" />
         </shape>
     </item>
 
-    <item  android:state_pressed="true">
+    <item android:state_enabled="true" android:state_pressed="true">
         <shape android:shape="rectangle">
-            <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
+            <padding android:left="16dp" android:right="16dp"/>
             <solid android:color="@color/color_btn_leave_pressed" />
             <corners android:radius="18dp" />
         </shape>
     </item>
 
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <padding android:left="16dp" android:right="16dp"/>
+            <solid android:color="@color/color_btn_join_disable" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
 
 
 </selector>

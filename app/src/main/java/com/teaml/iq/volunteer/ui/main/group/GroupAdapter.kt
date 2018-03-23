@@ -16,7 +16,7 @@ import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import com.teaml.iq.volunteer.utils.AppConstants
-import com.teaml.iq.volunteer.utils.toTimestamp
+import com.teaml.iq.volunteer.utils.toTimestampString
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -73,7 +73,7 @@ class GroupAdapter(listOfGroupInfo: MutableList<GroupInfo>) : BaseRecyclerAdapte
 
                     GlideApp.with(mContext)
                             .load(groupImgRef)
-                            .signature(ObjectKey(lastModificationDate.toTimestamp()))
+                            .signature(ObjectKey(lastModificationDate.toTimestampString()))
                             .placeholder(R.drawable.group_logo_placeholder_img)
                             .into(groupImgView)
                 } catch (e: Exception) {

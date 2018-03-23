@@ -15,7 +15,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.CommonUtils
 import com.teaml.iq.volunteer.utils.toDateString
-import com.teaml.iq.volunteer.utils.toTimestamp
+import com.teaml.iq.volunteer.utils.toTimestampString
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
@@ -133,7 +133,7 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
 
     override fun showProfileInfo(profileInfo: FbUserDetail) {
 
-        updateProfileImg(profileInfo.img, profileInfo.lastModificationDate.toTimestamp())
+        updateProfileImg(profileInfo.img, profileInfo.lastModificationDate.toTimestampString())
 
         nameField.setText(profileInfo.name)
         bioField.setText(profileInfo.bio)

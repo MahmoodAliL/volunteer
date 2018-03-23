@@ -102,7 +102,7 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
             }
 
             if (description.isEmpty()) {
-                view.onError(R.string.empty_descriotion)
+                view.onError(R.string.empty_description)
                 return
             }
 

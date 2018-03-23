@@ -17,7 +17,7 @@ import com.teaml.iq.volunteer.ui.profile.ProfileActivity
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.CommonUtils
 import com.teaml.iq.volunteer.utils.clearText
-import com.teaml.iq.volunteer.utils.toTimestamp
+import com.teaml.iq.volunteer.utils.toTimestampString
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
@@ -71,7 +71,7 @@ class CampaignMembersAdapter(memberList: MutableList<CampaignMembers>) : BaseRec
 
                 GlideApp.with(mContext)
                         .load(imgRef)
-                        .signature(ObjectKey(user.lastModificationDate.toTimestamp()))
+                        .signature(ObjectKey(user.lastModificationDate.toTimestampString()))
                         .circleCrop()
                         .placeholder(R.drawable.profile_placeholder_img)
                         .into(userImgView)

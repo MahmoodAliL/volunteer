@@ -21,6 +21,13 @@ interface DataManager : PreferenceHelper, FirebaseHelper {
         ANY(2)
     }
 
+    enum class UserRate(val type: Int) {
+        NOT_RATED(0),
+        HELPFUL(1),
+        UNHELPFUL(2),
+        NOT_ATTEND(3)
+    }
+
 
 
 }

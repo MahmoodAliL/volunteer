@@ -15,7 +15,11 @@ class FbUserDetail(
         val gender: Int = 0,
         val birthOfDay: Date = Date(),
         val email: String = "",
-        val phone: String = ""
+        val phone: String = "",
+        val campaignJoinCount: Int = 0,
+        val helpfulCount: Int = 0,
+        val unhelpfulCount: Int = 0,
+        val notAttendCount: Int = 0
 ) {
     companion object {
         const val NAME = "name"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -28,12 +29,12 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="@string/team_l"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#000"
         app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="Team-L" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/memberNumber"
@@ -42,13 +43,13 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:text="@string/_3_member"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_caption"
         android:visibility="invisible"
         app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campaignCount" />
+        app:layout_constraintTop_toBottomOf="@+id/campaignCount"
+        tool:text="3 Member" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/campaignCount"
@@ -57,12 +58,12 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:text="@string/campaign_32"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_caption"
         app:layout_constraintLeft_toRightOf="@id/groupImg"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGroupName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtGroupName"
+        tool:text="32 Campaign" />
 
 
 </android.support.constraint.ConstraintLayout>
