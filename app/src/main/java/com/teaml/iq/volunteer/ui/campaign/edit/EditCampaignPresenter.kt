@@ -138,7 +138,7 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
                     FbCampaign::location.name to location,
                     FbCampaign::age.name to age,
                     FbCampaign::maxMemberCount.name to maxMembers,
-                    FbCampaign::isEdited.name to true
+                    FbCampaign::mIsEdited.name to true
             ))
 
             view.showLoading()

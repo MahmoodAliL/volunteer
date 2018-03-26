@@ -41,7 +41,7 @@
         app:srcCompat="@drawable/ic_more_vert_24dp" />
 
     <TextView
-        android:id="@+id/txtCampaignTitle"
+        android:id="@+id/txtViewsEdited"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -64,7 +64,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         app:layout_constraintEnd_toStartOf="@id/imgMore"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtCampaignTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtViewsEdited"
         tools:text="@tools:sample/date/ddmmyy" />
 
 

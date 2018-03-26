@@ -32,9 +32,16 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
         val TAG: String = CampaignAdapter::class.java.simpleName
     }
 
+
     init {
         // because the default is 2
         //setVisibleThreshold(2)
+    }
+
+    private var onViewItemClick: ((campaignId: String, groupId: String) -> Unit)? = null
+
+    fun setOnViewItemClickListener(onViewItemClick: ((campaignId: String, groupId: String) -> Unit)) {
+        this.onViewItemClick = onViewItemClick
     }
 
     inner class CampaignVH(itemView: View) : BaseViewHolder(itemView) {
@@ -43,30 +50,24 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
         private val mContext = itemView.context
 
         private val campaignTitle: TextView = itemView.find(R.id.campaignTitle)
-        private val orgNameAndUploadDate = itemView.find<TextView>(R.id.orgNameAndUploadDate)
+        private val txtGroupNameUploadDateViews = itemView.find<TextView>(R.id.txtGroupNameUploadDateViews)
         private val orgImgView = itemView.find<ImageView>(R.id.orgImgView)
         private val campaignCoverImgView = itemView.find<ImageView>(R.id.campaignCoverImg)
-
 
 
         init {
             itemView.setOnClickListener {
                 val campaign = mList[currentPosition]
                 Log.e(TAG, "onItemClick -> CampaignId: ${campaign.campaignId}, GroupId: ${campaign.groupId}")
-
-                mContext.startActivity<CampaignActivity>(
-                        CampaignActivity.EXTRA_KEY_CAMPAIGN_ID to campaign.campaignId,
-                        CampaignActivity.EXTRA_KEY_GROUP_ID to campaign.groupId
-                )
+                onViewItemClick?.invoke(campaign.campaignId, campaign.groupId)
             }
         }
 
         override fun clear() {
             campaignTitle.text = ""
-            orgNameAndUploadDate.text = ""
-            orgImgView.setImageDrawable(null)
-            campaignCoverImgView.setImageDrawable(null)
-
+            txtGroupNameUploadDateViews.text = ""
+            orgImgView.setImageResource(R.drawable.group_logo_placeholder_img)
+            campaignCoverImgView.setImageResource(R.drawable.campaign_placeholder_img)
         }
 
         override fun onBind(position: Int) {
@@ -80,9 +81,14 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
                 // if we need to translate some string in text and make concatenating
                 // them we should using this way
 
-                 orgNameAndUploadDate.text = mContext.getString(R.string.group_name_and_date, groupName, CommonUtils.getHumanReadableElapseTime(uploadDate, mContext))
+                txtGroupNameUploadDateViews.text = mContext.getString(
+                        R.string.group_name_views_date,
+                        groupName,
+                        viewsCount,
+                        CommonUtils.getHumanReadableElapseTime(uploadDate, mContext)
+                )
                 /*val temp = "$groupName . ${CommonUtils.getHumanReadableElapseTime(uploadDate, mContext)}"
-                orgNameAndUploadDate.text = temp*/
+                txtGroupNameUploadDateViews.text = temp*/
 
                 try {
                     // sometimes image null or empty and that will cause app to crush
@@ -126,7 +132,6 @@ class CampaignAdapter(campaignPostList: MutableList<CampaignPost>) : BaseRecycle
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return CampaignVH(LayoutInflater.from(parent.context).inflate(R.layout.campaign_view, parent, false))
     }
-
 
 
 }

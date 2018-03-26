@@ -187,8 +187,8 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         val startDate = Calendar.getInstance()
         startDate.time = campaign.startDate
 
-        val currentDayOfYear = now.get(Calendar.DAY_OF_YEAR)
-        now.set(Calendar.DAY_OF_YEAR, currentDayOfYear + 1)
+        val currentDayOfYear = now[Calendar.DAY_OF_YEAR]
+        now[Calendar.DAY_OF_YEAR] = currentDayOfYear + 1
 
         if (startDate.timeInMillis < now.timeInMillis) {
             mvpView?.disableJoinBtn(R.string.leave, R.string.not_allow_leave_now)
@@ -204,7 +204,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         val currentDayOfYear = nowDate.get(Calendar.DAY_OF_YEAR)
         nowDate.set(Calendar.DAY_OF_YEAR, currentDayOfYear - 1)
 
-        if (startDate.timeInMillis <= nowDate.timeInMillis ) {
+        if (startDate.timeInMillis <= nowDate.timeInMillis) {
             mvpView?.updateJoinBtnToRateMember()
         } else {
             mvpView?.disableJoinBtn(R.string.rate_member, R.string.not_allow_rate_member_now)
@@ -212,6 +212,17 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
     }
 
     private fun canJoinToCampaign(profileInfo: FbUserDetail, campaign: FbCampaign): Boolean {
+        val nowDate = Calendar.getInstance()
+        val currentDayOfYear = nowDate[Calendar.DAY_OF_YEAR]
+        nowDate[Calendar.DAY_OF_YEAR] = currentDayOfYear + 1
+
+        val startDate = Calendar.getInstance()
+        startDate.time = campaign.startDate
+
+        if (startDate.timeInMillis <= nowDate.timeInMillis) {
+            mvpView?.disableJoinBtn(note = R.string.not_allow_join_now)
+            return false
+        }
 
         if (campaign.currentMemberCount >= campaign.maxMemberCount) {
             mvpView?.disableJoinBtn(note = R.string.full_campaign)
@@ -270,7 +281,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
             when {
                 isOwnerCampaign -> mvpView?.showRateMembersFragment(campaignId)
-                isJoin -> onUserLeaveCampaign()
+                isJoin -> mvpView?.showOnLeaveCampaignDialog()
                 else -> onUserJoinToCampaign()
             }
 
@@ -279,7 +290,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         }
     }
 
-    private fun onUserLeaveCampaign() {
+    override fun onUserLeaveCampaign() {
         mvpView?.getBaseActivity()?.let { baseActivity ->
             dataManager.getFirebaseUserAuthID()?.let { uid ->
                 val campaignRef = dataManager.getCampaignDocRef(campaignId)

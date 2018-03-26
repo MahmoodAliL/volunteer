@@ -1,7 +1,8 @@
 <resources>
 
 
-    <string name="app_name">Volunteer IQ</string>
+
+    <string name="app_name">Volunteers IQ</string>
     <string name="hello_blank_fragment">volunteer</string>
 
     <!--App  -->
@@ -80,7 +81,7 @@
     <string name="activity">Activity</string>
 
     <!-- campaign post -->
-    <string name="group_name_and_date">%1$s . %2$s </string>
+    <string name="group_name_views_date">%1$s . %2$d views . %3$s </string>
 
     <!-- list of group info -->
     <string name="campaigns_number">%1$d Campaign </string>
@@ -102,6 +103,9 @@
     <string name="not_attend">Not Attend</string>
     <string name="campaign_join_count">%1$d CAMPAIGNS</string>
     <!-- Campaign Detail -->
+
+    <string name="views_count">%1$d views</string>
+    <string name="views_count_and_edited">%1$d views . edited in %2$s</string>
     <string name="publish_date">Publish on %1$s</string>
     <string name="description">Description</string>
     <string name="requirement">Requirement</string>
@@ -122,6 +126,8 @@
     <string name="not_allow_rate_member_now">You can rate member after one day of start campaign</string>
     <string name="not_allow_leave_now">Not allow to leave now</string>
     <string name="campaign_is_finish">Good work campaign is finished</string>
+    <string name="on_leave_campaign">Do you went really to leave this campaign</string>
+    <string name="not_allow_join_now">You can join before one day of start campaign</string>
 
 
     <!-- Group detail  -->
@@ -166,6 +172,8 @@
     <string name="required_age_should_be_equal_or_greater_then_old_age">required age should be equal or greater than old age</string>
     <string name="required_max_member_should_be_equal_or_greater_then_old_max_member">max member should be equal or greater than old max member</string>
 
+    <!-- Group Campaign Adapter -->
+    <string name="upload_date_and_views_count">%1$s . %2$d views</string>
 
 
 </resources>

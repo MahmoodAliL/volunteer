@@ -19,4 +19,6 @@ interface CampaignDetailMvpPresenter<V : CampaignDetailMvpView> : MvpPresenter<V
     fun onMembersClick()
 
     fun onGroupImgClick()
+
+    fun onUserLeaveCampaign()
 }

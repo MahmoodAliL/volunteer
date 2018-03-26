@@ -8,6 +8,7 @@ import java.util.*
 data class CampaignPost(
         val campaignId: String,
         val title: String,
+        var viewsCount: Int,
         val groupId: String,
         val lastModificationDate: Date,
         val groupLogoImg: String,

@@ -11,4 +11,5 @@ interface MyActivityMvpView : BaseSignInSignOutMvpView, BaseLoadDataMvpView {
 
     fun updateCampaign(campaignPosts: MutableList<CampaignPost>)
 
+    fun openCampaignActivityWithDetailFragment(campaignId: String, groupId: String)
 }

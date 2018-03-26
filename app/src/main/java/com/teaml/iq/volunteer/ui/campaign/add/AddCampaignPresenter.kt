@@ -93,6 +93,7 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
 
             campaignInfo.putAll(hashMapOf(
                     FbCampaign::title.name to name,
+                    FbCampaign::viewsCount.name to 0 ,
                     FbCampaign::startDate.name to startDate,
                     FbCampaign::uploadDate.name to FieldValue.serverTimestamp(),
                     FbCampaign::lastModificationDate.name to FieldValue.serverTimestamp(),

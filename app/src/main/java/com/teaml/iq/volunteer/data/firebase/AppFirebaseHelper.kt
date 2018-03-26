@@ -8,8 +8,10 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.data.model.FbCampaign
 import com.teaml.iq.volunteer.data.model.FbGroup
+import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.utils.AppConstants
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_COL
 import com.teaml.iq.volunteer.utils.AppConstants.CAMPAIGN_JOINED
@@ -169,9 +171,12 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
         val joinCampaignDocRef = mFirestore.document("$USERS_COL/$uid/$CAMPAIGN_JOINED/${campaignRef.id}")
         val campaignMembersDocRef = campaignRef.collection(MEMBER_COL).document(uid)
+        val userDocRef = getUserDocRef(uid)
 
         return mFirestore.runTransaction {
             val campaignSnapshot = it.get(campaignRef)
+            val userSnapshot = it.get(userDocRef)
+
             val maxMemberCount = campaignSnapshot.getLong(FbCampaign::maxMemberCount.name)
             val currentMemberCount = campaignSnapshot.getLong(FbCampaign::currentMemberCount.name)
 
@@ -182,13 +187,16 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             else
                 it.update(campaignRef, FbCampaign::currentMemberCount.name, newCurrentMemberCount)
 
+            // update campaignJoinCount
+            val currentCampaignJoinCount = userSnapshot.getLong(FbUserDetail::campaignJoinCount.name)
+            val newCampaignJoinCount = currentCampaignJoinCount + 1
+            it.update(userDocRef, FbUserDetail::campaignJoinCount.name, newCampaignJoinCount)
 
             // get join date of user
             val joinDate = JOIN_DATE_FIELD to FieldValue.serverTimestamp()
-            // get user reference
-            val userRef = getUserDocRef(getFirebaseUserAuthID()!!)
+
             // hash map to put user reference and join date in campaigns/members collection
-            val memberHashMap = hashMapOf(joinDate, USER_REF_FIELD to userRef)
+            val memberHashMap = hashMapOf(joinDate, USER_REF_FIELD to userDocRef, RATE_TYPE_FIELD to DataManager.UserRate.NOT_RATED.type)
             it.set(campaignMembersDocRef, memberHashMap)
 
             // hash map to put campaign reference and join date in users/uid/joinCampaign collection
@@ -202,15 +210,23 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     override fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<Long> {
         val joinCampaignDocRef = mFirestore.document("$USERS_COL/$uid/$CAMPAIGN_JOINED/${campaignRef.id}")
         val campaignMembersDocRef = campaignRef.collection(MEMBER_COL).document(uid)
+        val userDocRef = getUserDocRef(uid)
 
         return mFirestore.runTransaction {
 
             val campaignSnapshot = it.get(campaignRef)
+            val userSnapshot = it.get(userDocRef)
 
+            // update currentMemberCount
             val currentMemberCount = campaignSnapshot.getLong(FbCampaign::currentMemberCount.name)
-
             val newCurrentMemberCount = currentMemberCount - 1
             it.update(campaignRef, FbCampaign::currentMemberCount.name, newCurrentMemberCount)
+
+            // update campaignJoinCount
+            val currentCampaignJoinCount = userSnapshot.getLong(FbUserDetail::campaignJoinCount.name)
+            val newCampaignJoinCount = currentCampaignJoinCount - 1
+            it.update(userDocRef, FbUserDetail::campaignJoinCount.name, newCampaignJoinCount)
+
 
             it.delete(campaignMembersDocRef)
             it.delete(joinCampaignDocRef)
@@ -272,6 +288,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             newNotAttendCount
         }
     }
+
     override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<Transaction> {
         val uuid = UUID.randomUUID()
         return mFirestore.runTransaction {
@@ -291,7 +308,17 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     // group operation
 
     override fun saveGroupInfo(groupInfo: HashMap<String, Any>): Task<Void> {
-        return mFirestore.collection(GROUP_COL).document(getFirebaseUserAuthID()!!).set(groupInfo, SetOptions.merge())
+
+        val uid = getFirebaseUserAuthID()!!
+        val groupDocRef = getGroupDocRef(uid)
+        val userDocRef = getUserDocRef(uid)
+
+        val userInfo = mapOf(FbUserDetail::myGroupId.name to uid)
+
+        val batch = mFirestore.batch()
+        batch.set(groupDocRef, groupInfo, SetOptions.merge())
+        batch.set(userDocRef, userInfo , SetOptions.merge())
+        return batch.commit()
     }
 
 

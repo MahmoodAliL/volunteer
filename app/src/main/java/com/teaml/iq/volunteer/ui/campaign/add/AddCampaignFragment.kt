@@ -165,7 +165,7 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
         val year = calender.get(Calendar.YEAR)
         val month = calender.get(Calendar.MONTH)
         // campaign will be set on the next day
-        calender.set(Calendar.DAY_OF_YEAR, currentDay + 1)
+        calender.set(Calendar.DAY_OF_YEAR, currentDay + 2)
         val day = calender.get(Calendar.DAY_OF_MONTH)
 
         // set min date
@@ -176,7 +176,6 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
 
     override fun onTimeSet(timePicker: TimePicker?, hourOfDay: Int, minute: Int) {
 
-
         mSelectedTime = SelectedTime(hourOfDay, minute)
 
         val time = "$hourOfDay:$minute"
@@ -185,9 +184,11 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
 
-        mSelectedDate = SelectedDate(year, month + 1, dayOfMonth)
+        val newMonth = month + 1
+        Log.d(TAG, "Month: $newMonth")
+        mSelectedDate = SelectedDate(year, newMonth, dayOfMonth)
 
-        val date = "$year/$month/$dayOfMonth"
+        val date = "$year/$newMonth/$dayOfMonth"
         startDateField.setText(date)
     }
 

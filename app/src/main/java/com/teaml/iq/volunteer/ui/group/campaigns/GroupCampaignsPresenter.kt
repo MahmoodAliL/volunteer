@@ -61,6 +61,7 @@ class GroupCampaignsPresenter<V : GroupCampaignsMvpView> @Inject constructor(dat
                     campaignList.add(GroupCampaigns(
                             campaignId = campaign.id,
                             title = campaign.title,
+                            viewsCount = campaign.viewsCount,
                             imgName = campaign.imgName,
                             uploadDate = campaign.uploadDate
                     ))

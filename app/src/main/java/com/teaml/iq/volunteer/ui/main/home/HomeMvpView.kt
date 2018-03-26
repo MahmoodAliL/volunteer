@@ -10,4 +10,5 @@ interface HomeMvpView : BaseLoadDataMvpView {
 
     fun addNewItems(newItems: MutableList<CampaignPost>)
 
+    fun openCampaignActivityWithDetailFragment(campaignId: String, groupId: String)
 }

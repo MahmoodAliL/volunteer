@@ -28,6 +28,8 @@ interface CampaignDetailMvpView : FragmentMvpView {
 
     fun openSignInActivity()
 
+    fun showOnLeaveCampaignDialog()
+
     fun showCampaignMembersFragment(campaignId: String)
 
     fun showRateMembersFragment(campaignId: String)

@@ -35,7 +35,7 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAda
     inner class GroupCampaignsVH(view: View) : BaseViewHolder(view) {
 
         private val imgView = view.find<ImageView>(R.id.campaignCoverImgView)
-        private val txtTitle = view.find<TextView>(R.id.txtCampaignTitle)
+        private val txtTitle = view.find<TextView>(R.id.txtViewsEdited)
         private val txtUploadDate = view.find<TextView>(R.id.txtUploadDate)
         private val imgMore = view.find<ImageView>(R.id.imgMore)
 
@@ -87,7 +87,8 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAda
                 imgMore.visible
 
             txtTitle.text = item.title
-            txtUploadDate.text = CommonUtils.getHumanReadableElapseTime(item.uploadDate, mContext)
+            val humanReadableElapseTime = CommonUtils.getHumanReadableElapseTime(item.uploadDate, mContext)
+            txtUploadDate.text = mContext.getString(R.string.upload_date_and_views_count, humanReadableElapseTime, item.viewsCount)
 
             try {
 

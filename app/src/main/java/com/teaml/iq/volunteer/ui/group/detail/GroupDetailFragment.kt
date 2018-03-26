@@ -128,8 +128,7 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
     }
     override fun showAddCampaignFragment() {
 
-        //i think so far !! need more check all code will be take if group id is not empty
-        if (groupId.isEmpty()) {
+        if (groupId.isNotEmpty()) {
             activity?.addFragmentAndAddToBackStack(
                     R.id.fragmentContainer,
                     AddCampaignFragment.newInstance(),

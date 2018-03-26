@@ -6,5 +6,5 @@ import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataMvpPresenter
  * Created by ali on 2/4/2018.
  */
 interface HomeMvpPresenter<V : HomeMvpView> : BaseLoadDataMvpPresenter<V> {
-
+    fun onViewItemClick(campaignId: String, groupId: String)
 }

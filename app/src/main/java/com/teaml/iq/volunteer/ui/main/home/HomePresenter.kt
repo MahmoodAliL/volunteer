@@ -57,7 +57,7 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                     Tasks.whenAllSuccess<DocumentSnapshot>(tasks)
                 }.addOnCompleteListener {
 
-                    onLoadComplete()
+                    super.onLoadComplete()
 
                     if (it.isSuccessful) {
                         // exit when result is empty
@@ -82,6 +82,7 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
                             campaignPostList.add(CampaignPost(
                                     campaignId = campaign.id,
                                     title = campaign.title,
+                                    viewsCount = campaign.viewsCount,
                                     coverImgName = campaign.imgName,
                                     lastModificationDate = campaign.lastModificationDate,
                                     uploadDate = campaign.uploadDate,
@@ -106,5 +107,7 @@ class HomePresenter<V : HomeMvpView> @Inject constructor(dataManager: DataManage
     }
 
 
-
+    override fun onViewItemClick(campaignId: String, groupId: String) {
+        mvpView?.openCampaignActivityWithDetailFragment(campaignId, groupId)
+    }
 }

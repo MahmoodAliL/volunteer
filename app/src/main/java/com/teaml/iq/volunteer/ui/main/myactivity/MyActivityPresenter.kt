@@ -132,6 +132,7 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
                             campaignPostList.add(CampaignPost(
                                     campaignId = campaign.id,
                                     title = campaign.title,
+                                    viewsCount = campaign.viewsCount,
                                     coverImgName = campaign.imgName,
                                     lastModificationDate = campaign.lastModificationDate,
                                     uploadDate = campaign.uploadDate,
@@ -155,7 +156,9 @@ class MyActivityPresenter<V : MyActivityMvpView> @Inject constructor(dataManager
     }
 
 
-
+    override fun onViewItemClick(campaignId: String, groupId: String) {
+        mvpView?.openCampaignActivityWithDetailFragment(campaignId, groupId)
+    }
 
 
 }

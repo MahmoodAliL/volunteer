@@ -25,6 +25,7 @@ import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.campaign_detail_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
@@ -75,6 +76,8 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         }
     }
 
+
+
     override fun openGroupActivity(groupId: String) {
         context?.startActivity<GroupActivity>(CampaignActivity.EXTRA_KEY_GROUP_ID to groupId)
     }
@@ -94,6 +97,12 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         )
     }
 
+    override fun showOnLeaveCampaignDialog() {
+        activity?.alert(R.string.on_leave_campaign, null, {
+            positiveButton(R.string.leave) { mPresenter.onUserLeaveCampaign() }
+            negativeButton(R.string.cancel) { }
+        })?.show()
+    }
     /**
      * for more info please  visit  https://developers.google.com/maps/documentation/urls/android-intents#uriencoding
      */
@@ -153,6 +162,17 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
         // campaign detail
         txtCampaignTitle.text = campaign.title
+        Log.d(TAG, "is Edited: " + campaign.mIsEdited)
+        if (campaign.mIsEdited) {
+            txtViewsEdited.text = getString(
+                    R.string.views_count_and_edited,
+                    campaign.viewsCount,
+                    campaign.lastModificationDate.toDateString()
+            )
+        } else {
+            txtViewsEdited.text = getString(R.string.views_count, campaign.viewsCount)
+        }
+
         txtStartDate.text = campaign.startDate.toDateString()
         txtStartTime.text = campaign.startDate.toTimeString()
         txtMember.text = getString(R.string.campaign_member, campaign.currentMemberCount)

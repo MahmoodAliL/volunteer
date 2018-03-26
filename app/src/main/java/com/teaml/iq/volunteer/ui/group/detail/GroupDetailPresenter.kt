@@ -66,6 +66,7 @@ class GroupDetailPresenter<V : GroupDetailMvpView> @Inject constructor(dataManag
                     GroupCampaigns(
                             campaignId = result.documents[index].id,
                             title = value.title,
+                            viewsCount = value.viewsCount,
                             imgName = value.imgName,
                             uploadDate = value.uploadDate
                     )

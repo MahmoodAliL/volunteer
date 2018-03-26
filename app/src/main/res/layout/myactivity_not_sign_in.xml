@@ -22,7 +22,7 @@
         app:layout_constraintGuide_percent="0.5"/>
 
     <TextView
-        android:id="@+id/txtCampaignTitle"
+        android:id="@+id/txtViewsEdited"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -43,7 +43,7 @@ and help to make country better"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCampaignTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewsEdited" />
 
     <Button
         android:id="@+id/btnSignIn"

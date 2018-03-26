@@ -5,7 +5,9 @@ import android.view.View
 import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import kotlinx.android.synthetic.main.recycler_view_layout.*
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 
@@ -42,14 +44,24 @@ class HomeFragment : BaseLoadDataFragment<CampaignPost>(), HomeMvpView {
     override fun setup(view: View) {
 
         mCampaignAdapter.setOnLoadMoreListener { mPresenter.onLoadMore() }
+        mCampaignAdapter.setOnViewItemClickListener { campaignId, groupId ->
+            mPresenter.onViewItemClick(campaignId, groupId)
+        }
 
         retryImg.setOnClickListener { mPresenter.onRetryClick() }
         swipeRefreshLayout.setOnRefreshListener { mPresenter.onSwipeRefresh() }
+
 
         mPresenter.onViewPrepared()
 
     }
 
+    override fun openCampaignActivityWithDetailFragment(campaignId: String, groupId: String) {
+        activity?.startActivity<CampaignActivity>(
+                CampaignActivity.EXTRA_KEY_CAMPAIGN_ID to campaignId,
+                CampaignActivity.EXTRA_KEY_GROUP_ID to groupId
+        )
+    }
 
     override fun addNewItems(newItems: MutableList<CampaignPost>) {
         mCampaignAdapter.addItems(newItems)

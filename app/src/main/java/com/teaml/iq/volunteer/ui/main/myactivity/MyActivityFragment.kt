@@ -9,6 +9,7 @@ import com.teaml.iq.volunteer.data.model.CampaignPost
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import kotlinx.android.synthetic.main.myactivity_not_sign_in.*
 import kotlinx.android.synthetic.main.recycler_view_layout.*
@@ -68,10 +69,22 @@ class MyActivityFragment : BaseLoadDataFragment<CampaignPost>(), MyActivityMvpVi
         setupLoadDateView()
 
         mCampaignAdapter.setOnLoadMoreListener { mPresenter.onLoadMore() }
+        mCampaignAdapter.setOnViewItemClickListener { campaignId, groupId ->
+            mPresenter.onViewItemClick(campaignId, groupId)
+        }
+
         swipeRefreshLayout.setOnRefreshListener { mPresenter.onSwipeRefresh() }
         retryImg.setOnClickListener { mPresenter.onRetryClick() }
 
     }
+
+    override fun openCampaignActivityWithDetailFragment(campaignId: String, groupId: String) {
+        activity?.startActivity<CampaignActivity>(
+                CampaignActivity.EXTRA_KEY_CAMPAIGN_ID to campaignId,
+                CampaignActivity.EXTRA_KEY_GROUP_ID to groupId
+        )
+    }
+
 
     override fun setupViewWithSignOutStatus() {
         btnSignIn.setOnClickListener { mPresenter.onSignInClick() }
