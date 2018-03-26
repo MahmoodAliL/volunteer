@@ -161,6 +161,8 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
                 }
 
+                // when campaign loaded success increment viewsCounts
+                dataManager.incrementCampaignView(campaignId)
                 // نقوم باستدعى الدالة في uiThread لاننا نتعامل مع الوجهة المستخدم هذا مختصر بعض الشي
                 uiThread {
                     mvpView?.showCampaignDetail(campaign, group)

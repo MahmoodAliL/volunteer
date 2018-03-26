@@ -5,14 +5,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.teaml.iq.volunteer.R
-
 import com.teaml.iq.volunteer.data.model.RateMembers
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
-import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.campaign.members.adapter.RateMemberAdapter
 import com.teaml.iq.volunteer.utils.gone
-import kotlinx.android.synthetic.main.rate_member_view.view.*
 import kotlinx.android.synthetic.main.recycler_view_layout.*
 import javax.inject.Inject
 
@@ -36,7 +33,6 @@ class RateMemberFragment : BaseLoadDataFragment<RateMembers>(), RateMemberMvpVie
 
     @Inject
     lateinit var mRateAdapter: RateMemberAdapter
-
 
 
     override fun onCreateRecyclerAdapter(): BaseRecyclerAdapter<RateMembers> {
@@ -63,14 +59,14 @@ class RateMemberFragment : BaseLoadDataFragment<RateMembers>(), RateMemberMvpVie
             mRateAdapter.onItemClickListener {
                 showMessage("click")
             }
-            mRateAdapter.onHelpfulClickListener { userId , position->
-                mRatePresenter.onHelpfulClick(campaignId,userId,position)
+            mRateAdapter.onHelpfulClickListener { userId, position ->
+                mRatePresenter.onHelpfulClick(campaignId, userId, position)
             }
             mRateAdapter.onUnhelpfulClickListener { userId, position ->
-                mRatePresenter.onUnhelpfulClick(campaignId,userId,position)
+                mRatePresenter.onUnhelpfulClick(campaignId, userId, position)
             }
             mRateAdapter.onNotAttendClickListener { userId, position ->
-                mRatePresenter.onNotAttendClick(campaignId,userId,position)
+                mRatePresenter.onNotAttendClick(campaignId, userId, position)
             }
         }
     }

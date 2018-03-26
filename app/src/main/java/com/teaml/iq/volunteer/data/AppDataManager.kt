@@ -103,6 +103,10 @@ class AppDataManager @Inject constructor(
     override fun getCampaignMembersColRef(campaignId: String): CollectionReference =
             firebaseHelper.getCampaignMembersColRef(campaignId)
 
+    override fun incrementCampaignView(campaignId: String): Task<Long> {
+        return firebaseHelper.incrementCampaignView(campaignId)
+    }
+
     // rate fun
     override fun onHelpfulRate(campaignId: String, userId: String): Task<Long> =
          firebaseHelper.onHelpfulRate(campaignId,userId)

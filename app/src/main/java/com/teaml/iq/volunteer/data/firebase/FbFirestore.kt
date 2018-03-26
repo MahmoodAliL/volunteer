@@ -8,6 +8,7 @@ import com.google.firebase.firestore.*
  */
 interface FbFirestore {
 
+    // profile operation
     fun saveProfileInfo(profileInfo: HashMap<String, Any>): Task<Void>
 
     fun loadProfileInfo(uid: String): Task<DocumentSnapshot>
@@ -16,6 +17,7 @@ interface FbFirestore {
 
 
     //TODO: make sure to add index to each query
+    // common fun
     fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot>
 
     fun getCampaignDocRef(campaignId: String): DocumentReference
@@ -23,6 +25,7 @@ interface FbFirestore {
     fun getGroupDocRef(groupId: String): DocumentReference
 
     fun getCampaignMembersColRef(campaignId: String): CollectionReference
+    // campaign fun
 
     fun loadCampaignMembers(campaignId: String, lastVisibleItem: DocumentSnapshot?): Query
 
@@ -47,6 +50,8 @@ interface FbFirestore {
     fun addUserToCampaign(campaignRef: DocumentReference, uid: String): Task<Long>
 
     fun onUserLeaveCampaign(campaignRef: DocumentReference, uid: String): Task<Long>
+
+    fun incrementCampaignView(campaignId: String): Task<Long>
 
     // group detail
 

@@ -248,7 +248,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             val newHelpfulCount = helpfulCount + 1
             it.update(userRef, HELPFUL_COUNT, newHelpfulCount)
 
-            it.update(campaignMembersRef,  RATE_TYPE_FIELD, 1)
+            it.update(campaignMembersRef,  RATE_TYPE_FIELD, DataManager.UserRate.HELPFUL.type)
 
             newHelpfulCount
         }
@@ -266,7 +266,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             val newUnhelpfulCount = unhelpfulCount + 1
             it.update(userRef, UNHELPFUL_COUNT, newUnhelpfulCount)
 
-            it.update(campaignMembersRef, RATE_TYPE_FIELD, 2)
+            it.update(campaignMembersRef, RATE_TYPE_FIELD, DataManager.UserRate.UNHELPFUL.type)
 
             newUnhelpfulCount
         }
@@ -283,7 +283,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             val newNotAttendCount = notAttendCount + 1
             it.update(userRef, NOT_ATTEND_COUNT, newNotAttendCount)
 
-            it.update(campaignMemberRef, RATE_TYPE_FIELD, 3)
+            it.update(campaignMemberRef, RATE_TYPE_FIELD, DataManager.UserRate.NOT_ATTEND.type)
 
             newNotAttendCount
         }
@@ -303,6 +303,18 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             it.set(campaignDocRef, campaignInfo)
         }
 
+    }
+
+    override fun incrementCampaignView(campaignId: String): Task<Long> {
+        val campaignDocRef = getCampaignDocRef(campaignId)
+
+        return mFirestore.runTransaction {
+            val campaignSnapShot = it.get(campaignDocRef)
+            val newViewsCount = campaignSnapShot.getLong(FbCampaign::viewsCount.name) + 1
+            it.update(campaignDocRef, FbCampaign::viewsCount.name, newViewsCount)
+
+            newViewsCount
+        }
     }
 
     // group operation
