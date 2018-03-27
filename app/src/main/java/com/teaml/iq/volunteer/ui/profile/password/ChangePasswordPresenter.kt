@@ -1,5 +1,6 @@
 package com.teaml.iq.volunteer.ui.profile.password
 
+import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.ui.base.BasePresenter
 import javax.inject.Inject
@@ -13,27 +14,27 @@ class ChangePasswordPresenter<V: ChangePasswordMvpView> @Inject constructor(date
     override fun onDoneClick(oldPassword: String, newPassword: String, confirmPassword: String) {
         mvpView?.let {view ->
             if (oldPassword.isEmpty()) {
-                view.showMessage("msg old")
+                view.showMessage(R.string.empty_password)
                 return
             }
             if(newPassword.isEmpty()) {
-                view.showMessage("msg new")
+                view.showMessage(R.string.empty_password)
                 return
             }
             if (oldPassword.length < 6) {
-                view.showMessage("msg length")
+                view.showMessage(R.string.invalid_password)
                 return
             }
             if(newPassword.length <6) {
-                view.showMessage("msg length")
+                view.showMessage(R.string.invalid_password)
                 return
             }
             if(confirmPassword.isEmpty()) {
-                view.showMessage("msg confirm")
+                view.showMessage(R.string.empty_password)
                 return
             }
             if(newPassword != confirmPassword){
-                view.showMessage("msg not equal")
+                view.showMessage(R.string.not_match_password)
                 return
             }
 
@@ -44,17 +45,17 @@ class ChangePasswordPresenter<V: ChangePasswordMvpView> @Inject constructor(date
                     dataManager.onUpdatePassword(newPassword).addOnCompleteListener {
                         if(it.isSuccessful) {
                             view.hideLoading()
-                            view.showMessage("Password updated")
+                            view.showMessage(R.string.update_password)
                             view.showProfileInfoFragment()
 
                         }else{
                             view.hideLoading()
-                            view.onError("Error password not updated")
+                            view.onError(R.string.connection_error)
                         }
                     }
                 else {
                     view.hideLoading()
-                    view.onError("Error auth failed")
+                    view.onError(R.string.old_password_not_correct)
                 }
             }
         }
