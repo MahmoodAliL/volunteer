@@ -86,6 +86,9 @@ import com.teaml.iq.volunteer.ui.profile.edit.EditProfilePresenter
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoMvpPresenter
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoMvpView
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoPresenter
+import com.teaml.iq.volunteer.ui.profile.password.ChangePasswordMvpPresenter
+import com.teaml.iq.volunteer.ui.profile.password.ChangePasswordMvpView
+import com.teaml.iq.volunteer.ui.profile.password.ChangePasswordPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpPresenter
 import com.teaml.iq.volunteer.ui.splash.SplashMvpView
 import com.teaml.iq.volunteer.ui.splash.SplashPresenter
@@ -239,6 +242,10 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
-    fun provideRatePresneter(presenter: RateMemberPresenter<RateMemberMvpView>): RateMemberMvpPresenter<RateMemberMvpView> = presenter
+    fun provideRatePresenter(presenter: RateMemberPresenter<RateMemberMvpView>): RateMemberMvpPresenter<RateMemberMvpView> = presenter
+
+    @Provides
+    fun provideChangePasswordPresenter(presenter: ChangePasswordPresenter<ChangePasswordMvpView>): ChangePasswordMvpPresenter<ChangePasswordMvpView> =
+            presenter
 
 }

@@ -12,6 +12,7 @@ import com.teaml.iq.volunteer.data.model.FbUserDetail
 import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.profile.edit.EditProfileFragment
+import com.teaml.iq.volunteer.ui.profile.password.ChangePasswordFragment
 import com.teaml.iq.volunteer.utils.*
 import kotlinx.android.synthetic.main.profile_info_layout.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
@@ -133,6 +134,9 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         when (item?.itemId) {
             R.id.action_edit -> {
                 mPresenter.onActionEditClick()
+            }
+            R.id.action_change_password -> {
+                activity?.replaceFragmentAndAddToBackStack(R.id.fragmentContainer,ChangePasswordFragment.newInstance(),ChangePasswordFragment.TAG)
             }
         }
 

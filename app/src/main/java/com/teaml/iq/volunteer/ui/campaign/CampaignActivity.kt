@@ -53,8 +53,8 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
     }
 
     override fun updateToolbarToMember() {
-        supportActionBar?.title = getString(R.string.member)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
+       /* supportActionBar?.title = getString(R.string.member)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)*/
     }
 
 

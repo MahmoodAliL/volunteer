@@ -1,9 +1,6 @@
 package com.teaml.iq.volunteer.ui.campaign.members.rate
 
-import com.google.firebase.firestore.DocumentReference
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataMvpPresenter
-import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersMvpPresenter
-import java.text.FieldPosition
 
 /**
  * Created by ali on 3/16/2018.

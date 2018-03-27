@@ -61,6 +61,12 @@ class AppDataManager @Inject constructor(
         firebaseHelper.signOut()
     }
 
+    override fun checkOldPassword(oldPassword: String): Task<Void> =
+            firebaseHelper.checkOldPassword(oldPassword)
+
+    override fun onUpdatePassword(newPassword: String): Task<Void> =
+            firebaseHelper.onUpdatePassword(newPassword)
+
     /**
      * Firestore
      */

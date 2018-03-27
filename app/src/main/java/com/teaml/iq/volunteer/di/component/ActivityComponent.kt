@@ -27,6 +27,7 @@ import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityFragment
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
 import com.teaml.iq.volunteer.ui.profile.edit.EditProfileFragment
 import com.teaml.iq.volunteer.ui.profile.info.ProfileInfoFragment
+import com.teaml.iq.volunteer.ui.profile.password.ChangePasswordFragment
 import com.teaml.iq.volunteer.ui.splash.SplashActivity
 import dagger.Component
 
@@ -89,5 +90,7 @@ interface ActivityComponent {
     fun inject(fragment: EditCampaignFragment)
 
     fun inject(fragment: RateMemberFragment)
+
+    fun inject(fragment: ChangePasswordFragment)
 
 }

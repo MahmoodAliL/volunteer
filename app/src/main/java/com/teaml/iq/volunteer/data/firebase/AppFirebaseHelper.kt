@@ -3,6 +3,7 @@ package com.teaml.iq.volunteer.data.firebase
 import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -302,7 +303,15 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
             it.set(campaignDocRef, campaignInfo)
         }
+    }
 
+    override fun checkOldPassword(oldPassword: String): Task<Void> {
+        val authCredential = EmailAuthProvider.getCredential(getCurrentUserEmail()!!,oldPassword)
+        return mFirebaseAuth.currentUser!!.reauthenticate(authCredential)
+    }
+
+    override fun onUpdatePassword(newPassword: String): Task<Void> {
+        return mFirebaseAuth.currentUser!!.updatePassword(newPassword)
     }
 
     override fun incrementCampaignView(campaignId: String): Task<Long> {
