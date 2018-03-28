@@ -44,7 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ellipsize="end"
-        android:gravity="left"
+        android:gravity="start"
         android:maxLines="2"
         android:text="لعبت روحي من التطبيق"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
@@ -59,10 +59,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:gravity="start"
         android:text="Team-L . 2 Week"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/secondary_text_light"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/orgImgView"
         app:layout_constraintTop_toBottomOf="@+id/campaignTitle" />
 

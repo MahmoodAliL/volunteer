@@ -49,8 +49,8 @@
 
     <!-- Change Password -->
     <string name="change_password">Change Password</string>
-    <string name="old_password">old password</string>
-    <string name="update_password">Update password</string>
+    <string name="old_password">Old Password</string>
+    <string name="update_password">Update Password</string>
     <string name="old_password_not_correct">The old password is not correct</string>
 
 
@@ -90,7 +90,7 @@
 
     <!-- list of group info -->
     <string name="campaigns_number">%1$d Campaign </string>
-    <string name="edit">edit</string>
+    <string name="edit">Edit</string>
 
     <!-- profile  info -->
 
@@ -163,7 +163,7 @@
     <string name="title">Title</string>
     <string name="time">Time</string>
     <string name="date">Date</string>
-    <string name="age">Age</string>
+    <string name="age">Less Age</string>
     <string name="max_members">Max Members</string>
     <string name="add_campaign">Add Campaign</string>
     <string name="map">Map</string>

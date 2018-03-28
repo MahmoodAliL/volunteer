@@ -17,8 +17,8 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="32dp"
             android:src="@drawable/sign_in_now"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -31,8 +31,8 @@
             android:gravity="center_horizontal"
             android:text="Sign in to join with alot of campaign and help to make country better"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgView" />
 
         <Button
@@ -43,8 +43,8 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/sign_in"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtDescription"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -56,8 +56,8 @@
             android:background="@color/divider"
             android:padding="8dp"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnSignIn" />
 
 
@@ -70,8 +70,8 @@
             android:drawableStart="@drawable/ic_lock_24dp"
             android:text="Terms &amp; privacy policy"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <TextView
@@ -80,10 +80,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_feedback_24dp"
-            android:text="Feedback"
+            android:text="Feadback"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtGender" />
 
 
@@ -95,8 +95,8 @@
             android:drawableStart="@drawable/ic_help_24dp"
             android:text="Help"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtBirthOfDay" />
 
         <TextView
@@ -108,8 +108,8 @@
             android:drawableStart="@drawable/ic_info_24dp"
             android:text="About"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtPhone" />
 
     </android.support.constraint.ConstraintLayout>

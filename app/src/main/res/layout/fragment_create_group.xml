@@ -47,22 +47,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/line1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            app:layout_constraintEnd_toStartOf="@id/line2"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/groupCoverImgView">
 
             <android.support.design.widget.TextInputEditText
@@ -79,8 +75,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@id/line2"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilName">
 
             <android.support.design.widget.TextInputEditText
