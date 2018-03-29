@@ -49,7 +49,7 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        (activity as AppCompatActivity).supportActionBar?.title = "Campaign Detail"
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.campaign_detail)
 
         getActivityComponent()?.let {
             it.inject(this)

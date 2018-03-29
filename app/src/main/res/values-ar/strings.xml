@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Volunteers IQ</string>
+    <string name="some_error">حدث خطأ ما</string>
+    <string name="loading">جاري التحميل</string>
+    <string name="connection_error">لا يتوفر اتصال بالإنترنت</string>
+    <string name="please_wait">الرجاء الانتظار</string>
+    <string name="no_item_found">لم يتم العثور على عناصر</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثى</string>
+    <string name="any">أي</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="saving">حفظ</string>
+    <string name="ok">حسنا</string>
+    <string name="cancel">الغاء</string>
+    <string name="great_to_see_you_again">سعيد برؤيتك مجددا</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="password">كلمه المرور</string>
+    <string name="forget_password">نسيت كلمة المرور؟</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="or_sign_up">أو انشاء حساب</string>
+    <string name="reset_password">إعادة كلمة المرور</string>
+    <string name="back">رجوع</string>
+    <string name="forget_password_description">لا تقلق نحن بحاجة فقط إلى معرف البريد الإلكتروني المسجل الخاص بك لإرسال تعليمات إعادة تعيين كلمة المرور الخاصة بك.</string>
+    <string name="email_is_sent_successfully">يتم إرسال البريد الإلكتروني بنجاح</string>
+    <string name="check_email">تحقق من بريدك الالكتروني لمزيد من التعليمات</string>
+    <string name="sign_up_welcome">مرحبا</string>
+    <string name="confirm_password">تأكيد كلمه المرور</string>
+    <string name="sign_up">انشاء حساب</string>
+    <string name="or_sign_in">او تسجيل الدخول</string>
+    <string name="change_password">تغيرر كلمة المرور</string>
+    <string name="update_password">تم تحديث كلمةالمرور</string>
+    <string name="old_password_not_correct">كلمة المرور السابقة غير صحيحة</string>
+    <string name="done">تم</string>
+    <string name="about_your">عنك</string>
+    <string name="name">الاسم</string>
+    <string name="gender">الجنس</string>
+    <string name="old_password">الحالية</string>
+    <string name="birth_of_day">تاريخ الميلاد</string>
+    <string name="empty_email">يرجى تقديم بريد إلكتروني غير فارغ.</string>
+    <string name="invalid_email">يرجى تقديم عنوان بريد إلكتروني صالح.</string>
+    <string name="empty_password">يرجى تقديم كلمة مرور غير فارغة</string>
+    <string name="password_does_not_match">كلمتا المرور غير متطابقة</string>
+    <string name="invalid_password">يجب أن تتكون كلمة المرور من 6 أحرف على الأقل</string>
+    <string name="empty_name">يرجى تقديم اسم غير فارغ.</string>
+    <string name="empty_birth_of_date">يرجى تحديد تاريخ ميلادك.</string>
+    <string name="not_match_password">كلمتا المرور غير مطابقة</string>
+
+    <!-- Bottom bar menu -->
+
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="group">المجموعات</string>
+    <string name="subscription">اشتراك</string>
+    <string name="account">الحساب</string>
+    <string name="activity">النشاط</string>
+
+
+    <!-- campaign post -->
+
+    <string name="group_name_views_date">%1$s . %2$d مشاهدة . %3$s </string>
+
+    <!-- list of group info -->
+
+    <string name="edit">تعديل</string>
+    <string name="campaigns_number">%1$d حملة </string>
+
+    <!-- profile  info -->
+
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="profile_info">تعديل المعلومات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="Phone">رقم الهاتف</string>
+    <string name="bio">السيرة الذاتية</string>
+    <string name="permission_deny">رفض الأذن</string>
+    <string name="read_external_storage_rationale_for_select_image">يحتاج التطبيق إلى إذن التخزين للسماح لك بتحديد الصورة</string>
+    <string name="helpful">مفيد</string>
+    <string name="unhelpful">غير مفيد</string>
+    <string name="not_attend">غير حاضر</string>
+    <string name="campaign_join_count">%1$d حملات</string>
+    <string name="my_profile">الصفحة الشخصية</string>
+    <string name="sign_out">تسجيل الخروج</string>
+
+
+
+    <!-- campaign detail-->
+
+    <string name="views_count">%1$d مشاهدة</string>
+    <string name="views_count_and_edited">%1$d مشاهدة . تم التعديل في %2$s</string>
+    <string name="publish_date">تم نشره في %1$s</string>
+    <string name="description">الوصف</string>
+    <string name="requirement">المتطلبات</string>
+    <string name="campaign_requirement">- %1$d عضو \n\n- لل %2$s \n\n- اكثر من %3$d سنة </string>
+    <string name="join">انظمام</string>
+    <string name="campaign_member">%1$d عضو</string>
+    <string name="campaigns">حملات</string>
+    <string name="leave">مغادرة</string>
+    <string name="full_campaign">هذه الحملة ممتلئة</string>
+    <string name="this_campaign_for_male">هذه الحملة للذكور فقط</string>
+    <string name="this_campaign_for_female">هذه الحملة للإناث فقط</string>
+    <string name="your_age_is_less_then_required">عمرك أقل من المطلوب</string>
+    <string name="join_date">انضم  %1$s</string>
+    <string name="campaign_detail">تفاصيل الحملة</string>
+    <string name="member">عضو</string>
+    <string name="rate_member">تقييم الاعضاء</string>
+    <string name="make_your_live_better">أجعل حياتك أفضل</string>
+    <string name="not_allow_rate_member_now">يمكنك تقييم الأعضاء بعد يوم واحد من بدء الحملة</string>
+    <string name="not_allow_leave_now">لا يمكن المغادره الان</string>
+    <string name="campaign_is_finish">عمل جيدالحملة منتهية</string>
+    <string name="on_leave_campaign">هل تريد حقا أن تترك هذه الحملة</string>
+    <string name="not_allow_join_now">يمكنك الانضمام قبل يوم واحد من بدء الحملة</string>
+
+
+    <!-- Group detail  -->
+
+    <string name="group_detail">تفاصيل المجموعة</string>
+    <string name="view_all">عرض الكل</string>
+
+    <string name="create">أنشاء</string>
+    <string name="please_select_img">يرجى اختيار صورة للشعار</string>
+    <string name="my_group_toolbar">مجموعتي</string>
+    <string name="my_campaigns">حملاتي</string>
+    <string name="edit_group">تعديل المجموعة</string>
+    <string name="location">الموقع</string>
+    <string name="title">العنوان</string>
+    <string name="time">الوقت</string>
+    <string name="date">التاريخ</string>
+    <string name="age">اقل عمر</string>
+    <string name="max_members">عدد الاعضاء</string>
+    <string name="add_campaign">اضافة حملة</string>
+    <string name="map">الخريطة</string>
+    <string name="edit_campaign">تعديل الحملة</string>
+    <string name="user_rated_done">تم التقييم</string>
+    <string name="empty_description">يرجى تقديم وصف غير فارغ</string>
+    <string name="error_while_upload_campaign">حدث خطأ أثناء تحميل الحملة</string>
+    <string name="max_count_member_should_be_in_range_10_1000">يجب أن يكون الحد الأقصى لعدد الأعضاء في النطاق من 5 إلى 1000</string>
+    <string name="required_age_should_be_in_range_10_100">يجب أن يتراوح العمر المطلوب من 10 إلى 100</string>
+    <string name="please_select_max_count_members">يرجى تحديد الحد الأقصى لعدد الأعضاء المطلوبة من الحملة</string>
+    <string name="please_select_required_age">يرجى تحديد العمر المطلوب</string>
+    <string name="please_select_start_time">يرجى تحديد وقت البدء.</string>
+    <string name="please_select_start_date">يرجى تحديد تاريخ البدء.</string>
+
+    <!-- human readable elapse time  -->
+
+    <string name="less_then_minute">أقل من دقيقة</string>
+    <string name="since_x_minutes">منذ %1$d دقيقة</string>
+    <string name="since_x_hours">منذ %1$d ساعه</string>
+    <string name="since_x_days">منذ %1$d يوم</string>
+    <string name="since_x_weeks">منذ %1$d أسبوع</string>
+
+    <!-- Not sign in layout -->
+
+    <string name="about">حول</string>
+    <string name="help">مساعدة</string>
+    <string name="feedback">ردود الفعل</string>
+    <string name="privacy_policy"><![CDATA[الشروط و سياسة الخصوصية ]]></string>
+    <string name="not_sign_in_message">سجّل الدخول للانضمام إلى الكثير من الحملات ، وساعد في تحسين البلد</string>
+
+
+    <string name="group_campaigns">حملات المجموعة</string>
+    <string name="create_group">إنشاء مجموعة</string>
+    <string name="upload_date_and_views_count">%1$s . %2$d من المشاهدات</string>
+
+
+
+</resources>

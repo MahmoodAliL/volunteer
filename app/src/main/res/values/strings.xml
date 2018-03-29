@@ -37,7 +37,7 @@
     <!-- Forget Password -->
     <string name="reset_password">Reset Password</string>
     <string name="back">Back</string>
-    <string name="forget_password_description">Don\'t worry we just need your registered email id to send you paswsord reset instructions.</string>
+    <string name="forget_password_description">Don\'t worry we just need your registered email id to send you password reset instructions.</string>
     <string name="email_is_sent_successfully">Email is sent successfully</string>
     <string name="check_email">Check your email for further instructions</string>
 
@@ -75,8 +75,8 @@
 
 
     <!-- accessibility -->
-    <string name="img_logo">img logo</string>
-    <string name="img_bottom_description">bottom_image_description</string>
+    <string name="img_logo" translatable="false">img logo</string>
+    <string name="img_bottom_description" translatable="false">bottom_image_description</string>
 
     <!-- Bottom bar menu -->
     <string name="home">Home</string>
@@ -107,6 +107,8 @@
     <string name="unhelpful">Unhelpful</string>
     <string name="not_attend">Not Attend</string>
     <string name="campaign_join_count">%1$d CAMPAIGNS</string>
+    <string name="my_profile">My profile</string>
+    <string name="sign_out">Sign out</string>
 
 
     <!-- Campaign Detail -->
@@ -128,12 +130,12 @@
     <string name="join_date">Join  %1$s</string>
     <string name="campaign_detail">Campaign Detail</string>
     <string name="member">Member</string>
-    <string name="rate_member">Rate Member</string>
+    <string name="rate_member">Rate Members</string>
     <string name="make_your_live_better">Make your live Better</string>
-    <string name="not_allow_rate_member_now">You can rate member after one day of start campaign</string>
+    <string name="not_allow_rate_member_now">You can rate members after one day of start campaign</string>
     <string name="not_allow_leave_now">Not allow to leave now</string>
     <string name="campaign_is_finish">Good work campaign is finished</string>
-    <string name="on_leave_campaign">Do you went really to leave this campaign</string>
+    <string name="on_leave_campaign">Do you want really to leave this campaign</string>
     <string name="not_allow_join_now">You can join before one day of start campaign</string>
 
 
@@ -182,5 +184,15 @@
     <!-- Group Campaign Adapter -->
     <string name="upload_date_and_views_count">%1$s . %2$d views</string>
     <string name="user_rated_done">User rated done</string>
+
+
+    <!-- Not sign in layout -->
+    <string name="about">About</string>
+    <string name="help">Help</string>
+    <string name="feedback">Feedback</string>
+    <string name="privacy_policy"><![CDATA[Terms & privacy policy]]></string>
+    <string name="not_sign_in_message">Sign in to join with a lot of campaign and help to make country better</string>
+
+
 
 </resources>
