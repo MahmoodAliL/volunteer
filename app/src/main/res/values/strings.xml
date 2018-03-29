@@ -81,7 +81,7 @@
     <!-- Bottom bar menu -->
     <string name="home">Home</string>
     <string name="group">Group</string>
-    <string name="subscription">Subscription</string>
+    <string name="leaderboard">Leaderboard</string>
     <string name="account">Account</string>
     <string name="activity">Activity</string>
 
@@ -106,7 +106,8 @@
     <string name="helpful">Helpful</string>
     <string name="unhelpful">Unhelpful</string>
     <string name="not_attend">Not Attend</string>
-    <string name="campaign_join_count">%1$d CAMPAIGNS</string>
+    <string name="campaign_join_count">Joined with %1$d campaigns</string>
+    <string name="xp_point">%1$d XP</string>
     <string name="my_profile">My profile</string>
     <string name="sign_out">Sign out</string>
 
@@ -184,7 +185,7 @@
     <!-- Group Campaign Adapter -->
     <string name="upload_date_and_views_count">%1$s . %2$d views</string>
     <string name="user_rated_done">User rated done</string>
-
+    <string name="text_placeholder">-----</string>
 
     <!-- Not sign in layout -->
     <string name="about">About</string>

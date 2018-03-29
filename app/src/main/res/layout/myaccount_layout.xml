@@ -23,8 +23,8 @@
             android:layout_marginTop="16dp"
             android:drawableStart="@drawable/ic_group_24dp"
             android:text="@string/my_group_toolbar"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_header" />
 
@@ -36,8 +36,8 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_account_box_24dp"
             android:text="@string/my_profile"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myGroup" />
 
@@ -49,8 +49,8 @@
             android:drawableStart="@drawable/ic_exit_to_app_24dp"
             android:text="@string/sign_out"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myProfile" />
 
@@ -61,8 +61,8 @@
             android:layout_marginTop="8dp"
             android:background="@color/divider"
             android:padding="8dp"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signOut" />
 
@@ -76,8 +76,8 @@
             android:drawableStart="@drawable/ic_lock_24dp"
             android:text="Terms &amp; privacy policy"
 
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
@@ -88,8 +88,8 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_feedback_24dp"
             android:text="Feedback"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/termsAndPrivacyPolicy" />
 
@@ -111,6 +111,7 @@
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:drawableStart="@drawable/ic_info_24dp"
             android:text="About"
             app:layout_constraintEnd_toEndOf="parent"

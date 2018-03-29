@@ -244,10 +244,14 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
         return mFirestore.runTransaction {
             val userSnapshot = it.get(userRef)
-            val helpfulCount = userSnapshot.getLong(HELPFUL_COUNT)
 
+            val helpfulCount = userSnapshot.getLong(HELPFUL_COUNT)
             val newHelpfulCount = helpfulCount + 1
             it.update(userRef, HELPFUL_COUNT, newHelpfulCount)
+
+            val xpPoint = userSnapshot.getLong(FbUserDetail::xpPoint.name)
+            val newXpPoint = xpPoint + AppConstants.HELPFUL_XP
+            it.update(userRef, FbUserDetail::xpPoint.name, newXpPoint)
 
             it.update(campaignMembersRef,  RATE_TYPE_FIELD, DataManager.UserRate.HELPFUL.type)
 
@@ -262,10 +266,15 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
         return mFirestore.runTransaction {
             val userSnapshot = it.get(userRef)
-            val unhelpfulCount = userSnapshot.getLong(UNHELPFUL_COUNT)
 
+            val unhelpfulCount = userSnapshot.getLong(UNHELPFUL_COUNT)
             val newUnhelpfulCount = unhelpfulCount + 1
             it.update(userRef, UNHELPFUL_COUNT, newUnhelpfulCount)
+
+
+            val xpPoint = userSnapshot.getLong(FbUserDetail::xpPoint.name)
+            val newXpPoint = xpPoint + AppConstants.UNHELPFUL_XP
+            it.update(userRef, FbUserDetail::xpPoint.name, newXpPoint)
 
             it.update(campaignMembersRef, RATE_TYPE_FIELD, DataManager.UserRate.UNHELPFUL.type)
 
@@ -279,10 +288,14 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
         return mFirestore.runTransaction {
             val userSnapshot = it.get(userRef)
-            val notAttendCount = userSnapshot.getLong(NOT_ATTEND_COUNT)
 
+            val notAttendCount = userSnapshot.getLong(NOT_ATTEND_COUNT)
             val newNotAttendCount = notAttendCount + 1
             it.update(userRef, NOT_ATTEND_COUNT, newNotAttendCount)
+            // update XP
+            val xpPoint = userSnapshot.getLong(FbUserDetail::xpPoint.name)
+            val newXpPoint = xpPoint + AppConstants.NOT_ATTEND_XP
+            it.update(userRef, FbUserDetail::xpPoint.name, newXpPoint)
 
             it.update(campaignMemberRef, RATE_TYPE_FIELD, DataManager.UserRate.NOT_ATTEND.type)
 
@@ -342,6 +355,14 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         return batch.commit()
     }
 
+    override fun loadTopUsers(lastVisibleItem: DocumentSnapshot?): Query {
+        val query = mFirestore.collection(USERS_COL).orderBy(FbUserDetail::xpPoint.name, Query.Direction.DESCENDING)
+                .limit(GROUP_QUERY_LIMIT)
+        return if (lastVisibleItem != null)
+            query.startAfter(lastVisibleItem)
+        else
+            query
+    }
 
     // firebase storage
 

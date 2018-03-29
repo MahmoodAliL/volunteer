@@ -142,6 +142,11 @@ class AppDataManager @Inject constructor(
     override fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<Transaction> =
             firebaseHelper.saveCampaignInfo(campaignInfo)
 
+    // leaderboard
+
+    override fun loadTopUsers(lastVisibleItem: DocumentSnapshot?): Query =
+            firebaseHelper.loadTopUsers(lastVisibleItem)
+
     /**
      * firebase storage
      */

@@ -14,7 +14,7 @@ import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.profile.edit.EditProfileFragment
 import com.teaml.iq.volunteer.ui.profile.password.ChangePasswordFragment
 import com.teaml.iq.volunteer.utils.*
-import kotlinx.android.synthetic.main.profile_info_layout.*
+import kotlinx.android.synthetic.main.profile_info_fragment.*
 import kotlinx.android.synthetic.main.progressbar_layout.*
 import javax.inject.Inject
 
@@ -53,7 +53,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
             mPresenter.onAttach(this)
         }
 
-        return layoutInflater.inflate(R.layout.profile_info_layout,container, false)
+        return layoutInflater.inflate(R.layout.profile_info_fragment,container, false)
     }
 
     override fun setup(view: View) {
@@ -108,11 +108,12 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
             txtBirthOfDay.text = birthOfDay.toDateString()
             txtPhone.text = phone
 
-            // gamification view
+            // gamification
             txtCampaignJoinCount.text = getString(R.string.campaign_join_count, campaignJoinCount)
             txtHelpfulCount.text = helpfulCount.toString()
             txtUnhelpful.text = unhelpfulCount.toString()
             txtNotAttendCount.text = notAttendCount.toString()
+            txtXpPoint.text = getString(R.string.xp_point, xpPoint)
         }
     }
 

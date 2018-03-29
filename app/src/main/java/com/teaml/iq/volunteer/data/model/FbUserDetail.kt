@@ -17,6 +17,7 @@ class FbUserDetail(
         val email: String = "",
         val phone: String = "",
         val campaignJoinCount: Int = 0,
+        val xpPoint: Int = 0,
         val helpfulCount: Int = 0,
         val unhelpfulCount: Int = 0,
         val notAttendCount: Int = 0

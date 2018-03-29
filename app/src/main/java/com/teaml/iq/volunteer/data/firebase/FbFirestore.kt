@@ -14,7 +14,6 @@ interface FbFirestore {
 
     fun getUserDocRef(uid: String): DocumentReference
 
-
     //TODO: make sure to add index to each query
     fun loadCampaignList(lastVisibleItem: DocumentSnapshot?): Task<QuerySnapshot>
 
@@ -60,6 +59,9 @@ interface FbFirestore {
 
     fun saveCampaignInfo(campaignInfo: HashMap<String, Any>): Task<Transaction>
 
+    // leaderboard
+
+    fun loadTopUsers(lastVisibleItem: DocumentSnapshot?): Query
 
 
 }

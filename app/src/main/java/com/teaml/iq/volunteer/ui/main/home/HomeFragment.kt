@@ -24,9 +24,7 @@ class HomeFragment : BaseLoadDataFragment<CampaignPost>(), HomeMvpView {
     companion object {
         val TAG: String = HomeFragment::class.java.simpleName
 
-        fun newInstance(): HomeFragment = HomeFragment().apply {
-            arguments = Bundle()
-        }
+        fun newInstance(args: Bundle = Bundle.EMPTY) = HomeFragment().apply { arguments = args }
     }
 
     override fun initActivityComponent() {

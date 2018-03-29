@@ -10,11 +10,15 @@ object AppConstants {
     // time out request
     const val REQUEST_LONG_TIME_OUT = 20L
     const val REQUEST_SHORT_TIME_OUT = 10L
-
+    // date & time format
     const val DATE_FORMAT = "yyyy/MM/dd"
     const val TIME_FORMAT = "HH:mm"
     const val TIMESTAMP_FORMAT = "yyyy/MM/dd HH:mm:ss"
 
+    // user xp value
+    const val HELPFUL_XP = 25
+    const val UNHELPFUL_XP = 5
+    const val NOT_ATTEND_XP = -5
 
     // firestore collection
     const val USERS_COL = "users"

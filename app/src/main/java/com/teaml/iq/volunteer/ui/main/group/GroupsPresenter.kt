@@ -41,9 +41,9 @@ class GroupsPresenter<V : GroupsMvpView> @Inject constructor(dataManager: DataMa
                 // used for pagination
                 lastVisibleItem = result.documents[result.documents.size - 1]
 
-                val fbGroup = result.toObjects(FbGroup::class.java)
+                val fbGroupList = result.toObjects(FbGroup::class.java)
 
-                val listOfGroupInfo = fbGroup.mapIndexedTo(groups) { index, value ->
+                val listOfGroupInfo = fbGroupList.mapIndexedTo(groups) { index, value ->
                     GroupInfo(
                             id = result.documents[index].id,
                             name = value.name,

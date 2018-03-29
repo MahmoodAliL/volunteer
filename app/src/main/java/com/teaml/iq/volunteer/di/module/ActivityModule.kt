@@ -71,6 +71,10 @@ import com.teaml.iq.volunteer.ui.main.home.CampaignAdapter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpPresenter
 import com.teaml.iq.volunteer.ui.main.home.HomeMvpView
 import com.teaml.iq.volunteer.ui.main.home.HomePresenter
+import com.teaml.iq.volunteer.ui.main.leaderborad.LeaderboardMvpPresenter
+import com.teaml.iq.volunteer.ui.main.leaderborad.LeaderboardMvpView
+import com.teaml.iq.volunteer.ui.main.leaderborad.LeaderboardPresenter
+import com.teaml.iq.volunteer.ui.main.leaderborad.adapter.LeaderboardAdapter
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountMvpPresenter
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountMvpView
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountPresenter
@@ -180,6 +184,8 @@ class ActivityModule(val activity: AppCompatActivity) {
 
     @Provides
     fun provideRateMemberAdapter() = RateMemberAdapter(mutableListOf())
+    @Provides
+    fun provideLeaderboardAdapter() = LeaderboardAdapter(mutableListOf())
 
     @Provides
     fun provideMyActivityPresenter(presenter: MyActivityPresenter<MyActivityMvpView>): MyActivityMvpPresenter<MyActivityMvpView> =
@@ -242,7 +248,12 @@ class ActivityModule(val activity: AppCompatActivity) {
             presenter
 
     @Provides
-    fun provideRatePresenter(presenter: RateMemberPresenter<RateMemberMvpView>): RateMemberMvpPresenter<RateMemberMvpView> = presenter
+    fun provideRatePresenter(presenter: RateMemberPresenter<RateMemberMvpView>): RateMemberMvpPresenter<RateMemberMvpView> =
+            presenter
+
+    @Provides
+    fun provideLeaderboardPresenter(presenter: LeaderboardPresenter<LeaderboardMvpView>): LeaderboardMvpPresenter<LeaderboardMvpView> =
+            presenter
 
     @Provides
     fun provideChangePasswordPresenter(presenter: ChangePasswordPresenter<ChangePasswordMvpView>): ChangePasswordMvpPresenter<ChangePasswordMvpView> =

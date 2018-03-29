@@ -45,5 +45,8 @@
     <color name="color_header">#62cecece</color>
     <color name="color_profile_header">#F1F1F1</color>
 
+    <!-- leaderboard -->
+    <color name="color_my_profile">#E6D8FF</color>
+
 
 </resources>

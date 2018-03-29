@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground">
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImgView"
@@ -14,6 +15,8 @@
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/profile_placeholder_img"
+        app:civ_border_color="@color/divider"
+        app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,10 +30,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintStart_toEndOf="@+id/userImgView"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="محمود علي حسن مطرود " />
+        tools:text="محمود علي حسن مطرويج " />
 
     <TextView
-        android:id="@+id/txtJoinDate"
+        android:id="@+id/txtXpPoint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -39,6 +42,28 @@
         android:textColor="@color/color_caption"
         app:layout_constraintStart_toEndOf="@+id/userImgView"
         app:layout_constraintTop_toBottomOf="@id/txtUserName"
-        tools:text="Join in 2018/02/29" />
+        tools:text="1005 XP" />
+
+
+    <TextView
+        android:id="@+id/txtUserSequence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1"/>
+
+
+    <View
+        android:id="@+id/viewMyProfile"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

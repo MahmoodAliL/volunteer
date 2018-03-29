@@ -14,13 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/color_profile_header"
-            app:layout_constraintBottom_toBottomOf="@id/unhelpfulLayout"/>
+            app:layout_constraintBottom_toBottomOf="@id/header_divider"/>
         <ImageView
             android:id="@+id/profileImg"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:contentDescription="@null"
             android:src="@drawable/profile_placeholder_img"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -53,10 +53,10 @@
             app:layout_constraintTop_toBottomOf="@id/txtName" />
 
         <View
-            android:id="@+id/divider"
-            android:layout_width="150dp"
+            android:id="@+id/header_divider"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:background="@color/divider"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -72,7 +72,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintTop_toBottomOf="@id/header_divider"
             tools:text="Joined with 0 Campaigns" />
 
 
@@ -177,6 +177,28 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/txtXpPoint"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notAttendLayout"
+            tools:text="120 XP" />
+
+        <View
+            android:id="@+id/gamification_divider"
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/divider"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtXpPoint" />
 
         <TextView
             android:id="@+id/txtGender"
@@ -185,11 +207,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:drawableStart="@drawable/ic_gender_24dp"
-            android:text="-----"
+            android:text="@string/text_placeholder"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/unhelpfulLayout" />
+            app:layout_constraintTop_toBottomOf="@id/gamification_divider" />
 
         <TextView
             android:id="@+id/txtBirthOfDay"
@@ -197,7 +219,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_today_24dp"
-            android:text="-----"
+            android:text="@string/text_placeholder"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -210,7 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_phone_24dp"
-            android:text="-----"
+            android:text="@string/text_placeholder"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -223,7 +245,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:drawableStart="@drawable/ic_email_24dp"
-            android:text="-----"
+            android:text="@string/text_placeholder"
             android:visibility="gone"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -252,6 +274,7 @@
             android:layout_height="50dp"
             android:background="@drawable/circle_background"
             android:clickable="true"
+            android:contentDescription="@null"
             android:focusable="true"
             android:padding="4dp"
             android:visibility="gone"

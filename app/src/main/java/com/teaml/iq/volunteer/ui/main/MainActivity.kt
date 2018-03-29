@@ -10,6 +10,7 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.main.group.GroupsFragment
 import com.teaml.iq.volunteer.ui.main.home.HomeFragment
+import com.teaml.iq.volunteer.ui.main.leaderborad.LeaderboardFragment
 import com.teaml.iq.volunteer.ui.main.myaccount.MyAccountFragment
 import com.teaml.iq.volunteer.ui.main.myactivity.MyActivityFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -66,11 +67,13 @@ class MainActivity : BaseActivity(), MainMvpView {
 
         val homeItem = AHBottomNavigationItem(getString(R.string.home), R.drawable.ic_home_black_24dp)
         val groupItem = AHBottomNavigationItem(getString(R.string.group), R.drawable.ic_group_dark_grey_24dp)
+        val leaderboard = AHBottomNavigationItem(getString(R.string.leaderboard), R.drawable.ic_equalizer_black_24dp)
         val myActivityItem = AHBottomNavigationItem(getString(R.string.activity), R.drawable.ic_notifications_black_24dp)
         val myAccountItem = AHBottomNavigationItem(getString(R.string.account), R.drawable.ic_person_black_24dp)
 
         bottomNavigationBar.addItem(homeItem)
         bottomNavigationBar.addItem(groupItem)
+        bottomNavigationBar.addItem(leaderboard)
         bottomNavigationBar.addItem(myActivityItem)
         bottomNavigationBar.addItem(myAccountItem)
 
@@ -92,10 +95,11 @@ class MainActivity : BaseActivity(), MainMvpView {
 
         // لكي تمنع عادة حدوث اعادة تحميل البيانات الخاصة بالفراكمنت بمعنى اخر تمنع اعادة انشاء الفراكمنت
         // و تسمح بالبقاء البيانات في الرام
-        viewPager.offscreenPageLimit = 4
+        viewPager.offscreenPageLimit = 5
 
         mBottomBarAdapter.addFragment(HomeFragment.newInstance())
         mBottomBarAdapter.addFragment(GroupsFragment.newInstance())
+        mBottomBarAdapter.addFragment(LeaderboardFragment.newInstance())
         mBottomBarAdapter.addFragment(MyActivityFragment.newInstance())
         mBottomBarAdapter.addFragment(MyAccountFragment.newInstance())
         viewPager.adapter = mBottomBarAdapter
