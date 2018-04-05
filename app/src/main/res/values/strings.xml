@@ -193,7 +193,7 @@
     <string name="feedback">Feedback</string>
     <string name="privacy_policy"><![CDATA[Terms & privacy policy]]></string>
     <string name="not_sign_in_message">Sign in to join with a lot of campaign and help to make country better</string>
-
+    <string name="campaign_location">Campaign location</string>
 
 
 </resources>

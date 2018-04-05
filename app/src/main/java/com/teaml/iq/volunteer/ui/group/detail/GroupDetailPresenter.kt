@@ -23,12 +23,14 @@ class GroupDetailPresenter<V : GroupDetailMvpView> @Inject constructor(dataManag
     : BasePresenter<V>(dataManager), GroupDetailMvpPresenter<V> {
 
     private var isGroupOwner = false
+    private var groupId = ""
 
     companion object {
         val TAG: String = GroupDetailPresenter::class.java.simpleName
     }
 
     override fun onViewPrepared(groupId: String) {
+
         val uid = dataManager.getFirebaseUserAuthID()
         isGroupOwner = groupId == uid
 
@@ -41,6 +43,10 @@ class GroupDetailPresenter<V : GroupDetailMvpView> @Inject constructor(dataManag
 
     override fun onFabClick() {
         mvpView?.showAddCampaignFragment()
+    }
+
+    override fun onRetryImgClick() {
+        loadGroupDetail(groupId)
     }
 
     private fun loadGroupDetail(groupId: String) {

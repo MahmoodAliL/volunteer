@@ -111,6 +111,8 @@ class GroupDetailFragment : BaseFragment(), GroupDetailMvpView {
             }
 
             mPresenter.onViewPrepared(groupId)
+
+            retryImg.setOnClickListener { mPresenter.onRetryImgClick() }
             btnViewAll.setOnClickListener { mPresenter.onViewAllClick() }
             fab.setOnClickListener { mPresenter.onFabClick() }
 

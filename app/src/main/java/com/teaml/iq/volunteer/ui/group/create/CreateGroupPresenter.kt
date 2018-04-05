@@ -177,7 +177,7 @@ open class CreateGroupPresenter<V : CreateGroupMvpView> @Inject constructor(data
                 it.hasPermission(READ_EXTERNAL_STORAGE_PERMISSION) -> {
                     true
                 }
-                it.shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE_PERMISSION) -> {
+                !it.shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE_PERMISSION) -> {
                     mvpView?.showReadExternalStorageRationale()
                     false
                 }
@@ -191,7 +191,7 @@ open class CreateGroupPresenter<V : CreateGroupMvpView> @Inject constructor(data
     }
 
     override fun onRequestReadExternalStoragePermission() {
-        mvpView?.getBaseActivity()?.requestPermissionsSafely(
+        mvpView?.getBaseFragment()?.requestPermissionsSafely(
                 arrayOf(READ_EXTERNAL_STORAGE_PERMISSION), READ_EXTERNAL_STORAGE_REQUEST_CODE)
     }
 

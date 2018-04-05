@@ -7,6 +7,7 @@ import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
 import com.teaml.iq.volunteer.ui.main.leaderborad.adapter.LeaderboardAdapter
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
+import kotlinx.android.synthetic.main.recycler_view_layout.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -34,10 +35,14 @@ class LeaderboardFragment : BaseLoadDataFragment<TopUser>(), LeaderboardMvpView 
     }
 
     override fun setup(view: View) {
+        super.setup(view)
 
-        mLeaderboardAdapter.setOnViewItemClickListener {
-            mPresenter.onViewItemClick(it)
-        }
+        retryImg.setOnClickListener { mPresenter.onRetryClick() }
+        swipeRefreshLayout.setOnRefreshListener { mPresenter.onSwipeRefresh() }
+
+        mLeaderboardAdapter.initRecyclerView(recyclerView)
+        mLeaderboardAdapter.setOnLoadMoreListener { mPresenter.onLoadMore() }
+        mLeaderboardAdapter.setOnViewItemClickListener { mPresenter.onViewItemClick(it) }
 
         mPresenter.onViewPrepared()
 

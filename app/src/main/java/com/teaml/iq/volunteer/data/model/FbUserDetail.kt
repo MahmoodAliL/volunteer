@@ -6,7 +6,7 @@ import java.util.*
 /**
  * Created by Mahmood Ali on 13/02/2018.
  */
-class FbUserDetail(
+data class FbUserDetail(
         val img: String = "",
         @ServerTimestamp val lastModificationDate: Date = Date(),
         val name: String = "",
@@ -42,7 +42,12 @@ class FbUserDetail(
             FbUserDetail::gender.name to gender,
             FbUserDetail::birthOfDay.name to birthOfDay,
             FbUserDetail::email.name to email,
-            FbUserDetail::phone .name to phone
+            FbUserDetail::phone .name to phone,
+            FbUserDetail::xpPoint.name  to xpPoint,
+            FbUserDetail::campaignJoinCount.name to campaignJoinCount,
+            FbUserDetail::helpfulCount.name to helpfulCount,
+            FbUserDetail::unhelpfulCount.name to unhelpfulCount,
+            FbUserDetail::notAttendCount.name to notAttendCount
     )
 
 }

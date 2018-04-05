@@ -30,11 +30,13 @@ class LeaderboardPresenter<V : LeaderboardMvpView> @Inject constructor(dataManag
     }
 
     override fun loadListData() {
-        super.showProgress()
 
-        dataManager.loadTopUsers(super.lastVisibleItem).get().addOnCompleteListener {
+        Log.d(TAG, "onLoadTopUser loading")
+        showProgress()
 
-            super.onLoadComplete()
+        dataManager.loadTopUsers(lastVisibleItem).get().addOnCompleteListener {
+            Log.d(TAG, "onLoadTopUser completed")
+            onLoadComplete()
 
             if (it.isSuccessful) {
 
@@ -62,8 +64,8 @@ class LeaderboardPresenter<V : LeaderboardMvpView> @Inject constructor(dataManag
 
 
             } else {
-                Log.e(TAG, "onLoadTopUserInfo", it.exception)
-                super.onLoadError()
+                Log.e(TAG, "error onLoadTopUserInfo ", it.exception)
+                onLoadError()
             }
         }
     }

@@ -85,6 +85,8 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
 
                 if (documentSnapshot.exists()) {
                     val profileInfo = documentSnapshot.toObject(FbUserDetail::class.java)
+                    Log.d(TAG, "profileInfo:$profileInfo")
+
                     mvpView?.showProfileInfo(profileInfo)
                 }
 

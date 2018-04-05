@@ -10,9 +10,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
@@ -39,15 +37,20 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     }
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        with(activity as CampaignActivity) {
+            supportActionBar?.title = getString(R.string.campaign_location)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
+        }
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_map, container, false)
 
-        with(activity as CampaignActivity) {
-            supportActionBar?.title = getString(R.string.map)
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
-        }
+
 
         // google map setup
         googleMapView = view.find(R.id.googleMap)
@@ -67,8 +70,8 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         googleMapView.onDestroy()
+        super.onDestroy()
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {

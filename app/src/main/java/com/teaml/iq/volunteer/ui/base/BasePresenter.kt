@@ -29,6 +29,7 @@ open class BasePresenter<V : MvpView> constructor(dataManager: DataManager) : Mv
 
     override fun setUserAsLoggedOut() {
         dataManager.signOut()
+        dataManager.setHasGroup(false)
         dataManager.setCurrentUserLoggedInMode(DataManager.LoggedInMode.LOGGED_OUT)
         mvpView?.openSplashActivity()
     }

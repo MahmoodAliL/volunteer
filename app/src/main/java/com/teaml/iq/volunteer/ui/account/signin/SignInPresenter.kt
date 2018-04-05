@@ -79,7 +79,7 @@ class SignInPresenter<V : SignInMvpView> @Inject constructor(dataManager: DataMa
         val uid = dataManager.getFirebaseUserAuthID()
 
         if (uid == null) {
-            mvpView?.onError(R.string.some_error)
+            mvpView?.showMessage(R.string.some_error)
             return
         }
 

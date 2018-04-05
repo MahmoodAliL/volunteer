@@ -54,6 +54,7 @@ class SignUpPresenter<V : SignUpMvpView> @Inject constructor(dataManager: DataMa
                         return@addOnCompleteListener
 
                     if (task.isSuccessful) {
+                        dataManager.setCurrentUserLoggedInMode(DataManager.LoggedInMode.LOGGED_IN_WITH_EMAIL)
                         view.showBasicInfoFragment()
                     } else {
                         view.onError("${task.exception?.message}")

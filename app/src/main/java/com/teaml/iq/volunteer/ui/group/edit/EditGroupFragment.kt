@@ -110,7 +110,7 @@ class EditGroupFragment : CreateGroupFragment(), EditGroupMvpView {
 
             }
         }
-        return super.onOptionsItemSelected(item)
+        return false
     }
 
     override fun onDestroyView() {

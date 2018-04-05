@@ -105,7 +105,7 @@
                 app:layout_constraintStart_toEndOf="@+id/txtStartTime"
                 app:layout_constraintTop_toBottomOf="@id/txtViewsEdited"
                 tools:layout_editor_absoluteY="245dp"
-                tools:text="34 Memeber" />
+                tools:text="34 Member" />
 
             <TextView
                 android:id="@+id/txtLocation"
@@ -202,7 +202,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtDescriptionTitle"
-                tools:text="We went to do something unique that people will remeber We went to do something unique that people will remeber will remeber We went to do something unique that will remeber We went to do something unique that" />
+                tools:text="We went to do something unique that people will remember We went to do something unique that people will remeber will remeber We went to do something unique that will remeber We went to do something unique that" />
 
 
             <View

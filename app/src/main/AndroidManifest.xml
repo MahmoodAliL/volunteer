@@ -47,6 +47,7 @@
         <activity android:name=".ui.profile.ProfileActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.campaign.CampaignActivity"
+            android:configChanges="keyboardHidden|keyboard"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.group.GroupActivity"
             android:configChanges="keyboardHidden|keyboard"

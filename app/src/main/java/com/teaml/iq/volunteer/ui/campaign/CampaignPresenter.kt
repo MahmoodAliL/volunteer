@@ -18,8 +18,6 @@ class CampaignPresenter<V : CampaignMvpView> @Inject constructor(dataManager: Da
     override fun onBackStackChangedListener(backpackStackEntryCount: Int) {
         if (backpackStackEntryCount == 0 ) {
             mvpView?.updateToolbarToDetail()
-        } else {
-            mvpView?.updateToolbarToMember()
         }
     }
 }

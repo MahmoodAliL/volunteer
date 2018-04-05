@@ -86,6 +86,7 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
 
 
         txtName.text = profileInfo.name
+
         if (!profileInfo.bio.isEmpty())
             txtBio.text = profileInfo.bio
         else

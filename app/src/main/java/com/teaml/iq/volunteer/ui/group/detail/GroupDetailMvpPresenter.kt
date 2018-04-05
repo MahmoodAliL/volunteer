@@ -18,4 +18,6 @@ interface GroupDetailMvpPresenter<V: GroupDetailMvpView>: MvpPresenter<V> {
 
     fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?)
 
+    fun onRetryImgClick()
+
 }

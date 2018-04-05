@@ -1,7 +1,9 @@
 package com.teaml.iq.volunteer.ui.campaign.members
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignMembers
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
@@ -27,6 +29,15 @@ open class CampaignMembersFragment : BaseLoadDataFragment<CampaignMembers>(), Ca
         fun newInstance(args: Bundle = Bundle.EMPTY) = CampaignMembersFragment().apply { arguments = args }
     }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = getString(R.string.member)
+            it.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
+        }
+
+    }
     override fun onCreateRecyclerAdapter(): BaseRecyclerAdapter<CampaignMembers> {
         return mAdapter
     }
@@ -37,6 +48,7 @@ open class CampaignMembersFragment : BaseLoadDataFragment<CampaignMembers>(), Ca
             mPresenter.onAttach(this)
         }
     }
+
 
     override fun setup(view: View) {
 
