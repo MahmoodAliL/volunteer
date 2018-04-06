@@ -36,19 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_camera_alt_24dp" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/line1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/line2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="24dp" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilName"
@@ -57,8 +44,11 @@
             android:layout_marginTop="32dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            app:layout_constraintEnd_toStartOf="@id/line2"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:counterEnabled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCampaign">
 
             <android.support.design.widget.TextInputEditText
@@ -77,7 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@id/line2"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tilDate"
             app:layout_constraintTop_toBottomOf="@+id/tilName">
 
@@ -97,8 +88,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintEnd_toStartOf="@id/tilTime"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilName">
 
             <android.support.design.widget.TextInputEditText
@@ -117,8 +109,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@id/line2"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:counterEnabled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilDate">
 
             <android.support.design.widget.TextInputEditText
@@ -137,7 +132,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/location"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilDescription" />
 
         <com.teaml.iq.volunteer.ui.campaign.map.CustomMapView
@@ -146,8 +142,10 @@
             android:layout_height="250dp"
             android:layout_marginTop="16dp"
             android:tag="googleMap"
-            app:layout_constraintEnd_toStartOf="@id/line2"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLocation" />
 
 
@@ -157,9 +155,11 @@
             android:layout_height="wrap_content"
             android:hint="@string/gender"
             app:labelText="@string/gender"
-            app:layout_constraintEnd_toStartOf="@id/line2"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/googleMap"
             app:spinnerEntries="@array/volunteer_gender" />
 
@@ -168,7 +168,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toStartOf="@id/line2"
+            android:layout_marginEnd="24dp"
+            app:counterEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tilAge"
             app:layout_constraintTop_toBottomOf="@+id/spinnerGender">
 
@@ -187,8 +189,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="24dp"
+            app:counterEnabled="true"
             app:layout_constraintEnd_toStartOf="@id/tilMaxMember"
-            app:layout_constraintStart_toEndOf="@id/line1"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerGender">
 
             <android.support.design.widget.TextInputEditText

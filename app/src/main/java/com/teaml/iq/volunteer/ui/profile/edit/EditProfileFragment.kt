@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import com.bumptech.glide.signature.ObjectKey
@@ -45,6 +46,10 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        with(activity as AppCompatActivity) {
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)
+            supportActionBar?.title = getString(R.string.edit_profile)
+        }
     }
 
     @Inject

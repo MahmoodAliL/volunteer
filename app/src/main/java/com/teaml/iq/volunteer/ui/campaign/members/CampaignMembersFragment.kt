@@ -7,6 +7,7 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.CampaignMembers
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.campaign.members.adapter.CampaignMembersAdapter
 import kotlinx.android.synthetic.main.recycler_view_layout.*
@@ -23,6 +24,15 @@ open class CampaignMembersFragment : BaseLoadDataFragment<CampaignMembers>(), Ca
     @Inject
     lateinit var mAdapter: CampaignMembersAdapter
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        with(activity as CampaignActivity) {
+            supportActionBar?.title = getString(R.string.member)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
+        }
+        super.onCreate(savedInstanceState)
+
+    }
 
     companion object {
         val TAG: String = CampaignMembersFragment::class.java.simpleName

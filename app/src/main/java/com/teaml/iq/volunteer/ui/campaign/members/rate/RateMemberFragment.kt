@@ -9,6 +9,7 @@ import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.data.model.RateMembers
 import com.teaml.iq.volunteer.ui.base.BaseRecyclerAdapter
 import com.teaml.iq.volunteer.ui.base.loadata.BaseLoadDataFragment
+import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.ui.campaign.members.adapter.RateMemberAdapter
 import com.teaml.iq.volunteer.utils.gone
@@ -37,6 +38,15 @@ class RateMemberFragment : BaseLoadDataFragment<RateMembers>(), RateMemberMvpVie
     @Inject
     lateinit var mRateAdapter: RateMemberAdapter
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        with(activity as CampaignActivity) {
+            supportActionBar?.title = getString(R.string.rate_member)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
+        }
+        super.onCreate(savedInstanceState)
+
+    }
 
 
     override fun onCreateRecyclerAdapter(): BaseRecyclerAdapter<RateMembers> {

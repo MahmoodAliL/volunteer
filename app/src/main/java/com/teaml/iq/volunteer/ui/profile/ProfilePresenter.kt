@@ -24,7 +24,7 @@ class ProfilePresenter<V : ProfileMvpView> @Inject constructor(dataManager: Data
         if (backStackEntryCount == 0 ) {
             mvpView?.updateToolbarToProfileInfo()
         } else {
-            mvpView?.updateToolbarToEditProfile()
+            //mvpView?.updateToolbarToEditProfile()
         }
     }
 

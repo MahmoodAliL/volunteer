@@ -11,6 +11,7 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 13/02/2018.
  */
+
 class ProfileActivity : BaseActivity(), ProfileMvpView {
 
 

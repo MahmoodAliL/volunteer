@@ -98,16 +98,16 @@
     <string name="profile_info">Profile Info</string>
     <string name="profile">Profile</string>
     <string name="Phone">Phone Number</string>
-    <string name="bio">Bio</string>
+    <string name="bio_profile">Bio</string>
     <string name="permission_deny">Permission deny</string>
     <string name="read_external_storage_rationale_for_select_image">App need  storage permission to allow you to select image</string>
-    <string name="txt_name_placeholder">-------</string>
-    <string name="txt_bio_placeholder">-----------------------------------</string>
+    <string name="txt_name_placeholder" translatable="false">-------</string>
+    <string name="txt_bio_placeholder" translatable="false">-----------------------------------</string>
     <string name="helpful">Helpful</string>
     <string name="unhelpful">Unhelpful</string>
     <string name="not_attend">Not Attend</string>
     <string name="campaign_join_count">Joined with %1$d campaigns</string>
-    <string name="xp_point">%1$d XP</string>
+    <string name="xp_point" translatable="false">%1$d XP</string>
     <string name="my_profile">My profile</string>
     <string name="sign_out">Sign out</string>
 
@@ -130,7 +130,7 @@
     <string name="your_age_is_less_then_required">Your age is less then required</string>
     <string name="join_date">Join  %1$s</string>
     <string name="campaign_detail">Campaign Detail</string>
-    <string name="member">Member</string>
+    <string name="member">Members</string>
     <string name="rate_member">Rate Members</string>
     <string name="make_your_live_better">Make your live Better</string>
     <string name="not_allow_rate_member_now">You can rate members after one day of start campaign</string>
@@ -153,6 +153,7 @@
 
 
     <!-- create group -->
+    <string name="bio_group">Bio</string>
     <string name="group_campaigns">Group Campaigns</string>
     <string name="create_group">Create Group</string>
     <string name="create">create</string>

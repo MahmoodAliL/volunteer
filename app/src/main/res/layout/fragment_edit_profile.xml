@@ -55,7 +55,7 @@
                 android:id="@+id/bioField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/bio"
+                android:hint="@string/bio_profile"
                 android:inputType="textMultiLine"
                 android:maxLength="100" />
         </android.support.design.widget.TextInputLayout>
