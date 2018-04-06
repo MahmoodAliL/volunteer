@@ -28,15 +28,24 @@
     <string name="confirm_password">تأكيد كلمه المرور</string>
     <string name="sign_up">انشاء حساب</string>
     <string name="or_sign_in">او تسجيل الدخول</string>
+
+    <!-- Change Password -->
+
     <string name="change_password">تغيرر كلمة المرور</string>
     <string name="update_password">تم تحديث كلمةالمرور</string>
-    <string name="old_password_not_correct">كلمة المرور السابقة غير صحيحة</string>
+    <string name="current_password">الحالية</string>
+    <string name="current_password_not_correct">كلمة المرور الحالية غير صحيحة</string>
+
+    <!-- Base Profile Info -->
+
     <string name="done">تم</string>
-    <string name="about_your">عنك</string>
+    <string name="about_your">بعض المعلومات</string>
     <string name="name">الاسم</string>
     <string name="gender">الجنس</string>
-    <string name="old_password">الحالية</string>
     <string name="birth_of_day">تاريخ الميلاد</string>
+
+    <!-- validation -->
+
     <string name="empty_email">يرجى تقديم بريد إلكتروني غير فارغ.</string>
     <string name="invalid_email">يرجى تقديم عنوان بريد إلكتروني صالح.</string>
     <string name="empty_password">يرجى تقديم كلمة مرور غير فارغة</string>
@@ -67,7 +76,7 @@
     <!-- profile  info -->
 
     <string name="edit_profile">تعديل الملف الشخصي</string>
-    <string name="profile_info">تعديل المعلومات</string>
+    <string name="profile_info">معلومات الملف الشخصي</string>
     <string name="profile">الملف الشخصي</string>
     <string name="Phone">رقم الهاتف</string>
     <string name="bio_profile">النبذه التعريفيه</string>

@@ -49,9 +49,9 @@
 
     <!-- Change Password -->
     <string name="change_password">Change Password</string>
-    <string name="old_password">Old Password</string>
+    <string name="current_password">Current Password</string>
     <string name="update_password">Update Password</string>
-    <string name="old_password_not_correct">The old password is not correct</string>
+    <string name="current_password_not_correct">The current password is not correct</string>
 
 
     <!-- Base Profile Info -->

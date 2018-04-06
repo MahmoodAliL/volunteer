@@ -55,7 +55,7 @@ class ChangePasswordPresenter<V: ChangePasswordMvpView> @Inject constructor(date
                     }
                 else {
                     view.hideLoading()
-                    view.onError(R.string.old_password_not_correct)
+                    view.onError(R.string.current_password_not_correct)
                 }
             }
         }

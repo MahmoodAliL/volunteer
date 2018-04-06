@@ -25,14 +25,6 @@ open class CampaignMembersFragment : BaseLoadDataFragment<CampaignMembers>(), Ca
     lateinit var mAdapter: CampaignMembersAdapter
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        with(activity as CampaignActivity) {
-            supportActionBar?.title = getString(R.string.member)
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
-        }
-        super.onCreate(savedInstanceState)
-
-    }
 
     companion object {
         val TAG: String = CampaignMembersFragment::class.java.simpleName
