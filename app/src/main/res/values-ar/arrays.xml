@@ -6,7 +6,7 @@
     </string-array>
 
     <string-array name="volunteer_gender">
-        <item>Any</item>
+        <item>غير محدد</item>
         <item>ذكر</item>
         <item>انثى</item>
     </string-array>

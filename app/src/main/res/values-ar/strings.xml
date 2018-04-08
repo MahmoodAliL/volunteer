@@ -56,11 +56,13 @@
 
     <!-- Bottom bar menu -->
 
-    <string name="home">الصفحة الرئيسية</string>
+    <string name="home">الرئيسية</string>
     <string name="group">المجموعات</string>
     <string name="subscription">اشتراك</string>
     <string name="account">الحساب</string>
     <string name="activity">النشاط</string>
+    <string name="leaderboard">المتصدرين</string>
+
 
 
     <!-- campaign post -->
@@ -168,8 +170,7 @@
     <string name="group_campaigns">حملات المجموعة</string>
     <string name="create_group">إنشاء مجموعة</string>
     <string name="upload_date_and_views_count">%1$s . %2$d من المشاهدات</string>
-    <string name="leaderboard">المتصدرين</string>
-    <string name="campaign_location">موقع الحملة</string>
+     <string name="campaign_location">موقع الحملة</string>
     <string name="about_your">عن نفسك</string>
 
 
