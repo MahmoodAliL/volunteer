@@ -47,8 +47,8 @@ class MainIntroActivity : IntroActivity() {
                 .build())
 
         addSlide(SimpleSlide.Builder()
-                .title(R.string.intro_evaluation)
-                .description(R.string.intro_evaluation_description)
+                .title(R.string.intro_skills)
+                .description(R.string.intro_skills_description)
                 .image(R.drawable.skills_icon)
                 .background(R.color.color_intro_skills)
                 .backgroundDark(R.color.color_dark_intro_skills)
@@ -58,8 +58,8 @@ class MainIntroActivity : IntroActivity() {
                 .build())
 
         addSlide(SimpleSlide.Builder()
-                .title(R.string.intro_evaluation)
-                .description(R.string.intro_evaluation_description)
+                .title(R.string.intro_jobs)
+                .description(R.string.intro_jobs_description)
                 .image(R.drawable.find_jobs)
                 .background(R.color.color_intro_find_jobs)
                 .backgroundDark(R.color.color_dark_intro_find_jobs)
@@ -69,8 +69,8 @@ class MainIntroActivity : IntroActivity() {
                 .build())
 
         addSlide(SimpleSlide.Builder()
-                .title(R.string.intro_evaluation)
-                .description(R.string.intro_evaluation_description)
+                .title(R.string.intro_go_now)
+                .description(R.string.intro_go_now_description)
                 .image(R.drawable.chart_icon)
                 .background(R.color.color_intro_chart)
                 .backgroundDark(R.color.color_dark_intro_chart)

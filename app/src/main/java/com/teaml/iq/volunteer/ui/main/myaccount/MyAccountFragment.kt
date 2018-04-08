@@ -18,10 +18,12 @@ import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
 import com.teaml.iq.volunteer.ui.group.GroupActivity
 import com.teaml.iq.volunteer.ui.profile.ProfileActivity
 import com.teaml.iq.volunteer.utils.AppConstants
+import kotlinx.android.synthetic.main.my_account_fragment.*
 import kotlinx.android.synthetic.main.my_account_header.*
-import kotlinx.android.synthetic.main.myaccount_layout.*
 import kotlinx.android.synthetic.main.myaccount_layout_not_sign_in.*
 import org.jetbrains.anko.startActivity
+import java.text.NumberFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -91,6 +93,9 @@ class MyAccountFragment : BaseFragment(), MyAccountMvpView {
             txtBio.text = profileInfo.bio
         else
             txtBio.text = "-----"
+        val numberFormat = NumberFormat.getInstance( Locale.ENGLISH)
+
+        txtXpPoint.text = String.format(getString(R.string.xp_point, profileInfo.xpPoint), numberFormat)
 
         try {
             val imgRef = FirebaseStorage.getInstance().getReference("${AppConstants.USER_IMG_FOLDER}/${profileInfo.img}")

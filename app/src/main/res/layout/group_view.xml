@@ -31,8 +31,8 @@
         android:layout_marginTop="24dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#000"
-        app:layout_constraintStart_toEndOf="@id/groupImg"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupImg"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Team-L" />
 
@@ -46,12 +46,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_caption"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@id/groupImg"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupImg"
         app:layout_constraintTop_toBottomOf="@+id/campaignCount"
         tool:text="3 Member" />
 
-    <TextView
+    <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
         android:id="@+id/campaignCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -60,8 +60,8 @@
         android:layout_marginTop="4dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_caption"
-        app:layout_constraintStart_toEndOf="@id/groupImg"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupImg"
         app:layout_constraintTop_toBottomOf="@+id/txtGroupName"
         tool:text="32 Campaign" />
 

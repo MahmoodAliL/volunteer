@@ -91,9 +91,11 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
                 CommonUtils.dateTimeFrom(year, month, dayOfMonth, selectedTime.hour, selectedTime.minute)
             }
 
+
+
             campaignInfo.putAll(hashMapOf(
                     FbCampaign::title.name to name,
-                    FbCampaign::viewsCount.name to 0 ,
+                    FbCampaign::viewsCount.name to 0,
                     FbCampaign::startDate.name to startDate,
                     FbCampaign::uploadDate.name to FieldValue.serverTimestamp(),
                     FbCampaign::lastModificationDate.name to FieldValue.serverTimestamp(),
@@ -106,6 +108,7 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
                     FbCampaign::groupRef.name to dataManager.getGroupDocRef(uid)
             ))
 
+            view.hideKeyboard()
             view.showLoading()
             if (imgUri != null) {
                 uploadImg()
@@ -158,7 +161,7 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
                 it.hasPermission(READ_EXTERNAL_STORAGE_PERMISSION) -> {
                     mvpView?.openCropImg()
                 }
-                it.shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE_PERMISSION) -> {
+                !it.shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE_PERMISSION) -> {
                     mvpView?.showReadExternalStorageRationale()
                 }
                 else -> {
@@ -169,7 +172,7 @@ open class AddCampaignPresenter<V : AddCampaignMvpView> @Inject constructor(data
     }
 
     override fun onRequestReadExternalStoragePermission() {
-        mvpView?.getBaseActivity()?.requestPermissionsSafely(
+        mvpView?.getBaseFragment()?.requestPermissionsSafely(
                 arrayOf(READ_EXTERNAL_STORAGE_PERMISSION),
                 READ_EXTERNAL_STORAGE_REQUEST_CODE
         )

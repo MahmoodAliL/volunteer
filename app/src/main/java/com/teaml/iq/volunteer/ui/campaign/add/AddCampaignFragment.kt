@@ -222,10 +222,10 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_done -> {
-                val name = titleField.text.toString()
-                val description = descriptionField.text.toString()
+                val name = titleField.text.toString().trim()
+                val description = descriptionField.text.toString().trim()
                 val gender = mVolunteersGender
-                val age = ageField.text.toString()
+                val age = ageField.text.toString().trim()
                 val maxMember = maxMemberField.text.toString()
 
                 mPresenter.onActionDoneClick(name, mSelectedTime, mSelectedDate, mLocation, description, gender, age.toIntOrNull(), maxMember.toIntOrNull())
@@ -293,8 +293,8 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
         mEditMenuItem?.isVisible = true
 
         mPresenter.onDetach()
-        super.onDestroyView()
         mMapView.onDestroy()
+        super.onDestroyView()
     }
 
 }// Required empty public constructor

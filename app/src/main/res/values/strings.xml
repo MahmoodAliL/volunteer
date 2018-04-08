@@ -11,7 +11,7 @@
     <string name="no_item_found">No item found</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="any">Any</string>
+    <string name="any">Any Gender</string>
     <string name="retry">Retry</string>
     <string name="saving">Saving…</string>
     <string name="ok">OK</string>
@@ -22,10 +22,14 @@
     <string name="intro_evaluation">تطور المجتمع</string>
     <string name="intro_evaluation_description">تعتبر الانشطة التطوعية من اهم النشاطات العامة التي تساهم في المحافظة على تطور المجتمع</string>
 
+    <string name="intro_skills">اكتساب المهارات</string>
+    <string name="intro_skills_description">يساعدك العمل التطوعي في كسب مهارات جديدة أو تحسين المهارات التي تمتلكها</string>
+
     <string name="intro_jobs">الوظائف</string>
-    <string name="intro_jobs_description">الوظائف</string>
+    <string name="intro_jobs_description">معظم مدراء العمل يفضلون توظيف شخص له خبره في مجال العمل التطوعي على غيره</string>
 
-
+    <string name="intro_go_now">المتصدرين</string>
+    <string name="intro_go_now_description">شارك في الحملات التطوعية و احرص على ان تكون دائما في الصدارة</string>
     <!-- Sign In -->
     <string name="great_to_see_you_again">Great to see you again</string>
     <string name="email">Email</string>
@@ -42,7 +46,7 @@
     <string name="check_email">Check your email for further instructions</string>
 
     <!-- Sing Up -->
-    <string name="sign_up_welcome">welcome</string>
+    <string name="sign_up_welcome">Welcome</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="or_sign_in">Or sign in</string>
@@ -97,8 +101,9 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="profile_info">Profile Info</string>
     <string name="profile">Profile</string>
-    <string name="Phone">Phone Number</string>
+    <string name="phone">Phone Number</string>
     <string name="bio_profile">Bio</string>
+    <string name="bio_placeholder" translatable="false">-----------------------------------</string>
     <string name="permission_deny">Permission deny</string>
     <string name="read_external_storage_rationale_for_select_image">App need  storage permission to allow you to select image</string>
     <string name="txt_name_placeholder" translatable="false">-------</string>
@@ -186,7 +191,7 @@
     <!-- Group Campaign Adapter -->
     <string name="upload_date_and_views_count">%1$s . %2$d views</string>
     <string name="user_rated_done">User rated done</string>
-    <string name="text_placeholder">-----</string>
+    <string name="text_placeholder" translatable="false">-----</string>
 
     <!-- Not sign in layout -->
     <string name="about">About</string>
@@ -195,6 +200,7 @@
     <string name="privacy_policy"><![CDATA[Terms & privacy policy]]></string>
     <string name="not_sign_in_message">Sign in to join with a lot of campaign and help to make country better</string>
     <string name="campaign_location">Campaign location</string>
+
 
 
 </resources>

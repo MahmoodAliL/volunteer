@@ -141,6 +141,7 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
                     FbCampaign::mIsEdited.name to true
             ))
 
+            view.hideKeyboard()
             view.showLoading()
             if (imgUri != null) {
                 uploadImg()

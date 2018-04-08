@@ -80,13 +80,13 @@
 
         <Button
             android:id="@+id/btnDone"
-            style="@style/ButtonColoredStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="64dp"
             android:layout_marginStart="64dp"
             android:layout_marginTop="24dp"
-            android:text="@string/done" />
+            android:text="@string/done"
+            android:theme="@style/ButtonColoredStyle" />
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"

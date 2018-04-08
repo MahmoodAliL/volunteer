@@ -1,17 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profile_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/color_profile_header"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/profileImg"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:contentDescription="@null"
         android:src="@drawable/profile_placeholder_img" />
 
@@ -20,17 +20,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="-------"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:text="@string/text_placeholder"
+        android:textColor="#000"
+        android:textSize="20sp"
+        tools:text="Mahmood Ali"/>
 
     <TextView
         android:id="@+id/txtBio"
         style="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:gravity="center_horizontal"
+        android:text="@string/bio_placeholder" />
+
+    <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+        android:id="@+id/txtXpPoint"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="-----------------------------------" />
+        android:textColor="?attr/colorPrimary"
+        tools:text="0 XP" />
+
 </LinearLayout>

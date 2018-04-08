@@ -63,7 +63,7 @@
                     app:layout_constraintTop_toBottomOf="@id/logoImgView"
                     tools:text="@tools:sample/full_names" />
 
-                <TextView
+                <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
                     android:id="@+id/txtCampaignsNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

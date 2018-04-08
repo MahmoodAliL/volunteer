@@ -49,7 +49,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 app:layout_constraintTop_toBottomOf="@id/campaignCoverImg"
                 tools:text="The title of campaign will be here which may be to long sometimes" />
-            <TextView
+
+            <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
                 android:id="@+id/txtViewsEdited"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +58,8 @@
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 app:layout_constraintTop_toBottomOf="@id/txtCampaignTitle"
-                tools:text="12 view . edited 2017-10-13"/>
+                tools:text="12 view . edited 2017-10-13" />
+
             <TextView
                 android:id="@+id/txtStartDate"
                 android:layout_width="wrap_content"
@@ -89,7 +91,7 @@
                 tools:layout_editor_absoluteY="245dp"
                 tools:text="9:34 PM" />
 
-            <TextView
+            <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
                 android:id="@+id/txtMember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,13 +139,15 @@
                 app:layout_constraintTop_toBottomOf="@id/txtStartDate" />
 
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/groupImg"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/group_logo_placeholder_img"
+                app:civ_border_color="@color/divider"
+                app:civ_border_width="1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/headerDivider"
                 tools:layout_editor_absoluteY="332dp" />
@@ -157,8 +161,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintStart_toEndOf="@id/groupImg"
                 app:layout_constraintTop_toBottomOf="@id/headerDivider"
-                tools:layout_editor_absoluteX="91dp"
-                tools:layout_editor_absoluteY="332dp"
                 tools:text="Team-L" />
 
             <TextView
@@ -202,7 +204,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtDescriptionTitle"
-                tools:text="We went to do something unique that people will remember We went to do something unique that people will remeber will remeber We went to do something unique that will remeber We went to do something unique that" />
+                tools:text="مرحبا نرغب في جعل المكان اكثر اناقة 😍😍نهدف الى زيادة و تيرة التشجير في جامعة و مضاعة اعداد الاشجار و العناية بها " />
 
 
             <View
@@ -224,7 +226,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descriptionDivider" />
 
-            <TextView
+            <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
                 android:id="@+id/txtRequirement"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

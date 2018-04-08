@@ -8,7 +8,7 @@
     <string name="no_item_found">لم يتم العثور على عناصر</string>
     <string name="male">ذكر</string>
     <string name="female">انثى</string>
-    <string name="any">أي</string>
+    <string name="any">أي جنس</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="saving">حفظ</string>
     <string name="ok">حسنا</string>
@@ -39,7 +39,6 @@
     <!-- Base Profile Info -->
 
     <string name="done">تم</string>
-    <string name="about_your">بعض المعلومات</string>
     <string name="name">الاسم</string>
     <string name="gender">الجنس</string>
     <string name="birth_of_day">تاريخ الميلاد</string>
@@ -78,9 +77,9 @@
     <string name="edit_profile">تعديل الملف الشخصي</string>
     <string name="profile_info">معلومات الملف الشخصي</string>
     <string name="profile">الملف الشخصي</string>
-    <string name="Phone">رقم الهاتف</string>
+    <string name="phone">رقم الهاتف</string>
     <string name="bio_profile">النبذه التعريفيه</string>
-    <string name="permission_deny">رفض الأذن</string>
+    <string name="permission_deny"> تم رفض الأذن</string>
     <string name="read_external_storage_rationale_for_select_image">يحتاج التطبيق إلى إذن التخزين للسماح لك بتحديد الصورة</string>
     <string name="helpful">مفيد</string>
     <string name="unhelpful">غير مفيد</string>
@@ -99,7 +98,7 @@
     <string name="description">الوصف</string>
     <string name="requirement">المتطلبات</string>
     <string name="campaign_requirement">- %1$d عضو \n\n- لل %2$s \n\n- اكثر من %3$d سنة </string>
-    <string name="join">انظمام</string>
+    <string name="join">انضمام</string>
     <string name="campaign_member">%1$d عضو</string>
     <string name="campaigns">حملات</string>
     <string name="leave">مغادرة</string>
@@ -109,7 +108,7 @@
     <string name="your_age_is_less_then_required">عمرك أقل من المطلوب</string>
     <string name="join_date">انضم  %1$s</string>
     <string name="campaign_detail">تفاصيل الحملة</string>
-    <string name="member">اعضاء</string>
+    <string name="member">الاعضاء</string>
     <string name="rate_member">تقييم الاعضاء</string>
     <string name="make_your_live_better">أجعل حياتك أفضل</string>
     <string name="not_allow_rate_member_now">يمكنك تقييم الأعضاء بعد يوم واحد من بدء الحملة</string>
@@ -161,7 +160,7 @@
 
     <string name="about">حول</string>
     <string name="help">مساعدة</string>
-    <string name="feedback">تعليقات</string>
+    <string name="feedback">اقتراح</string>
     <string name="privacy_policy"><![CDATA[الشروط و سياسة الخصوصية ]]></string>
     <string name="not_sign_in_message">سجّل الدخول للانضمام إلى الكثير من الحملات ،والمساعدة في جعل البلاد أفضل</string>
 
@@ -170,6 +169,8 @@
     <string name="create_group">إنشاء مجموعة</string>
     <string name="upload_date_and_views_count">%1$s . %2$d من المشاهدات</string>
     <string name="leaderboard">المتصدرين</string>
+    <string name="campaign_location">موقع الحملة</string>
+    <string name="about_your">عن نفسك</string>
 
 
 </resources>

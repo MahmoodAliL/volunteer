@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -44,33 +45,32 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ellipsize="end"
-        android:gravity="start"
         android:maxLines="2"
-        android:text="لعبت روحي من التطبيق"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/orgImgView"
-        app:layout_constraintTop_toBottomOf="@+id/campaignCoverImg" />
+        app:layout_constraintTop_toBottomOf="@+id/campaignCoverImg"
+        tools:text="عربي" />
 
-    <TextView
+    <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
         android:id="@+id/txtGroupNameUploadDateViews"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:gravity="start"
-        android:text="Team-L . 2 Week"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/secondary_text_light"
         app:layout_constraintStart_toEndOf="@+id/orgImgView"
-        app:layout_constraintTop_toBottomOf="@+id/campaignTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/campaignTitle"
+        tools:text="Team-L . 2 Week" />
 
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:background="#1f000000"
+        android:background="@color/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGroupNameUploadDateViews"/>

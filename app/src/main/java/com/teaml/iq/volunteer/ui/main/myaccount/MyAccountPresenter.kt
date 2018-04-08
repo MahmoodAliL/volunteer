@@ -52,7 +52,7 @@ class MyAccountPresenter<V : MyAccountMvpView> @Inject constructor(dataManager: 
         return if (isLoggOut)
             R.layout.myaccount_layout_not_sign_in
         else
-            R.layout.myaccount_layout
+            R.layout.my_account_fragment
     }
 
     override fun onResume() {

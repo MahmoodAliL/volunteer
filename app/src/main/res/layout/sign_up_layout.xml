@@ -4,6 +4,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:fillViewport="true">
 
     <LinearLayout
@@ -26,10 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
             android:text="@string/sign_up_welcome"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilEmail"
@@ -83,13 +82,13 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            style="@style/ButtonColoredStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="64dp"
             android:layout_marginStart="64dp"
             android:layout_marginTop="16dp"
-            android:text="@string/sign_up" />
+            android:text="@string/sign_up"
+            android:theme="@style/ButtonColoredStyle" />
 
 
         <Button

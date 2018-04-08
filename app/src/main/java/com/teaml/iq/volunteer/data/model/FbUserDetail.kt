@@ -11,7 +11,7 @@ data class FbUserDetail(
         @ServerTimestamp val lastModificationDate: Date = Date(),
         val name: String = "",
         val myGroupId: String =  "",
-        val bio: String = "Hi there i am using volunteer iq app ",
+        val bio: String = "Hi there i am using volunteers iq app ",
         val gender: Int = 0,
         val birthOfDay: Date = Date(),
         val email: String = "",

@@ -177,7 +177,7 @@ class EditProfileFragment : BaseFragment(), EditProfileMvpView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-
+        activity?.menuInflater?.inflate(R.menu.edit_profile_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
