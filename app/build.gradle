@@ -65,7 +65,7 @@ dependencies {
 
     // dagger2
     implementation "com.google.dagger:dagger:$dagger2_version"
-    implementation 'com.android.support:support-v4:27.1.0'
+
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
 
     // firebase
@@ -81,7 +81,7 @@ dependencies {
 
     // material intro
     implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
-    kapt 'com.android.databinding:compiler:3.0.1'
+    kapt 'com.android.databinding:compiler:3.1.0'
 
     // circle image
     implementation 'de.hdodenhof:circleimageview:2.2.0'
@@ -92,17 +92,19 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
 
     // google play services
-    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    implementation "com.google.android.gms:play-services-maps:$firebase_version"
     // android KTX
     // read this from more info: https://medium.com/exploring-android/exploring-ktx-for-android-13a369795b51
-    implementation 'androidx.core:core-ktx:0.2'
+    implementation 'androidx.core:core-ktx:0.3'
 
     // Material spinner
     implementation 'com.satsuware.lib:usefulviews:2.3.6'
 
+    // custom toast
+    implementation 'com.muddzdev:styleabletoast:2.1.2'
+
     // DiagonalLayout
     compile 'com.github.florent37:diagonallayout:1.0.7'
-
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
