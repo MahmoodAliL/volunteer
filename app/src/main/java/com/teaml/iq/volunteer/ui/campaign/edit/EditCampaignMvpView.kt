@@ -10,5 +10,7 @@ interface EditCampaignMvpView : AddCampaignMvpView {
 
     fun showCampaignDetail(campaignInfo: FbCampaign)
 
+    fun showCampaignDetailFragment(campaignId: String, groupId: String)
+
     fun onLoadCampaignError()
 }

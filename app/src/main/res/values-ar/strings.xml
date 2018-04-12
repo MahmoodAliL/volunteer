@@ -16,18 +16,33 @@
     <string name="great_to_see_you_again">سعيد برؤيتك مجددا</string>
     <string name="email">البريد الالكتروني</string>
     <string name="password">كلمه المرور</string>
-    <string name="forget_password">نسيت كلمة المرور؟</string>
+    <string name="forgot_password">نسيت كلمة المرور؟</string>
     <string name="sign_in">تسجيل الدخول</string>
     <string name="or_sign_up">أو انشاء حساب</string>
     <string name="reset_password">إعادة كلمة المرور</string>
     <string name="back">رجوع</string>
-    <string name="forget_password_description">لا تقلق نحن بحاجة فقط إلى معرف البريد الإلكتروني المسجل الخاص بك لإرسال تعليمات إعادة تعيين كلمة المرور الخاصة بك.</string>
+    <string name="forgot_password_description">لا تقلق نحن بحاجة فقط إلى معرف البريد الإلكتروني المسجل الخاص بك لإرسال تعليمات إعادة تعيين كلمة المرور الخاصة بك.</string>
     <string name="email_is_sent_successfully">يتم إرسال البريد الإلكتروني بنجاح</string>
     <string name="check_email">"تحقق من بريدك الالكتروني "</string>
     <string name="sign_up_welcome">مرحبا</string>
     <string name="confirm_password">تأكيد كلمه المرور</string>
     <string name="sign_up">انشاء حساب</string>
     <string name="or_sign_in">او تسجيل الدخول</string>
+
+
+    <!-- Intro -->
+    <string name="intro_evaluation">تطور المجتمع</string>
+    <string name="intro_evaluation_description">تعتبر الانشطة التطوعية من اهم النشاطات العامة التي تساهم في المحافظة على تطور المجتمع</string>
+
+    <string name="intro_skills">اكتساب المهارات</string>
+    <string name="intro_skills_description">يساعدك العمل التطوعي في كسب مهارات جديدة أو تحسين المهارات التي تمتلكها</string>
+
+    <string name="intro_jobs">الوظائف</string>
+    <string name="intro_jobs_description">معظم مدراء العمل يفضلون توظيف شخص له خبره في مجال العمل التطوعي على غيره</string>
+
+    <string name="intro_go_now">دعنا نبدء الان</string>
+    <string name="intro_go_now_description">شارك في الحملات التطوعية و احرص على ان تكون دائما في الصدارة</string>
+
 
     <!-- Change Password -->
 
@@ -58,7 +73,6 @@
 
     <string name="home">الرئيسية</string>
     <string name="group">المجموعات</string>
-    <string name="subscription">اشتراك</string>
     <string name="account">الحساب</string>
     <string name="activity">النشاط</string>
     <string name="leaderboard">المتصدرين</string>
@@ -172,6 +186,8 @@
     <string name="upload_date_and_views_count">%1$s . %2$d من المشاهدات</string>
      <string name="campaign_location">موقع الحملة</string>
     <string name="about_your">عن نفسك</string>
+    <string name="required_age_should_be_equal_or_greater_then_old_age">"يجب ان يكون العمر المطلوب اكبر او يساوي العمر السابق "</string>
+    <string name="required_max_member_should_be_equal_or_greater_then_old_max_member">"يجب ان يكون العدد الاقصى للاعضاء اكبر او يساوي العدد السابق "</string>
 
 
 </resources>

@@ -1,6 +1,8 @@
 package com.teaml.iq.volunteer.ui.campaign
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.teaml.iq.volunteer.R
 import com.teaml.iq.volunteer.ui.base.BaseActivity
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
@@ -21,12 +23,16 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
         const val EXTRA_KEY_CAMPAIGN_ID = "extra_key_campaign_id"
     }
 
+
+    private  var mEditMenuItem: MenuItem? = null
+
+    @Inject
+    lateinit var mPresenter: CampaignMvpPresenter<CampaignMvpView>
+
     override fun setup() {
 
     }
 
-    @Inject
-    lateinit var mPresenter: CampaignMvpPresenter<CampaignMvpView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +56,11 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
     override fun updateToolbarToDetail() {
         supportActionBar?.title = getString(R.string.campaign_detail)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
+        mEditMenuItem?.isVisible = false
     }
 
     override fun updateToolbarToMember() {
-       /* supportActionBar?.title = getString(R.string.member)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_24dp)*/
+       mEditMenuItem?.isVisible = false
     }
 
 
@@ -71,6 +77,16 @@ class CampaignActivity : BaseActivity(), CampaignMvpView {
             addFragment(R.id.fragmentContainer, CampaignDetailFragment.newInstance(bundle), CampaignDetailFragment.TAG)
         }
 
+    }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        mEditMenuItem = menu?.findItem(R.id.action_edit)
+        mEditMenuItem?.isVisible = false
+
+        return false
     }
 
     override fun onSupportNavigateUp(): Boolean {

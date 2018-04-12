@@ -59,7 +59,6 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
     override fun setup(view: View) {
         val uid = arguments?.getString(BUNDLE_KEY_UID, "default uid") ?: "default uid"
         mPresenter.fetchProfileInfo(uid)
-
     }
 
 

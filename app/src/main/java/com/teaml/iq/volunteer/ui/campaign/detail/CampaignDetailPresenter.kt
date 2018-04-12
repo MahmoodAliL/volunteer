@@ -1,6 +1,8 @@
 package com.teaml.iq.volunteer.ui.campaign.detail
 
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.GeoPoint
 import com.teaml.iq.volunteer.R
@@ -39,6 +41,7 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
     private var isOwnerCampaign = false
 
 
+
     override fun onAttach(mvpView: V) {
         super.onAttach(mvpView)
         isSignIn = dataManager.getCurrentUserLoggedInMode() == DataManager.LoggedInMode.LOGGED_IN_WITH_EMAIL.type
@@ -50,8 +53,12 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
         this.campaignId = campaignId
         this.groupId = groupId
 
-        loadCampaign()
+        val uid = dataManager.getFirebaseUserAuthID()
 
+        if (uid != null)
+            isOwnerCampaign =  uid == groupId
+
+        loadCampaign()
         updateCampaignDetail()
 
     }
@@ -120,9 +127,8 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
                     Log.d(TAG, "on sign in ")
 
                     // if user is owner this campaign then  user can rate member only if start date
-                    if (groupId == uid) {
+                    if (isOwnerCampaign) {
                         Log.d(TAG, "user is owner of this campaign")
-                        isOwnerCampaign = true
                         uiThread {
                             canRateMemberNow(campaign)
                             mvpView?.onUserOwnerCampaign()
@@ -182,6 +188,12 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
 
         }
 
+    }
+
+
+    override fun onBackStackChanged(backStackEntryCount: Int?) {
+        if (backStackEntryCount != null)
+            mvpView?.setEditMenuItemVisible(backStackEntryCount <= 0)
     }
 
     private fun checkCanLeaveCampaign(campaign: FbCampaign) {
@@ -339,6 +351,16 @@ class CampaignDetailPresenter<V : CampaignDetailMvpView> @Inject constructor(dat
             }
         }
 
+    }
+
+    override fun onCreateOptionMenu(menu: Menu?, inflater: MenuInflater?) {
+        if (isOwnerCampaign)
+            inflater?.inflate(R.menu.campaign_owner_menu, menu)
+    }
+
+
+    override fun onActionEditClick() {
+        mvpView?.showEditCampaignFragment(campaignId)
     }
 
 

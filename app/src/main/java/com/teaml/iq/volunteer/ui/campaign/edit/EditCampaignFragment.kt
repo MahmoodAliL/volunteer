@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.storage.FirebaseStorage
 import com.teaml.iq.volunteer.R
@@ -17,6 +18,7 @@ import com.teaml.iq.volunteer.data.model.SelectedTime
 import com.teaml.iq.volunteer.ui.campaign.add.AddCampaignFragment
 import com.teaml.iq.volunteer.ui.campaign.detail.CampaignDetailFragment
 import com.teaml.iq.volunteer.utils.AppConstants
+import com.teaml.iq.volunteer.utils.replaceFragment
 import com.teaml.iq.volunteer.utils.toDateString
 import com.teaml.iq.volunteer.utils.toTimeString
 import kotlinx.android.synthetic.main.fragment_add_campaign.*
@@ -33,14 +35,23 @@ class EditCampaignFragment : AddCampaignFragment(), EditCampaignMvpView {
     @Inject
     lateinit var mEditPresenter: EditCampaignMvpPresenter<EditCampaignMvpView>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.edit_campaign)
-    }
 
     companion object {
         fun newInstance(args: Bundle = Bundle.EMPTY) = EditCampaignFragment().apply { arguments = args  }
         val TAG: String = EditCampaignFragment::class.java.simpleName
+
+        const val COME_FROM_BUNDLE_KEY = "COME_FROM_BUNDLE_KEY"
+    }
+
+    enum class ComeFrom(val type: Int) {
+        CAMPAIGN_DETAIL_FRAGMENT(0),
+        MY_GROUP_FRAGMENT(1)
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.edit_campaign)
     }
 
 
@@ -60,10 +71,18 @@ class EditCampaignFragment : AddCampaignFragment(), EditCampaignMvpView {
 
         arguments?.let {
             val campaignId = it.getString(CampaignDetailFragment.BUNDLE_KEY_CAMPAIGN_ID)
+            val comeFrom = it.getInt(COME_FROM_BUNDLE_KEY, ComeFrom.CAMPAIGN_DETAIL_FRAGMENT.type)
+
+            mEditPresenter.setComeFrom(comeFrom)
             mEditPresenter.setCampaignId(campaignId)
+
             mEditPresenter.loadCampaignDetail()
+
+
         }
     }
+
+
 
     override fun showCampaignDetail(campaignInfo: FbCampaign) {
 
@@ -105,6 +124,7 @@ class EditCampaignFragment : AddCampaignFragment(), EditCampaignMvpView {
     }
 
     override fun onLoadCampaignError() {
+
         indefiniteSnackbar(imgView, R.string.some_error, R.string.retry) {
             mEditPresenter.loadCampaignDetail()
         }
@@ -133,8 +153,26 @@ class EditCampaignFragment : AddCampaignFragment(), EditCampaignMvpView {
         return false
     }
 
+    override fun showCampaignDetailFragment(campaignId: String, groupId: String) {
+
+        val args = bundleOf(CampaignDetailFragment.BUNDLE_KEY_CAMPAIGN_ID to campaignId,
+                CampaignDetailFragment.BUNDLE_KEY_GROUP_ID to groupId)
+        activity?.supportFragmentManager?.popBackStack()
+        activity?.replaceFragment(
+                R.id.fragmentContainer,
+                CampaignDetailFragment.newInstance(args),
+                CampaignDetailFragment.TAG
+        )
+    }
+
     override fun getSyncGoogleMap() {
         // just to prevent from loading default
+    }
+
+    override fun onDestroyView() {
+
+        mEditPresenter.onDetach()
+        super.onDestroyView()
     }
 
 }

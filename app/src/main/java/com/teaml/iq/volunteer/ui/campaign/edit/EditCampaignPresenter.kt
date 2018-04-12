@@ -25,6 +25,7 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
     }
 
     private var mCampaignId = ""
+    private var mComeFrom = -1
     private var mCurrentCampaignInfo: FbCampaign? = null
 
 
@@ -32,6 +33,9 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
         this.mCampaignId = campaignId
     }
 
+    override fun setComeFrom(comeFrom: Int) {
+        mComeFrom = comeFrom
+    }
 
     override fun loadCampaignDetail() {
         mvpView?.showLoading()
@@ -158,7 +162,7 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
         val uid = dataManager.getFirebaseUserAuthID()
 
         if (uid == null) {
-            mvpView?.onError(R.string.some_error)
+            setUserAsLoggedOut()
             Log.e(TAG, "on uid null")
             return
         }
@@ -166,12 +170,20 @@ class EditCampaignPresenter<V : EditCampaignMvpView> @Inject constructor(dataMan
         dataManager.getCampaignDocRef(mCampaignId).set(campaignInfo, SetOptions.merge()).addOnCompleteListener {
             mvpView?.hideLoading()
             if (it.isSuccessful) {
-                mvpView?.showMyGroupFragment(uid)
+                onEditCampaignComplete(uid)
             } else {
                 mvpView?.onError(R.string.some_error)
                 Log.e(TAG, "on update campaign ", it.exception)
             }
         }
+    }
+
+    private fun onEditCampaignComplete(uid: String) {
+
+        if (mComeFrom == EditCampaignFragment.ComeFrom.CAMPAIGN_DETAIL_FRAGMENT.type)
+            mvpView?.showCampaignDetailFragment(mCampaignId, uid)
+        else
+            mvpView?.showMyGroupFragment(uid)
     }
 
 

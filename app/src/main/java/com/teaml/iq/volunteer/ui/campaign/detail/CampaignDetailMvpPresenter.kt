@@ -1,5 +1,7 @@
 package com.teaml.iq.volunteer.ui.campaign.detail
 
+import android.view.Menu
+import android.view.MenuInflater
 import com.teaml.iq.volunteer.ui.base.MvpPresenter
 
 /**
@@ -21,4 +23,10 @@ interface CampaignDetailMvpPresenter<V : CampaignDetailMvpView> : MvpPresenter<V
     fun onGroupImgClick()
 
     fun onUserLeaveCampaign()
+
+    fun onCreateOptionMenu(menu: Menu?, inflater: MenuInflater?)
+
+    fun onActionEditClick()
+
+    fun onBackStackChanged(backStackEntryCount: Int?)
 }

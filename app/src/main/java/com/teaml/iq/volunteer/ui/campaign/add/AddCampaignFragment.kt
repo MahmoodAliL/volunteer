@@ -281,7 +281,6 @@ open class AddCampaignFragment : BaseFragment(), AddCampaignMvpView, LabelledSpi
     override fun onResume() {
         super.onResume()
         mMapView.onResume()
-
     }
 
 

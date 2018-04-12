@@ -36,6 +36,8 @@ android {
         }
     }
 
+
+
 }
 
 dependencies {
@@ -104,7 +106,7 @@ dependencies {
     implementation 'com.muddzdev:styleabletoast:2.1.2'
 
     // DiagonalLayout
-    compile 'com.github.florent37:diagonallayout:1.0.7'
+    implementation 'com.github.florent37:diagonallayout:1.0.7'
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

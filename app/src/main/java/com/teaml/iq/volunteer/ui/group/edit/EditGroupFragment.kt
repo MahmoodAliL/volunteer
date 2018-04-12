@@ -26,7 +26,7 @@ class EditGroupFragment : CreateGroupFragment(), EditGroupMvpView {
         fun newInstance(args: Bundle = Bundle.EMPTY) = EditGroupFragment().apply { arguments = args }
     }
 
-    private var editMenuItem: MenuItem? = null
+    private var mEditMenuItem: MenuItem? = null
 
     @Inject
     lateinit var mEditPresenter: EditGroupMvpPresenter<EditGroupMvpView>
@@ -90,8 +90,8 @@ class EditGroupFragment : CreateGroupFragment(), EditGroupMvpView {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
-        editMenuItem = menu.findItem(R.id.action_edit)
-        editMenuItem!!.isVisible = false
+        mEditMenuItem = menu.findItem(R.id.action_edit)
+        mEditMenuItem!!.isVisible = false
     }
 
     override fun onLoadGroupInfoError() {
@@ -114,7 +114,7 @@ class EditGroupFragment : CreateGroupFragment(), EditGroupMvpView {
     }
 
     override fun onDestroyView() {
-        editMenuItem?.isVisible = true
+        mEditMenuItem?.isVisible = true
         mEditPresenter.onDetach()
         super.onDestroyView()
     }

@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
@@ -18,6 +16,7 @@ import com.teaml.iq.volunteer.data.model.GlideApp
 import com.teaml.iq.volunteer.ui.account.AccountActivity
 import com.teaml.iq.volunteer.ui.base.BaseFragment
 import com.teaml.iq.volunteer.ui.campaign.CampaignActivity
+import com.teaml.iq.volunteer.ui.campaign.edit.EditCampaignFragment
 import com.teaml.iq.volunteer.ui.campaign.map.MapFragment
 import com.teaml.iq.volunteer.ui.campaign.members.CampaignMembersFragment
 import com.teaml.iq.volunteer.ui.campaign.members.rate.RateMemberFragment
@@ -44,6 +43,17 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
         const val BUNDLE_KEY_CAMPAIGN_ID = "bundle_key_campaign_id"
     }
 
+    private var mEditMenuItem: MenuItem? = null
+
+    init {
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     @Inject
     lateinit var mPresenter: CampaignDetailMvpPresenter<CampaignDetailMvpView>
 
@@ -56,9 +66,44 @@ class CampaignDetailFragment : BaseFragment(), CampaignDetailMvpView {
             mPresenter.onAttach(this)
         }
 
+        activity?.supportFragmentManager?.addOnBackStackChangedListener {
+            val backStackEntryCount = activity?.supportFragmentManager?.backStackEntryCount
+            mPresenter.onBackStackChanged(backStackEntryCount)
+        }
+
         return layoutInflater.inflate(R.layout.campaign_detail_layout, container, false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        mPresenter.onCreateOptionMenu(menu, inflater)
+        super.onCreateOptionsMenu(menu, inflater)
+        mEditMenuItem = menu?.findItem(R.id.action_edit)
+    }
+
+
+    override fun setEditMenuItemVisible(isVisible: Boolean) {
+        mEditMenuItem?.isVisible = isVisible
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
+
+        R.id.action_edit -> { mPresenter.onActionEditClick(); false}
+
+        else -> false
+    }
+
+
+
+    override fun showEditCampaignFragment(campaignId: String) {
+        val args = bundleOf(CampaignDetailFragment.BUNDLE_KEY_CAMPAIGN_ID to campaignId,
+                EditCampaignFragment.COME_FROM_BUNDLE_KEY to EditCampaignFragment.ComeFrom.CAMPAIGN_DETAIL_FRAGMENT.type)
+        activity?.addFragmentAndAddToBackStack(
+                R.id.fragmentContainer,
+                EditCampaignFragment.newInstance(args),
+                EditCampaignFragment.TAG
+        )
+    }
 
     override fun setup(view: View) {
 

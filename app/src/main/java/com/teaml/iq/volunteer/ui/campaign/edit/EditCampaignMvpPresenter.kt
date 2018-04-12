@@ -9,6 +9,8 @@ interface EditCampaignMvpPresenter<V : EditCampaignMvpView> : AddCampaignMvpPres
 
     fun setCampaignId(campaignId: String)
 
+    fun setComeFrom(comeFrom: Int)
+
     fun updateVolunteerGenderItems(volunteerGenderItem : MutableList<String>, currentGender: Int)
 
     fun loadCampaignDetail()

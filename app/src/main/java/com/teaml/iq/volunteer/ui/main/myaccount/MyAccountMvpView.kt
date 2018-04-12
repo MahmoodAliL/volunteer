@@ -14,5 +14,5 @@ interface MyAccountMvpView : BaseSignInSignOutMvpView {
 
     fun openGroupActivityWithCreateGroup()
 
-    fun openGroupActivityWithGroupDetail(uid: String)
+    fun openGroupActivityWithGroupDetail(groupId: String)
 }

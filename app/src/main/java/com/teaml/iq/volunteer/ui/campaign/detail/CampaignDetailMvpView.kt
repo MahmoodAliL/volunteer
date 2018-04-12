@@ -30,9 +30,13 @@ interface CampaignDetailMvpView : FragmentMvpView {
 
     fun showOnLeaveCampaignDialog()
 
+    fun showEditCampaignFragment(campaignId: String)
+
     fun showCampaignMembersFragment(campaignId: String)
 
     fun showRateMembersFragment(campaignId: String)
+
+    fun setEditMenuItemVisible(isVisible: Boolean)
 
     fun onUserOwnerCampaign()
 
