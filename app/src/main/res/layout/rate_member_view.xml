@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <TextView
+    <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
         android:id="@+id/txtMemberName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
-    <TextView
+    <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
         android:id="@+id/txtJoinDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

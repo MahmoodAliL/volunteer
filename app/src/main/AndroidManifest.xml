@@ -20,7 +20,6 @@
         tools:replace="android:supportsRtl">
         <activity
             android:name=".ui.intro.MainIntroActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.Intro"/>
         <activity
             android:name=".ui.splash.SplashActivity"

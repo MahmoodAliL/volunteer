@@ -118,6 +118,7 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, BaseFragment.Callbac
             toast(R.string.some_error).show()
     }
 
+
     override fun showMessage(msg: String) {
         toast(msg).show()
     }

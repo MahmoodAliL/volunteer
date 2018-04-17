@@ -47,17 +47,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:gravity="start"
-        android:textAlignment="viewStart"
         android:maxLines="3"
         android:paddingEnd="4dp"
         android:paddingStart="8dp"
+        android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintEnd_toStartOf="@id/imgMore"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/lorem/random" />
 
-    <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+    <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
         android:id="@+id/txtUploadDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

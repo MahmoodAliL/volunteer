@@ -14,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/color_profile_header"
-            app:layout_constraintBottom_toBottomOf="@id/header_divider"/>
+            app:layout_constraintBottom_toBottomOf="@id/header_divider" />
+
         <ImageView
             android:id="@+id/profileImg"
             android:layout_width="72dp"
@@ -62,7 +63,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtBio" />
 
-        <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/txtCampaignJoinCount"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
@@ -177,7 +178,7 @@
 
         </LinearLayout>
 
-        <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/txtXpPoint"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
@@ -200,53 +201,53 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtXpPoint" />
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/txtGender"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_gender_24dp"
             android:text="@string/text_placeholder"
+            app:drawableStartCompat="@drawable/ic_gender_24dp"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gamification_divider" />
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/txtBirthOfDay"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_today_24dp"
             android:text="@string/text_placeholder"
+            app:drawableStartCompat="@drawable/ic_today_24dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtGender" />
 
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/txtPhone"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_phone_24dp"
             android:text="@string/text_placeholder"
+            app:drawableStartCompat="@drawable/ic_phone_24dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtBirthOfDay" />
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/txtEmail"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:drawableStart="@drawable/ic_email_24dp"
             android:textAlignment="viewStart"
             android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_email_24dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -257,8 +258,7 @@
             android:id="@+id/hideDetailLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
-             />
+            android:background="#fff" />
 
         <include
             layout="@layout/progressbar_layout"
@@ -284,7 +284,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_refresh_black_24dp" />
-
 
 
     </android.support.constraint.ConstraintLayout>

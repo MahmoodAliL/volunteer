@@ -29,7 +29,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
 
     companion object {
         val TAG: String = ProfileInfoFragment::class.java.simpleName
-        fun newInstance(args: Bundle = Bundle.EMPTY) = ProfileInfoFragment().apply { arguments  = args }
+        fun newInstance(args: Bundle = Bundle.EMPTY) = ProfileInfoFragment().apply { arguments = args }
 
         const val BUNDLE_KEY_UID = "bundle_key_uid"
     }
@@ -38,7 +38,6 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
-
 
 
     override fun onAttach(context: Context?) {
@@ -53,7 +52,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
             mPresenter.onAttach(this)
         }
 
-        return layoutInflater.inflate(R.layout.profile_info_fragment,container, false)
+        return layoutInflater.inflate(R.layout.profile_info_fragment, container, false)
     }
 
     override fun setup(view: View) {
@@ -136,7 +135,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
                 mPresenter.onActionEditClick()
             }
             R.id.action_change_password -> {
-                activity?.replaceFragmentAndAddToBackStack(R.id.fragmentContainer,ChangePasswordFragment.newInstance(),ChangePasswordFragment.TAG)
+                activity?.replaceFragmentAndAddToBackStack(R.id.fragmentContainer, ChangePasswordFragment.newInstance(), ChangePasswordFragment.TAG)
             }
         }
 
@@ -147,6 +146,7 @@ class ProfileInfoFragment : BaseFragment(), ProfileInfoMvpView {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
     }
+
     override fun onDestroyView() {
         mPresenter.onDetach()
         super.onDestroyView()

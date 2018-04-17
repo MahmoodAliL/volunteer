@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@id/campaignCoverImg"
                 tools:text="The title of campaign will be here which may be to long sometimes" />
 
-            <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+            <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
                 android:id="@+id/txtViewsEdited"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,14 +61,14 @@
                 app:layout_constraintTop_toBottomOf="@id/txtCampaignTitle"
                 tools:text="12 view . edited 2017-10-13" />
 
-            <TextView
+            <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
                 android:id="@+id/txtStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/ic_today_dark_grey_24dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:drawableTopCompat="@drawable/ic_today_dark_grey_24dp"
                 app:layout_constraintEnd_toStartOf="@+id/txtStartTime"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
@@ -77,14 +77,14 @@
                 tools:layout_editor_absoluteY="295dp"
                 tools:text="2017-12-03" />
 
-            <TextView
+            <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
                 android:id="@+id/txtStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/ic_timer_dark_grey_24dp"
                 android:gravity="center_horizontal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:drawableTopCompat="@drawable/ic_timer_dark_grey_24dp"
                 app:layout_constraintEnd_toStartOf="@+id/txtMember"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/txtStartDate"
@@ -92,17 +92,17 @@
                 tools:layout_editor_absoluteY="245dp"
                 tools:text="9:34 PM" />
 
-            <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+            <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
                 android:id="@+id/txtMember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/ic_group_dark_grey_24dp"
                 android:focusable="true"
                 android:gravity="center_horizontal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:drawableTopCompat="@drawable/ic_group_dark_grey_24dp"
                 app:layout_constraintEnd_toStartOf="@+id/txtLocation"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/txtStartTime"
@@ -110,7 +110,7 @@
                 tools:layout_editor_absoluteY="245dp"
                 tools:text="34 Member" />
 
-            <TextView
+            <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
                 android:id="@+id/txtLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,11 +118,11 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/ic_location_on_24dp"
                 android:focusable="true"
                 android:gravity="center_horizontal"
                 android:text="@string/location"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:drawableTopCompat="@drawable/ic_location_on_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintRight_toRightOf="parent"
@@ -228,7 +228,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descriptionDivider" />
 
-            <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+            <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
                 android:id="@+id/txtRequirement"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

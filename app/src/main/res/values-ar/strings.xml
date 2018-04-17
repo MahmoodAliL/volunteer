@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Volunteers IQ</string>
-    <string name="some_error">حدث خطأ ما</string>
+    <string name="some_error">" ناسف حدث خطأ ما"</string>
     <string name="loading">جاري التحميل</string>
     <string name="connection_error">لا يتوفر اتصال بالإنترنت</string>
     <string name="please_wait">الرجاء الانتظار</string>
@@ -21,10 +21,9 @@
     <string name="or_sign_up">أو انشاء حساب</string>
     <string name="reset_password">إعادة كلمة المرور</string>
     <string name="back">رجوع</string>
-    <string name="forgot_password_description">لا تقلق نحن بحاجة فقط إلى معرف البريد الإلكتروني المسجل الخاص بك لإرسال تعليمات إعادة تعيين كلمة المرور الخاصة بك.</string>
-    <string name="email_is_sent_successfully">يتم إرسال البريد الإلكتروني بنجاح</string>
+    <string name="forgot_password_description">لا تقلق نحن فقط بحاجة إلى معرف بريدك الإلكتروني المسجل لدينا لإرسال تعليمات إعادة تعيين كلمة المرور الخاصة بك.</string>
+    <string name="email_is_sent_successfully">تم إرسال البريد الإلكتروني بنجاح</string>
     <string name="check_email">"تحقق من بريدك الالكتروني "</string>
-    <string name="sign_up_welcome">مرحبا</string>
     <string name="confirm_password">تأكيد كلمه المرور</string>
     <string name="sign_up">انشاء حساب</string>
     <string name="or_sign_in">او تسجيل الدخول</string>
@@ -46,7 +45,7 @@
 
     <!-- Change Password -->
 
-    <string name="change_password">تغيرر كلمة المرور</string>
+    <string name="change_password">تغير كلمة المرور</string>
     <string name="update_password">تم تحديث كلمةالمرور</string>
     <string name="current_password">الحالية</string>
     <string name="current_password_not_correct">كلمة المرور الحالية غير صحيحة</string>
@@ -99,7 +98,7 @@
     <string name="read_external_storage_rationale_for_select_image">يحتاج التطبيق إلى إذن التخزين للسماح لك بتحديد الصورة</string>
     <string name="helpful">مفيد</string>
     <string name="unhelpful">غير مفيد</string>
-    <string name="not_attend">غير حاضر</string>
+    <string name="not_attend">لم يحضر</string>
     <string name="campaign_join_count">%1$d حملات</string>
     <string name="my_profile">الصفحة الشخصية</string>
     <string name="sign_out">تسجيل الخروج</string>
@@ -150,13 +149,13 @@
     <string name="time">الوقت</string>
     <string name="date">التاريخ</string>
     <string name="age">اقل عمر</string>
-    <string name="max_members">عدد الاعضاء</string>
+    <string name="max_members">اقصى عدد الاعضاء</string>
     <string name="add_campaign">اضافة حملة</string>
     <string name="map">الخريطة</string>
     <string name="edit_campaign">تعديل الحملة</string>
     <string name="user_rated_done">تم التقييم</string>
     <string name="empty_description">يرجى تقديم وصف غير فارغ</string>
-    <string name="error_while_upload_campaign">حدث خطأ أثناء تحميل الحملة</string>
+    <string name="error_while_upload_campaign">" ناسف , حدث خطأ أثناء تحميل الحملة"</string>
     <string name="max_count_member_should_be_in_range_10_1000">يجب أن يكون الحد الأقصى لعدد الأعضاء في النطاق من 5 إلى 1000</string>
     <string name="required_age_should_be_in_range_10_100">يجب أن يتراوح العمر المطلوب من 10 إلى 100</string>
     <string name="please_select_max_count_members">يرجى تحديد الحد الأقصى لعدد الأعضاء المطلوبة من الحملة</string>
@@ -180,14 +179,14 @@
     <string name="privacy_policy"><![CDATA[الشروط و سياسة الخصوصية ]]></string>
     <string name="not_sign_in_message">سجّل الدخول للانضمام إلى الكثير من الحملات ،والمساعدة في جعل البلاد أفضل</string>
 
-
     <string name="group_campaigns">حملات المجموعة</string>
     <string name="create_group">إنشاء مجموعة</string>
     <string name="upload_date_and_views_count">%1$s . %2$d من المشاهدات</string>
-     <string name="campaign_location">موقع الحملة</string>
-    <string name="about_your">عن نفسك</string>
+    <string name="campaign_location">موقع الحملة</string>
+    <string name="about_your"> اخبرنا عن نفسك</string>
     <string name="required_age_should_be_equal_or_greater_then_old_age">"يجب ان يكون العمر المطلوب اكبر او يساوي العمر السابق "</string>
     <string name="required_max_member_should_be_equal_or_greater_then_old_max_member">"يجب ان يكون العدد الاقصى للاعضاء اكبر او يساوي العدد السابق "</string>
+    <string name="sign_up_welcome">"اهلا بك عزيزي"</string>
 
 
 </resources>

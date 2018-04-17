@@ -4,13 +4,11 @@
     <item
         android:id="@+id/action_unhelpful"
         android:title="@string/unhelpful"
-        android:icon="@drawable/ic_thumb_down_black_24dp"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/action_not_present"
         android:title="@string/not_attend"
-        android:icon="@drawable/ic_flag_black_24dp"
         app:showAsAction="never"
         />
 

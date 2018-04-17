@@ -52,7 +52,7 @@ class GroupCampaignsAdapter(list: MutableList<GroupCampaigns>) : BaseRecyclerAda
 
 
             val popupMenu = PopupMenu(mContext, imgMore)
-            popupMenu.inflate(R.menu.campaign_owner_menu)
+            popupMenu.inflate(R.menu.campagin_owner_popup_menu)
 
             imgMore.setOnClickListener {
 

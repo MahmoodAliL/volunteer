@@ -46,8 +46,8 @@
         android:layout_marginTop="16dp"
         android:ellipsize="end"
         android:gravity="start"
-        android:textAlignment="viewStart"
         android:maxLines="2"
+        android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/campaignCoverImg"
         tools:text="عربي" />
 
-    <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+    <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
         android:id="@+id/txtGroupNameUploadDateViews"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

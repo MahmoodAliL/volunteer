@@ -1,6 +1,6 @@
 package com.teaml.iq.volunteer
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 import com.teaml.iq.volunteer.data.DataManager
 import com.teaml.iq.volunteer.di.component.ApplicationComponent
 import com.teaml.iq.volunteer.di.component.DaggerApplicationComponent
@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Created by Mahmood Ali on 30/01/2018.
  */
-class MvpApp : Application() {
+class MvpApp : MultiDexApplication() {
 
     @Inject
     lateinit var mDataManger: DataManager

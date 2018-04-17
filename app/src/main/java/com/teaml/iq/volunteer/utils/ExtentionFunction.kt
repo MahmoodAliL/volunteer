@@ -1,11 +1,16 @@
 package com.teaml.iq.volunteer.utils
 
+import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.TypedArray
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.content.res.AppCompatResources
 import android.view.View
 import android.widget.TextView
 import java.text.SimpleDateFormat
@@ -78,15 +83,15 @@ fun AppCompatActivity.replaceFragment(frameId: Int, fragment: Fragment, tag: Str
 }
 
 fun FragmentActivity.replaceFragment(frameId: Int, fragment: Fragment, tag: String? = null) {
-    supportFragmentManager.inTransaction { replace(frameId, fragment, tag);  }
+    supportFragmentManager.inTransaction { replace(frameId, fragment, tag); }
 }
 
 fun AppCompatActivity.addFragment(frameId: Int, fragment: Fragment, tag: String?) {
-    supportFragmentManager.inTransaction { add(frameId, fragment, tag)  }
+    supportFragmentManager.inTransaction { add(frameId, fragment, tag) }
 }
 
 fun FragmentActivity.addFragment(frameId: Int, fragment: Fragment, tag: String?) {
-    supportFragmentManager.inTransaction { add(frameId, fragment, tag)  }
+    supportFragmentManager.inTransaction { add(frameId, fragment, tag) }
 }
 
 // Add or replace fragment with add to back stack
@@ -118,7 +123,9 @@ val View.invisible: Unit
     }
 
 val View.gone: Unit
-    get() { visibility = View.GONE}
+    get() {
+        visibility = View.GONE
+    }
 
 // Date utils
 
@@ -144,4 +151,18 @@ fun Date.toTimestampString(): String {
 fun TextView.clearText() {
     this.text = ""
 }
+// resource utiles
+
+fun TypedArray.getDrawableCompat(context: Context, index: Int): Drawable? =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.getDrawable(index)
+        } else {
+            val drawableId = this.getResourceId(index, -1)
+            if (drawableId != -1)
+                AppCompatResources.getDrawable(context, drawableId)
+            else
+                null
+
+        }
+
 

@@ -35,7 +35,7 @@
         android:gravity="center_horizontal"
         android:text="@string/bio_placeholder" />
 
-    <com.teaml.iq.volunteer.utils.custom.view.TextViewWithArabicDigits
+    <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
         android:id="@+id/txtXpPoint"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"

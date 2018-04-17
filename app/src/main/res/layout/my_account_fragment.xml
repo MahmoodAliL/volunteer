@@ -15,40 +15,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/myGroup"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_group_24dp"
             android:text="@string/my_group_toolbar"
+            app:drawableStartCompat="@drawable/ic_group_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_header" />
 
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/myProfile"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_account_box_24dp"
             android:text="@string/my_profile"
+            app:drawableStartCompat="@drawable/ic_account_box_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myGroup" />
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/signOut"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_exit_to_app_24dp"
             android:text="@string/sign_out"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:drawableStartCompat="@drawable/ic_exit_to_app_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,52 +67,52 @@
             app:layout_constraintTop_toBottomOf="@id/signOut" />
 
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/termsAndPrivacyPolicy"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_lock_24dp"
             android:text="@string/privacy_policy"
+            app:drawableStartCompat="@drawable/ic_lock_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/feedback"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_feedback_24dp"
             android:text="@string/feedback"
+            app:drawableStartCompat="@drawable/ic_feedback_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/termsAndPrivacyPolicy" />
 
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/help"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_help_24dp"
             android:text="@string/help"
+            app:drawableStartCompat="@drawable/ic_help_24dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/feedback" />
 
-        <TextView
+        <com.teaml.iq.volunteer.utils.custom.view.CustomTextView
             android:id="@+id/about"
             style="@style/ButtonWithDrawableStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:drawableStart="@drawable/ic_info_24dp"
             android:text="@string/about"
+            app:drawableStartCompat="@drawable/ic_info_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
